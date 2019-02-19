@@ -9,6 +9,8 @@ import java.util.Locale;
 public class Main extends Game {
 	SpriteBatch batch;
 	MainMenuScene mainMenuScene;
+	OptionsScene optionScene;
+	GameScene gameScene;
 
 	public final int WORLDPIXELHEIGHT = 640;
     public final int WORLDPIXELWIDTH = 360;
@@ -23,9 +25,25 @@ public class Main extends Game {
 	public void create () {
 		batch = new SpriteBatch();
         mainMenuScene = new MainMenuScene(this);
+        optionScene = new OptionsScene(this);
+        gameScene = new GameScene(this);
+        openMainMenu();
+	}
+
+	public void openMainMenu() {
         Gdx.input.setInputProcessor(mainMenuScene.getStage());
         setScreen(mainMenuScene);
-	}
+    }
+
+    public void openOptions() {
+        Gdx.input.setInputProcessor(optionScene.getStage());
+        setScreen(optionScene);
+    }
+
+    public void openGame() {
+        Gdx.input.setInputProcessor(gameScene.getStage());
+        setScreen(gameScene);
+    }
 
 	@Override
 	public void render () {
@@ -36,6 +54,8 @@ public class Main extends Game {
 	public void dispose () {
 		batch.dispose();
         mainMenuScene.dispose();
+        optionScene.dispose();
+        gameScene.dispose();
 	}
 
 	public SpriteBatch getBatch() {
