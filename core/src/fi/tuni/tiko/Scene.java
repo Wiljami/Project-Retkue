@@ -64,7 +64,7 @@ public abstract class Scene extends ApplicationAdapter implements Screen {
             setupSkins();
             setupStyles();
             debug = game.debug;
-            bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
+            //bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
         }
     }
 
