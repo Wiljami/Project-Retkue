@@ -7,6 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+
+/**
+ * Class containing the options scene.
+ *
+ * @author Viljami Pietarila
+ * @verson 2019.02.19
+ */
 public class OptionsScene extends Scene {
     public OptionsScene(Main game) {
         super(game);

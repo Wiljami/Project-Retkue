@@ -22,6 +22,9 @@ import java.util.ArrayList;
  * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
  * and skins.
  *
+ * TODO: create an ArrayList to store fonts, styles and skins to make it neater.
+ * TODO: dynamic addition of them as well
+ *
  * @author Viljami Pietarila
  * @version 2019.0219
  */
@@ -53,13 +56,13 @@ import java.util.ArrayList;
     private ArrayList<TextBox> texts;
 
     /**
-     * Constructor for the Scene
+     * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
+     * are generated only once.
      * @param game reference to the main that creates and controls all the scenes
      */
     public Scene(Main game) {
         stage = new Stage(new FitViewport(game.WORLDPIXELWIDTH,
                 game.WORLDPIXELHEIGHT), game.getBatch());
-        //If this is the first instance of the scene then generate the static resources
         if (!initialized) {
             initialized = true;
             this.game = game;
@@ -69,6 +72,7 @@ import java.util.ArrayList;
             setupSkins();
             setupStyles();
             debug = game.debug;
+            //TODO: Actually add the localization properly
             //bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
         }
     }
