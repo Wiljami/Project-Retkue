@@ -6,6 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Locale;
 
+/**
+ * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0219
+ */
 public class Main extends Game {
 	SpriteBatch batch;
 	MainMenuScene mainMenuScene;
@@ -19,6 +25,7 @@ public class Main extends Game {
     public final int WORLDWIDTH = 3;
 
     public boolean debug = false;
+    //TODO: Currently unused
     Locale locale = Locale.getDefault();
 
     @Override

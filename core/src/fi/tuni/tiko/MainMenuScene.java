@@ -7,6 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * Class holding the MainMenu scene.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.02.19
+ */
 public class MainMenuScene extends Scene {
 
     public MainMenuScene(Main game) {
