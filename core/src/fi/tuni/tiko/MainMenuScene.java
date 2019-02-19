@@ -1,7 +1,9 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class MainMenuScene extends Scene {
 
@@ -20,31 +22,21 @@ public class MainMenuScene extends Scene {
     }
 
     private void createMenu() {
-        Label title = new Label("temp", getLabelComicHeadline());
-        Label title2 = new Label("temp2", getLabelComicHeadline());
-        Label title3 = new Label("temp3", getLabelComicHeadline());
-        Label title4 = new Label("temp4", getLabelComicHeadline());
+        Title title = new Title();
+
+        Button start = new TextButton("Start", getSkin());
+        Button options = new TextButton("Options", getSkin());
 
         Table table = new Table();
-        table.debug();
+        //table.debug();
         table.setFillParent(true);
-        table.add(title);
-        table.add(title4);
-        table.add(title);
+        table.add(title).colspan(3);
         table.row();
-        table.add(title);
-        table.add(title4);
-        table.add(title);
+        table.add().prefHeight(400);
         table.row();
-        table.add(title);
-        table.add(title4);
-        table.add(title);
-        table.row();
-        table.add(title);
-        table.add(title4);
-        table.add(title);
-        table.row();
-
+        table.add(start).prefWidth(100);
+        table.add().prefWidth(80);
+        table.add(options).prefWidth(100);
         getStage().addActor(table);
     }
 
