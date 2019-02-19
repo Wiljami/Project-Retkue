@@ -45,7 +45,7 @@ public abstract class Scene extends ApplicationAdapter implements Screen {
 
     private static boolean initialized = false;
     private static boolean disposed = false;
-    public static boolean debug = true;
+    public static boolean debug;
 
     private Stage stage;
 
