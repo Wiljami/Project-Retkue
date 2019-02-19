@@ -20,7 +20,7 @@ public class Maingame extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		System.out.println("sadsadsadasdsad");
+		System.out.println("sadsadsadadsadasadasdsad");
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
