@@ -6,11 +6,22 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Maingame extends ApplicationAdapter {
+import java.util.Locale;
+
+public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
-	@Override
+
+	public final int WORLDPIXELHEIGHT = 2;
+    public final int WORLDPIXELWIDTH = 1;
+
+    public final int WORLDHEIGHT = 4;
+    public final int WORLDWIDTH = 3;
+
+    public boolean debug = false;
+    Locale locale = Locale.getDefault();
+
+    @Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
@@ -30,5 +41,9 @@ public class Maingame extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+	}
+
+	public SpriteBatch getBatch() {
+		return batch;
 	}
 }
