@@ -19,8 +19,6 @@ public class Title extends Actor {
         setWidth(texture.getWidth()/3f);
         setHeight(texture.getHeight()/3f);
         setBounds(0,0, getWidth(), getHeight());
-        setX(100);
-        setY(100);
     }
 
     @Override
