@@ -29,6 +29,7 @@ public class GameScene extends Scene {
             }
         });
         Table table = new Table();
+        if (debug) table.debug();
         table.setFillParent(true);
         table.add(new Label("Game", getSkin())).colspan(3);
         table.row();
