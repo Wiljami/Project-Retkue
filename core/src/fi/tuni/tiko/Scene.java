@@ -141,7 +141,8 @@ import java.util.ArrayList;
         textCamera.update();
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
-        batch.setProjectionMatrix(textCamera.combined);
+        //TODO: Figure it out if we need two cameras
+        //batch.setProjectionMatrix(textCamera.combined);
         drawText();
         batch.end();
         renderActions();
@@ -254,7 +255,6 @@ import java.util.ArrayList;
      */
     @Override
     public void resume() {
-
     }
 
     /**
