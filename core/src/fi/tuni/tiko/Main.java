@@ -71,8 +71,6 @@ public class Main extends Game {
         gameScene.dispose();
 	}
 
-
-
     public SpriteBatch getBatch() {
 		return batch;
 	}

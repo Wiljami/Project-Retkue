@@ -2,7 +2,6 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -15,13 +14,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class MainMenuScene extends Scene {
 
+    private Title title;
+
     public MainMenuScene(Main game) {
         super(game);
         createMenu();
     }
 
     private void createMenu() {
-        Title title = new Title();
+        title = new Title();
 
         Button start = new TextButton("Start", getSkin());
         start.addListener(new ClickListener() {
@@ -59,5 +60,6 @@ public class MainMenuScene extends Scene {
 
     public void dispose() {
         super.dispose();
+        title.dispose();
     }
 }

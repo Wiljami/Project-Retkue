@@ -30,4 +30,8 @@ public class Title extends Actor {
     public void act(float delta) {
         super.act(delta);
     }
+
+    public void dispose() {
+        texture.dispose();
+    }
 }
