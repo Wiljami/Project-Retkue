@@ -15,17 +15,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class MainMenuScene extends Scene {
 
-    private Table mainMenuTable;
-
     public MainMenuScene(Main game) {
         super(game);
         createMenu();
     }
 
     private void createMenu() {
-        TextBox testBox = new TextBox("test", 200, 400,TextBox.FontType.headline);
-        addText(testBox);
-
         Title title = new Title();
 
         Button start = new TextButton("Start", getSkin());
@@ -44,9 +39,7 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        Label test = new Label("test", getSkin());
-
-        mainMenuTable= new Table();
+        Table mainMenuTable= new Table();
         if (debug)mainMenuTable.debug();
         mainMenuTable.setFillParent(true);
         mainMenuTable.add(title).colspan(3);
@@ -54,7 +47,7 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add().prefHeight(400);
         mainMenuTable.row();
         mainMenuTable.add(start).prefWidth(100);
-        mainMenuTable.add(test).prefWidth(80);
+        mainMenuTable.add().prefWidth(80);
         mainMenuTable.add(options).prefWidth(100);
         getStage().addActor(mainMenuTable);
     }
