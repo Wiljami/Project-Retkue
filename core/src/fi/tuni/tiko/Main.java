@@ -24,12 +24,18 @@ public class Main extends Game {
     public final int WORLDHEIGHT = 4;
     public final int WORLDWIDTH = 3;
 
-    public boolean debug = false;
+    /**
+     * debug boolean toggles debug features in the code
+     */
+    public boolean debug = true;
     //TODO: Currently unused
     Locale locale = Locale.getDefault();
 
     @Override
 	public void create () {
+        //TODO: implement elegant exit on BackKey
+        //TODO: This is needed as default behavior bugs out the graphics
+        Gdx.input.setCatchBackKey(true);
 		batch = new SpriteBatch();
         mainMenuScene = new MainMenuScene(this);
         optionScene = new OptionsScene(this);
@@ -65,7 +71,9 @@ public class Main extends Game {
         gameScene.dispose();
 	}
 
-	public SpriteBatch getBatch() {
+
+
+    public SpriteBatch getBatch() {
 		return batch;
 	}
 }
