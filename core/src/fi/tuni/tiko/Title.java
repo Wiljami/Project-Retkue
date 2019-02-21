@@ -1,10 +1,8 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
 /**
  * Class for the title.
  * TODO: Figure out something better.
@@ -15,9 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Title extends Actor {
     private Texture texture;
     public Title() {
-        texture = new Texture(Gdx.files.internal("retkue_title.png"));
-        setWidth(texture.getWidth()/3f);
-        setHeight(texture.getHeight()/3f);
+        texture = Utils.loadTexture("retkue_title.png");
+        setWidth(266f);
+        setHeight(67f);
         setBounds(0,0, getWidth(), getHeight());
     }
 
