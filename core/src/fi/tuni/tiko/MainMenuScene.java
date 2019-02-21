@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -24,6 +25,10 @@ public class MainMenuScene extends Scene {
     private void createMenu() {
         title = new Title();
 
+        Image temp = new Image(Utils.loadTexture("sad"));
+        temp.setSize(100,100);
+        System.out.println(temp.getHeight());
+
         Button start = new TextButton("Start", getSkin());
         start.addListener(new ClickListener() {
             @Override
@@ -43,7 +48,7 @@ public class MainMenuScene extends Scene {
         Table mainMenuTable= new Table();
         if (debug)mainMenuTable.debug();
         mainMenuTable.setFillParent(true);
-        mainMenuTable.add(title).colspan(3);
+        mainMenuTable.add(temp).colspan(3).prefWidth(267).prefHeight(67);
         mainMenuTable.row();
         mainMenuTable.add().prefHeight(400);
         mainMenuTable.row();
