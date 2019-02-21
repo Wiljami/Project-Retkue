@@ -2,7 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class MainMenuScene extends Scene {
 
-    private Table mainMenuTable;
+    private Title title;
 
     public MainMenuScene(Main game) {
         super(game);
@@ -23,10 +23,11 @@ public class MainMenuScene extends Scene {
     }
 
     private void createMenu() {
-        TextBox testBox = new TextBox("test", 200, 400,TextBox.FontType.headline);
-        addText(testBox);
+        title = new Title();
 
-        Title title = new Title();
+        Image temp = new Image(Utils.loadTexture("sad"));
+        temp.setSize(100,100);
+        System.out.println(temp.getHeight());
 
         Button start = new TextButton("Start", getSkin());
         start.addListener(new ClickListener() {
@@ -44,17 +45,15 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        Label test = new Label("test", getSkin());
-
-        mainMenuTable= new Table();
+        Table mainMenuTable= new Table();
         if (debug)mainMenuTable.debug();
         mainMenuTable.setFillParent(true);
-        mainMenuTable.add(title).colspan(3);
+        mainMenuTable.add(temp).colspan(3).prefWidth(267).prefHeight(67);
         mainMenuTable.row();
         mainMenuTable.add().prefHeight(400);
         mainMenuTable.row();
         mainMenuTable.add(start).prefWidth(100);
-        mainMenuTable.add(test).prefWidth(80);
+        mainMenuTable.add().prefWidth(80);
         mainMenuTable.add(options).prefWidth(100);
         getStage().addActor(mainMenuTable);
     }
@@ -66,5 +65,6 @@ public class MainMenuScene extends Scene {
 
     public void dispose() {
         super.dispose();
+        title.dispose();
     }
 }

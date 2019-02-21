@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-
 /**
  * Class containing the options scene.
  *
@@ -28,14 +27,15 @@ public class OptionsScene extends Scene {
                 getGame().openMainMenu();
             }
         });
+
         Table table = new Table();
+        if (debug) table.debug();
         table.setFillParent(true);
         table.add(new Label("Options", getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(400);
         table.row();
-        table.add(mainMenu);
-
+        table.add(mainMenu).colspan(3);
         getStage().addActor(table);
     }
 }
