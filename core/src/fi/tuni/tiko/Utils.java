@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
- * Utils class contains utility 
+ * Utils class contains utility
+ * @author Viljami Pietarila
+ * @version 2019.0221
  */
 
 public class Utils {
