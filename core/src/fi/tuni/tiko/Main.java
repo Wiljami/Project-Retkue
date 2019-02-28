@@ -10,9 +10,12 @@ import java.util.Locale;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0219
+ * @version 2019.0228
  */
 public class Main extends Game {
+    /**
+     * TODO: Comment this.
+     */
 	SpriteBatch batch;
 	MainMenuScene mainMenuScene;
 	OptionsScene optionScene;
@@ -24,12 +27,22 @@ public class Main extends Game {
 	ForestScene forestScene;
 	ResultsScene resultsScene;
 
+    /**
+     * TODO: How do we want to do this? Since we don't use physics in this game, the meters are not
+     * needed and we need the pixels for rendering text.
+     */
 	public final int WORLDPIXELHEIGHT = 640;
     public final int WORLDPIXELWIDTH = 360;
 
+    /**
+     * TODO: Do we need this?
+     */
     public final int WORLDHEIGHT = 4;
     public final int WORLDWIDTH = 3;
 
+    /**
+     * GameView is enum for identifying between different scenes in the game.
+     */
     public enum GameView {
         mainMenu, gameScreen, menu, inn, shop, tavern, adventure, forest, results
     }
@@ -51,6 +64,9 @@ public class Main extends Game {
         openScene(GameView.mainMenu);
 	}
 
+    /**
+     * Method for initiating all the scenes used in the game.
+     */
 	private void initiateScenes() {
         mainMenuScene = new MainMenuScene(this);
         optionScene = new OptionsScene(this);
@@ -63,6 +79,10 @@ public class Main extends Game {
         resultsScene = new ResultsScene(this);
     }
 
+    /**
+     * openScene is a method handling opening a new scene. It works using enum GameView.
+     * @param gameView the scene we wish to navigate to
+     */
 	public void openScene(GameView gameView) {
         Scene scene;
         switch(gameView) {
@@ -81,21 +101,37 @@ public class Main extends Game {
         setScreen(scene);
     }
 
+
     private GameView origin;
-    public void openScene(GameView gameView, GameView origin) {
+    /**
+     * As openScene, but it records the scene we come from to GameView variable origin.
+     * @param gameView the view we wish to navigate to
+     * @param origin the scene where we come from
+     */
+	public void openScene(GameView gameView, GameView origin) {
         this.origin = origin;
         openScene(gameView);
     }
 
+    /**
+     * Calls openScene using origin. Used for returning to the previous scene.
+     */
     public void returnToOrigin() {
         openScene(origin);
     }
 
+    /**
+     * TODO: Figure out if we need this here or not.
+     * Idea is that it's here so we can add stuff if we wish to render more stuff.
+     */
 	@Override
 	public void render () {
         super.render();
 	}
-	
+
+    /**
+     * dispose. dispose things we have created.
+     */
 	@Override
 	public void dispose () {
 		batch.dispose();
@@ -110,6 +146,10 @@ public class Main extends Game {
         resultsScene.dispose();
 	}
 
+    /**
+     * Getter for the spriteBatch.
+     * @return returns the spriteBatch batch
+     */
     public SpriteBatch getBatch() {
 		return batch;
 	}

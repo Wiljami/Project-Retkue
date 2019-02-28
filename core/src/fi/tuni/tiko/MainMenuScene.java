@@ -11,17 +11,28 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * Class holding the MainMenu scene.
  *
  * @author Viljami Pietarila
- * @version 2019.02.19
+ * @version 2019.0228
  */
 public class MainMenuScene extends Scene {
 
+    /**
+     * Actor for title.
+     * TODO: Can we do this better?
+     */
     private Title title;
 
+    /**
+     * MainMenuScene constructor.
+     * @param game pointer to the Main.
+     */
     public MainMenuScene(Main game) {
         super(game);
         createMenu();
     }
 
+    /**
+     * createMenu creates the UI of the mainMenu.
+     */
     private void createMenu() {
         title = new Title();
 
@@ -55,11 +66,6 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add().prefWidth(80);
         mainMenuTable.add(options).prefWidth(100);
         getStage().addActor(mainMenuTable);
-    }
-
-    @Override
-    public void render(float delta) {
-        sceneRender();
     }
 
     public void dispose() {

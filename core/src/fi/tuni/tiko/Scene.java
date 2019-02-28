@@ -24,9 +24,10 @@ import java.util.ArrayList;
  *
  * TODO: create an ArrayList to store fonts, styles and skins to make it neater.
  * TODO: dynamic addition of them as well
+ * TODO: Is this worth the trouble?
  *
  * @author Viljami Pietarila
- * @version 2019.0219
+ * @version 2019.0228
  */
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
@@ -47,10 +48,22 @@ import java.util.ArrayList;
     private static SpriteBatch batch;
     private static I18NBundle bundle;
 
+    /**
+     * initialized is a boolean that tracks if the static resources of this class have been created
+     */
     private static boolean initialized = false;
+    /**
+     * disposed is a boolean that tracks if the static resources of this class have been disposed
+     */
     private static boolean disposed = false;
+    /**
+     * debug is a boolean that tracks if debug mode is on or not.
+     */
     public static boolean debug;
 
+    /**
+     * Each Scene has a Stage.
+     */
     private Stage stage;
 
     private ArrayList<TextBox> texts;
