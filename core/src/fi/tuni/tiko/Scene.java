@@ -140,12 +140,17 @@ import java.util.ArrayList;
         camera.update();
         textCamera.update();
         batch.begin();
-        batch.setProjectionMatrix(camera.combined);
+        //batch.setProjectionMatrix(camera.combined);
         //TODO: Figure it out if we need two cameras
-        //batch.setProjectionMatrix(textCamera.combined);
+        batch.setProjectionMatrix(textCamera.combined);
         drawText();
+        renderBackground();
         batch.end();
         renderActions();
+    }
+
+    //Dummy method to be overridden by other scenes as needed atm
+    public void renderBackground() {
     }
 
     /**

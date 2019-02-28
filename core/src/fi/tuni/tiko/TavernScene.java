@@ -7,18 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-/**
- * Class containing the options scene.
- *
- * @author Viljami Pietarila
- * @version 2019.02.19
- */
-public class OptionsScene extends Scene {
-
-    //originScene holds pointer to the scene where we got here.
-    private Scene originScene;
-
-    public OptionsScene(Main game) {
+class TavernScene extends Scene{
+    public TavernScene(Main game) {
         super(game);
         createMenu();
     }
@@ -35,15 +25,11 @@ public class OptionsScene extends Scene {
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
-        table.add(new Label("Options", getSkin())).colspan(3);
+        table.add(new Label("Tavern", getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(400);
         table.row();
         table.add(returnToOrigin).colspan(3);
         getStage().addActor(table);
-    }
-
-    public void setOriginScene (Scene originScene) {
-        this.originScene = originScene;
     }
 }
