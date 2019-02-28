@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+//TODO: Everything
+
 class ShopScene extends Scene{
     public ShopScene(Main game) {
         super(game);
