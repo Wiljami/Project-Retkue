@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -8,12 +9,30 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-//TODO: Everything
-
+/**
+ * AdventureScene creates the view for the adventure picking screen
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0228
+ */
 class AdventureScene extends Scene{
+
     public AdventureScene(Main game) {
         super(game);
         createMenu();
+    }
+
+    private void promtToForest() {
+        CustomDialog dialog = new CustomDialog("Do you want to\n proceed with this quest?","") {
+            public void result(Object obj) {
+                if (obj.equals(true)) {
+                    remove();
+                    getGame().openScene(Main.GameView.forest);
+                }
+            }
+        };
+        //TODO: Localization!
+        dialog.show(getStage());
     }
 
     private void createMenu() {
@@ -29,7 +48,7 @@ class AdventureScene extends Scene{
         forest.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.forest);
+                promtToForest();
             }
         });
 

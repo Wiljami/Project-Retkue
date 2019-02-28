@@ -85,6 +85,8 @@ import java.util.ArrayList;
             setupSkins();
             setupStyles();
             debug = game.debug;
+            //Set default skin for the dialogs in the game
+            CustomDialog.setDialogSkin(getSkin());
             //TODO: Actually add the localization properly
             //bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
         }

@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -10,10 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 //TODO: Everything
 
 class ForestScene extends Scene{
+
     public ForestScene(Main game) {
         super(game);
         createMenu();
     }
+
+
 
     private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());

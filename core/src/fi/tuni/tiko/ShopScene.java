@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -15,6 +16,17 @@ class ShopScene extends Scene{
         createMenu();
     }
 
+    private void confirmPurchase() {
+        CustomDialog dialog = new CustomDialog("Are you sure you want this thing?","") {
+            public void result(Object obj) {
+                System.out.println(obj);
+            }
+        };
+        //TODO: Localization!
+        dialog.show(getStage());
+    }
+
+
     private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
@@ -24,12 +36,24 @@ class ShopScene extends Scene{
             }
         });
 
+        Button item = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
+        item.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                confirmPurchase();
+            }
+        });
+
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
         table.add(new Label("Shop", getSkin())).colspan(3);
         table.row();
-        table.add().prefHeight(400);
+        table.add().prefHeight(200);
+        table.row();
+        table.add(item);
+        table.row();
+        table.add().prefHeight(200);
         table.row();
         table.add(returnToOrigin).colspan(3);
         getStage().addActor(table);
