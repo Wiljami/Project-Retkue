@@ -8,6 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import fi.tuni.tiko.Main;
+import fi.tuni.tiko.Scene;
+import fi.tuni.tiko.Utils;
+
 /**
  * Class containing the game actual.
  * TODO: Should this be split in two? One for town and one for the forest.

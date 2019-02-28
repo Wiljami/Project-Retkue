@@ -17,6 +17,12 @@ public class Main extends Game {
 	MainMenuScene mainMenuScene;
 	OptionsScene optionScene;
 	GameScene gameScene;
+	InnScene innScene;
+	ShopScene shopScene;
+	TavernScene tavernScene;
+	AdventureScene adventureScene;
+	ForestScene forestScene;
+	ResultsScene resultsScene;
 
 	public final int WORLDPIXELHEIGHT = 640;
     public final int WORLDPIXELWIDTH = 360;
