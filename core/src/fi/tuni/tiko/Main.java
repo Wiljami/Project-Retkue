@@ -47,11 +47,21 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
 		batch = new SpriteBatch();
+        initiateScenes();
+        openScene(GameView.mainMenu);
+	}
+
+	private void initiateScenes() {
         mainMenuScene = new MainMenuScene(this);
         optionScene = new OptionsScene(this);
         gameScene = new GameScene(this);
-        openScene(GameView.mainMenu);
-	}
+        innScene = new InnScene(this);
+        shopScene = new ShopScene(this);
+        tavernScene = new TavernScene(this);
+        adventureScene = new AdventureScene(this);
+        forestScene = new ForestScene(this);
+        resultsScene = new ResultsScene(this);
+    }
 
 	public void openScene(GameView gameView) {
         Scene scene;
@@ -59,12 +69,12 @@ public class Main extends Game {
             case mainMenu: scene = mainMenuScene; break;
             case gameScreen: scene = gameScene; break;
             case menu: scene = optionScene; break;
-            case inn: scene = mainMenuScene; break;
-            case shop: scene = mainMenuScene; break;
-            case tavern: scene = mainMenuScene; break;
-            case adventure: scene = mainMenuScene; break;
-            case forest: scene = mainMenuScene; break;
-            case results: scene = mainMenuScene; break;
+            case inn: scene = innScene; break;
+            case shop: scene = shopScene; break;
+            case tavern: scene = tavernScene; break;
+            case adventure: scene = adventureScene; break;
+            case forest: scene = forestScene; break;
+            case results: scene = resultsScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
         Gdx.input.setInputProcessor(scene.getStage());
@@ -92,6 +102,12 @@ public class Main extends Game {
         mainMenuScene.dispose();
         optionScene.dispose();
         gameScene.dispose();
+        innScene.dispose();
+        shopScene.dispose();
+        tavernScene.dispose();
+        adventureScene.dispose();
+        forestScene.dispose();
+        resultsScene.dispose();
 	}
 
     public SpriteBatch getBatch() {

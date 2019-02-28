@@ -24,8 +24,8 @@ public class OptionsScene extends Scene {
     }
 
     private void createMenu() {
-        Button mainMenu = new TextButton("Return to Main Menu", getSkin());
-        mainMenu.addListener(new ClickListener() {
+        Button returnToOrigin = new TextButton("Return", getSkin());
+        returnToOrigin.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 getGame().returnToOrigin();
@@ -39,7 +39,7 @@ public class OptionsScene extends Scene {
         table.row();
         table.add().prefHeight(400);
         table.row();
-        table.add(mainMenu).colspan(3);
+        table.add(returnToOrigin).colspan(3);
         getStage().addActor(table);
     }
 
