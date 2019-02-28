@@ -14,6 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.02.19
  */
 public class OptionsScene extends Scene {
+
+    //originScene holds pointer to the scene where we got here.
+    private Scene originScene;
+
     public OptionsScene(Main game) {
         super(game);
         createMenu();
@@ -24,7 +28,7 @@ public class OptionsScene extends Scene {
         mainMenu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openMainMenu();
+                getGame().returnToOrigin();
             }
         });
 
@@ -37,5 +41,9 @@ public class OptionsScene extends Scene {
         table.row();
         table.add(mainMenu).colspan(3);
         getStage().addActor(table);
+    }
+
+    public void setOriginScene (Scene originScene) {
+        this.originScene = originScene;
     }
 }

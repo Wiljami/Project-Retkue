@@ -24,6 +24,10 @@ public class Main extends Game {
     public final int WORLDHEIGHT = 4;
     public final int WORLDWIDTH = 3;
 
+    public enum GameView {
+        mainMenu, gameScreen, menu, inn, shop, tavern, adventure, forest, results
+    }
+
     /**
      * debug boolean toggles debug features in the code
      */
@@ -40,22 +44,35 @@ public class Main extends Game {
         mainMenuScene = new MainMenuScene(this);
         optionScene = new OptionsScene(this);
         gameScene = new GameScene(this);
-        openMainMenu();
+        openScene(GameView.mainMenu);
 	}
 
-	public void openMainMenu() {
-        Gdx.input.setInputProcessor(mainMenuScene.getStage());
-        setScreen(mainMenuScene);
+	public void openScene(GameView gameView) {
+        Scene scene;
+        switch(gameView) {
+            case mainMenu: scene = mainMenuScene; break;
+            case gameScreen: scene = gameScene; break;
+            case menu: scene = optionScene; break;
+            case inn: scene = mainMenuScene; break;
+            case shop: scene = mainMenuScene; break;
+            case tavern: scene = mainMenuScene; break;
+            case adventure: scene = mainMenuScene; break;
+            case forest: scene = mainMenuScene; break;
+            case results: scene = mainMenuScene; break;
+            default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
+        }
+        Gdx.input.setInputProcessor(scene.getStage());
+        setScreen(scene);
     }
 
-    public void openOptions() {
-        Gdx.input.setInputProcessor(optionScene.getStage());
-        setScreen(optionScene);
+    private GameView origin;
+    public void openScene(GameView gameView, GameView origin) {
+        this.origin = origin;
+        openScene(gameView);
     }
 
-    public void openGame() {
-        Gdx.input.setInputProcessor(gameScene.getStage());
-        setScreen(gameScene);
+    public void returnToOrigin() {
+        openScene(origin);
     }
 
 	@Override

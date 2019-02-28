@@ -27,13 +27,12 @@ public class MainMenuScene extends Scene {
 
         Image temp = new Image(Utils.loadTexture("sad"));
         temp.setSize(100,100);
-        System.out.println(temp.getHeight());
 
         Button start = new TextButton("Start", getSkin());
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openGame();
+                getGame().openScene(Main.GameView.gameScreen);
             }
         });
 
@@ -41,7 +40,7 @@ public class MainMenuScene extends Scene {
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openOptions();
+                getGame().openScene(Main.GameView.menu, Main.GameView.mainMenu);
             }
         });
 

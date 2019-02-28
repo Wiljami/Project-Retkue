@@ -26,7 +26,7 @@ public class GameScene extends Scene {
         mainMenu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openMainMenu();
+                getGame().openScene(Main.GameView.mainMenu);
             }
         });
 
