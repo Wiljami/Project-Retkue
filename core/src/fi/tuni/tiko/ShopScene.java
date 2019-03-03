@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 class ShopScene extends Scene{
     public ShopScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
     }
 
     private void confirmPurchase() {
@@ -27,7 +27,7 @@ class ShopScene extends Scene{
     }
 
 
-    private void CreateMenu() {
+    private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
             @Override

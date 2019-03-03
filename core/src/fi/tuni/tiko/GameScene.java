@@ -23,7 +23,7 @@ public class GameScene extends Scene {
 
     public GameScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
         backGround = new Texture(Gdx.files.internal("village.png"));
     }
 
@@ -32,7 +32,7 @@ public class GameScene extends Scene {
         getBatch().draw(backGround, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
     }
 
-    private void CreateMenu() {
+    private void createMenu() {
         Button mainMenu = new TextButton("Return to Main Menu", getSkin());
         mainMenu.addListener(new ClickListener() {
             @Override

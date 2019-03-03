@@ -27,13 +27,13 @@ public class MainMenuScene extends Scene {
      */
     public MainMenuScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
     }
 
     /**
-     * CreateMenu creates the UI of the mainMenu.
+     * createMenu creates the UI of the mainMenu.
      */
-    private void CreateMenu() {
+    private void createMenu() {
         title = new Title();
 
         Image temp = new Image(Utils.loadTexture("sad"));
@@ -67,7 +67,6 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add(options).prefWidth(100);
         getStage().addActor(mainMenuTable);
     }
-
 
     public void dispose() {
         super.dispose();

@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 class TavernScene extends Scene{
     public TavernScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
     }
 
     private void confirmQuest() {
@@ -26,7 +26,7 @@ class TavernScene extends Scene{
         dialog.show(getStage());
     }
 
-    private void CreateMenu() {
+    private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
             @Override

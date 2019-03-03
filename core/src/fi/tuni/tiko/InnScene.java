@@ -12,10 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 class InnScene extends Scene{
     public InnScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
     }
 
-    private void CreateMenu() {
+    private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
             @Override

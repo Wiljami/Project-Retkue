@@ -20,10 +20,10 @@ public class OptionsScene extends Scene {
 
     public OptionsScene(Main game) {
         super(game);
-        CreateMenu();
+        createMenu();
     }
 
-    private void CreateMenu() {
+    private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
             @Override
