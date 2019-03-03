@@ -18,7 +18,7 @@ class AdventureScene extends Scene{
 
     public AdventureScene(Main game) {
         super(game);
-        createMenu();
+        CreateMenu();
     }
 
     private void promtToForest() {
@@ -34,7 +34,7 @@ class AdventureScene extends Scene{
         dialog.show(getStage());
     }
 
-    private void createMenu() {
+    private void CreateMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
             @Override
