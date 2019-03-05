@@ -16,7 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A package containing necessary methods to run the graphical side of the KPS game.
@@ -33,6 +36,8 @@ import java.util.ArrayList;
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
     private static OrthographicCamera textCamera;
+
+    private static Map<String, BitmapFont> fonts;
 
     private static BitmapFont defaultFont;
     private static BitmapFont bigText;
@@ -108,6 +113,7 @@ import java.util.ArrayList;
      * Setup the different Fonts
      */
     private void setupFonts() {
+        fonts = new HashMap<String, BitmapFont>();
         FreeTypeFontGenerator fontGenerator =
                 new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
@@ -116,13 +122,22 @@ import java.util.ArrayList;
         parameter.borderColor = Color.BLUE;
         parameter.borderWidth = 1;
         defaultFont = fontGenerator.generateFont(parameter);
+
+        fonts.put("defaultFont", defaultFont);
+
         parameter.size = 24;
         bigText = fontGenerator.generateFont(parameter);
+
+        fonts.put("bigText", bigText);
+
         parameter.size = 48;
         parameter.color = Color.GOLD;
         parameter.borderColor = Color.WHITE;
         parameter.borderWidth = 3;
         headline = fontGenerator.generateFont(parameter);
+
+        fonts.put("headline", headline);
+
         FreeTypeFontGenerator fontGeneratorComic =
                 new FreeTypeFontGenerator(Gdx.files.internal("comic.ttf"));
         parameter.size = 10;
@@ -130,8 +145,13 @@ import java.util.ArrayList;
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 1;
         comicSans = fontGeneratorComic.generateFont(parameter);
+
+        fonts.put("comicSans", comicSans);
+
         parameter.size = 48;
         comicHeadline = fontGeneratorComic.generateFont(parameter);
+
+        fonts.put("comicHeadline", comicHeadline);
     }
 
     /**
@@ -385,5 +405,9 @@ import java.util.ArrayList;
 
     public void setHasBackground(boolean hasBackground) {
         this.hasBackground = hasBackground;
+    }
+
+    public BitmapFont fontType(String name) {
+        return fonts.get(name);
     }
 }
