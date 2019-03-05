@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.rmi.CORBA.Util;
+
 /**
  * A package containing necessary methods to run the graphical side of the KPS game.
  * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
@@ -395,7 +397,7 @@ import java.util.Map;
     }
 
     public void setupBackground(String filename) {
-        background = new Texture(Gdx.files.internal(filename));
+        background = Utils.loadTexture(filename);
         setHasBackground(true);
     }
 
