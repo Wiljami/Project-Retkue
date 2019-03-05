@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Item class will hold the information specific to each item
  *
@@ -9,6 +11,7 @@ package fi.tuni.tiko;
 public class Item {
     private String name;
     private String description;
+    private Texture icon;
 
     private int attack;
     private int defense;
