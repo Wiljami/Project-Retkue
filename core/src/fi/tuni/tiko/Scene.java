@@ -337,8 +337,8 @@ import javax.rmi.CORBA.Util;
     }
 
     /**
-     * reneder(float delta)
-     * @param delta
+     * render(float delta)
+     * @param delta deltaTime
      */
     @Override
     public void render(float delta) {
