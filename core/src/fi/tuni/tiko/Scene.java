@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -67,6 +68,9 @@ import java.util.ArrayList;
     private Stage stage;
 
     private ArrayList<TextBox> texts;
+
+    private boolean hasBackground;
+    private Texture background;
 
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
@@ -166,6 +170,9 @@ import java.util.ArrayList;
 
     //Dummy method to be overridden by other scenes as needed atm
     public void renderBackground() {
+        if (hasBackground) {
+            getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
+        }
     }
 
     /**
@@ -299,6 +306,9 @@ import java.util.ArrayList;
             comicHeadline.dispose();
             disposed = true;
         }
+        if (hasBackground) {
+            background.dispose();
+        }
         stage.dispose();
         super.dispose();
     }
@@ -358,5 +368,22 @@ import java.util.ArrayList;
 
     public static I18NBundle getBundle() {
         return bundle;
+    }
+
+    public Texture getBackground() {
+        return background;
+    }
+
+    public void setupBackground(String filename) {
+        background = new Texture(Gdx.files.internal(filename));
+        setHasBackground(true);
+    }
+
+    public boolean getHasBackground() {
+        return hasBackground;
+    }
+
+    public void setHasBackground(boolean hasBackground) {
+        this.hasBackground = hasBackground;
     }
 }

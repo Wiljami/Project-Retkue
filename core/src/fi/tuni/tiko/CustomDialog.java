@@ -11,7 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * @author Viljami Pietarila
  * @version 2019.0228
  */
-public class CustomDialog extends Dialog {
+
+//TODO: Make this better
+    public class CustomDialog extends Dialog {
     private static String windowStyle = "dialog";
     private static Skin skin;
 
