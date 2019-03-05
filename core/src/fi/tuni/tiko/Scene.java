@@ -28,9 +28,9 @@ import javax.rmi.CORBA.Util;
  * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
  * and skins.
  *
- * TODO: create an ArrayList to store fonts, styles and skins to make it neater.
+ * TODO: create an HashMap to store fonts, styles and skins to make it neater.
  * TODO: dynamic addition of them as well
- * TODO: Is this worth the trouble?
+ * TODO: Is this worth the trouble? YES
  *
  * @author Viljami Pietarila
  * @version 2019.0228
