@@ -190,7 +190,9 @@ import javax.rmi.CORBA.Util;
         renderActions();
     }
 
-    //Dummy method to be overridden by other scenes as needed atm
+    /**
+     * renderBackground renders a background image if the scene has one.
+     */
     public void renderBackground() {
         if (hasBackground) {
             getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
@@ -270,8 +272,7 @@ import javax.rmi.CORBA.Util;
             return bundle.get(key);
         }
         catch(Exception e) {
-            String error = "Error reading: " + key;
-            return error;
+            return "Error reading: " + key;
         }
     }
 
