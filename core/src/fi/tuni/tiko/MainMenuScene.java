@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+
 /**
  * Class holding the MainMenu scene.
  *
@@ -14,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0228
  */
 public class MainMenuScene extends Scene {
-
     /**
      * Actor for title.
      * TODO: Can we do this better?
@@ -28,6 +28,7 @@ public class MainMenuScene extends Scene {
     public MainMenuScene(Main game) {
         super(game);
         createMenu();
+        setupBackground("mainmenu.png");
     }
 
     /**
@@ -36,7 +37,7 @@ public class MainMenuScene extends Scene {
     private void createMenu() {
         title = new Title();
 
-        Image temp = new Image(Utils.loadTexture("sad"));
+        Image temp = new Image(Utils.loadTexture("retkue_title.png"));
         temp.setSize(100,100);
 
         Button start = new TextButton("Start", getSkin());
@@ -60,7 +61,7 @@ public class MainMenuScene extends Scene {
         mainMenuTable.setFillParent(true);
         mainMenuTable.add(temp).colspan(3).prefWidth(267).prefHeight(67);
         mainMenuTable.row();
-        mainMenuTable.add().prefHeight(400);
+        mainMenuTable.add().prefHeight(500);
         mainMenuTable.row();
         mainMenuTable.add(start).prefWidth(100);
         mainMenuTable.add().prefWidth(80);

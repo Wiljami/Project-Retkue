@@ -24,12 +24,7 @@ public class GameScene extends Scene {
     public GameScene(Main game) {
         super(game);
         createMenu();
-        backGround = new Texture(Gdx.files.internal("village.png"));
-    }
-
-    @Override
-    public void renderBackground() {
-        getBatch().draw(backGround, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
+        setupBackground("village.png");
     }
 
     private void createMenu() {
@@ -103,7 +98,6 @@ public class GameScene extends Scene {
 
     @Override
     public void dispose() {
-        backGround.dispose();
         super.dispose();
     }
 }

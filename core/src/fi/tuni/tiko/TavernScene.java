@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -8,12 +9,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import static com.badlogic.gdx.Gdx.files;
+
 //TODO: Everything
 
 class TavernScene extends Scene{
     public TavernScene(Main game) {
         super(game);
         createMenu();
+        setupBackground("old_guy1.png");
     }
 
     private void confirmQuest() {

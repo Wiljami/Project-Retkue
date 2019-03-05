@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,7 +16,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.rmi.CORBA.Util;
 
 /**
  * A package containing necessary methods to run the graphical side of the KPS game.
@@ -32,6 +38,8 @@ import java.util.ArrayList;
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
     private static OrthographicCamera textCamera;
+
+    private static Map<String, BitmapFont> fonts;
 
     private static BitmapFont defaultFont;
     private static BitmapFont bigText;
@@ -67,6 +75,9 @@ import java.util.ArrayList;
     private Stage stage;
 
     private ArrayList<TextBox> texts;
+
+    private boolean hasBackground;
+    private Texture background;
 
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
@@ -104,6 +115,7 @@ import java.util.ArrayList;
      * Setup the different Fonts
      */
     private void setupFonts() {
+        fonts = new HashMap<String, BitmapFont>();
         FreeTypeFontGenerator fontGenerator =
                 new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
@@ -112,13 +124,22 @@ import java.util.ArrayList;
         parameter.borderColor = Color.BLUE;
         parameter.borderWidth = 1;
         defaultFont = fontGenerator.generateFont(parameter);
+
+        fonts.put("defaultFont", defaultFont);
+
         parameter.size = 24;
         bigText = fontGenerator.generateFont(parameter);
+
+        fonts.put("bigText", bigText);
+
         parameter.size = 48;
         parameter.color = Color.GOLD;
         parameter.borderColor = Color.WHITE;
         parameter.borderWidth = 3;
         headline = fontGenerator.generateFont(parameter);
+
+        fonts.put("headline", headline);
+
         FreeTypeFontGenerator fontGeneratorComic =
                 new FreeTypeFontGenerator(Gdx.files.internal("comic.ttf"));
         parameter.size = 10;
@@ -126,8 +147,13 @@ import java.util.ArrayList;
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 1;
         comicSans = fontGeneratorComic.generateFont(parameter);
+
+        fonts.put("comicSans", comicSans);
+
         parameter.size = 48;
         comicHeadline = fontGeneratorComic.generateFont(parameter);
+
+        fonts.put("comicHeadline", comicHeadline);
     }
 
     /**
@@ -166,6 +192,9 @@ import java.util.ArrayList;
 
     //Dummy method to be overridden by other scenes as needed atm
     public void renderBackground() {
+        if (hasBackground) {
+            getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
+        }
     }
 
     /**
@@ -299,6 +328,9 @@ import java.util.ArrayList;
             comicHeadline.dispose();
             disposed = true;
         }
+        if (hasBackground) {
+            background.dispose();
+        }
         stage.dispose();
         super.dispose();
     }
@@ -358,5 +390,26 @@ import java.util.ArrayList;
 
     public static I18NBundle getBundle() {
         return bundle;
+    }
+
+    public Texture getBackground() {
+        return background;
+    }
+
+    public void setupBackground(String filename) {
+        background = Utils.loadTexture(filename);
+        setHasBackground(true);
+    }
+
+    public boolean getHasBackground() {
+        return hasBackground;
+    }
+
+    public void setHasBackground(boolean hasBackground) {
+        this.hasBackground = hasBackground;
+    }
+
+    public BitmapFont fontType(String name) {
+        return fonts.get(name);
     }
 }
