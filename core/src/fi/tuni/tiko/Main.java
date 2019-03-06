@@ -22,7 +22,7 @@ public class Main extends Game {
 	GameScene gameScene;
 	InnScene innScene;
 	ShopScene shopScene;
-	TavernScene tavernScene;
+	//TavernScene tavernScene;
 	AdventureScene adventureScene;
 	ForestScene forestScene;
 	ResultsScene resultsScene;
@@ -73,7 +73,7 @@ public class Main extends Game {
         gameScene = new GameScene(this);
         innScene = new InnScene(this);
         shopScene = new ShopScene(this);
-        tavernScene = new TavernScene(this);
+        //tavernScene = new TavernScene(this);
         adventureScene = new AdventureScene(this);
         forestScene = new ForestScene(this);
         resultsScene = new ResultsScene(this);
@@ -91,7 +91,7 @@ public class Main extends Game {
             case menu: scene = optionScene; break;
             case inn: scene = innScene; break;
             case shop: scene = shopScene; break;
-            case tavern: scene = tavernScene; break;
+           // case tavern: scene = tavernScene; break;
             case adventure: scene = adventureScene; break;
             case forest: scene = forestScene; break;
             case results: scene = resultsScene; break;
@@ -140,7 +140,7 @@ public class Main extends Game {
         gameScene.dispose();
         innScene.dispose();
         shopScene.dispose();
-        tavernScene.dispose();
+       // tavernScene.dispose();
         adventureScene.dispose();
         forestScene.dispose();
         resultsScene.dispose();

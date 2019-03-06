@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -16,13 +17,32 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0306
  */
 public class TavernPopUp extends Dialog {
+
+    private static String windowStyle = "dialog";
+
     private static String title = "Tavern";
     private String text = "This is a tavern. In tavern you\n you choose between few tasks to do";
     public TavernPopUp() {
-        super(title, Scene.getSkin());
+        super(title, Scene.getSkin(), windowStyle);
         createMenu();
         if (Main.debug) debug();
     }
+
+    /**
+     * Override the hide action to get rid of the hide action
+     */
+    @Override
+    public void hide() {
+        hide(null);
+    }
+
+    @Override
+    public Dialog show (Stage stage) {
+        show(stage, null);
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
+        return this;
+    }
+
 
     private String quest = "I have a mission for you. If you choose\n to accept it, then you can not...";
 
