@@ -70,7 +70,8 @@ public class GameScene extends Scene {
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.menu, Main.GameView.gameScreen);
+                OptionsPopUp options = new OptionsPopUp();
+                options.show(getStage());
             }
         });
 

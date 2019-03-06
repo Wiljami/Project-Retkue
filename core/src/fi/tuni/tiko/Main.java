@@ -18,7 +18,7 @@ public class Main extends Game {
      */
 	SpriteBatch batch;
 	MainMenuScene mainMenuScene;
-	OptionsScene optionScene;
+	//OptionsScene optionScene;
 	GameScene gameScene;
 	InnScene innScene;
 	ShopScene shopScene;
@@ -69,7 +69,7 @@ public class Main extends Game {
      */
 	private void initiateScenes() {
         mainMenuScene = new MainMenuScene(this);
-        optionScene = new OptionsScene(this);
+       // optionScene = new OptionsScene(this);
         gameScene = new GameScene(this);
         innScene = new InnScene(this);
         shopScene = new ShopScene(this);
@@ -88,7 +88,7 @@ public class Main extends Game {
         switch(gameView) {
             case mainMenu: scene = mainMenuScene; break;
             case gameScreen: scene = gameScene; break;
-            case menu: scene = optionScene; break;
+           // case menu: scene = optionScene; break;
             case inn: scene = innScene; break;
             case shop: scene = shopScene; break;
            // case tavern: scene = tavernScene; break;
@@ -136,7 +136,7 @@ public class Main extends Game {
 	public void dispose () {
 		batch.dispose();
         mainMenuScene.dispose();
-        optionScene.dispose();
+       // optionScene.dispose();
         gameScene.dispose();
         innScene.dispose();
         shopScene.dispose();
