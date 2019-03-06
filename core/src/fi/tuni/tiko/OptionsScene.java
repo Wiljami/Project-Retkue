@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @author Viljami Pietarila
  * @version 2019.02.19
  */
+
+//TODO: This is not used. Remove this or do something about it.
+
 public class OptionsScene extends Scene {
 
     //originScene holds pointer to the scene where we got here.

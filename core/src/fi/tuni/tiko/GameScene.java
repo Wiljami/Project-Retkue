@@ -36,15 +36,18 @@ public class GameScene extends Scene {
         inn.addListener(new ClickListener() {
            @Override
            public void clicked(InputEvent event, float x, float y) {
-               getGame().openScene(Main.GameView.inn, Main.GameView.gameScreen);
-            }
+               InnPopUp innPopUp = new InnPopUp();
+               innPopUp.show(getStage());
+           }
         });
 
         Button shop = new ImageButton(Utils.loadButtonImage("shop button", 50, 50));
         shop.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.shop, Main.GameView.gameScreen);
+                //getGame().openScene(Main.GameView.shop, Main.GameView.gameScreen);
+                ShopPopUp shopPopUp = new ShopPopUp();
+                shopPopUp.show(getStage());
             }
         });
 
@@ -53,8 +56,8 @@ public class GameScene extends Scene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
-                TavernPopUp tavern = new TavernPopUp();
-                tavern.show(getStage());
+                TavernPopUp tavernPopUp = new TavernPopUp();
+                tavernPopUp.show(getStage());
             }
         });
 
@@ -62,7 +65,9 @@ public class GameScene extends Scene {
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.adventure, Main.GameView.gameScreen);
+                //getGame().openScene(Main.GameView.adventure, Main.GameView.gameScreen);
+                AdventurePopUp adventurePopUp = new AdventurePopUp();
+                adventurePopUp.show(getStage());
             }
         });
 
@@ -70,7 +75,8 @@ public class GameScene extends Scene {
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.menu, Main.GameView.gameScreen);
+                OptionsPopUp options = new OptionsPopUp();
+                options.show(getStage());
             }
         });
 

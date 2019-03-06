@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 //TODO: Everything
+//TODO: This is not used. Remove this or do something about it.
+
 
 class ShopScene extends Scene{
     public ShopScene(Main game) {
