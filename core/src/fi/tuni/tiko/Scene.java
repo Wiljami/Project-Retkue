@@ -200,7 +200,8 @@ import java.util.Map;
      */
     public void renderBackground() {
         if (hasBackground) {
-            getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
+            getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH,
+                    getGame().WORLDPIXELHEIGHT);
         }
     }
 
