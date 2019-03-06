@@ -108,7 +108,7 @@ import java.util.Map;
             RetkueDialog.setRetkueSkin(getSkin());
             RetkueDialog.pointToGame(getGame());
             //TODO: Actually add the localization properly
-            //bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
+            bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
         }
     }
 
