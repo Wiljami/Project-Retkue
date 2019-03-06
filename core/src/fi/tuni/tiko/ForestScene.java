@@ -14,6 +14,7 @@ class ForestScene extends Scene{
     public ForestScene(Main game) {
         super(game);
         createMenu();
+        setupBackground("forest.png");
     }
 
 
