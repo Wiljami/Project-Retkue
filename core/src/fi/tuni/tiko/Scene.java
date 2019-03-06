@@ -124,6 +124,7 @@ import javax.rmi.CORBA.Util;
 
     /**
      * Setup the different Fonts and add them to the fonts HashMap
+     * TODO: Refactor some of this code?
      */
     private void setupFonts() {
         fonts = new HashMap<String, BitmapFont>();
