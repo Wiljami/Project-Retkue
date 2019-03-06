@@ -41,11 +41,11 @@ import javax.rmi.CORBA.Util;
 
     private static Map<String, BitmapFont> fonts;
 
-    private static BitmapFont defaultFont;
+/*    private static BitmapFont defaultFont;
     private static BitmapFont bigText;
     private static BitmapFont headline;
     private static BitmapFont comicSans;
-    private static BitmapFont comicHeadline;
+    private static BitmapFont comicHeadline;*/
 
     private static Label.LabelStyle labelHeadline;
     private static Label.LabelStyle labelComicHeadline;
@@ -107,8 +107,8 @@ import javax.rmi.CORBA.Util;
      * Setup the different Styles
      */
     private void setupStyles() {
-        labelHeadline = new Label.LabelStyle(headline, Color.BLUE);
-        labelComicHeadline = new Label.LabelStyle(comicHeadline, Color.PINK);
+        labelHeadline = new Label.LabelStyle(fontType("headline"), Color.BLUE);
+        labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
     }
 
     /**
@@ -123,22 +123,22 @@ import javax.rmi.CORBA.Util;
         parameter.size = 12;
         parameter.borderColor = Color.BLUE;
         parameter.borderWidth = 1;
-        defaultFont = fontGenerator.generateFont(parameter);
+        BitmapFont tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("defaultFont", defaultFont);
+        fonts.put("defaultFont", tempFont);
 
         parameter.size = 24;
-        bigText = fontGenerator.generateFont(parameter);
+        tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("bigText", bigText);
+        fonts.put("bigText", tempFont);
 
         parameter.size = 48;
         parameter.color = Color.GOLD;
         parameter.borderColor = Color.WHITE;
         parameter.borderWidth = 3;
-        headline = fontGenerator.generateFont(parameter);
+        tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("headline", headline);
+        fonts.put("headline", tempFont);
 
         FreeTypeFontGenerator fontGeneratorComic =
                 new FreeTypeFontGenerator(Gdx.files.internal("comic.ttf"));
@@ -146,14 +146,14 @@ import javax.rmi.CORBA.Util;
         parameter.color = Color.PINK;
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 1;
-        comicSans = fontGeneratorComic.generateFont(parameter);
+        tempFont = fontGeneratorComic.generateFont(parameter);
 
-        fonts.put("comicSans", comicSans);
+        fonts.put("comicSans", tempFont);
 
         parameter.size = 48;
-        comicHeadline = fontGeneratorComic.generateFont(parameter);
+        tempFont = fontGeneratorComic.generateFont(parameter);
 
-        fonts.put("comicHeadline", comicHeadline);
+        fonts.put("comicHeadline", tempFont);
     }
 
     /**
@@ -322,11 +322,9 @@ import javax.rmi.CORBA.Util;
     @Override
     public void dispose() {
         if (!disposed) {
-            defaultFont.dispose();
-            headline.dispose();
-            bigText.dispose();
-            comicSans.dispose();
-            comicHeadline.dispose();
+            for (int x = 0; x < fonts.size(); x++) {
+                fonts.get(x).dispose();
+            }
             disposed = true;
         }
         if (hasBackground) {
