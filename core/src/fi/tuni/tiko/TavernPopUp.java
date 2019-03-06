@@ -9,6 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * TavernPopUp is a popup window that serves as the tavern for the game
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0306
+ */
 public class TavernPopUp extends Dialog {
     private static String title = "Tavern";
     private String text = "This is a tavern. In tavern you\n you choose between few tasks to do";
