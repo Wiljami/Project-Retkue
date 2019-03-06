@@ -85,6 +85,7 @@ class ForestScene extends Scene{
      * of the String
      * @param number the int we check
      * @return the String we return
+     * TODO: Move this to utils
      */
     private String toAddZero(int number) {
         String s;
