@@ -3,6 +3,13 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
+/**
+ * ForestScene. Here we see the progress of the party in their current quest. It currently has a
+ * simple timer to keep track of the progress
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0306
+ */
 //TODO: Everything
 
 class ForestScene extends Scene{
@@ -33,6 +40,9 @@ class ForestScene extends Scene{
         getStage().addActor(table);
     }
 
+    /**
+     * We Override the renderActions to add in the quest timer checkup.
+     */
     @Override
     public void renderActions() {
         super.renderActions();
@@ -48,6 +58,10 @@ class ForestScene extends Scene{
         }
     }
 
+    /**
+     * Update the timer label depending on how much time is left on the quest
+     * @param time time left on the quest in ms
+     */
     private void updateTimer(long time) {
         int hours   = (int) ((time / (1000*60*60)) % 24);
         int minutes = (int) ((time / (1000*60)) % 60);
@@ -55,6 +69,12 @@ class ForestScene extends Scene{
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
     }
 
+    /**
+     * Check wether the int is a single digit or not. If single digit, then we add a 0 in front
+     * of the String
+     * @param number the int we check
+     * @return the String we return
+     */
     private String toAddZero(int number) {
         String s;
         if (number < 10) {
@@ -65,6 +85,10 @@ class ForestScene extends Scene{
         return s;
     }
 
+    /**
+     * Set the current quest
+     * @param q the quest we have
+     */
     public void setQuest(Quest q) {
         this.quest = q;
     }
