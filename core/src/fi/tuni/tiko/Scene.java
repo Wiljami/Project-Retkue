@@ -33,21 +33,38 @@ import javax.rmi.CORBA.Util;
  * TODO: Is this worth the trouble? YES
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0306
  */
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
     private static OrthographicCamera textCamera;
 
+    /**
+     * A HashMap that holds all the fonts used in the game. String is used to name the fonts and
+     * other elements call the fonts with the name.
+     */
     private static Map<String, BitmapFont> fonts;
 
+    //TODO: Turn the Labels to a HashMap as well
     private static Label.LabelStyle labelHeadline;
     private static Label.LabelStyle labelComicHeadline;
 
+    //TODO: Turn the skins to a HashMap as well
     private static Skin skin;
 
+    /**
+     * Reference to the main method of the game
+     */
     private static Main game;
+
+    /**
+     * Reference to the SpriteBatch.
+     */
     private static SpriteBatch batch;
+
+    /**
+     * Localization file
+     */
     private static I18NBundle bundle;
 
     /**
@@ -106,7 +123,7 @@ import javax.rmi.CORBA.Util;
     }
 
     /**
-     * Setup the different Fonts
+     * Setup the different Fonts and add them to the fonts HashMap
      */
     private void setupFonts() {
         fonts = new HashMap<String, BitmapFont>();
@@ -159,6 +176,7 @@ import javax.rmi.CORBA.Util;
 
     /**
      * Setup the cameras. One camera is for general use and the other one is for text.
+     * TODO: Cull the other camera, or come up with a reason why it should exist
      */
     private void setupCameras () {
         camera = new OrthographicCamera();
@@ -337,7 +355,7 @@ import javax.rmi.CORBA.Util;
      * getBatch()
      * @return SpriteBatch
      */
-    public SpriteBatch getBatch() {
+    public static SpriteBatch getBatch() {
         return batch;
     }
 
@@ -345,48 +363,86 @@ import javax.rmi.CORBA.Util;
      * getGame()
      * @return reference to the game
      */
-    public Main getGame () {
+    public static Main getGame () {
         return game;
     }
 
+    /**
+     * getStage8)
+     * @return reference to the Stage
+     */
     public Stage getStage() {
         return stage;
     }
 
-    public Skin getSkin() {
+    /**
+     * getSkin()
+     * TODO: Implement the HashList
+     * @return static reference to a Skin
+     */
+    public static Skin getSkin() {
         return skin;
     }
 
+    /**
+     * GetLabel
+     * TODO: Implement the HashList
+     * @return
+     */
     public Label.LabelStyle getLabelHeadline() {
         return labelHeadline;
     }
 
+    /**
+     * GetLabel
+     * TODO: Implement the HashList
+     * @return
+     */
     public Label.LabelStyle getLabelComicHeadline() {
         return labelComicHeadline;
     }
 
+    /**
+     * getBundle() returns a reference to the localization
+     * @return return reference to the localization bundle
+     */
     public static I18NBundle getBundle() {
         return bundle;
     }
 
+    /**
+     * Background image of the scene.
+     * @return background Texture
+     */
     public Texture getBackground() {
         return background;
     }
 
+    /**
+     * Setups the background. Loads the Texture and sets the boolean to indicate that there is a
+     * background image.
+     * @param filename the filename of the image to be used.
+     */
     public void setupBackground(String filename) {
         background = Utils.loadTexture(filename);
         setHasBackground(true);
     }
 
-    public boolean getHasBackground() {
-        return hasBackground;
-    }
-
+    /**
+     * Setter for the hasBackground
+     * @param hasBackground boolean value wether there is a background
+     */
     public void setHasBackground(boolean hasBackground) {
         this.hasBackground = hasBackground;
     }
 
-    public BitmapFont fontType(String name) {
+    /**
+     * fontType method finds the font with the key name from the fonts HashMap. If there is no
+     * matching font, then it will return the font with defaultFont key from the HashMap.
+     * @param name the name of the wanted font
+     * @return BitmapFont of the wanted font
+     */
+    public static BitmapFont fontType(String name) {
         try {
             return fonts.get(name);
         } catch(Exception e) {
