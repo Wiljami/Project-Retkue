@@ -17,8 +17,6 @@ class ForestScene extends Scene{
         setupBackground("forest.png");
     }
 
-
-
     private void createMenu() {
         Button returnToOrigin = new TextButton("Return", getSkin());
         returnToOrigin.addListener(new ClickListener() {
