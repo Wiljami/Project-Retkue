@@ -29,13 +29,18 @@ public class TavernPopUp extends Dialog {
     }
 
     /**
-     * Override the hide action to get rid of the hide action
+     * Override the hide method to get rid of the action ran on hide()
      */
     @Override
     public void hide() {
         hide(null);
     }
 
+    /**
+     * Override the show method to get rid of the action ran on show
+     * @param stage stage
+     * @return this
+     */
     @Override
     public Dialog show (Stage stage) {
         show(stage, null);
