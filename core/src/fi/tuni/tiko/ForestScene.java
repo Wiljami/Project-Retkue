@@ -94,6 +94,7 @@ class ForestScene extends Scene{
         int hours   = (int) ((time / (1000*60*60)) % 24);
         int minutes = (int) ((time / (1000*60)) % 60);
         int seconds = (int) (time / 1000) % 60;
+        if (seconds < 0) seconds = 0;
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
     }
 
