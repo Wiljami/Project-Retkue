@@ -2,14 +2,14 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
+public class ResultsPopUp extends RetkueDialog {
 
-public class AdventurePopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
-    private static String title = "Adventure dialog";
-    private String text = "This is the adventure pop up.\nHere you move off to the quest.";
+    private static String title = "Results";
+    private String text = "This is Results. Here we see how\nwe did on the adventure";
 
-    public AdventurePopUp() {
+    public ResultsPopUp() {
         super(title, skin, windowStyle);
         createMenu();
         if (Main.debug) debug();
@@ -17,18 +17,15 @@ public class AdventurePopUp extends RetkueDialog {
 
     private void createMenu() {
         Label desc = new Label(text, skin);
-
         getContentTable().add(desc);
-        getContentTable().row();
 
-        button("Fall back", false);
-        button("Proceed", true);
+        button("OK", true);
     }
 
     public void result(Object obj) {
         if (obj.equals(true)) {
             //remove();
-            game.openScene(Main.GameView.forest);
+            game.openScene(Main.GameView.gameScreen);
         }
     }
 }

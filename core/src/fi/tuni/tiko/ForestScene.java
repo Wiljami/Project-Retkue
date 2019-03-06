@@ -18,19 +18,12 @@ class ForestScene extends Scene{
     }
 
     private void createMenu() {
-        Button returnToOrigin = new TextButton("Return", getSkin());
-        returnToOrigin.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                getGame().returnToOrigin();
-            }
-        });
-
         Button results = new TextButton("Results", getSkin());
         results.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.results);
+                ResultsPopUp resultsPopUp = new ResultsPopUp();
+                resultsPopUp.show(getStage());
             }
         });
 
@@ -45,7 +38,6 @@ class ForestScene extends Scene{
         table.row();
         table.add().prefHeight(200);
         table.row();
-        table.add(returnToOrigin).colspan(3);
         getStage().addActor(table);
     }
 }
