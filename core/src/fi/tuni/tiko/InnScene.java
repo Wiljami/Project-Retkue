@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 //TODO: Everything
+//TODO: This is not used. Remove this or do something about it.
 
 class InnScene extends Scene{
     public InnScene(Main game) {
