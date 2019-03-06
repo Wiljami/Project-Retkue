@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class OptionsPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
-    private static String title = "";
+    private static String title = getBundle().get("options");
 
     public OptionsPopUp() {
         super(title, skin, windowStyle);
