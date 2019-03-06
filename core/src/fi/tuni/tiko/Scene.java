@@ -41,12 +41,6 @@ import javax.rmi.CORBA.Util;
 
     private static Map<String, BitmapFont> fonts;
 
-/*    private static BitmapFont defaultFont;
-    private static BitmapFont bigText;
-    private static BitmapFont headline;
-    private static BitmapFont comicSans;
-    private static BitmapFont comicHeadline;*/
-
     private static Label.LabelStyle labelHeadline;
     private static Label.LabelStyle labelComicHeadline;
 
@@ -310,8 +304,8 @@ import javax.rmi.CORBA.Util;
     @Override
     public void dispose() {
         if (!disposed) {
-            for (int x = 0; x < fonts.size(); x++) {
-                fonts.get(x).dispose();
+            for ( BitmapFont font : fonts.values()) {
+                font.dispose();
             }
             disposed = true;
         }
