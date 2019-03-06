@@ -17,7 +17,7 @@ public class Quest {
     private static long questStarted;
 
     public Quest () {
-        questLength = 10000;
+        questLength = 100000;
     }
 
     public void begin() {
@@ -26,5 +26,9 @@ public class Quest {
 
     public long timeLeft() {
         return questStarted - System.currentTimeMillis() + questLength;
+    }
+
+    public void boost() {
+        questLength = timeLeft()/2;
     }
 }

@@ -1,7 +1,11 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * ForestScene. Here we see the progress of the party in their current quest. It currently has a
@@ -37,14 +41,27 @@ class ForestScene extends Scene{
      */
     private void createMenu() {
         timer = new Label("00:00:00", getSkin());
+
+        Button faster = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
+        faster.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                quest.boost();
+            }
+        });
+
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
         table.add(new Label("Forest", getSkin())).colspan(3);
         table.row();
-        table.add().prefHeight(200);
+        table.add().prefHeight(100);
         table.row();
         table.add(timer);
+        table.row();
+        table.add().prefHeight(100);
+        table.row();
+        table.add(faster);
         table.row();
         table.add().prefHeight(200);
         table.row();
