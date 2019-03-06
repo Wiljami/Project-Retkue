@@ -14,7 +14,6 @@ class TavernScene extends Scene{
     public TavernScene(Main game) {
         super(game);
         createMenu();
-        setupBackground("old_guy1.png");
     }
 
     private void confirmQuest() {
