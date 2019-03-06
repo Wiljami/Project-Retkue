@@ -87,9 +87,9 @@ public class GameScene extends Scene {
         table.row();
         table.add().prefHeight(200);
         table.row();
-        table.add(inn);
-        table.add(shop);
-        table.add(tavern);
+        table.add(inn).pad(10);
+        table.add(shop).pad(10);
+        table.add(tavern).pad(10);
         table.row();
         table.add(adventure).colspan(3);
         table.add().prefHeight(200);
