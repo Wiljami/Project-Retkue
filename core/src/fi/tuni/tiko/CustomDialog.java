@@ -10,21 +10,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * will then change all the dialogs in the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0306
  */
 
+//TODO: Implement some kind of automatic line change on text
 //TODO: Make this better
     public class CustomDialog extends Dialog {
     private static String windowStyle = "dialog";
     private static Skin skin;
 
+    public CustomDialog(String text, String title, Image image) {
+        super(title, skin, windowStyle);
+        getContentTable().add(image).prefWidth(image.getPrefWidth()/5).prefHeight(image.getPrefHeight()/5);
+        getContentTable().row();
+        buildDialog(text);
+    }
+
     public CustomDialog(String text, String title) {
         super(title, skin, windowStyle);
-        this.debug();
-        Image temp = new Image(Utils.loadTexture("retkue_title.png"));
-        //temp.setSize(100,100);
-        getContentTable().add(temp).prefWidth(267).prefHeight(67);;
-        getContentTable().row();
+        buildDialog(text);
+    }
+
+    private void buildDialog(String text) {
+        if (Main.debug) this.debug();
         text(text);
 
         button("Yes", true); //sends "true" as the result

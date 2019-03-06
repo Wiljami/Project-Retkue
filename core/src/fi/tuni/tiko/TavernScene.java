@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,8 +17,11 @@ class TavernScene extends Scene{
         createMenu();
     }
 
+    private String quest = "I have a mission for you. If you choose\n to accept it, then you can not...";
+
     private void confirmQuest() {
-        CustomDialog dialog = new CustomDialog("Are you sure you want to do this?","") {
+        Image image = new Image(Utils.loadTexture("old_guy1.png"));
+        CustomDialog dialog = new CustomDialog(quest,"", image) {
             public void result(Object obj) {
                 System.out.println(obj);
             }
