@@ -36,8 +36,8 @@ public class GameScene extends Scene {
         inn.addListener(new ClickListener() {
            @Override
            public void clicked(InputEvent event, float x, float y) {
-               InnPopUp inn = new InnPopUp();
-               inn.show(getStage());
+               InnPopUp innPopUp = new InnPopUp();
+               innPopUp.show(getStage());
            }
         });
 
@@ -46,8 +46,8 @@ public class GameScene extends Scene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //getGame().openScene(Main.GameView.shop, Main.GameView.gameScreen);
-                ShopPopUp shop = new ShopPopUp();
-                shop.show(getStage());
+                ShopPopUp shopPopUp = new ShopPopUp();
+                shopPopUp.show(getStage());
             }
         });
 
@@ -56,8 +56,8 @@ public class GameScene extends Scene {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
-                TavernPopUp tavern = new TavernPopUp();
-                tavern.show(getStage());
+                TavernPopUp tavernPopUp = new TavernPopUp();
+                tavernPopUp.show(getStage());
             }
         });
 
@@ -65,7 +65,9 @@ public class GameScene extends Scene {
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.adventure, Main.GameView.gameScreen);
+                //getGame().openScene(Main.GameView.adventure, Main.GameView.gameScreen);
+                AdventurePopUp adventurePopUp = new AdventurePopUp();
+                adventurePopUp.show(getStage());
             }
         });
 

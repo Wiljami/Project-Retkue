@@ -89,10 +89,10 @@ public class Main extends Game {
             case mainMenu: scene = mainMenuScene; break;
             case gameScreen: scene = gameScene; break;
            // case menu: scene = optionScene; break;
-            case inn: scene = innScene; break;
-            case shop: scene = shopScene; break;
+           // case inn: scene = innScene; break;
+           // case shop: scene = shopScene; break;
            // case tavern: scene = tavernScene; break;
-            case adventure: scene = adventureScene; break;
+           // case adventure: scene = adventureScene; break;
             case forest: scene = forestScene; break;
             case results: scene = resultsScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
@@ -138,10 +138,10 @@ public class Main extends Game {
         mainMenuScene.dispose();
        // optionScene.dispose();
         gameScene.dispose();
-        innScene.dispose();
-        shopScene.dispose();
+      //  innScene.dispose();
+       // shopScene.dispose();
        // tavernScene.dispose();
-        adventureScene.dispose();
+       // adventureScene.dispose();
         forestScene.dispose();
         resultsScene.dispose();
 	}
