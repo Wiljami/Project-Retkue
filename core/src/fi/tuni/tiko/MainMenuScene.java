@@ -40,7 +40,7 @@ public class MainMenuScene extends Scene {
         Image temp = new Image(Utils.loadTexture("retkue_title.png"));
         temp.setSize(100,100);
 
-        Button start = new TextButton("Start", getSkin());
+        Button start = new TextButton(getBundle().get("start"), getSkin());
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -48,7 +48,7 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        Button options = new TextButton("Options", getSkin());
+        Button options = new TextButton(getBundle().get("options"), getSkin());
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

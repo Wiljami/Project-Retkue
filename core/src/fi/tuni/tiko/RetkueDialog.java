@@ -3,10 +3,13 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.I18NBundle;
 
 public abstract class RetkueDialog extends Dialog {
     public static Skin skin;
     public static Main game;
+    private static I18NBundle bundle;
+
 
     public RetkueDialog(String title, Skin skin, String windowStyle) {
         super(title, skin, windowStyle);
@@ -39,5 +42,13 @@ public abstract class RetkueDialog extends Dialog {
 
     public static void pointToGame(Main g) {
         game = g;
+    }
+
+    public static void giveBundle(I18NBundle b) {
+        bundle = b;
+    }
+
+    public static I18NBundle getBundle() {
+        return bundle;
     }
 }

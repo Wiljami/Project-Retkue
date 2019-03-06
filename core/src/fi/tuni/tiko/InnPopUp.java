@@ -9,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class InnPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
-    private static String title = "Inn";
-    private String text = "This is the Inn pop up. Here you\n here you can manage your party";
+    private static String title = getBundle().get("inn");
 
     public InnPopUp() {
         super(title, skin, windowStyle);
@@ -19,6 +18,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
+        String text = getBundle().get("inn_desc");
         Label desc = new Label(text, skin);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
@@ -33,6 +33,6 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().row();
         getContentTable().add(optionsButton);
 
-        button("Return", false);
+        button(getBundle().get("return"), false);
     }
 }

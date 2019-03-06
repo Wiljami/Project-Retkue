@@ -8,6 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.resizable = false;
+		config.title = "Retkue";
 		config.height = 640;
 		config.width = 360;
 		new LwjglApplication(new Main(), config);
