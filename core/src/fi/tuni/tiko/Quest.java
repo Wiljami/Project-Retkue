@@ -17,18 +17,14 @@ public class Quest {
     private static long questStarted;
 
     public Quest () {
-        questLength = 2000;
+        questLength = 10000;
     }
 
     public void begin() {
         questStarted = System.currentTimeMillis();
     }
 
-    public boolean isQuestOver() {
-        if (System.currentTimeMillis() > questStarted + questLength) {
-            return true;
-        } else {
-            return false;
-        }
+    public long timeLeft() {
+        return questStarted - System.currentTimeMillis() + questLength;
     }
 }

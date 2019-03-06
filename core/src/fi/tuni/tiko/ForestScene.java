@@ -17,14 +17,7 @@ class ForestScene extends Scene{
     }
 
     private void createMenu() {
-/*        Button results = new TextButton("Results", getSkin());
-        results.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ResultsPopUp resultsPopUp = new ResultsPopUp();
-                resultsPopUp.show(getStage());
-            }
-        });*/
+        timer = new Label("00:00:02", getSkin());
 
         Table table = new Table();
         if (debug) table.debug();
@@ -33,7 +26,7 @@ class ForestScene extends Scene{
         table.row();
         table.add().prefHeight(200);
         table.row();
-        //table.add(results);
+        table.add(timer);
         table.row();
         table.add().prefHeight(200);
         table.row();
@@ -44,12 +37,32 @@ class ForestScene extends Scene{
     public void renderActions() {
         super.renderActions();
         if (quest != null) {
-            if (quest.isQuestOver()) {
+            long timeLeft = quest.timeLeft();
+            if (timeLeft < 0) {
                 ResultsPopUp resultsPopUp = new ResultsPopUp();
                 resultsPopUp.show(getStage());
                 quest = null;
+                timer.setText("00:00:00");
             }
+            updateTimer(timeLeft);
         }
+    }
+
+    private void updateTimer(long time) {
+        int hours   = (int) ((time / (1000*60*60)) % 24);
+        int minutes = (int) ((time / (1000*60)) % 60);
+        int seconds = (int) (time / 1000) % 60;
+        timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
+    }
+
+    private String toAddZero(int number) {
+        String s;
+        if (number < 10) {
+            s = "0" + Integer.toString(number);
+        } else {
+            s = Integer.toString(number);
+        }
+        return s;
     }
 
     public void setQuest(Quest q) {
