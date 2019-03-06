@@ -34,7 +34,6 @@ public class TavernPopUp extends RetkueDialog {
                 System.out.println(obj);
             }
         };
-        //TODO: Localization!
         dialog.show(getStage());
     }
 
