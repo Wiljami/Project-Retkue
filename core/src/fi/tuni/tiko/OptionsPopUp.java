@@ -9,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class OptionsPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
-    private static String title = "Options";
-    private String text = "This is the options pop up. Here you\n can change the language and adjust sound";
+    private static String title = "";
 
     public OptionsPopUp() {
         super(title, skin, windowStyle);
@@ -19,7 +18,10 @@ public class OptionsPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        Label desc = new Label(text, skin);
+        System.out.println(getBundle());
+        this.getTitleLabel().setText("blaah");
+       // String text = getBundle().get("options_desc");
+        Label desc = new Label("", skin);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
         optionsButton.addListener(new ClickListener() {
@@ -33,6 +35,6 @@ public class OptionsPopUp extends RetkueDialog {
         getContentTable().row();
         getContentTable().add(optionsButton);
 
-        button("Return", false);
+        button(getBundle().get("return"), false);
     }
 }
