@@ -221,13 +221,7 @@ import javax.rmi.CORBA.Util;
     public void drawText() {
         if (texts != null) {
             for (TextBox textBox : texts) {
-                switch (textBox.type) {
-                    case headline: headline.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case bigText: bigText.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case comicSans: comicSans.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case comicHeadline: comicHeadline.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    default: defaultFont.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                }
+                fontType(textBox.font).draw(batch, textBox.text, textBox.x, textBox.y);
             }
         }
     }
@@ -250,13 +244,7 @@ import javax.rmi.CORBA.Util;
      */
     private void centerText(TextBox textBox) {
         GlyphLayout layout = new GlyphLayout();
-        switch (textBox.type) {
-            case headline: layout.setText(headline, textBox.text); break;
-            case bigText: layout.setText(bigText, textBox.text); break;
-            case comicSans: layout.setText(comicSans, textBox.text); break;
-            case comicHeadline: layout.setText(comicHeadline, textBox.text); break;
-            default: layout.setText(defaultFont, textBox.text); break;
-        }
+        layout.setText(fontType(textBox.font), textBox.text);
         textBox.x = textBox.x - (int)layout.width/2;
         textBox.x = textBox.x - (int)layout.height/2;
     }
@@ -367,10 +355,6 @@ import javax.rmi.CORBA.Util;
         return game;
     }
 
-    public static BitmapFont getHeadline() {
-        return headline;
-    }
-
     public Stage getStage() {
         return stage;
     }
@@ -409,6 +393,11 @@ import javax.rmi.CORBA.Util;
     }
 
     public BitmapFont fontType(String name) {
-        return fonts.get(name);
+        try {
+            return fonts.get(name);
+        } catch(Exception e) {
+            System.out.println("Could not find font: " + name + ". Using default font.");
+            return fonts.get("defaultFont");
+        }
     }
 }
