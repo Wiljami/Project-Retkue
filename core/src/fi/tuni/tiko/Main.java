@@ -10,7 +10,7 @@ import java.util.Locale;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0306
  */
 public class Main extends Game {
     /**
