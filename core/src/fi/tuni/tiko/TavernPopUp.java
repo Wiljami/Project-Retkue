@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @author Viljami Pietarila
  * @version 2019.0306
  */
-public class TavernPopUp extends Dialog {
+public class TavernPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
 
@@ -27,27 +27,6 @@ public class TavernPopUp extends Dialog {
         createMenu();
         if (Main.debug) debug();
     }
-
-    /**
-     * Override the hide method to get rid of the action ran on hide()
-     */
-    @Override
-    public void hide() {
-        hide(null);
-    }
-
-    /**
-     * Override the show method to get rid of the action ran on show
-     * @param stage stage
-     * @return this
-     */
-    @Override
-    public Dialog show (Stage stage) {
-        show(stage, null);
-        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
-        return this;
-    }
-
 
     private String quest = "I have a mission for you. If you choose\n to accept it, then you can not...";
 

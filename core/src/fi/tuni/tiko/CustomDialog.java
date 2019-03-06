@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 //TODO: Implement some kind of automatic line change on text
 //TODO: Implement localization
 //TODO: Make this better
-    public class CustomDialog extends Dialog {
+    public class CustomDialog extends RetkueDialog {
     private static String windowStyle = "dialog";
     private static Skin skin;
 
@@ -55,26 +55,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
         button("Yes", true); //sends "true" as the result
         button("No", false);  //sends "false" as the result
         remove();
-    }
-
-    /**
-     * Override the hide method to get rid of the action ran on hide()
-     */
-    @Override
-    public void hide() {
-        hide(null);
-    }
-
-    /**
-     * Override the show method to get rid of the action ran on show
-     * @param stage stage
-     * @return this
-     */
-    @Override
-    public Dialog show (Stage stage) {
-        show(stage, null);
-        setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
-        return this;
     }
 
     /**
