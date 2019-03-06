@@ -174,8 +174,7 @@ import java.util.Map;
     }
 
     /**
-     * Setup the cameras. One camera is for general use and the other one is for text.
-     * TODO: Cull the other camera, or come up with a reason why it should exist
+     * Setup the camera.
      */
     private void setupCameras () {
         camera = new OrthographicCamera();
@@ -189,7 +188,6 @@ import java.util.Map;
         clearScreen();
         camera.update();
         batch.begin();
-        //TODO: Figure it out if we need two cameras
         batch.setProjectionMatrix(camera.combined);
         drawText();
         renderBackground();
