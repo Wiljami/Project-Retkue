@@ -13,19 +13,30 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 //TODO: Everything
 
 class ForestScene extends Scene{
-
+    /**
+     * Reference to the current quest. If null then we assume that there is no quest currently
+     */
     private Quest quest;
+    /**
+     * Reference to the timer label so that it can be updated.
+     */
     private Label timer;
 
+    /**
+     * ForestScene constructor
+     * @param game reference to the Main
+     */
     public ForestScene(Main game) {
         super(game);
         createMenu();
         setupBackground("forest.png");
     }
 
+    /**
+     * createMenu creates the UI features on the screen.
+     */
     private void createMenu() {
-        timer = new Label("00:00:02", getSkin());
-
+        timer = new Label("00:00:00", getSkin());
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
