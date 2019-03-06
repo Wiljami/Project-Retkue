@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  * @version 2019.0228
  */
 
+//TODO: Make a bundlereader method that makes sure that the game does not crash when there is a missing string in the bundle
+
 public class Utils {
     private final static String DEBUGTEXTURE = "debug-texture.png";
 
