@@ -1,7 +1,5 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -19,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 
 public class GameScene extends Scene {
-    private Texture backGround;
-
     public GameScene(Main game) {
         super(game);
         createMenu();
@@ -56,7 +52,9 @@ public class GameScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
+                //getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
+                TavernPopUp tavern = new TavernPopUp();
+                tavern.show(getStage());
             }
         });
 
