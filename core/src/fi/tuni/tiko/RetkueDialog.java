@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public abstract class RetkueDialog extends Dialog {
+    public static Skin skin;
 
     public RetkueDialog(String title, Skin skin, String windowStyle) {
         super(title, skin, windowStyle);
@@ -29,5 +30,9 @@ public abstract class RetkueDialog extends Dialog {
         show(stage, null);
         setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
         return this;
+    }
+
+    public static void setRetkueSkin(Skin s) {
+        skin = s;
     }
 }

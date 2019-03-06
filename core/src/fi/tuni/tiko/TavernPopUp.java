@@ -2,9 +2,7 @@ package fi.tuni.tiko;
 
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -23,7 +21,7 @@ public class TavernPopUp extends RetkueDialog {
     private static String title = "Tavern";
     private String text = "This is a tavern. In tavern you\n you choose between few tasks to do";
     public TavernPopUp() {
-        super(title, Scene.getSkin(), windowStyle);
+        super(title, skin, windowStyle);
         createMenu();
         if (Main.debug) debug();
     }
@@ -42,7 +40,7 @@ public class TavernPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        Label desc = new Label(text, getSkin());
+        Label desc = new Label(text, skin);
 
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest1.addListener(new ClickListener() {
@@ -52,7 +50,7 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label1 = new Label("Quest 1", Scene.getSkin());
+        Label label1 = new Label("Quest 1", skin);
 
         Button quest2 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest2.addListener(new ClickListener() {
@@ -62,7 +60,7 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label2 = new Label("Quest 2", Scene.getSkin());
+        Label label2 = new Label("Quest 2", skin);
 
         Button quest3 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest3.addListener(new ClickListener() {
@@ -72,7 +70,7 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label3 = new Label("Quest 3", Scene.getSkin());
+        Label label3 = new Label("Quest 3", skin);
 
         getContentTable().add(desc).colspan(2);
 

@@ -108,7 +108,7 @@ import javax.rmi.CORBA.Util;
             setupStyles();
             debug = game.debug;
             //Set default skin for the dialogs in the game
-            CustomDialog.setDialogSkin(getSkin());
+            RetkueDialog.setRetkueSkin(getSkin());
             //TODO: Actually add the localization properly
             //bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
         }
