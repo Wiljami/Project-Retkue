@@ -20,12 +20,12 @@ public class Main extends Game {
 	MainMenuScene mainMenuScene;
 	//OptionsScene optionScene;
 	GameScene gameScene;
-	InnScene innScene;
-	ShopScene shopScene;
+	//InnScene innScene;
+	//ShopScene shopScene;
 	//TavernScene tavernScene;
-	AdventureScene adventureScene;
+	//AdventureScene adventureScene;
 	ForestScene forestScene;
-	ResultsScene resultsScene;
+	//ResultsScene resultsScene;
 
     /**
      * TODO: How do we want to do this? Since we don't use physics in this game, the meters are not
@@ -41,6 +41,7 @@ public class Main extends Game {
     public final int WORLDWIDTH = 3;
 
     /**
+     * TODO: Clean out these and the commented out scene references that are not used.
      * GameView is enum for identifying between different scenes in the game.
      */
     public enum GameView {
@@ -71,12 +72,12 @@ public class Main extends Game {
         mainMenuScene = new MainMenuScene(this);
        // optionScene = new OptionsScene(this);
         gameScene = new GameScene(this);
-        innScene = new InnScene(this);
-        shopScene = new ShopScene(this);
+        //    innScene = new InnScene(this);
+        //   shopScene = new ShopScene(this);
         //tavernScene = new TavernScene(this);
-        adventureScene = new AdventureScene(this);
+        //   adventureScene = new AdventureScene(this);
         forestScene = new ForestScene(this);
-        resultsScene = new ResultsScene(this);
+        //    resultsScene = new ResultsScene(this);
     }
 
     /**
@@ -94,7 +95,7 @@ public class Main extends Game {
            // case tavern: scene = tavernScene; break;
            // case adventure: scene = adventureScene; break;
             case forest: scene = forestScene; break;
-            case results: scene = resultsScene; break;
+            //   case results: scene = resultsScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
         Gdx.input.setInputProcessor(scene.getStage());
@@ -143,7 +144,7 @@ public class Main extends Game {
        // tavernScene.dispose();
        // adventureScene.dispose();
         forestScene.dispose();
-        resultsScene.dispose();
+      //  resultsScene.dispose();
 	}
 
     /**
