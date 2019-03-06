@@ -105,4 +105,8 @@ public class Main extends Game {
     public SpriteBatch getBatch() {
 		return batch;
 	}
+
+    public ForestScene getForestScene() {
+        return forestScene;
+    }
 }

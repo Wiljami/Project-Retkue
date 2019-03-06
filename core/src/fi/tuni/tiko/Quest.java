@@ -10,7 +10,25 @@ public class Quest {
     private String shortDescription;
     private String longDescription;
     private int reward;
-    private int time;
+    private long questLength;
     private int difficulty;
     //private enum questGiver?
+
+    private static long questStarted;
+
+    public Quest () {
+        questLength = 2000;
+    }
+
+    public void begin() {
+        questStarted = System.currentTimeMillis();
+    }
+
+    public boolean isQuestOver() {
+        if (System.currentTimeMillis() > questStarted + questLength) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
