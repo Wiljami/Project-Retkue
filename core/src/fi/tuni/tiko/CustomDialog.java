@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  */
 
 //TODO: Implement some kind of automatic line change on text
+//TODO: Implement localization
 //TODO: Make this better
     public class CustomDialog extends Dialog {
     private static String windowStyle = "dialog";
