@@ -10,7 +10,7 @@ import java.util.Locale;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0306
  */
 public class Main extends Game {
     /**
@@ -50,7 +50,7 @@ public class Main extends Game {
     /**
      * debug boolean toggles debug features in the code
      */
-    public boolean debug = true;
+    public static boolean debug = true;
     //TODO: Currently unused
     Locale locale = Locale.getDefault();
 
@@ -130,7 +130,7 @@ public class Main extends Game {
 	}
 
     /**
-     * dispose. dispose things we have created.
+     * dispose(). dispose things we have created.
      */
 	@Override
 	public void dispose () {
