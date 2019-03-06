@@ -28,9 +28,9 @@ import javax.rmi.CORBA.Util;
  * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
  * and skins.
  *
- * TODO: create an ArrayList to store fonts, styles and skins to make it neater.
+ * TODO: create an HashMap to store fonts, styles and skins to make it neater.
  * TODO: dynamic addition of them as well
- * TODO: Is this worth the trouble?
+ * TODO: Is this worth the trouble? YES
  *
  * @author Viljami Pietarila
  * @version 2019.0228
@@ -40,12 +40,6 @@ import javax.rmi.CORBA.Util;
     private static OrthographicCamera textCamera;
 
     private static Map<String, BitmapFont> fonts;
-
-    private static BitmapFont defaultFont;
-    private static BitmapFont bigText;
-    private static BitmapFont headline;
-    private static BitmapFont comicSans;
-    private static BitmapFont comicHeadline;
 
     private static Label.LabelStyle labelHeadline;
     private static Label.LabelStyle labelComicHeadline;
@@ -107,8 +101,8 @@ import javax.rmi.CORBA.Util;
      * Setup the different Styles
      */
     private void setupStyles() {
-        labelHeadline = new Label.LabelStyle(headline, Color.BLUE);
-        labelComicHeadline = new Label.LabelStyle(comicHeadline, Color.PINK);
+        labelHeadline = new Label.LabelStyle(fontType("headline"), Color.BLUE);
+        labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
     }
 
     /**
@@ -123,22 +117,22 @@ import javax.rmi.CORBA.Util;
         parameter.size = 12;
         parameter.borderColor = Color.BLUE;
         parameter.borderWidth = 1;
-        defaultFont = fontGenerator.generateFont(parameter);
+        BitmapFont tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("defaultFont", defaultFont);
+        fonts.put("defaultFont", tempFont);
 
         parameter.size = 24;
-        bigText = fontGenerator.generateFont(parameter);
+        tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("bigText", bigText);
+        fonts.put("bigText", tempFont);
 
         parameter.size = 48;
         parameter.color = Color.GOLD;
         parameter.borderColor = Color.WHITE;
         parameter.borderWidth = 3;
-        headline = fontGenerator.generateFont(parameter);
+        tempFont = fontGenerator.generateFont(parameter);
 
-        fonts.put("headline", headline);
+        fonts.put("headline", tempFont);
 
         FreeTypeFontGenerator fontGeneratorComic =
                 new FreeTypeFontGenerator(Gdx.files.internal("comic.ttf"));
@@ -146,14 +140,14 @@ import javax.rmi.CORBA.Util;
         parameter.color = Color.PINK;
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 1;
-        comicSans = fontGeneratorComic.generateFont(parameter);
+        tempFont = fontGeneratorComic.generateFont(parameter);
 
-        fonts.put("comicSans", comicSans);
+        fonts.put("comicSans", tempFont);
 
         parameter.size = 48;
-        comicHeadline = fontGeneratorComic.generateFont(parameter);
+        tempFont = fontGeneratorComic.generateFont(parameter);
 
-        fonts.put("comicHeadline", comicHeadline);
+        fonts.put("comicHeadline", tempFont);
     }
 
     /**
@@ -190,7 +184,9 @@ import javax.rmi.CORBA.Util;
         renderActions();
     }
 
-    //Dummy method to be overridden by other scenes as needed atm
+    /**
+     * renderBackground renders a background image if the scene has one.
+     */
     public void renderBackground() {
         if (hasBackground) {
             getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH, getGame().WORLDPIXELHEIGHT);
@@ -219,13 +215,7 @@ import javax.rmi.CORBA.Util;
     public void drawText() {
         if (texts != null) {
             for (TextBox textBox : texts) {
-                switch (textBox.type) {
-                    case headline: headline.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case bigText: bigText.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case comicSans: comicSans.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    case comicHeadline: comicHeadline.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                    default: defaultFont.draw(batch, textBox.text, textBox.x, textBox.y); break;
-                }
+                fontType(textBox.font).draw(batch, textBox.text, textBox.x, textBox.y);
             }
         }
     }
@@ -248,13 +238,7 @@ import javax.rmi.CORBA.Util;
      */
     private void centerText(TextBox textBox) {
         GlyphLayout layout = new GlyphLayout();
-        switch (textBox.type) {
-            case headline: layout.setText(headline, textBox.text); break;
-            case bigText: layout.setText(bigText, textBox.text); break;
-            case comicSans: layout.setText(comicSans, textBox.text); break;
-            case comicHeadline: layout.setText(comicHeadline, textBox.text); break;
-            default: layout.setText(defaultFont, textBox.text); break;
-        }
+        layout.setText(fontType(textBox.font), textBox.text);
         textBox.x = textBox.x - (int)layout.width/2;
         textBox.x = textBox.x - (int)layout.height/2;
     }
@@ -270,8 +254,7 @@ import javax.rmi.CORBA.Util;
             return bundle.get(key);
         }
         catch(Exception e) {
-            String error = "Error reading: " + key;
-            return error;
+            return "Error reading: " + key;
         }
     }
 
@@ -321,11 +304,9 @@ import javax.rmi.CORBA.Util;
     @Override
     public void dispose() {
         if (!disposed) {
-            defaultFont.dispose();
-            headline.dispose();
-            bigText.dispose();
-            comicSans.dispose();
-            comicHeadline.dispose();
+            for ( BitmapFont font : fonts.values()) {
+                font.dispose();
+            }
             disposed = true;
         }
         if (hasBackground) {
@@ -336,8 +317,8 @@ import javax.rmi.CORBA.Util;
     }
 
     /**
-     * reneder(float delta)
-     * @param delta
+     * render(float delta)
+     * @param delta deltaTime
      */
     @Override
     public void render(float delta) {
@@ -366,10 +347,6 @@ import javax.rmi.CORBA.Util;
      */
     public Main getGame () {
         return game;
-    }
-
-    public static BitmapFont getHeadline() {
-        return headline;
     }
 
     public Stage getStage() {
@@ -410,6 +387,11 @@ import javax.rmi.CORBA.Util;
     }
 
     public BitmapFont fontType(String name) {
-        return fonts.get(name);
+        try {
+            return fonts.get(name);
+        } catch(Exception e) {
+            System.out.println("Could not find font: " + name + ". Using default font.");
+            return fonts.get("defaultFont");
+        }
     }
 }
