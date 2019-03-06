@@ -18,7 +18,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        String text = getBundle().get("inn_desc")
+        String text = getBundle().get("inn_desc");
         Label desc = new Label(text, skin);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
