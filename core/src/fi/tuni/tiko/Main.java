@@ -50,7 +50,7 @@ public class Main extends Game {
     /**
      * debug boolean toggles debug features in the code
      */
-    public static boolean debug = true;
+    public static boolean debug = false;
     //TODO: Currently unused
     Locale locale = Locale.getDefault();
 
