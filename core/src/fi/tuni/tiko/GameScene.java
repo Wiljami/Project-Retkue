@@ -52,7 +52,9 @@ public class GameScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
+                //getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
+                TavernPopUp tavern = new TavernPopUp();
+                tavern.show(getStage());
             }
         });
 
