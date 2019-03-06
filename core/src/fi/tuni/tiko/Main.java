@@ -130,7 +130,7 @@ public class Main extends Game {
 	}
 
     /**
-     * dispose. dispose things we have created.
+     * dispose(). dispose things we have created.
      */
 	@Override
 	public void dispose () {
