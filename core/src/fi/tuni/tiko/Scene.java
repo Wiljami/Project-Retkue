@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.rmi.CORBA.Util;
-
 /**
  * A package containing necessary methods to run the graphical side of the KPS game.
  * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
@@ -37,7 +35,6 @@ import javax.rmi.CORBA.Util;
  */
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
-    private static OrthographicCamera textCamera;
 
     /**
      * A HashMap that holds all the fonts used in the game. String is used to name the fonts and
@@ -182,9 +179,7 @@ import javax.rmi.CORBA.Util;
      */
     private void setupCameras () {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, game.WORLDWIDTH, game.WORLDHEIGHT);
-        textCamera = new OrthographicCamera();
-        textCamera.setToOrtho(false, game.WORLDPIXELWIDTH, game.WORLDPIXELHEIGHT);
+        camera.setToOrtho(false, game.WORLDPIXELWIDTH, game.WORLDPIXELHEIGHT);
     }
 
     /**
@@ -193,11 +188,9 @@ import javax.rmi.CORBA.Util;
     public void sceneRender() {
         clearScreen();
         camera.update();
-        textCamera.update();
         batch.begin();
-        //batch.setProjectionMatrix(camera.combined);
         //TODO: Figure it out if we need two cameras
-        batch.setProjectionMatrix(textCamera.combined);
+        batch.setProjectionMatrix(camera.combined);
         drawText();
         renderBackground();
         batch.end();

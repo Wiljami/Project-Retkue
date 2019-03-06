@@ -29,12 +29,6 @@ public class Main extends Game {
     public final int WORLDPIXELWIDTH = 360;
 
     /**
-     * TODO: Do we need this?
-     */
-    public final int WORLDHEIGHT = 4;
-    public final int WORLDWIDTH = 3;
-
-    /**
      * TODO: Clean out these and the commented out scene references that are not used.
      * GameView is enum for identifying between different scenes in the game.
      */
