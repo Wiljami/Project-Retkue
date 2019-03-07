@@ -42,12 +42,19 @@ class ForestScene extends Scene{
     private void createMenu() {
         timer = new Label("00:00:00", getSkin());
 
-        Button faster = new TextButton("Boost", getSkin());
+        Button faster = new TextButton("Vauhdita", getSkin());
         faster.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 quest.boost();
             }
+        });
+
+        Button harder = new TextButton("Voimista", getSkin());
+        harder.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("You clicked Harder!");            }
         });
 
         Table table = new Table();
@@ -57,11 +64,12 @@ class ForestScene extends Scene{
         table.row();
         table.add().prefHeight(100);
         table.row();
-        table.add(timer);
+        table.add(timer).colspan(3);
         table.row();
         table.add().prefHeight(100);
         table.row();
-        table.add(faster);
+        table.add(faster).pad(10);
+        table.add(harder).pad(10);
         table.row();
         table.add().prefHeight(200);
         table.row();
@@ -88,10 +96,11 @@ class ForestScene extends Scene{
 
     /**
      * Update the timer label depending on how much time is left on the quest
+     * Converts the milliseconds to hours, minutes and seconds.
      * @param time time left on the quest in ms
      */
     private void updateTimer(long time) {
-        int hours   = (int) ((time / (1000*60*60)) % 24);
+        int hours   = (int) ((time / (1000*60*60)) / 24);
         int minutes = (int) ((time / (1000*60)) % 60);
         int seconds = (int) (time / 1000) % 60;
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
