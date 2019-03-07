@@ -18,7 +18,7 @@ public class TavernPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
 
-    private static String title = getBundle().get("shop");
+    private static String title = readLine("shop");
     public TavernPopUp() {
         super(title, skin, windowStyle);
         createMenu();
@@ -38,7 +38,7 @@ public class TavernPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        String text = getBundle().get("shop_desc");
+        String text = readLine("shop_desc");
         Label desc = new Label(text, skin);
 
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
@@ -85,6 +85,6 @@ public class TavernPopUp extends RetkueDialog {
         getContentTable().add(quest3).pad(10).left();
         getContentTable().add(label3).pad(10).left();
 
-        button(getBundle().get("return"), false);
+        button(readLine("return"), false);
     }
 }

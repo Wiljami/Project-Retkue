@@ -7,12 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.I18NBundle;
 
 /**
  * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0307
  */
 
 public class Utils {
@@ -47,5 +48,22 @@ public class Utils {
         image.setMinWidth(width);
         image.setMinHeight(height);
         return image;
+    }
+
+    /**
+     * readBundle attempts to read the localization Bundle using the key. If it fails to read it,
+     * it returns error message as the String
+     * @param bundle Bundle to be read
+     * @param key Key we're seeking in the bundle
+     * @return line matching the key
+     */
+    public static String readBundle(I18NBundle bundle, String key) {
+        String line;
+        try {
+            line = bundle.get(key);
+        } catch (Exception e) {
+            line = key + " NOT FOUND";
+        }
+        return line;
     }
 }

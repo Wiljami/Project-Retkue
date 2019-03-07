@@ -14,15 +14,23 @@ import java.util.Locale;
  */
 public class Main extends Game {
     /**
-     * TODO: Comment this.
+     * SpriteBatch of the game.
      */
 	SpriteBatch batch;
+    /**
+     * mainMenuScene is the main menu screen of the game. It is an extension of Scene.
+     */
 	MainMenuScene mainMenuScene;
+    /**
+     * gameScene is the main menu screen of the game. It is an extension of Scene.
+     */
 	GameScene gameScene;
+    /**
+     * forestScene is the main menu screen of the game. It is an extension of Scene.
+     */
 	ForestScene forestScene;
 
     /**
-     * TODO: How do we want to do this? Since we don't use physics in this game, the meters are not
      * needed and we need the pixels for rendering text.
      */
 	public final int WORLDPIXELHEIGHT = 640;
@@ -41,10 +49,13 @@ public class Main extends Game {
     public static boolean debug = false;
 
     /**
-     * Locale
+     * Locale of the game.
      */
     Locale locale = Locale.getDefault();
 
+    /**
+     * create()
+     */
     @Override
 	public void create () {
         //TODO: implement elegant exit on BackKey
@@ -108,6 +119,10 @@ public class Main extends Game {
 		return batch;
 	}
 
+    /**
+     * getter for forestScene
+     * @return forestScene
+     */
     public ForestScene getForestScene() {
         return forestScene;
     }

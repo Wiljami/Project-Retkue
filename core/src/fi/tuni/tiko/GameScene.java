@@ -24,7 +24,7 @@ public class GameScene extends Scene {
     }
 
     private void createMenu() {
-        Button mainMenu = new TextButton( getBundle().get("backToMainMenu"), getSkin());
+        Button mainMenu = new TextButton( readLine("backToMainMenu"), getSkin());
         mainMenu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -83,7 +83,7 @@ public class GameScene extends Scene {
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
-        table.add(new Label( getBundle().get("town"), getSkin())).colspan(3);
+        table.add(new Label( readLine("town"), getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(200);
         table.row();
