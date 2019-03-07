@@ -15,14 +15,14 @@ public class AdventurePopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        String text = getBundle().get("adventure_desc");
+        String text = readLine("adventure_desc");
         Label desc = new Label(text, skin);
 
         getContentTable().add(desc);
         getContentTable().row();
 
-        button(getBundle().get("back"), false);
-        button(getBundle().get("forward"), true);
+        button(readLine("back"), false);
+        button(readLine("forward"), true);
     }
 
     public void result(Object obj) {
