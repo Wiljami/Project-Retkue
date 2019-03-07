@@ -47,8 +47,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
         if (Main.debug) this.debug();
         text(text);
 
-        button(getBundle().get("yes"), true); //sends "true" as the result
-        button(getBundle().get("no"), false);  //sends "false" as the result
+        button(readLine("yes"), true); //sends "true" as the result
+        button(readLine("no"), false);  //sends "false" as the result
         remove();
     }
 }
