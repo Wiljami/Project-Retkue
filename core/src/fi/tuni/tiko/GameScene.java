@@ -67,6 +67,15 @@ public class GameScene extends Scene {
             }
         });
 
+        Button menu = new TextButton( readLine("options"), getSkin());
+        menu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                OptionsPopUp options = new OptionsPopUp();
+                options.show(getStage());
+            }
+        });
+
 /*      Button inn = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
         inn.addListener(new ClickListener() {
            @Override
@@ -103,14 +112,14 @@ public class GameScene extends Scene {
             }
         });*/
 
-        Button menu = new ImageButton(Utils.loadButtonImage("menu button", 50, 50));
+/*        Button menu = new ImageButton(Utils.loadButtonImage("menu button", 50, 50));
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 OptionsPopUp options = new OptionsPopUp();
                 options.show(getStage());
             }
-        });
+        });*/
 
         Table table = new Table();
         if (debug) table.debug();
@@ -126,9 +135,9 @@ public class GameScene extends Scene {
         table.add(adventure).colspan(3);
         table.add().prefHeight(200);
         table.row();
-        table.add(menu).colspan(3);
+        table.add(menu).colspan(3).pad(20);
         table.row();
-        table.add(mainMenu).colspan(3);
+        table.add(mainMenu).colspan(3).pad(20);
         getStage().addActor(table);
     }
 
