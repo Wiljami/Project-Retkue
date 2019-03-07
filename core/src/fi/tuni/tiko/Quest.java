@@ -29,7 +29,6 @@ public class Quest {
     }
 
     public void boost() {
-        //TODO: Figure out the correct way to do the boost
         questLength = timeLeft()/2 + System.currentTimeMillis() - questStarted;
     }
 }
