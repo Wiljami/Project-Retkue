@@ -445,4 +445,9 @@ import java.util.Map;
             return fonts.get("defaultFont");
         }
     }
+
+    public static String readLine (String key) {
+        String s  = Utils.readBundle(bundle, key);
+        return s;
+    }
 }

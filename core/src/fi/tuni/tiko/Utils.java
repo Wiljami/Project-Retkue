@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.I18NBundle;
 
 /**
  * Utils class contains utility methods used in the project
@@ -49,5 +50,15 @@ public class Utils {
         image.setMinWidth(width);
         image.setMinHeight(height);
         return image;
+    }
+
+    public static String readBundle(I18NBundle bundle, String key) {
+        String line;
+        try {
+            line = bundle.get(key);
+        } catch (Exception e) {
+            line = key + " NOT FOUND";
+        }
+        return line;
     }
 }

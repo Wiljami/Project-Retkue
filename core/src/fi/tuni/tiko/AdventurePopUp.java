@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 public class AdventurePopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
-    private static String title = getBundle().get("adventure");
+    private static String title = readLine("adventure");
 
     public AdventurePopUp() {
         super(title, skin, windowStyle);

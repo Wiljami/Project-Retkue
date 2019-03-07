@@ -51,4 +51,9 @@ public abstract class RetkueDialog extends Dialog {
     public static I18NBundle getBundle() {
         return bundle;
     }
+
+    public static String readLine (String key) {
+        String s  = Utils.readBundle(bundle, key);
+        return s;
+    }
 }
