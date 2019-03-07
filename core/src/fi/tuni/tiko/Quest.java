@@ -17,7 +17,7 @@ public class Quest {
     private static long questStarted;
 
     public Quest () {
-        questLength = 100000;
+        questLength = 1000000L;
     }
 
     public void begin() {

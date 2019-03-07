@@ -88,10 +88,11 @@ class ForestScene extends Scene{
 
     /**
      * Update the timer label depending on how much time is left on the quest
+     * Converts the milliseconds to hours, minutes and seconds.
      * @param time time left on the quest in ms
      */
     private void updateTimer(long time) {
-        int hours   = (int) ((time / (1000*60*60)) % 24);
+        int hours   = (int) ((time / (1000*60*60)) / 24);
         int minutes = (int) ((time / (1000*60)) % 60);
         int seconds = (int) (time / 1000) % 60;
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
