@@ -42,7 +42,7 @@ class ForestScene extends Scene{
     private void createMenu() {
         timer = new Label("00:00:00", getSkin());
 
-        Button faster = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
+        Button faster = new ImageButton(RetkueUtils.loadButtonImage("options button", 50, 50));
         faster.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Title extends Actor {
     private Texture texture;
     public Title() {
-        texture = Utils.loadTexture("retkue_title.png");
+        texture = RetkueUtils.loadTexture("retkue_title.png");
         setWidth(266f);
         setHeight(67f);
         setBounds(0,0, getWidth(), getHeight());

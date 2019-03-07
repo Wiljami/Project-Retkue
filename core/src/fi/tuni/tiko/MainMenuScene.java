@@ -37,7 +37,7 @@ public class MainMenuScene extends Scene {
     private void createMenu() {
         title = new Title();
 
-        Image temp = new Image(Utils.loadTexture("retkue_title.png"));
+        Image temp = new Image(RetkueUtils.loadTexture("retkue_title.png"));
         temp.setSize(100,100);
 
         Button start = new TextButton(getBundle().get("start"), getSkin());

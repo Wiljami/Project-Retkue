@@ -419,7 +419,7 @@ import java.util.Map;
      * @param filename the filename of the image to be used.
      */
     public void setupBackground(String filename) {
-        background = Utils.loadTexture(filename);
+        background = RetkueUtils.loadTexture(filename);
         setHasBackground(true);
     }
 
