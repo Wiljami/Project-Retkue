@@ -3,7 +3,7 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 /**
- *CustomDialog class will hold the customized dialog options for the entire game. Changing this
+ * CustomDialog class will hold the customized dialog options for the entire game. Changing this
  * will then change all the dialogs in the game.
  *
  * @author Viljami Pietarila
