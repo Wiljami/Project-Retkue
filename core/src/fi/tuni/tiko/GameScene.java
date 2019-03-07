@@ -32,7 +32,43 @@ public class GameScene extends Scene {
             }
         });
 
-        Button inn = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
+        Button inn = new TextButton( readLine("inn"), getSkin());
+        inn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                InnPopUp innPopUp = new InnPopUp();
+                innPopUp.show(getStage());
+            }
+        });
+
+        Button shop = new TextButton( readLine("shop"), getSkin());
+        shop.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ShopPopUp shopPopUp = new ShopPopUp();
+                shopPopUp.show(getStage());
+            }
+        });
+
+        Button tavern = new TextButton( readLine("tavern"), getSkin());
+        tavern.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                TavernPopUp tavernPopUp = new TavernPopUp();
+                tavernPopUp.show(getStage());
+            }
+        });
+
+        Button adventure = new TextButton( readLine("adventure"), getSkin());
+        adventure.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                AdventurePopUp adventurePopUp = new AdventurePopUp();
+                adventurePopUp.show(getStage());
+            }
+        });
+
+/*      Button inn = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
         inn.addListener(new ClickListener() {
            @Override
            public void clicked(InputEvent event, float x, float y) {
@@ -45,7 +81,6 @@ public class GameScene extends Scene {
         shop.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //getGame().openScene(Main.GameView.shop, Main.GameView.gameScreen);
                 ShopPopUp shopPopUp = new ShopPopUp();
                 shopPopUp.show(getStage());
             }
@@ -55,7 +90,6 @@ public class GameScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //getGame().openScene(Main.GameView.tavern, Main.GameView.gameScreen);
                 TavernPopUp tavernPopUp = new TavernPopUp();
                 tavernPopUp.show(getStage());
             }
@@ -65,11 +99,10 @@ public class GameScene extends Scene {
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //getGame().openScene(Main.GameView.adventure, Main.GameView.gameScreen);
                 AdventurePopUp adventurePopUp = new AdventurePopUp();
                 adventurePopUp.show(getStage());
             }
-        });
+        });*/
 
         Button menu = new ImageButton(Utils.loadButtonImage("menu button", 50, 50));
         menu.addListener(new ClickListener() {

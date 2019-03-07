@@ -18,7 +18,7 @@ public class TavernPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
 
-    private static String title = readLine("shop");
+    private static String title = readLine("tavern");
     public TavernPopUp() {
         super(title, skin, windowStyle);
         createMenu();
@@ -38,7 +38,7 @@ public class TavernPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        String text = readLine("shop_desc");
+        String text = readLine("tavern_desc");
         Label desc = new Label(text, skin);
 
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
