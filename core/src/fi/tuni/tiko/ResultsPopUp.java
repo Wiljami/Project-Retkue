@@ -2,10 +2,19 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
+/**
+ * ResultsPopUp contains the functionality of the results pop up in the game.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0307
+ */
 public class ResultsPopUp extends RetkueDialog {
-
+    //TODO: More elegant solution here
     private static String windowStyle = "dialog";
 
+    /**
+     * Title of the RetkeuDialog
+     */
     private static String title = readLine("results");
 
     public ResultsPopUp() {

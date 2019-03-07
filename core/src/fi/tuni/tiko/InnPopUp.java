@@ -6,6 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * InnPopUp contains functionality of the inn within the game.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0307
+ */
 public class InnPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
