@@ -21,7 +21,7 @@ public class InnPopUp extends RetkueDialog {
         String text = getBundle().get("inn_desc");
         Label desc = new Label(text, skin);
 
-        Button optionsButton = new ImageButton(RetkueUtils.loadButtonImage("inn button", 50, 50));
+        Button optionsButton = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
         optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

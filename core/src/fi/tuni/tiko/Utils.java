@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
- * RetkueUtils class contains utility methods used in the project
+ * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
  * @version 2019.0228
@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 //TODO: Make a bundlereader method that makes sure that the game does not crash when there is a missing string in the bundle
 
-public class RetkueUtils {
+public class Utils {
     private final static String DEBUGTEXTURE = "debug-texture.png";
 
     /**

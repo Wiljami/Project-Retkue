@@ -32,7 +32,7 @@ public class GameScene extends Scene {
             }
         });
 
-        Button inn = new ImageButton(RetkueUtils.loadButtonImage("inn button", 50, 50));
+        Button inn = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
         inn.addListener(new ClickListener() {
            @Override
            public void clicked(InputEvent event, float x, float y) {
@@ -41,7 +41,7 @@ public class GameScene extends Scene {
            }
         });
 
-        Button shop = new ImageButton(RetkueUtils.loadButtonImage("shop button", 50, 50));
+        Button shop = new ImageButton(Utils.loadButtonImage("shop button", 50, 50));
         shop.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -51,7 +51,7 @@ public class GameScene extends Scene {
             }
         });
 
-        Button tavern = new ImageButton(RetkueUtils.loadButtonImage("tavern button", 50, 50));
+        Button tavern = new ImageButton(Utils.loadButtonImage("tavern button", 50, 50));
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -61,7 +61,7 @@ public class GameScene extends Scene {
             }
         });
 
-        Button adventure = new ImageButton(RetkueUtils.loadButtonImage("adventure button", 50, 50));
+        Button adventure = new ImageButton(Utils.loadButtonImage("adventure button", 50, 50));
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -71,7 +71,7 @@ public class GameScene extends Scene {
             }
         });
 
-        Button menu = new ImageButton(RetkueUtils.loadButtonImage("menu button", 50, 50));
+        Button menu = new ImageButton(Utils.loadButtonImage("menu button", 50, 50));
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

@@ -28,7 +28,7 @@ public class TavernPopUp extends RetkueDialog {
     private String quest = "I have a mission for you. If you choose\n to accept it, then you can not...";
 
     private void confirmQuest() {
-        Image image = new Image(RetkueUtils.loadTexture("old_guy1.png"));
+        Image image = new Image(Utils.loadTexture("old_guy1.png"));
         CustomDialog dialog = new CustomDialog(quest,"", image) {
             public void result(Object obj) {
                 System.out.println(obj);
@@ -41,7 +41,7 @@ public class TavernPopUp extends RetkueDialog {
         String text = getBundle().get("shop_desc");
         Label desc = new Label(text, skin);
 
-        Button quest1 = new ImageButton(RetkueUtils.loadButtonImage("quest icon", 50, 50));
+        Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -51,7 +51,7 @@ public class TavernPopUp extends RetkueDialog {
 
         Label label1 = new Label("Quest 1", skin);
 
-        Button quest2 = new ImageButton(RetkueUtils.loadButtonImage("quest icon", 50, 50));
+        Button quest2 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -61,7 +61,7 @@ public class TavernPopUp extends RetkueDialog {
 
         Label label2 = new Label("Quest 2", skin);
 
-        Button quest3 = new ImageButton(RetkueUtils.loadButtonImage("quest icon", 50, 50));
+        Button quest3 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
