@@ -29,7 +29,6 @@ public class Main extends Game {
     public final int WORLDPIXELWIDTH = 360;
 
     /**
-     * TODO: Clean out these and the commented out scene references that are not used.
      * GameView is enum for identifying between different scenes in the game.
      */
     public enum GameView {
@@ -40,7 +39,10 @@ public class Main extends Game {
      * debug boolean toggles debug features in the code
      */
     public static boolean debug = false;
-    //TODO: Currently unused
+
+    /**
+     * Locale
+     */
     Locale locale = Locale.getDefault();
 
     @Override
