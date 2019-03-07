@@ -6,7 +6,7 @@ public class ResultsPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
 
-    private static String title = getBundle().get("results");
+    private static String title = readLine("results");
 
     public ResultsPopUp() {
         super(title, skin, windowStyle);
@@ -15,11 +15,11 @@ public class ResultsPopUp extends RetkueDialog {
     }
 
     private void createMenu() {
-        String text = getBundle().get("results_desc");
+        String text = readLine("results_desc");
         Label desc = new Label(text, skin);
         getContentTable().add(desc);
 
-        button(getBundle().get("ok"), true);
+        button(readLine("ok"), true);
     }
 
     public void result(Object obj) {

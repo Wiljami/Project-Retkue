@@ -31,7 +31,7 @@ import java.util.Map;
  * TODO: Is this worth the trouble? YES
  *
  * @author Viljami Pietarila
- * @version 2019.0306
+ * @version 2019.0307
  */
     public abstract class Scene extends ApplicationAdapter implements Screen {
     private static OrthographicCamera camera;
@@ -444,5 +444,15 @@ import java.util.Map;
             System.out.println("Could not find font: " + name + ". Using default font.");
             return fonts.get("defaultFont");
         }
+    }
+
+    /**
+     * Call readLine from Utils to securely read the bundle
+     * @param key key of the line
+     * @return String matching the key in bundle
+     */
+    public static String readLine (String key) {
+        String s  = Utils.readBundle(bundle, key);
+        return s;
     }
 }

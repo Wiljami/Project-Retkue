@@ -53,7 +53,7 @@ class ForestScene extends Scene{
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
-        table.add(new Label(getBundle().get("forest"), getSkin())).colspan(3);
+        table.add(new Label(readLine("forest"), getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(100);
         table.row();

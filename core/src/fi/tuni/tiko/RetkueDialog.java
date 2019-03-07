@@ -5,6 +5,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
+/**
+ * RetkueDialog is a custom dialog pop up used in the game. It extends dialogs and has some changes
+ * compared to it. The actual PopUps need to extend RetkueDialog in turn
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0307
+ */
 public abstract class RetkueDialog extends Dialog {
     public static Skin skin;
     public static Main game;
@@ -50,5 +57,15 @@ public abstract class RetkueDialog extends Dialog {
 
     public static I18NBundle getBundle() {
         return bundle;
+    }
+
+    /**
+     * Call readLine from Utils to securely read the bundle
+     * @param key key of the line
+     * @return String matching the key in bundle
+     */
+    public static String readLine (String key) {
+        String s  = Utils.readBundle(bundle, key);
+        return s;
     }
 }
