@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 
 public class GameScene extends Scene {
-    GameScene(Main game) {
+    public GameScene(Main game) {
         super(game);
         createMenu();
         setupBackground("village.png");
