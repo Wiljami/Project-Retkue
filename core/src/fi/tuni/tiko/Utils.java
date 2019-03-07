@@ -16,8 +16,6 @@ import com.badlogic.gdx.utils.I18NBundle;
  * @version 2019.0307
  */
 
-//TODO: Make a bundlereader method that makes sure that the game does not crash when there is a missing string in the bundle
-
 public class Utils {
     private final static String DEBUGTEXTURE = "debug-texture.png";
 
