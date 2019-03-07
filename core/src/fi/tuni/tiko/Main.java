@@ -53,6 +53,9 @@ public class Main extends Game {
      */
     Locale locale = Locale.getDefault();
 
+    /**
+     * create()
+     */
     @Override
 	public void create () {
         //TODO: implement elegant exit on BackKey
@@ -116,6 +119,10 @@ public class Main extends Game {
 		return batch;
 	}
 
+    /**
+     * getter for forestScene
+     * @return forestScene
+     */
     public ForestScene getForestScene() {
         return forestScene;
     }
