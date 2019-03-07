@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.I18NBundle;
  * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0307
  */
 
 //TODO: Make a bundlereader method that makes sure that the game does not crash when there is a missing string in the bundle
@@ -52,6 +52,13 @@ public class Utils {
         return image;
     }
 
+    /**
+     * readBundle attempts to read the localization Bundle using the key. If it fails to read it,
+     * it returns error message as the String
+     * @param bundle Bundle to be read
+     * @param key Key we're seeking in the bundle
+     * @return line matching the key
+     */
     public static String readBundle(I18NBundle bundle, String key) {
         String line;
         try {
