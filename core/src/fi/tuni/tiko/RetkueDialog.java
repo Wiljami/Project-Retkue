@@ -52,6 +52,11 @@ public abstract class RetkueDialog extends Dialog {
         return bundle;
     }
 
+    /**
+     * Call readLine from Utils to securely read the bundle
+     * @param key key of the line
+     * @return String matching the key in bundle
+     */
     public static String readLine (String key) {
         String s  = Utils.readBundle(bundle, key);
         return s;
