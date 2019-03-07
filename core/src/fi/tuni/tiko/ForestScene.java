@@ -2,9 +2,9 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * simple timer to keep track of the progress
  *
  * @author Viljami Pietarila
- * @version 2019.0306
+ * @version 2019.0307
  */
 //TODO: Everything
 
@@ -42,7 +42,7 @@ class ForestScene extends Scene{
     private void createMenu() {
         timer = new Label("00:00:00", getSkin());
 
-        Button faster = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
+        Button faster = new TextButton("Boost", getSkin());
         faster.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -94,7 +94,6 @@ class ForestScene extends Scene{
         int hours   = (int) ((time / (1000*60*60)) % 24);
         int minutes = (int) ((time / (1000*60)) % 60);
         int seconds = (int) (time / 1000) % 60;
-        if (seconds < 0) seconds = 0;
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
     }
 
