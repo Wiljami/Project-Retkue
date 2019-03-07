@@ -25,7 +25,7 @@ public class TavernPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
-    private String quest = "I have a mission for you. If you choose\n to accept it, then you can not...";
+    private String quest = readLine("QUEST_001_TEXT");
 
     private void confirmQuest() {
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
