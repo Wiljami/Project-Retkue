@@ -10,14 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * Class containing the game actual.
- * TODO: Should this be split in two? One for town and one for the forest.
  *
  * @author Viljami Pietarila
  * @version 2019.0219
  */
 
 public class GameScene extends Scene {
-    public GameScene(Main game) {
+    GameScene(Main game) {
         super(game);
         createMenu();
         setupBackground("village.png");
