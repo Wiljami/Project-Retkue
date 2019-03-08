@@ -1,7 +1,5 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
 /**
  * AdventurePopUp is the class that holds the functions for the adventure prompt pop up.
  *
