@@ -49,7 +49,7 @@ public class Main extends Game {
     /**
      * debug boolean toggles debug features in the code
      */
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     /**
      * Locale of the game.

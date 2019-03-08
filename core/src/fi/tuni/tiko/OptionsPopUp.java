@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -28,6 +29,7 @@ public class OptionsPopUp extends RetkueDialog {
         this.getTitleLabel().setText(readLine("options"));
         String text = readLine("options_desc");
         RetkueLabel desc = new RetkueLabel(text);
+        RetkueLabel volume = new RetkueLabel("Volume");
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
         optionsButton.addListener(new ClickListener() {
@@ -37,9 +39,14 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
+        Slider volumeSlider = new Slider(0f, 100f, 1, false, this.getSkin());
+
         getContentTable().add(desc).prefWidth(250);
         getContentTable().row();
-        getContentTable().add(optionsButton);
+        getContentTable().row();
+        getContentTable().add(volume).prefWidth(250);
+        getContentTable().row();
+        getContentTable().add(volumeSlider);
 
         button(readLine("return"), false);
     }
