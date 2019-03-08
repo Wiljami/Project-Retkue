@@ -25,7 +25,7 @@ public class TavernPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
-    private String quest = readLine("QUEST_001_TEXT");
+    /*    private String quest = readLine("QUEST_001_TEXT");
 
     private void confirmQuest() {
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
@@ -36,7 +36,7 @@ public class TavernPopUp extends RetkueDialog {
         };
         dialog.show(getStage());
     }
-
+*/
     private void createMenu() {
         String text = readLine("tavern_desc");
         RetkueLabel desc = new RetkueLabel(text);
@@ -45,7 +45,8 @@ public class TavernPopUp extends RetkueDialog {
         quest1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
+                QuestPopUp questPopUp = new QuestPopUp();
+                questPopUp.show(getStage());
             }
         });
 
@@ -55,7 +56,6 @@ public class TavernPopUp extends RetkueDialog {
         quest2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
             }
         });
 
@@ -65,7 +65,6 @@ public class TavernPopUp extends RetkueDialog {
         quest3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
             }
         });
 

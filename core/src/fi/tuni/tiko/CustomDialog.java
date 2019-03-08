@@ -50,8 +50,5 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
         getContentTable().add(desc).prefWidth(250);
 
-        button(readLine("yes"), true); //sends "true" as the result
-        button(readLine("no"), false);  //sends "false" as the result
-        remove();
     }
 }
