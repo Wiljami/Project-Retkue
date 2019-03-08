@@ -31,9 +31,9 @@ public class AdventurePopUp extends RetkueDialog {
      */
     private void createMenu() {
         String text = readLine("adventure_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
-        getContentTable().add(desc);
+        getContentTable().add(desc).prefWidth(250);
         getContentTable().row();
 
         button(readLine("back"), false);

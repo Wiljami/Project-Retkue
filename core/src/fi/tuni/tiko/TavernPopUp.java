@@ -39,7 +39,7 @@ public class TavernPopUp extends RetkueDialog {
 
     private void createMenu() {
         String text = readLine("tavern_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest1.addListener(new ClickListener() {
@@ -71,7 +71,7 @@ public class TavernPopUp extends RetkueDialog {
 
         Label label3 = new Label("Quest 3", skin);
 
-        getContentTable().add(desc).colspan(2);
+        getContentTable().add(desc).colspan(2).prefWidth(250);
 
         getContentTable().row();
         getContentTable().add(quest1).pad(10).left();
