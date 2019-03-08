@@ -45,7 +45,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
      */
     private void buildDialog(String text) {
         if (Main.debug) this.debug();
-        text(text);
+        RetkueLabel desc = new RetkueLabel(text);
+
+        getContentTable().add(desc).prefWidth(250);
 
         button(readLine("yes"), true); //sends "true" as the result
         button(readLine("no"), false);  //sends "false" as the result
