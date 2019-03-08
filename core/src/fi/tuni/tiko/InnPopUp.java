@@ -25,7 +25,7 @@ public class InnPopUp extends RetkueDialog {
 
     private void createMenu() {
         String text = readLine("inn_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
         optionsButton.addListener(new ClickListener() {
@@ -35,7 +35,7 @@ public class InnPopUp extends RetkueDialog {
             }
         });
 
-        getContentTable().add(desc);
+        getContentTable().add(desc).prefWidth(250);
         getContentTable().row();
         getContentTable().add(optionsButton);
 

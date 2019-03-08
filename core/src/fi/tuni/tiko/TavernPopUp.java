@@ -17,15 +17,18 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class TavernPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
+    private static TavernPopUp tavernPopUp;
+
 
     private static String title = readLine("tavern");
     public TavernPopUp() {
         super(title, skin, windowStyle);
+        tavernPopUp = this;
         createMenu();
         if (Main.debug) debug();
     }
 
-    private String quest = readLine("QUEST_001_TEXT");
+    /*    private String quest = readLine("QUEST_001_TEXT");
 
     private void confirmQuest() {
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
@@ -36,16 +39,17 @@ public class TavernPopUp extends RetkueDialog {
         };
         dialog.show(getStage());
     }
-
+*/
     private void createMenu() {
         String text = readLine("tavern_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
+                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp);
+                questPopUp.show(getStage());
             }
         });
 
@@ -55,7 +59,6 @@ public class TavernPopUp extends RetkueDialog {
         quest2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
             }
         });
 
@@ -65,13 +68,12 @@ public class TavernPopUp extends RetkueDialog {
         quest3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                confirmQuest();
             }
         });
 
         Label label3 = new Label("Quest 3", skin);
 
-        getContentTable().add(desc).colspan(2);
+        getContentTable().add(desc).colspan(2).prefWidth(250);
 
         getContentTable().row();
         getContentTable().add(quest1).pad(10).left();

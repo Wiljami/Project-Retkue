@@ -25,8 +25,8 @@ public class ResultsPopUp extends RetkueDialog {
 
     private void createMenu() {
         String text = readLine("results_desc");
-        Label desc = new Label(text, skin);
-        getContentTable().add(desc);
+        RetkueLabel desc = new RetkueLabel(text);
+        getContentTable().add(desc).prefWidth(250);
 
         button(readLine("ok"), true);
     }

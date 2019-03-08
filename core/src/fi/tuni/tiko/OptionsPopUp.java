@@ -27,7 +27,7 @@ public class OptionsPopUp extends RetkueDialog {
     private void createMenu() {
         this.getTitleLabel().setText(readLine("options"));
         String text = readLine("options_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
         optionsButton.addListener(new ClickListener() {
@@ -37,7 +37,7 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
-        getContentTable().add(desc);
+        getContentTable().add(desc).prefWidth(250);
         getContentTable().row();
         getContentTable().add(optionsButton);
 

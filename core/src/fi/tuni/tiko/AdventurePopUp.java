@@ -1,7 +1,5 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
 /**
  * AdventurePopUp is the class that holds the functions for the adventure prompt pop up.
  *
@@ -31,9 +29,9 @@ public class AdventurePopUp extends RetkueDialog {
      */
     private void createMenu() {
         String text = readLine("adventure_desc");
-        Label desc = new Label(text, skin);
+        RetkueLabel desc = new RetkueLabel(text);
 
-        getContentTable().add(desc);
+        getContentTable().add(desc).prefWidth(250);
         getContentTable().row();
 
         button(readLine("back"), false);
