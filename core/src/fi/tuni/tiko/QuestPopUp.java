@@ -6,6 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * QuestPopUp holds the dialog between the player and the questgiver.
+ * TODO: Fix the resizing when changing between texts
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0308
+ */
 public class QuestPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
 
