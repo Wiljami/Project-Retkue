@@ -17,10 +17,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class TavernPopUp extends RetkueDialog {
 
     private static String windowStyle = "dialog";
+    private static TavernPopUp tavernPopUp;
+
 
     private static String title = readLine("tavern");
     public TavernPopUp() {
         super(title, skin, windowStyle);
+        tavernPopUp = this;
         createMenu();
         if (Main.debug) debug();
     }
@@ -45,7 +48,7 @@ public class TavernPopUp extends RetkueDialog {
         quest1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                QuestPopUp questPopUp = new QuestPopUp();
+                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp);
                 questPopUp.show(getStage());
             }
         });
