@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
     /**
      * Constructor that is called when you wish to add an image at the top of the dialog
      * //TODO: Figure out some smart way to resize it to a good size
+     * //TODO: Replace this with some sort of RetkueDialog
      * @param text Text presented in the dialog
      * @param title Title of the Dialog
      * @param image Image to be presented on the top
