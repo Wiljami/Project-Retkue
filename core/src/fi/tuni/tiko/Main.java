@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Locale;
@@ -43,6 +44,8 @@ public class Main extends Game {
         mainMenu, gameScreen, forest
     }
 
+    private Music backgroundMusic;
+
     /**
      * debug boolean toggles debug features in the code
      */
@@ -62,8 +65,12 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
 		batch = new SpriteBatch();
-        initiateScenes();
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.play();
+		initiateScenes();
         openScene(GameView.mainMenu);
+
 	}
 
     /**
