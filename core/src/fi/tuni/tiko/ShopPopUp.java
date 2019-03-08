@@ -19,9 +19,7 @@ public class ShopPopUp extends RetkueDialog {
 
     private void createMenu() {
         String text = readLine("shop_desc");
-        Label desc = new Label(text, skin);
-        desc.setWrap(true);
-        desc.setAlignment(1);
+        RetkueLabel desc = new RetkueLabel(text);
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("shop button", 50, 50));
         optionsButton.addListener(new ClickListener() {

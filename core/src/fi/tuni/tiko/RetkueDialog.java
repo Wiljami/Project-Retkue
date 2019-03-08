@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
@@ -67,5 +68,13 @@ public abstract class RetkueDialog extends Dialog {
     public static String readLine (String key) {
         String s  = Utils.readBundle(bundle, key);
         return s;
+    }
+
+    public class RetkueLabel extends Label {
+        public RetkueLabel(String text) {
+            super(text, skin);
+            setWrap(true);
+            setAlignment(1);
+        }
     }
 }
