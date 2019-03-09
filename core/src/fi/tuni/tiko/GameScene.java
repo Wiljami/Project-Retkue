@@ -120,9 +120,26 @@ public class GameScene extends Scene {
             }
         });*/
 
+        int topBarHeight = (int)(getGame().WORLDPIXELHEIGHT / 6.6f);
+
+        Label steps = new Label("Steps", getSkin());
+        Label sCount = new Label("Scount", getSkin());
+        Label converter = new Label("Convert", getSkin());
+        Label gold = new Label("Gold", getSkin());
+        Label gCount = new Label("Money", getSkin());
+
+        Table header = new Table();
+        header.add(steps).prefHeight(topBarHeight);
+        header.add(sCount).prefHeight(topBarHeight);
+        header.add(converter).prefHeight(topBarHeight);
+        header.add(gold).prefHeight(topBarHeight);
+        header.add(gCount).prefHeight(topBarHeight);
+
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
+        table.add(header).colspan(3).expand().fill();
+        table.row();
         table.add(new Label( readLine("town"), getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(200);
