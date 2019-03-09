@@ -129,11 +129,12 @@ public class GameScene extends Scene {
         Label gCount = new Label("Money", getSkin());
 
         Table header = new Table();
-        header.add(steps).prefHeight(topBarHeight);
-        header.add(sCount).prefHeight(topBarHeight);
-        header.add(converter).prefHeight(topBarHeight);
-        header.add(gold).prefHeight(topBarHeight);
-        header.add(gCount).prefHeight(topBarHeight);
+        header.add(steps).prefHeight(topBarHeight).pad(10);
+        header.add(sCount).prefHeight(topBarHeight).pad(10);
+        header.add(converter).prefHeight(topBarHeight).pad(10);
+        header.add(gold).prefHeight(topBarHeight).pad(10);
+        header.add(gCount).prefHeight(topBarHeight).pad(10);
+        header.background(Utils.loadButtonImage("adventure button", 50, 50));
 
         Table table = new Table();
         if (debug) table.debug();
