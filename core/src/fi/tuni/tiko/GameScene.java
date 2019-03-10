@@ -125,7 +125,8 @@ public class GameScene extends Scene {
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
-        table.add(header).colspan(3).expand().fill();
+        table.top();
+        table.add(header).colspan(3).expand().fill().prefHeight(header.getHeight());
         table.row();
         table.add(new Label( readLine("town"), getSkin())).colspan(3);
         table.row();
