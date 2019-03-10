@@ -17,6 +17,7 @@ public class PartyBar extends Table {
         Image retku2 = new Image(Utils.loadTexture("old_guy1.png"));
         Image retku3 = new Image(Utils.loadTexture("old_guy1.png"));
 
+        //TODO: Healthbars!
         Image bar1 = new Image(Utils.loadTexture("village.png"));
         Image bar2 = new Image(Utils.loadTexture("village.png"));
         Image bar3 = new Image(Utils.loadTexture("village.png"));
