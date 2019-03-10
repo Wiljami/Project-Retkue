@@ -120,9 +120,9 @@ public class TownScene extends Scene {
             }
         });*/
 
-        float[] heightArray = {6.4f, 4f, 16f, 8f, 16f, 8f, 16f, 24f, 16f, 19.2f};
+        float[] heightArray = {1/6.4f, 1/4f, 1/16f, 1/8f, 1/16f, 1/8f, 1/16f, 1/24f, 1/16f, 1/19.2f};
         for (int n = 0; n < heightArray.length; n++) {
-            heightArray[n] = Main.WORLDPIXELHEIGHT / heightArray[n];
+            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
 
         GameHeader header = new GameHeader();
