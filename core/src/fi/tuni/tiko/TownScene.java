@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0219
  */
 
+/**
+ * TownScene constructor.
+ */
 public class TownScene extends Scene {
     public TownScene(Main game) {
         super(game);
@@ -20,9 +23,19 @@ public class TownScene extends Scene {
         setupBackground("village.png");
     }
 
+    /**
+     * Reference to the party object in the game.
+     */
     private Party party;
-    GameHeader header;
 
+    /**
+     * header object
+     */
+    private GameHeader header;
+
+    /**
+     * createMenu adds various UI actors to the table and to the stage
+     */
     private void createMenu() {
         Button mainMenu = new TextButton( readLine("backToMainMenu"), getSkin());
         mainMenu.addListener(new ClickListener() {
@@ -116,14 +129,12 @@ public class TownScene extends Scene {
         getStage().addActor(table);
     }
 
+    /**
+     * Overriding the show to add the header.updateValues()
+     */
     @Override
     public void show() {
         super.show();
         header.updateValues();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
     }
 }
