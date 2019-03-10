@@ -34,8 +34,8 @@ public class Main extends Game {
     /**
      * needed and we need the pixels for rendering text.
      */
-	public final int WORLDPIXELHEIGHT = 640;
-    public final int WORLDPIXELWIDTH = 360;
+	public final static int WORLDPIXELHEIGHT = 640;
+    public final static int WORLDPIXELWIDTH = 360;
 
     /**
      * GameView is enum for identifying between different scenes in the game.
@@ -49,7 +49,7 @@ public class Main extends Game {
     /**
      * debug boolean toggles debug features in the code
      */
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     /**
      * Locale of the game.

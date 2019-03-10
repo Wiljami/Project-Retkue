@@ -120,21 +120,7 @@ public class GameScene extends Scene {
             }
         });*/
 
-        int topBarHeight = (int)(getGame().WORLDPIXELHEIGHT / 6.6f);
-
-        Label steps = new Label("Steps", getSkin());
-        Label sCount = new Label("Scount", getSkin());
-        Label converter = new Label("Convert", getSkin());
-        Label gold = new Label("Gold", getSkin());
-        Label gCount = new Label("Money", getSkin());
-
-        Table header = new Table();
-        header.add(steps).prefHeight(topBarHeight).pad(10);
-        header.add(sCount).prefHeight(topBarHeight).pad(10);
-        header.add(converter).prefHeight(topBarHeight).pad(10);
-        header.add(gold).prefHeight(topBarHeight).pad(10);
-        header.add(gCount).prefHeight(topBarHeight).pad(10);
-        header.background(Utils.loadButtonImage("adventure button", 50, 50));
+        GameHeader header = new GameHeader();
 
         Table table = new Table();
         if (debug) table.debug();
