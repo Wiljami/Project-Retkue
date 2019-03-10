@@ -61,10 +61,14 @@ class ForestScene extends Scene{
         Image retkue = new Image(Utils.loadTexture("retkue.png"));
 
         GameHeader header = new GameHeader();
+        PartyBar partyBar = new PartyBar();
 
         //TODO: header.getHeight() to a smarter way.
 
-        float temp = 170f/1920f;
+        float temp1 = 170f/1920f;
+        float temp2 = 140f/1920f;
+        float temp3 = 310f/1920f;
+        float temp4 = 115f/1920f;
 
         Table table = new Table();
         if (debug) table.debug();
@@ -72,20 +76,21 @@ class ForestScene extends Scene{
         table.top();
         table.add(header).colspan(2).expand().fill().prefHeight(header.getHeight());
         table.row();
-        table.add().prefHeight(header.getHeight());
+        table.add().prefHeight(temp3*Main.WORLDPIXELHEIGHT);
         table.row();
         table.add(retkue).prefHeight(70).prefWidth(70).right().padRight(10);
         table.add(timer).left().padLeft(10);
         table.row();
-        table.add().prefHeight(header.getHeight());
+        table.add().prefHeight(temp3*Main.WORLDPIXELHEIGHT);
         table.row();
-        table.add(faster).right().padRight(15);
-        table.add(harder).left().padLeft(15);;
+        table.add(faster).right().padRight(15).prefHeight(temp4*Main.WORLDPIXELHEIGHT);
+        table.add(harder).left().padLeft(15).prefHeight(temp4*Main.WORLDPIXELHEIGHT);
         table.row();
-        table.add().prefHeight(temp);
+        table.add().prefHeight(temp1*Main.WORLDPIXELHEIGHT);
         table.row();
-        table.add(header).colspan(2).expand().fill().prefHeight(header.getHeight());
+        table.add(partyBar).colspan(2).expand().fill().prefHeight(partyBar.getHeight());
         table.row();
+        table.add().prefHeight(temp2*Main.WORLDPIXELHEIGHT);
         getStage().addActor(table);
     }
 
