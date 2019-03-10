@@ -4,8 +4,10 @@ package fi.tuni.tiko;
  * TextBox is a class for containing information. It has info for text String, it's location and
  * the font to use.
  *
+ * TODO: Figure out if we need this anymore
+ *
  * @author Viljami Pietarila
- * @version 2019.0219
+ * @version 2019.0310
  */
 public class TextBox {
     public String text;
