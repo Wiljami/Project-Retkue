@@ -2,8 +2,9 @@ package fi.tuni.tiko;
 
 /**
  * Quest class. This should hold information about the different quests in the game.
+ * TODO: This thing
  * @author Viljami Pietarila
- * @version 2019.0306
+ * @version 2019.0310
  */
 public class Quest {
     private String title;
