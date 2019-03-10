@@ -12,15 +12,28 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * TavernPopUp is a popup window that serves as the tavern for the game
  *
  * @author Viljami Pietarila
- * @version 2019.0306
+ * @version 2019.0310
  */
 public class TavernPopUp extends RetkueDialog {
 
+    /**
+     * WindowStyle of the TavernPopUp
+     */
     private static String windowStyle = "dialog";
+
+    /**
+     * Reference to itself. Because of the subclasses we need this.
+     */
     private static TavernPopUp tavernPopUp;
 
-
+    /**
+     * Window title of the tavern
+     */
     private static String title = readLine("tavern");
+
+    /**
+     * TavernPopUp constructor
+     */
     public TavernPopUp() {
         super(title, skin, windowStyle);
         tavernPopUp = this;
@@ -28,18 +41,9 @@ public class TavernPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
-    /*    private String quest = readLine("QUEST_001_TEXT");
-
-    private void confirmQuest() {
-        Image image = new Image(Utils.loadTexture("old_guy1.png"));
-        CustomDialog dialog = new CustomDialog(quest,"", image) {
-            public void result(Object obj) {
-                System.out.println(obj);
-            }
-        };
-        dialog.show(getStage());
-    }
-*/
+    /**
+     * createMenu creates various UI actors
+     */
     private void createMenu() {
         String text = readLine("tavern_desc");
         RetkueLabel desc = new RetkueLabel(text);
