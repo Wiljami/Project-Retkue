@@ -120,28 +120,37 @@ public class GameScene extends Scene {
             }
         });*/
 
+        float[] heightArray = {6.4f, 4f, 16f, 8f, 16f, 8f, 16f, 24f, 16f, 19.2f};
+        for (int n = 0; n < heightArray.length; n++) {
+            heightArray[n] = Main.WORLDPIXELHEIGHT / heightArray[n];
+        }
+
         GameHeader header = new GameHeader();
 
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
-        table.top();
-        table.add(header).colspan(3).expand().fill().prefHeight(header.getHeight());
+        table.add(header).colspan(3).expand().fill().prefHeight(heightArray[0]);
         table.row();
-        table.add(new Label( readLine("town"), getSkin())).colspan(3);
+        table.add().prefHeight(heightArray[1]);
         table.row();
-        table.add().prefHeight(200);
+        table.add(inn).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        table.add(shop).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        table.add(tavern).padRight(10).padLeft(10).prefHeight(heightArray[2]);
         table.row();
-        table.add(inn).pad(10);
-        table.add(shop).pad(10);
-        table.add(tavern).pad(10);
+        table.add().prefHeight(heightArray[3]);
         table.row();
-        table.add(adventure).colspan(3);
-        table.add().prefHeight(200);
+        table.add(adventure).colspan(3).prefHeight(heightArray[4]);
         table.row();
-        table.add(menu).colspan(3).pad(20);
+        table.add().prefHeight(heightArray[5]);
         table.row();
-        table.add(mainMenu).colspan(3).pad(20);
+        table.add(menu).colspan(3).prefHeight(heightArray[6]);
+        table.row();
+        table.add().prefHeight(heightArray[7]);
+        table.row();
+        table.add(mainMenu).colspan(3).prefHeight(heightArray[8]);
+        table.row();
+        table.add().prefHeight(heightArray[9]);
         getStage().addActor(table);
     }
 
