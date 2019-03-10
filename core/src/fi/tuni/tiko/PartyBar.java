@@ -46,7 +46,7 @@ public class PartyBar extends Table {
         add(retku1).prefHeight(charHeight);
         add(retku2).prefHeight(charHeight);
 
-        background(Utils.loadButtonImage("retkue_title.png", 0, 0));
+        background(Utils.loadButtonImage("partybar.png", 0, 0));
     }
 
     public void updateHealthBars() {

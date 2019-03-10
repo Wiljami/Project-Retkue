@@ -47,7 +47,7 @@ public class GameHeader extends Table {
         add(convert).prefHeight(height).pad(10);
         add(goldImage).prefHeight(height).pad(10);
         add(goldCount).prefHeight(height).pad(10);
-        background(Utils.loadButtonImage("adventure button", 0, 0));
+        background(Utils.loadButtonImage("retkue_header.png", 0, 0));
     }
 
     public void updateValues() {
