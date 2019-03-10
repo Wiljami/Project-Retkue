@@ -1,7 +1,6 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 /**
@@ -12,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  */
 public class PartyBar extends Table {
     public PartyBar(float height) {
-        Skin skin = Scene.getSkin();
-
         Image retku1 = new Image(Utils.loadTexture("old_guy1.png"));
         Image retku2 = new Image(Utils.loadTexture("old_guy1.png"));
         Image retku3 = new Image(Utils.loadTexture("old_guy1.png"));
