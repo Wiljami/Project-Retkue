@@ -11,20 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * @version 2019.0310
  */
 public class PartyBar extends Table {
-    private float height;
-
-    public PartyBar() {
+    public PartyBar(float height) {
         Skin skin = Scene.getSkin();
 
         Image retku1 = new Image(Utils.loadTexture("old_guy1.png"));
         Image retku2 = new Image(Utils.loadTexture("old_guy1.png"));
         Image retku3 = new Image(Utils.loadTexture("old_guy1.png"));
 
-        //TODO: Healthbars!
-        height = Main.WORLDPIXELHEIGHT * 362f / 1920f;
-
         float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
-        float healthBarHeight = Main.WORLDPIXELHEIGHT * 70f /1920f;
+        float healthBarHeight = height / 6f;
 
         float charHeight = height - healthBarHeight;
 
@@ -47,10 +42,5 @@ public class PartyBar extends Table {
         add(retku3).prefHeight(charHeight);
 
         background(Utils.loadButtonImage("retkue_title.png", 0, 0));
-    }
-
-    @Override
-    public float getHeight() {
-        return height;
     }
 }

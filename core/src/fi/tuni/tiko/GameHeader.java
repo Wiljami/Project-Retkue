@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -12,26 +14,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * @version 2019.0310
  */
 public class GameHeader extends Table {
-    private float height;
-    public GameHeader () {
-        height = Main.WORLDPIXELHEIGHT / 6.6f;
+    public GameHeader (float height) {
         Skin skin = Scene.getSkin();
-        Label steps = new Label("Steps", skin);
-        Label sCount = new Label("Scount", skin);
-        Label converter = new Label("Convert", skin);
-        Label gold = new Label("Gold", skin);
-        Label gCount = new Label("Money", skin);
+        Image stepImage = new Image(Utils.loadTexture("steps"));
+        Label sCount = new Label("999", skin);
+        ImageButton convert = new ImageButton(Utils.loadButtonImage("convert", 50, 50));
+        Image goldImage = new Image(Utils.loadTexture("gold"));
+        Label gCount = new Label("100", skin);
 
-        add(steps).prefHeight(height).pad(10);
+        add(stepImage).prefHeight(height).pad(10);
         add(sCount).prefHeight(height).pad(10);
-        add(converter).prefHeight(height).pad(10);
-        add(gold).prefHeight(height).pad(10);
+        add(convert).prefHeight(height).pad(10);
+        add(goldImage).prefHeight(height).pad(10);
         add(gCount).prefHeight(height).pad(10);
         background(Utils.loadButtonImage("adventure button", 0, 0));
-    }
-
-    @Override
-    public float getHeight() {
-        return height;
     }
 }

@@ -60,9 +60,6 @@ class ForestScene extends Scene{
 
         Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
 
-        GameHeader header = new GameHeader();
-        PartyBar partyBar = new PartyBar();
-
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
@@ -71,6 +68,9 @@ class ForestScene extends Scene{
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
+
+        GameHeader header = new GameHeader(heightArray[0]);
+        PartyBar partyBar = new PartyBar(heightArray[6]);
 
         Table table = new Table();
         if (debug) table.debug();
