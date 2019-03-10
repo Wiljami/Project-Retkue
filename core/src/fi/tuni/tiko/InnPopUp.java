@@ -13,16 +13,28 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0307
  */
 public class InnPopUp extends RetkueDialog {
+    /**
+     * windowStyle
+     */
     private static String windowStyle = "dialog";
 
+    /**
+     * Title of the InnPopUp window
+     */
     private static String title = readLine("inn");
 
+    /**
+     * Constructor.
+     */
     public InnPopUp() {
         super(title, skin, windowStyle);
         createMenu();
         if (Main.debug) debug();
     }
 
+    /**
+     * createMenu generates different visible UI actors.
+     */
     private void createMenu() {
         String text = readLine("inn_desc");
         RetkueLabel desc = new RetkueLabel(text);

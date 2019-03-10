@@ -11,7 +11,7 @@ import java.util.Locale;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0310
  */
 public class Main extends Game {
     /**
@@ -73,6 +73,7 @@ public class Main extends Game {
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
         backgroundMusic.play();
+        //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         party = new Party();
 		initiateScenes();
         openScene(GameView.mainMenu);
@@ -139,6 +140,10 @@ public class Main extends Game {
         return forestScene;
     }
 
+    /**
+     * getter for party
+     * @return party
+     */
     public Party getParty() {
         return party;
     }

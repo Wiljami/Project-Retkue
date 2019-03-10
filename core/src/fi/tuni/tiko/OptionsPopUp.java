@@ -11,20 +11,32 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * OptionsPopUp contains the functionality of the options menu within the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0310
  */
 
 public class OptionsPopUp extends RetkueDialog {
+    /**
+     * WindowStyle for the options window
+     */
     private static String windowStyle = "dialog";
 
+    /**
+     * Title for the options window
+     */
     private static String title = readLine("options");
 
+    /**
+     * Constructor for OptionsPopUp
+     */
     public OptionsPopUp() {
         super(title, skin, windowStyle);
         createMenu();
         if (Main.debug) debug();
     }
 
+    /**
+     * createMenu creates various visible UI actors.
+     */
     private void createMenu() {
         this.getTitleLabel().setText(readLine("options"));
         String text = readLine("options_desc");

@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * Class holding the MainMenu scene.
  *
  * @author Viljami Pietarila
- * @version 2019.0228
+ * @version 2019.0310
  */
 public class MainMenuScene extends Scene {
     /**
@@ -62,6 +62,9 @@ public class MainMenuScene extends Scene {
         getStage().addActor(mainMenuTable);
     }
 
+    /**
+     * dispose()
+     */
     public void dispose() {
         super.dispose();
     }
