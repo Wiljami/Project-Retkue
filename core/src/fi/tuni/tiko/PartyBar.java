@@ -10,12 +10,31 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * @version 2019.0310
  */
 public class PartyBar extends Table {
-    HealthBar bar0;
-    HealthBar bar1;
-    HealthBar bar2;
+    /**
+     * HealthBar of the leftmost Retku
+     */
+    private HealthBar bar0;
+    /**
+     * HealthBar of the middle Retku
+     */
+    private HealthBar bar1;
+    /**
+     * HealthBar of the rightmost Retku
+     */
+    private HealthBar bar2;
 
-    Party party;
+    /**
+     * Reference to the party
+     */
+    private Party party;
 
+    /**
+     * Constructor for the PartyBar
+     * Height is used to tell this element how much height does it have in pixels
+     *
+     * @param height height of this element
+     * @param party reference to the party
+     */
     public PartyBar(float height, Party party) {
         this.party = party;
 
@@ -49,6 +68,9 @@ public class PartyBar extends Table {
         background(Utils.loadButtonImage("partybar.png", 0, 0));
     }
 
+    /**
+     * updateHealthBars updates the healthBars of the retkus with new values of health.
+     */
     public void updateHealthBars() {
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
