@@ -51,6 +51,8 @@ public class Main extends Game {
      */
     public static boolean debug = true;
 
+    private Party party;
+
     /**
      * Locale of the game.
      */
@@ -68,9 +70,9 @@ public class Main extends Game {
 /*        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
         backgroundMusic.play();*/
+        party = new Party();
 		initiateScenes();
         openScene(GameView.mainMenu);
-
 	}
 
     /**
@@ -132,5 +134,9 @@ public class Main extends Game {
      */
     public ForestScene getForestScene() {
         return forestScene;
+    }
+
+    public Party getParty() {
+        return party;
     }
 }

@@ -6,9 +6,13 @@ public class Retku {
     private int maxHealth;
     private int currHealth;
 
+    private String imageFile;
+
     public Retku(String name, int health) {
         setMaxHealth(health);
+        setCurrHealth(health);
         setName(name);
+        imageFile = "old_guy1.png";
     }
 
     public int getMaxHealth() {
@@ -39,5 +43,9 @@ public class Retku {
     public float healthPercentage() {
         float healthPercentage = currHealth / maxHealth;
         return healthPercentage;
+    }
+
+    public String getImageFile() {
+        return imageFile;
     }
 }

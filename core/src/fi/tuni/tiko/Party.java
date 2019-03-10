@@ -9,4 +9,8 @@ public class Party {
         retkus[1] = new Retku("Mik'ed", 100);
         retkus[2] = new Retku("Mei", 100);
     }
+
+    public Retku findRetku(int n) {
+        return retkus[n];
+    }
 }

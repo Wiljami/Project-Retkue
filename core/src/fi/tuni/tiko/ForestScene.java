@@ -69,8 +69,10 @@ class ForestScene extends Scene{
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
 
+        Party party = getGame().getParty();
+
         GameHeader header = new GameHeader(heightArray[0]);
-        PartyBar partyBar = new PartyBar(heightArray[6]);
+        PartyBar partyBar = new PartyBar(heightArray[6], party);
 
         Table table = new Table();
         if (debug) table.debug();
