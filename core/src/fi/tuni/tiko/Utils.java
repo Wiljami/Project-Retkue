@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.I18NBundle;
  * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0310
  */
 
 public class Utils {
@@ -41,6 +41,7 @@ public class Utils {
 
     /**
      * loadButtonImage creates a TextureRegionDrawable from an image file on the disk.
+     * //TODO: Check this functionality. width and height seem to do nothing.
      * @param file filename of the image
      * @param width width of the button image
      * @param height height of the button image
