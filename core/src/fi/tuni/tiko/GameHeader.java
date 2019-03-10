@@ -20,6 +20,14 @@ public class GameHeader extends Table {
     Label goldCount;
     Party party;
 
+    /**
+     * GameHeader constructor.
+     *
+     * Height tells this object how much vertical size it has available to it.
+     * Party is needed as reference for the different currency values.
+     * @param height height of this element in pixels
+     * @param party reference to the game's party
+     */
     public GameHeader (float height, final Party party) {
         this.party = party;
 
@@ -50,6 +58,9 @@ public class GameHeader extends Table {
         background(Utils.loadButtonImage("retkue_header.png", 0, 0));
     }
 
+    /**
+     * updateValues() updates the values of the gold and steps on screen.
+     */
     public void updateValues() {
         String steps = Integer.toString(party.getSteps());
         String gold = Integer.toString(party.getGold());

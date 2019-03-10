@@ -8,10 +8,29 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-public class HealthBar extends ProgressBar{
+/**
+ * HealthBar extends ProgressBar.
+ *
+ * Its function is to show health % as a green and red bar.
+ * TODO: Make this neater for our purposes
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0310
+ */
 
+public class HealthBar extends ProgressBar{
+    /**
+     * The style that is shared by all the HealthBars
+     */
     private static ProgressBarStyle progressBarStyle;
 
+    /**
+     * HealthBar constructor
+     * If the progressBarStyle is null, we create it.
+     *
+     * @param barWidth the width we wish for the bar
+     * @param barHeight the height we wish for the bar
+     */
     public HealthBar(float barWidth, float barHeight) {
         super(0f, 1f, 0.01f, false, new ProgressBarStyle());
         if (progressBarStyle == null) setupStyle();
@@ -20,6 +39,9 @@ public class HealthBar extends ProgressBar{
         setHeight(barHeight);
     }
 
+    /**
+     * setupStyle() generates a new ProgressBarStyle using pixmaps.
+     */
     private void setupStyle() {
         Pixmap pixmap = new Pixmap(100, 20, Format.RGBA8888);
         pixmap.setColor(Color.RED);
