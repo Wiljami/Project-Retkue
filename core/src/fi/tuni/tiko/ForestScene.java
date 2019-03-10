@@ -105,26 +105,26 @@ class ForestScene extends Scene{
     public void renderActions() {
         super.renderActions();
         if (quest != null) {
-            long timeLeft = quest.timeLeft();
-            if (timeLeft < 0) {
-                ResultsPopUp resultsPopUp = new ResultsPopUp();
-                resultsPopUp.show(getStage());
-                quest = null;
-                timer.setText("00:00:00");
-            }
-            updateTimer(timeLeft);
+            updateTimer();
         }
     }
 
     /**
      * Update the timer label depending on how much time is left on the quest
      * Converts the milliseconds to hours, minutes and seconds.
-     * @param time time left on the quest in ms
      */
-    private void updateTimer(long time) {
-        int hours   = (int) ((time / (1000*60*60)) / 24);
-        int minutes = (int) ((time / (1000*60)) % 60);
-        int seconds = (int) (time / 1000) % 60;
+    private void updateTimer() {
+        long timeLeft = quest.timeLeft();
+        if (timeLeft < 0) {
+            ResultsPopUp resultsPopUp = new ResultsPopUp();
+            resultsPopUp.show(getStage());
+            quest = null;
+            timer.setText("00:00:00");
+        }
+
+        int hours   = (int) ((timeLeft / (1000*60*60)) / 24);
+        int minutes = (int) ((timeLeft / (1000*60)) % 60);
+        int seconds = (int) (timeLeft / 1000) % 60;
         timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
     }
 

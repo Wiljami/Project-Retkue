@@ -1,5 +1,12 @@
 package fi.tuni.tiko;
 
+/**
+ * Party is a class that will hold the functions and information of the player's group
+ * It holds the resources the player has and the information of different Retkus.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0310
+ */
 public class Party {
     private Retku[] retkus;
 
