@@ -118,6 +118,9 @@ class ForestScene extends Scene{
     float meanTimeForEvent = 1;
     float timeSinceLastCheck;
 
+    /**
+     * events randomizes whether an event happens within x amount of seconds or not.
+     */
     private void events() {
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
@@ -131,6 +134,9 @@ class ForestScene extends Scene{
         }
     }
 
+    /**
+     * hitRetku method simulates some event etc. within game that damages a retku
+     */
     private void hitRetku() {
         int retku = MathUtils.random(2);
         System.out.println("Hitting retku no. " + retku);
