@@ -4,6 +4,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
+/**
+ * PartyBar holds UI and functionality of the party display in forest scene.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0310
+ */
 public class PartyBar extends Table {
     private float height;
 
