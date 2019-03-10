@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -27,12 +29,15 @@ class ForestScene extends Scene{
      */
     private Label timer;
 
+    private Party party;
+
     /**
      * ForestScene constructor
      * @param game reference to the Main
      */
     public ForestScene(Main game) {
         super(game);
+        party = getGame().getParty();
         createMenu();
         setupBackground("forest.png");
     }
@@ -68,8 +73,6 @@ class ForestScene extends Scene{
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
-
-        Party party = getGame().getParty();
 
         GameHeader header = new GameHeader(heightArray[0], party);
         PartyBar partyBar = new PartyBar(heightArray[6], party);
@@ -109,6 +112,29 @@ class ForestScene extends Scene{
         }
     }
 
+    float timeSinceLastEvent;
+    float meanTimeForEvent = 1;
+    float timeSinceLastCheck;
+
+    private void events() {
+        timeSinceLastEvent += Gdx.graphics.getDeltaTime();
+        timeSinceLastCheck += Gdx.graphics.getDeltaTime();
+        if (timeSinceLastCheck > meanTimeForEvent) {
+            int n = MathUtils.random(1);
+            if (n == 1) {
+                hitRetku();
+                timeSinceLastEvent = 0;
+            }
+            timeSinceLastCheck = 0;
+        }
+    }
+
+    private void hitRetku() {
+        int retku = MathUtils.random(2);
+        System.out.println("Hitting retku no. " + retku);
+        party.findRetku(retku).damageRetku(100);
+    }
+
     /**
      * Update the timer label depending on how much time is left on the quest
      * Converts the milliseconds to hours, minutes and seconds.
@@ -121,6 +147,7 @@ class ForestScene extends Scene{
             quest = null;
             timer.setText("00:00:00");
         }
+        events();
 
         int hours   = (int) ((timeLeft / (1000*60*60)) / 24);
         int minutes = (int) ((timeLeft / (1000*60)) % 60);

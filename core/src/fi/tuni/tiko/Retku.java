@@ -48,4 +48,11 @@ public class Retku {
     public String getImageFile() {
         return imageFile;
     }
+
+    public void damageRetku(int damage) {
+        setCurrHealth(getCurrHealth() - damage);
+        if (currHealth <= 0) {
+            System.out.println("Retku nimeltä " + getName() + " has deaded");
+        }
+    }
 }
