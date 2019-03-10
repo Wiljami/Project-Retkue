@@ -65,32 +65,32 @@ class ForestScene extends Scene{
 
         //TODO: header.getHeight() to a smarter way.
 
-        float temp1 = 170f/1920f;
-        float temp2 = 140f/1920f;
-        float temp3 = 310f/1920f;
-        float temp4 = 115f/1920f;
+        float[] heightArray = {6.4f, 6f, 9.6f, 6.4f, 16, 9.6f, 5f + 1f/3f, 16};
+        for (int n = 0; n < heightArray.length; n++) {
+            heightArray[n] = Main.WORLDPIXELHEIGHT / heightArray[n];
+        }
 
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
         table.top();
-        table.add(header).colspan(2).expand().fill().prefHeight(header.getHeight());
+        table.add(header).colspan(2).expand().fill().prefHeight(heightArray[0]);
         table.row();
-        table.add().prefHeight(temp3*Main.WORLDPIXELHEIGHT);
+        table.add().prefHeight(heightArray[1]);
         table.row();
-        table.add(retkue).prefHeight(70).prefWidth(70).right().padRight(10);
+        table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
         table.add(timer).left().padLeft(10);
         table.row();
-        table.add().prefHeight(temp3*Main.WORLDPIXELHEIGHT);
+        table.add().prefHeight(heightArray[3]);
         table.row();
-        table.add(faster).right().padRight(15).prefHeight(temp4*Main.WORLDPIXELHEIGHT);
-        table.add(harder).left().padLeft(15).prefHeight(temp4*Main.WORLDPIXELHEIGHT);
+        table.add(faster).right().padRight(15).prefHeight(heightArray[4]);
+        table.add(harder).left().padLeft(15).prefHeight(heightArray[4]);
         table.row();
-        table.add().prefHeight(temp1*Main.WORLDPIXELHEIGHT);
+        table.add().prefHeight(heightArray[5]);
         table.row();
-        table.add(partyBar).colspan(2).expand().fill().prefHeight(partyBar.getHeight());
+        table.add(partyBar).colspan(2).expand().fill().prefHeight(heightArray[6]);
         table.row();
-        table.add().prefHeight(temp2*Main.WORLDPIXELHEIGHT);
+        table.add().prefHeight(heightArray[7]);
         getStage().addActor(table);
     }
 
