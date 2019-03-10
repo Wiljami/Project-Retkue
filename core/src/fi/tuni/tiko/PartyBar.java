@@ -23,12 +23,10 @@ public class PartyBar extends Table {
         //TODO: Healthbars!
         height = Main.WORLDPIXELHEIGHT * 362f / 1920f;
 
-        float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 5f;
+        float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
         float healthBarHeight = Main.WORLDPIXELHEIGHT * 70f /1920f;
 
         float charHeight = height - healthBarHeight;
-
-        Table healthTable = new Table();
 
         HealthBar bar1 = new HealthBar(healthBarWidth, healthBarHeight);
         HealthBar bar2 = new HealthBar(healthBarWidth, healthBarHeight);
@@ -38,11 +36,10 @@ public class PartyBar extends Table {
         bar2.setValue(0.9f);
         bar3.setValue(0.1f);
 
-        healthTable.add(bar1).padRight(4).padLeft(4).width(healthBarWidth);
-        healthTable.add(bar2).padRight(4).padLeft(4).width(healthBarWidth);
-        healthTable.add(bar3).padRight(4).padLeft(4).width(healthBarWidth);
+        add(bar1).width(healthBarWidth);
+        add(bar2).width(healthBarWidth);
+        add(bar3).width(healthBarWidth);
 
-        add(healthTable).colspan(3);
         row();
 
         add(retku1).prefHeight(charHeight);
