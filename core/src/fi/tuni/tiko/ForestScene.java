@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * simple timer to keep track of the progress
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0310
  */
 //TODO: Everything
 
@@ -29,9 +29,19 @@ class ForestScene extends Scene{
      */
     private Label timer;
 
+    /**
+     * Reference to the party of the game
+     */
     private Party party;
 
+    /**
+     * partyBar is the bar showing the party's current situation
+     */
     private PartyBar partyBar;
+
+    /**
+     * header is the bar on top of the screen showing information and providing its functionality
+     */
     private GameHeader header;
 
     /**
@@ -105,6 +115,12 @@ class ForestScene extends Scene{
         getStage().addActor(table);
     }
 
+    /**
+     * heal() is called when the heal button is pressed within the screen.
+     *
+     * Heal will increase the health of the Retkus, assuming they have enough gold
+     * TODO: More and better here
+     */
     private void heal() {
         if(party.getGold() >= 5) {
             party.spendGold(5);
@@ -116,6 +132,12 @@ class ForestScene extends Scene{
         }
     }
 
+    /**
+     * faster() is called when the boost button is pressed within the screen
+     *
+     * Faster will decrease the time left of the quest.
+     * TODO: More and better here
+     */
     private void faster() {
         if(party.getGold() >= 5) {
             party.spendGold(5);
@@ -211,6 +233,9 @@ class ForestScene extends Scene{
         this.quest = q;
     }
 
+    /**
+     * Overriding show() to add the header and partyBar updates when this scene is brought in sight
+     */
     @Override
     public void show() {
         super.show();

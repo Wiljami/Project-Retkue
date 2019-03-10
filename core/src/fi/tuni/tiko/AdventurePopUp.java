@@ -7,7 +7,9 @@ package fi.tuni.tiko;
  * @version 2019.0307
  */
 public class AdventurePopUp extends RetkueDialog {
-    //TODO: Make this more elegant, ok?
+    /**
+     * windowStyle is the style we're using in here
+     */
     private static String windowStyle = "dialog";
 
     /**
