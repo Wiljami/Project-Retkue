@@ -13,6 +13,10 @@ public class Party {
     private int gold;
     private int steps;
 
+    //How many steps for gold piece
+    private static final int STEPSTOGOLD = 100;
+    private static final int GOLDFROMSTEPS = 5;
+
     public Party() {
         retkus = new Retku[3];
         retkus[0] = new Retku("Bill", 100);
@@ -32,5 +36,23 @@ public class Party {
 
     public int getSteps() {
         return steps;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+        if(this.gold < 0) this.gold = 0;
+    }
+
+    public void spendGold(int n) {
+        setGold(getGold() - n);
+    }
+
+    public boolean convert() {
+        if (steps < STEPSTOGOLD) {
+            return false;
+        }
+        steps = steps - STEPSTOGOLD;
+        setGold(getGold() + GOLDFROMSTEPS);
+        return true;
     }
 }

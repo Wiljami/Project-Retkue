@@ -32,6 +32,7 @@ class ForestScene extends Scene{
     private Party party;
 
     private PartyBar partyBar;
+    private GameHeader header;
 
     /**
      * ForestScene constructor
@@ -54,11 +55,11 @@ class ForestScene extends Scene{
         faster.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                quest.boost();
+                faster();
             }
         });
 
-        Button harder = new TextButton("Voimista", getSkin());
+        Button harder = new TextButton("Paranna", getSkin());
         harder.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -77,7 +78,7 @@ class ForestScene extends Scene{
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
 
-        GameHeader header = new GameHeader(heightArray[0], party);
+        header = new GameHeader(heightArray[0], party);
         partyBar = new PartyBar(heightArray[6], party);
 
         Table table = new Table();
@@ -104,11 +105,23 @@ class ForestScene extends Scene{
         getStage().addActor(table);
     }
 
-    public void heal() {
-        party.findRetku(0).healRetku(10);
-        party.findRetku(1).healRetku(10);
-        party.findRetku(2).healRetku(10);
-        partyBar.updateHealthBars();
+    private void heal() {
+        if(party.getGold() >= 5) {
+            party.spendGold(5);
+            header.updateValues();
+            party.findRetku(0).healRetku(10);
+            party.findRetku(1).healRetku(10);
+            party.findRetku(2).healRetku(10);
+            partyBar.updateHealthBars();
+        }
+    }
+
+    private void faster() {
+        if(party.getGold() >= 5) {
+            party.spendGold(5);
+            header.updateValues();
+            quest.boost();
+        }
     }
 
     /**
@@ -196,5 +209,12 @@ class ForestScene extends Scene{
      */
     public void setQuest(Quest q) {
         this.quest = q;
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        header.updateValues();
+        partyBar.updateHealthBars();
     }
 }

@@ -20,6 +20,9 @@ public class TownScene extends Scene {
         setupBackground("village.png");
     }
 
+    private Party party;
+    GameHeader header;
+
     private void createMenu() {
         Button mainMenu = new TextButton( readLine("backToMainMenu"), getSkin());
         mainMenu.addListener(new ClickListener() {
@@ -82,9 +85,9 @@ public class TownScene extends Scene {
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
-        Party party = getGame().getParty();
+        party = getGame().getParty();
 
-        GameHeader header = new GameHeader(heightArray[0], party);
+        header = new GameHeader(heightArray[0], party);
 
         Table table = new Table();
         if (debug) table.debug();
@@ -111,6 +114,12 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[9]);
         getStage().addActor(table);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        header.updateValues();
     }
 
     @Override
