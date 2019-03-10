@@ -58,7 +58,7 @@ class ForestScene extends Scene{
                 System.out.println("You clicked Harder!");            }
         });
 
-        Image retkue = new Image(Utils.loadTexture("retkue.png"));
+        Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
 
         GameHeader header = new GameHeader();
         PartyBar partyBar = new PartyBar();
