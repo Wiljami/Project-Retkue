@@ -63,8 +63,8 @@ class ForestScene extends Scene{
         GameHeader header = new GameHeader();
         PartyBar partyBar = new PartyBar();
 
-        //TODO: header.getHeight() to a smarter way.
-
+        //heightArray is given float values that represent the height of each element in the table
+        //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
