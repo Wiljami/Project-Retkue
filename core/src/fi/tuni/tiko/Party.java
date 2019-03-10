@@ -14,6 +14,7 @@ public class Party {
     private int steps;
 
     //How many steps for gold piece
+    //TODO: These values need some thinking through
     private static final int STEPSTOGOLD = 100;
     private static final int GOLDFROMSTEPS = 5;
 
