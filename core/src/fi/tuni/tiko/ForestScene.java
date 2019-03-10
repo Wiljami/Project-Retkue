@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -57,7 +58,13 @@ class ForestScene extends Scene{
                 System.out.println("You clicked Harder!");            }
         });
 
+        Image retkue = new Image(Utils.loadTexture("retkue.png"));
+
         GameHeader header = new GameHeader();
+
+        //TODO: header.getHeight() to a smarter way.
+
+        float temp = 170f/1920f;
 
         Table table = new Table();
         if (debug) table.debug();
@@ -65,18 +72,19 @@ class ForestScene extends Scene{
         table.top();
         table.add(header).colspan(2).expand().fill().prefHeight(header.getHeight());
         table.row();
-        table.add().prefHeight(100);
+        table.add().prefHeight(header.getHeight());
         table.row();
-        table.add(timer).colspan(2);
+        table.add(retkue).prefHeight(70).prefWidth(70).right().padRight(10);
+        table.add(timer).left().padLeft(10);
         table.row();
-        table.add().prefHeight(100);
+        table.add().prefHeight(header.getHeight());
         table.row();
-        table.add(faster).pad(10);
-        table.add(harder).pad(10);
+        table.add(faster).right().padRight(15);
+        table.add(harder).left().padLeft(15);;
         table.row();
-        table.add().prefHeight(200);
+        table.add().prefHeight(temp);
         table.row();
-        table.add().prefHeight(200);
+        table.add(header).colspan(2).expand().fill().prefHeight(header.getHeight());
         table.row();
         getStage().addActor(table);
     }
