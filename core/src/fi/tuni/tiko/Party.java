@@ -10,14 +10,27 @@ package fi.tuni.tiko;
 public class Party {
     private Retku[] retkus;
 
+    private int gold;
+    private int steps;
+
     public Party() {
         retkus = new Retku[3];
         retkus[0] = new Retku("Bill", 100);
         retkus[1] = new Retku("Mik'ed", 100);
         retkus[2] = new Retku("Mei", 100);
+        steps = 1000;
+        gold = 99;
     }
 
     public Retku findRetku(int n) {
         return retkus[n];
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getSteps() {
+        return steps;
     }
 }

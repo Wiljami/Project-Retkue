@@ -14,13 +14,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * @version 2019.0310
  */
 public class GameHeader extends Table {
-    public GameHeader (float height) {
+    public GameHeader (float height, Party party) {
+
+        String steps = Integer.toString(party.getSteps());
+        String gold = Integer.toString(party.getGold());
+
         Skin skin = Scene.getSkin();
         Image stepImage = new Image(Utils.loadTexture("steps"));
-        Label sCount = new Label("999", skin);
+        Label sCount = new Label(steps, skin);
         ImageButton convert = new ImageButton(Utils.loadButtonImage("convert", 50, 50));
         Image goldImage = new Image(Utils.loadTexture("gold"));
-        Label gCount = new Label("100", skin);
+        Label gCount = new Label(gold, skin);
 
         add(stepImage).prefHeight(height).pad(10);
         add(sCount).prefHeight(height).pad(10);

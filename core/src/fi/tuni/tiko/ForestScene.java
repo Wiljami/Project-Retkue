@@ -71,7 +71,7 @@ class ForestScene extends Scene{
 
         Party party = getGame().getParty();
 
-        GameHeader header = new GameHeader(heightArray[0]);
+        GameHeader header = new GameHeader(heightArray[0], party);
         PartyBar partyBar = new PartyBar(heightArray[6], party);
 
         Table table = new Table();

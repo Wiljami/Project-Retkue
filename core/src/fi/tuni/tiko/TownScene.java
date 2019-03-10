@@ -128,8 +128,9 @@ public class TownScene extends Scene {
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
+        Party party = getGame().getParty();
 
-        GameHeader header = new GameHeader(heightArray[0]);
+        GameHeader header = new GameHeader(heightArray[0], party);
 
         Table table = new Table();
         if (debug) table.debug();
