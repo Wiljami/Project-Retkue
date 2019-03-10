@@ -75,51 +75,6 @@ public class TownScene extends Scene {
             }
         });
 
-/*      Button inn = new ImageButton(Utils.loadButtonImage("inn button", 50, 50));
-        inn.addListener(new ClickListener() {
-           @Override
-           public void clicked(InputEvent event, float x, float y) {
-               InnPopUp innPopUp = new InnPopUp();
-               innPopUp.show(getStage());
-           }
-        });
-
-        Button shop = new ImageButton(Utils.loadButtonImage("shop button", 50, 50));
-        shop.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ShopPopUp shopPopUp = new ShopPopUp();
-                shopPopUp.show(getStage());
-            }
-        });
-
-        Button tavern = new ImageButton(Utils.loadButtonImage("tavern button", 50, 50));
-        tavern.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp();
-                tavernPopUp.show(getStage());
-            }
-        });
-
-        Button adventure = new ImageButton(Utils.loadButtonImage("adventure button", 50, 50));
-        adventure.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                AdventurePopUp adventurePopUp = new AdventurePopUp();
-                adventurePopUp.show(getStage());
-            }
-        });*/
-
-/*        Button menu = new ImageButton(Utils.loadButtonImage("menu button", 50, 50));
-        menu.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                OptionsPopUp options = new OptionsPopUp();
-                options.show(getStage());
-            }
-        });*/
-
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/4f, 1/16f, 1/8f, 1/16f, 1/8f, 1/16f, 1/24f, 1/16f, 1/19.2f};
