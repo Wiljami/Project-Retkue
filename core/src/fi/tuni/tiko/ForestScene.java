@@ -65,9 +65,9 @@ class ForestScene extends Scene{
 
         //TODO: header.getHeight() to a smarter way.
 
-        float[] heightArray = {6.4f, 6f, 9.6f, 6.4f, 16, 9.6f, 5f + 1f/3f, 16};
+        float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
         for (int n = 0; n < heightArray.length; n++) {
-            heightArray[n] = Main.WORLDPIXELHEIGHT / heightArray[n];
+            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
 
         Table table = new Table();
