@@ -55,4 +55,8 @@ public class Retku {
             System.out.println("Retku nimeltä " + getName() + " has deaded");
         }
     }
+
+    public void healRetku(int heal) {
+        setCurrHealth(getCurrHealth() + heal);
+    }
 }

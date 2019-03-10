@@ -62,7 +62,8 @@ class ForestScene extends Scene{
         harder.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("You clicked Harder!");            }
+                heal();
+            }
         });
 
         Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
@@ -103,6 +104,13 @@ class ForestScene extends Scene{
         getStage().addActor(table);
     }
 
+    public void heal() {
+        party.findRetku(0).healRetku(10);
+        party.findRetku(1).healRetku(10);
+        party.findRetku(2).healRetku(10);
+        partyBar.updateHealthBars();
+    }
+
     /**
      * We Override the renderActions to add in the quest timer checkup.
      */
@@ -120,6 +128,7 @@ class ForestScene extends Scene{
 
     /**
      * events randomizes whether an event happens within x amount of seconds or not.
+     * TODO: Create an EventManager class that handles the random events and such.
      */
     private void events() {
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
@@ -141,7 +150,7 @@ class ForestScene extends Scene{
         int retku = MathUtils.random(2);
         System.out.println("Hitting retku no. " + retku);
         party.findRetku(retku).damageRetku(10);
-        partyBar.updateBars();
+        partyBar.updateHealthBars();
     }
 
     /**

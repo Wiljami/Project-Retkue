@@ -49,7 +49,7 @@ public class PartyBar extends Table {
         background(Utils.loadButtonImage("retkue_title.png", 0, 0));
     }
 
-    public void updateBars() {
+    public void updateHealthBars() {
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
