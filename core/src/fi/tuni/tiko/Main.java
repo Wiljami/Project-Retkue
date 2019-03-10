@@ -23,9 +23,9 @@ public class Main extends Game {
      */
 	MainMenuScene mainMenuScene;
     /**
-     * gameScene is the main menu screen of the game. It is an extension of Scene.
+     * townScene is the main menu screen of the game. It is an extension of Scene.
      */
-	GameScene gameScene;
+	TownScene townScene;
     /**
      * forestScene is the main menu screen of the game. It is an extension of Scene.
      */
@@ -78,7 +78,7 @@ public class Main extends Game {
      */
 	private void initiateScenes() {
         mainMenuScene = new MainMenuScene(this);
-        gameScene = new GameScene(this);
+        townScene = new TownScene(this);
         forestScene = new ForestScene(this);
     }
 
@@ -90,7 +90,7 @@ public class Main extends Game {
         Scene scene;
         switch(gameView) {
             case mainMenu: scene = mainMenuScene; break;
-            case gameScreen: scene = gameScene; break;
+            case gameScreen: scene = townScene; break;
             case forest: scene = forestScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
@@ -114,7 +114,7 @@ public class Main extends Game {
 	public void dispose () {
 		batch.dispose();
         mainMenuScene.dispose();
-        gameScene.dispose();
+        townScene.dispose();
         forestScene.dispose();
 	}
 
