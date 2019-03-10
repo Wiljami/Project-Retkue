@@ -19,6 +19,12 @@ public abstract class RetkueDialog extends Dialog {
     private static I18NBundle bundle;
 
 
+    /**
+     * RetkuDialog consturctor
+     * @param title title of the window
+     * @param skin skin of the window
+     * @param windowStyle windowStyle used
+     */
     public RetkueDialog(String title, Skin skin, String windowStyle) {
         super(title, skin, windowStyle);
     }
@@ -44,18 +50,34 @@ public abstract class RetkueDialog extends Dialog {
         return this;
     }
 
+    /**
+     * set the skin used in all the RetkueDialogs
+     * @param s skin to be used
+     */
     public static void setRetkueSkin(Skin s) {
         skin = s;
     }
 
+    /**
+     * give pointer to the Main
+     * @param g Main
+     */
     public static void pointToGame(Main g) {
         game = g;
     }
 
+    /**
+     * give pointer to the localization bundle
+     * @param b localization I18NBundle
+     */
     public static void giveBundle(I18NBundle b) {
         bundle = b;
     }
 
+    /**
+     * get I18NBundle localization
+     * @return I18NBundle localization
+     */
     public static I18NBundle getBundle() {
         return bundle;
     }
