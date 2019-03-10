@@ -17,6 +17,9 @@ import com.badlogic.gdx.utils.I18NBundle;
  */
 
 public class Utils {
+    /**
+     * DEBUGTEXTURE is the filename of the image we use when we fail to load a Texture.
+     */
     private final static String DEBUGTEXTURE = "debug-texture.png";
 
     /**

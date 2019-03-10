@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
- * Class containing the game actual.
+ * TownScene contains the town view and its functionality. It serves as the hub of the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0219
+ * @version 2019.0310
  */
 
 /**
