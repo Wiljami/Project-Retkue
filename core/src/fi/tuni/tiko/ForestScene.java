@@ -31,6 +31,8 @@ class ForestScene extends Scene{
 
     private Party party;
 
+    private PartyBar partyBar;
+
     /**
      * ForestScene constructor
      * @param game reference to the Main
@@ -75,7 +77,7 @@ class ForestScene extends Scene{
         }
 
         GameHeader header = new GameHeader(heightArray[0], party);
-        PartyBar partyBar = new PartyBar(heightArray[6], party);
+        partyBar = new PartyBar(heightArray[6], party);
 
         Table table = new Table();
         if (debug) table.debug();
@@ -132,7 +134,8 @@ class ForestScene extends Scene{
     private void hitRetku() {
         int retku = MathUtils.random(2);
         System.out.println("Hitting retku no. " + retku);
-        party.findRetku(retku).damageRetku(100);
+        party.findRetku(retku).damageRetku(10);
+        partyBar.updateBars();
     }
 
     /**

@@ -10,7 +10,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * @version 2019.0310
  */
 public class PartyBar extends Table {
+    HealthBar bar0;
+    HealthBar bar1;
+    HealthBar bar2;
+
+    Party party;
+
     public PartyBar(float height, Party party) {
+        this.party = party;
+
         Image retku0 = new Image(Utils.loadTexture(party.findRetku(0).getImageFile()));
         Image retku1 = new Image(Utils.loadTexture(party.findRetku(1).getImageFile()));
         Image retku2 = new Image(Utils.loadTexture(party.findRetku(2).getImageFile()));
@@ -20,9 +28,9 @@ public class PartyBar extends Table {
 
         float charHeight = height - healthBarHeight;
 
-        HealthBar bar0 = new HealthBar(healthBarWidth, healthBarHeight);
-        HealthBar bar1 = new HealthBar(healthBarWidth, healthBarHeight);
-        HealthBar bar2 = new HealthBar(healthBarWidth, healthBarHeight);
+        bar0 = new HealthBar(healthBarWidth, healthBarHeight);
+        bar1 = new HealthBar(healthBarWidth, healthBarHeight);
+        bar2 = new HealthBar(healthBarWidth, healthBarHeight);
 
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
@@ -39,5 +47,11 @@ public class PartyBar extends Table {
         add(retku2).prefHeight(charHeight);
 
         background(Utils.loadButtonImage("retkue_title.png", 0, 0));
+    }
+
+    public void updateBars() {
+        bar0.setValue(party.findRetku(0).healthPercentage());
+        bar1.setValue(party.findRetku(1).healthPercentage());
+        bar2.setValue(party.findRetku(2).healthPercentage());
     }
 }
