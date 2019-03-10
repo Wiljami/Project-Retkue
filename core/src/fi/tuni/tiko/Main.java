@@ -49,8 +49,11 @@ public class Main extends Game {
     /**
      * debug boolean toggles debug features in the code
      */
-    public static boolean debug = true;
+    public static boolean debug = false;
 
+    /**
+     * party will hold the resources and the player information the player has gathered.
+     */
     private Party party;
 
     /**

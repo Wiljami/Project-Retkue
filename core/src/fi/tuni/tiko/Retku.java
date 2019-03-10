@@ -41,7 +41,7 @@ public class Retku {
     }
 
     public float healthPercentage() {
-        float healthPercentage = currHealth / maxHealth;
+        float healthPercentage = (float)getCurrHealth() / (float)getMaxHealth();
         return healthPercentage;
     }
 
