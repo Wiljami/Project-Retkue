@@ -70,9 +70,9 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
 		batch = new SpriteBatch();
-/*        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
+		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
-        backgroundMusic.play();*/
+        backgroundMusic.play();
         party = new Party();
 		initiateScenes();
         openScene(GameView.mainMenu);
