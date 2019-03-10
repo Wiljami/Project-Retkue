@@ -14,17 +14,42 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0308
  */
 public class QuestPopUp extends RetkueDialog {
+    /**
+     * windowStyle of the quest Window
+     */
     private static String windowStyle = "dialog";
 
+    /**
+     * Title of the quest window. It's empty as it is changed immediately.
+     */
     private static String title = "";
 
+    /**
+     * no-button
+     */
     private Button no;
+    /**
+     * yes-button
+     */
     private Button yes;
+    /**
+     * ok-button
+     */
     private Button ok;
+    /**
+     * Actual text for the window
+     */
     private RetkueLabel desc;
 
+    /**
+     * Reference to the tavernPopUp
+     */
     private static TavernPopUp tavernPopUp;
 
+    /**
+     * Constructor of QuestPopUp
+     * @param tavernPopUp tavernPopUp Reference
+     */
     public QuestPopUp(TavernPopUp tavernPopUp) {
         super(title, skin, windowStyle);
         this.tavernPopUp = tavernPopUp;
@@ -74,11 +99,18 @@ public class QuestPopUp extends RetkueDialog {
         getContentTable().add(no).pad(10);
     }
 
+    /**
+     * closeMe method closes the tavernPopUp and the questPopUp
+     */
     public void closeMe() {
         tavernPopUp.remove();
         remove();
     }
 
+    /**
+     * acceptQuest changes the text on screen to the next text of the quest and hides the yes and no
+     * buttons. It turns the ok button visible.
+     */
     public void acceptQuest() {
         String accept = readLine("QUEST_001_ACCEPT");
         desc.setText(accept);
