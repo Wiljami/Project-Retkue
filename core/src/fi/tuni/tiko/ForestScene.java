@@ -57,9 +57,13 @@ class ForestScene extends Scene{
                 System.out.println("You clicked Harder!");            }
         });
 
+        GameHeader header = new GameHeader();
+
         Table table = new Table();
         if (debug) table.debug();
         table.setFillParent(true);
+        table.add(header).colspan(3).expand().fill();
+        table.row();
         table.add(new Label(readLine("forest"), getSkin())).colspan(3);
         table.row();
         table.add().prefHeight(100);
