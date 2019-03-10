@@ -34,6 +34,9 @@ import java.util.Map;
  * @version 2019.0307
  */
     public abstract class Scene extends ApplicationAdapter implements Screen {
+    /**
+     * camera is the camera used in the game
+     */
     private static OrthographicCamera camera;
 
     /**
@@ -82,9 +85,20 @@ import java.util.Map;
      */
     private Stage stage;
 
+    /**
+     * This is pretty outdated thing.
+     * TODO: Remove this
+     */
     private ArrayList<TextBox> texts;
 
+    /**
+     * boolean wether the scene has a background or not
+     */
     private boolean hasBackground;
+
+    /**
+     * background Texture of the scene
+     */
     private Texture background;
 
     /**
