@@ -71,6 +71,7 @@ public class Retku {
      */
     public void setCurrHealth(int currHealth) {
         if (currHealth > maxHealth) currHealth = maxHealth;
+        if (currHealth < 0) currHealth = 0;
         this.currHealth = currHealth;
     }
 
