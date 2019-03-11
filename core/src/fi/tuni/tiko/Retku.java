@@ -6,7 +6,7 @@ package fi.tuni.tiko;
  * A retku is a character element in the game. A party is formed of three Retkus.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0311
  */
 public class Retku {
     /**
