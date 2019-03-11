@@ -94,10 +94,8 @@ public class TownScene extends Scene {
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/4f, 1/16f, 1/8f, 1/16f, 1/8f, 1/16f, 1/24f, 1/16f, 1/19.2f};
 
-        //Convert the heightArray values from percentages to pixels
-        for (int n = 0; n < heightArray.length; n++) {
-            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
-        }
+        Utils.convertToPixels(heightArray);
+
         party = getGame().getParty();
 
         header = new GameHeader(heightArray[0], party);

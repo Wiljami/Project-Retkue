@@ -83,10 +83,7 @@ class ForestScene extends Scene{
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
 
-        //Convert the heightArray values from percentages to pixels
-        for (int n = 0; n < heightArray.length; n++) {
-            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
-        }
+        Utils.convertToPixels(heightArray);
 
         header = new GameHeader(heightArray[0], party);
         partyBar = new PartyBar(heightArray[6], party);

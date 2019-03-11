@@ -70,4 +70,11 @@ public class Utils {
         }
         return line;
     }
+
+    public static float[] convertToPixels(float[] heightArray) {
+        for (int n = 0; n < heightArray.length; n++) {
+            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
+        }
+        return heightArray;
+    }
 }
