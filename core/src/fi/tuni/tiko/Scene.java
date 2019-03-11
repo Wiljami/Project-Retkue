@@ -187,7 +187,7 @@ import java.util.Map;
      */
     private void setupCameras () {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, game.WORLDPIXELWIDTH, game.WORLDPIXELHEIGHT);
+        camera.setToOrtho(false, Main.WORLDPIXELWIDTH, Main.WORLDPIXELHEIGHT);
     }
 
     /**
@@ -208,8 +208,8 @@ import java.util.Map;
      */
     public void renderBackground() {
         if (hasBackground) {
-            getBatch().draw(background, 0, 0, getGame().WORLDPIXELWIDTH,
-                    getGame().WORLDPIXELHEIGHT);
+            getBatch().draw(background, 0, 0, Main.WORLDPIXELWIDTH,
+                    Main.WORLDPIXELHEIGHT);
         }
     }
 
