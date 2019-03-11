@@ -29,15 +29,22 @@ public class GameHeader extends Table {
      * @param party reference to the game's party
      */
     public GameHeader (float height, final Party party) {
+        if (Main.debug) debug();
         this.party = party;
+
+        int buttonWidth = (int)(height * 5f / 8f);
+        int buttonHeight = (int)height;
+
+        float elementWidth = Main.WORLDPIXELWIDTH/5f;
 
         String steps = Integer.toString(party.getSteps());
         String gold = Integer.toString(party.getGold());
 
         Skin skin = Scene.getSkin();
-        Image stepImage = new Image(Utils.loadTexture("steps"));
+        ImageButton stepImage = new ImageButton(Utils.loadButtonImage("gold-sack.png", buttonWidth, buttonHeight));
         stepCount = new Label(steps, skin);
-        ImageButton convert = new ImageButton(Utils.loadButtonImage("convert", 50, 50));
+        stepCount.setAlignment(1);
+        ImageButton convert = new ImageButton(Utils.loadButtonImage("arrow.png", buttonWidth, buttonHeight));
         convert.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -47,14 +54,16 @@ public class GameHeader extends Table {
             }
         });
 
-        Image goldImage = new Image(Utils.loadTexture("gold"));
+        ImageButton goldImage = new ImageButton(Utils.loadButtonImage("gold-sack.png", buttonWidth, buttonHeight));
         goldCount = new Label(gold, skin);
+        goldCount.setAlignment(1);
 
-        add(stepImage).prefHeight(height).pad(10);
-        add(stepCount).prefHeight(height).pad(10);
-        add(convert).prefHeight(height).pad(10);
-        add(goldImage).prefHeight(height).pad(10);
-        add(goldCount).prefHeight(height).pad(10);
+        System.out.println(elementWidth);
+        add(stepImage).width(elementWidth).padBottom(10);
+        add(stepCount).width(elementWidth).center();
+        add(convert).width(elementWidth);
+        add(goldImage).width(elementWidth).padBottom(10);
+        add(goldCount).width(elementWidth).center();
         background(Utils.loadButtonImage("retkue_header.png", 0, 0));
     }
 
