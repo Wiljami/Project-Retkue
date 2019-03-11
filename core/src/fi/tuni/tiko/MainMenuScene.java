@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * Class holding the MainMenu scene.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0311
  */
 public class MainMenuScene extends Scene {
     /**
@@ -52,13 +52,13 @@ public class MainMenuScene extends Scene {
         //It is a percentage of the entire screen
         float[] heightArray = {1/16f, 1/8f, 2/3f, 1/16f, 1/12f};
 
-        float titleWidth = Main.WORLDPIXELWIDTH*3f/4f;
-        float buttonWidth = Main.WORLDPIXELWIDTH/3.6f;
-
         //Convert the heightArray values from percentages to pixels
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
         }
+
+        float titleWidth = Main.WORLDPIXELWIDTH*3f/4f;
+        float buttonWidth = Main.WORLDPIXELWIDTH/3.6f;
 
         Table mainMenuTable= new Table();
         if (debug)mainMenuTable.debug();
