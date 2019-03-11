@@ -31,6 +31,7 @@ public class Retku {
 
     /**
      * Retku constructor
+     * TODO: Needs new Retku graphics
      * @param name name of the Retku
      * @param health max Health of Retku
      */
