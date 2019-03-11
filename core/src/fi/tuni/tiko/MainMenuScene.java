@@ -27,7 +27,6 @@ public class MainMenuScene extends Scene {
 
     /**
      * createMenu creates the UI of the mainMenu.
-     * TODO: fix the pixel sizes to work with percentages
      */
     private void createMenu() {
         Image title = new Image(Utils.loadTexture("retkue_title.png"));
