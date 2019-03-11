@@ -77,7 +77,7 @@ class ForestScene extends Scene{
             }
         });
 
-        Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
+        //Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
 
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
@@ -99,8 +99,8 @@ class ForestScene extends Scene{
         table.row();
         table.add().prefHeight(heightArray[1]);
         table.row();
-        table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
-        table.add(timer).left().padLeft(10);
+        //table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
+        table.add(timer).left().padLeft(10).prefHeight(heightArray[2]).colspan(2).center();
         table.row();
         table.add().prefHeight(heightArray[3]);
         table.row();
