@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.I18NBundle;
  * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0311
  */
 
 public class Utils {
@@ -71,6 +71,14 @@ public class Utils {
         return line;
     }
 
+    /**
+     * convertToPixels multiplies an array's values by the height of the screen in pixels
+     *
+     * The heightArray should have values between 0 and 1 and should represent the percentage of the
+     * screen. It is then multipled by the overall height resolution of the screen.
+     * @param heightArray array of percentage values
+     * @return array pixel sizes
+     */
     public static float[] convertToPixels(float[] heightArray) {
         for (int n = 0; n < heightArray.length; n++) {
             heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
