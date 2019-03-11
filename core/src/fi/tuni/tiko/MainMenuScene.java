@@ -49,16 +49,31 @@ public class MainMenuScene extends Scene {
             }
         });
 
+        //heightArray is given float values that represent the height of each element in the table
+        //It is a percentage of the entire screen
+        float[] heightArray = {1/16f, 1/8f, 2/3f, 1/16f, 1/12f};
+
+        float titleWidth = Main.WORLDPIXELWIDTH*3f/4f;
+        float buttonWidth = Main.WORLDPIXELWIDTH/3.6f;
+
+        //Convert the heightArray values from percentages to pixels
+        for (int n = 0; n < heightArray.length; n++) {
+            heightArray[n] = Main.WORLDPIXELHEIGHT * heightArray[n];
+        }
+
         Table mainMenuTable= new Table();
         if (debug)mainMenuTable.debug();
         mainMenuTable.setFillParent(true);
-        mainMenuTable.add(title).colspan(3).prefWidth(267).prefHeight(67);
+        mainMenuTable.add().height(heightArray[0]);
         mainMenuTable.row();
-        mainMenuTable.add().prefHeight(500);
+        mainMenuTable.add(title).colspan(2).prefWidth(titleWidth).prefHeight(heightArray[1]);
         mainMenuTable.row();
-        mainMenuTable.add(start).prefWidth(100);
-        mainMenuTable.add().prefWidth(80);
-        mainMenuTable.add(options).prefWidth(100);
+        mainMenuTable.add().prefHeight(heightArray[2]);
+        mainMenuTable.row();
+        mainMenuTable.add(start).prefWidth(buttonWidth).prefHeight(heightArray[3]);
+        mainMenuTable.add(options).prefWidth(buttonWidth).prefHeight(heightArray[3]);
+        mainMenuTable.row();
+        mainMenuTable.add().prefHeight(heightArray[4]);
         getStage().addActor(mainMenuTable);
     }
 
