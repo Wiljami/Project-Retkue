@@ -86,12 +86,6 @@ import java.util.Map;
     private Stage stage;
 
     /**
-     * This is pretty outdated thing.
-     * TODO: Remove this
-     */
-    private ArrayList<TextBox> texts;
-
-    /**
      * boolean wether the scene has a background or not
      */
     private boolean hasBackground;
@@ -107,8 +101,8 @@ import java.util.Map;
      * @param game reference to the main that creates and controls all the scenes
      */
     public Scene(Main game) {
-        stage = new Stage(new FitViewport(game.WORLDPIXELWIDTH,
-                game.WORLDPIXELHEIGHT), game.getBatch());
+        stage = new Stage(new FitViewport(Main.WORLDPIXELWIDTH,
+                Main.WORLDPIXELHEIGHT), game.getBatch());
         if (!initialized) {
             initialized = true;
             this.game = game;
@@ -117,7 +111,7 @@ import java.util.Map;
             setupCameras();
             setupSkins();
             setupStyles();
-            debug = game.debug;
+            debug = Main.debug;
             //Set default skin for the dialogs in the game
             RetkueDialog.setRetkueSkin(getSkin());
             RetkueDialog.pointToGame(getGame());
@@ -204,7 +198,6 @@ import java.util.Map;
         camera.update();
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
-        drawText();
         renderBackground();
         batch.end();
         renderActions();
@@ -236,41 +229,7 @@ import java.util.Map;
         getStage().draw();
     }
 
-    /**
-     * Draw everything that has been included in the texts ArrayList
-     */
-    public void drawText() {
-        if (texts != null) {
-            for (TextBox textBox : texts) {
-                fontType(textBox.font).draw(batch, textBox.text, textBox.x, textBox.y);
-            }
-        }
-    }
-
-    /**
-     * Add a text to the texts ArrayList
-     * @param textBox object containing the text, coordinates and font.
-     */
-    public void addText(TextBox textBox) {
-        if (texts == null) {
-            texts = new ArrayList<TextBox>();
-        }
-        centerText(textBox);
-        texts.add(textBox);
-    }
-
-    /**
-     * Find the center of a textBox
-     * @param textBox object containing the text, coordinates and font.
-     */
-    private void centerText(TextBox textBox) {
-        GlyphLayout layout = new GlyphLayout();
-        layout.setText(fontType(textBox.font), textBox.text);
-        textBox.x = textBox.x - (int)layout.width/2;
-        textBox.x = textBox.x - (int)layout.height/2;
-    }
-
-    /**
+     /**
      * Try to read the localization file
      * @param key key of the text we want
      * @return String containing the text or an error message
@@ -350,14 +309,6 @@ import java.util.Map;
     @Override
     public void render(float delta) {
         sceneRender();
-    }
-
-    /**
-     * getTexts()
-     * @return ArrayList of the texts
-     */
-    public ArrayList<TextBox> getTexts() {
-        return texts;
     }
 
     /**
