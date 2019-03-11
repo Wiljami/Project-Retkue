@@ -58,7 +58,6 @@ public class GameHeader extends Table {
         goldCount = new Label(gold, skin);
         goldCount.setAlignment(1);
 
-        System.out.println(elementWidth);
         add(stepImage).width(elementWidth).padBottom(10);
         add(stepCount).width(elementWidth).center();
         add(convert).width(elementWidth);
