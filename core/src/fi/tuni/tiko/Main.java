@@ -61,6 +61,8 @@ public class Main extends Game {
      */
     Locale locale = Locale.getDefault();
 
+    private static float stepCount;
+
     /**
      * create()
      */
@@ -137,5 +139,10 @@ public class Main extends Game {
      */
     public Party getParty() {
         return party;
+    }
+
+    public static void receiveSteps(float s) {
+        stepCount = s;
+        System.out.println(stepCount);
     }
 }
