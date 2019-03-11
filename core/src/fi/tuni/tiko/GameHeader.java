@@ -41,7 +41,7 @@ public class GameHeader extends Table {
         String gold = Integer.toString(party.getGold());
 
         Skin skin = Scene.getSkin();
-        ImageButton stepImage = new ImageButton(Utils.loadButtonImage("gold-sack.png", buttonWidth, buttonHeight));
+        ImageButton stepImage = new ImageButton(Utils.loadButtonImage("boot.png", buttonWidth, buttonHeight));
         stepCount = new Label(steps, skin);
         stepCount.setAlignment(1);
         ImageButton convert = new ImageButton(Utils.loadButtonImage("arrow.png", buttonWidth, buttonHeight));
