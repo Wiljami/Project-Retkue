@@ -38,6 +38,8 @@ public class OptionsPopUp extends RetkueDialog {
      * createMenu creates various visible UI actors.
      */
     private void createMenu() {
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
+
         this.getTitleLabel().setText(readLine("options"));
         String text = readLine("options_desc");
         RetkueLabel desc = new RetkueLabel(text);
@@ -53,10 +55,10 @@ public class OptionsPopUp extends RetkueDialog {
 
         Slider volumeSlider = new Slider(0f, 100f, 1, false, this.getSkin());
 
-        getContentTable().add(desc).prefWidth(250);
+        getContentTable().add(desc).prefWidth(popUpWidth);
         getContentTable().row();
         getContentTable().row();
-        getContentTable().add(volume).prefWidth(250);
+        getContentTable().add(volume).prefWidth(popUpWidth);
         getContentTable().row();
         getContentTable().add(volumeSlider);
 

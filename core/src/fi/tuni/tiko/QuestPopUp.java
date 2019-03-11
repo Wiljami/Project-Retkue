@@ -52,6 +52,9 @@ public class QuestPopUp extends RetkueDialog {
      */
     public QuestPopUp(TavernPopUp tavernPopUp) {
         super(title, skin, windowStyle);
+
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
+
         this.tavernPopUp = tavernPopUp;
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
 
@@ -90,7 +93,7 @@ public class QuestPopUp extends RetkueDialog {
 
 
         desc = new RetkueLabel(text);
-        getContentTable().add(desc).prefWidth(250).colspan(3);
+        getContentTable().add(desc).prefWidth(popUpWidth).colspan(3);
 
         getContentTable().row();
 

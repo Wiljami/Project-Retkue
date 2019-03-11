@@ -36,6 +36,8 @@ public class InnPopUp extends RetkueDialog {
      * createMenu generates different visible UI actors.
      */
     private void createMenu() {
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
+
         String text = readLine("inn_desc");
         RetkueLabel desc = new RetkueLabel(text);
 
@@ -47,7 +49,7 @@ public class InnPopUp extends RetkueDialog {
             }
         });
 
-        getContentTable().add(desc).prefWidth(250);
+        getContentTable().add(desc).prefWidth(popUpWidth);
         getContentTable().row();
         getContentTable().add(optionsButton);
 

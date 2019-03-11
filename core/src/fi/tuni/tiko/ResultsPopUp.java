@@ -31,9 +31,12 @@ public class ResultsPopUp extends RetkueDialog {
      * createMenu creates visible UI actors
      */
     private void createMenu() {
+
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
+
         String text = readLine("results_desc");
         RetkueLabel desc = new RetkueLabel(text);
-        getContentTable().add(desc).prefWidth(250);
+        getContentTable().add(desc).prefWidth(popUpWidth);
 
         button(readLine("ok"), true);
     }

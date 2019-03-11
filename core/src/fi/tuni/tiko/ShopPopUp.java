@@ -36,6 +36,7 @@ public class ShopPopUp extends RetkueDialog {
      * createMenu creates various UI actors
      */
     private void createMenu() {
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
         String text = readLine("shop_desc");
         RetkueLabel desc = new RetkueLabel(text);
 
@@ -47,7 +48,7 @@ public class ShopPopUp extends RetkueDialog {
             }
         });
 
-        getContentTable().add(desc).prefWidth(250);
+        getContentTable().add(desc).prefWidth(popUpWidth);
         getContentTable().row();
         getContentTable().add(optionsButton);
 
