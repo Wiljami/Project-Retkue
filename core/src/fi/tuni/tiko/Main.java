@@ -105,15 +105,6 @@ public class Main extends Game {
     }
 
     /**
-     * TODO: Figure out if we need this here or not.
-     * Idea is that it's here so we can add stuff if we wish to render more stuff.
-     */
-	@Override
-	public void render () {
-        super.render();
-	}
-
-    /**
      * dispose(). dispose things we have created.
      */
 	@Override
