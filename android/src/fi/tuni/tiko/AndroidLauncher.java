@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import fi.tuni.tiko.Main;
 
 /**
  * TODO: this documentation
