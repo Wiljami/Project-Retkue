@@ -18,6 +18,11 @@ public class AndroidLauncher extends AndroidApplication implements SensorEventLi
     boolean activityRunning;
     private float count;
 
+    /**
+     * onCreate is called when the app is created. We create a STEP_COUNTER sensor as well
+     * TODO: Better documentation here?
+     * @param savedInstanceState ??
+     */
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +33,9 @@ public class AndroidLauncher extends AndroidApplication implements SensorEventLi
 		initialize(new Main(), config);
 	}
 
+    /**
+     * We start the STEP_COUNTER sensor on resume
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -41,15 +49,26 @@ public class AndroidLauncher extends AndroidApplication implements SensorEventLi
 
     }
 
+    /**
+     * onSensorChanged is called when a sensor changed. We take the amount of steps from here.
+     *
+     * STEP_COUNTER value is taken from the sensors and sent to Main.receiveSteps
+     * @param event sensor event
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
             count = event.values[0];
-            System.out.println(count);
             Main.receiveSteps(count);
         }
     }
 
+    /**
+     * onAccuracyChanged
+     * TODO: Comment this, what is this even?
+     * @param sensor
+     * @param accuracy
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
