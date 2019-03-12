@@ -46,7 +46,7 @@ public class AndroidLauncher extends AndroidApplication implements SensorEventLi
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
-            Toast.makeText(this, "Count sensor not available!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "STEP_COUNTER sensor not available!", Toast.LENGTH_LONG).show();
         }
 
     }
