@@ -91,7 +91,6 @@ public class Utils {
      * of the String
      * @param number the int we check
      * @return the String we return
-     * TODO: Move this to utils
      */
     public static String toAddZero(int number) {
         String s;
