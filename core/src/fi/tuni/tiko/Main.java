@@ -179,6 +179,7 @@ public class Main extends Game {
         stepCount = s;
         System.out.println(stepCount);
         int newSteps = (int)(stepCount - startSteps);
+        startSteps = stepCount;
         party.addSteps(newSteps);
     }
 
