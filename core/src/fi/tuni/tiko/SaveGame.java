@@ -73,7 +73,7 @@ public class SaveGame {
             String name = save.getString("retku_" + x + "_name", "NO_NAME");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
-            System.out.println(name + "::" + currHealth + "/" + currHealth);
+            System.out.println(name + "::" + currHealth + "/" + maxHealth);
             retku.setName(name);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
