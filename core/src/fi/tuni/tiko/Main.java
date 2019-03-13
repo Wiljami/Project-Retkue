@@ -93,7 +93,7 @@ public class Main extends Game {
 
 	float testSteps = 100;
     /**
-     * stepSimulator gives us steps. For dev purposes
+     * stepSimulator gives us steps. For dev purposes. Adds a single step every second.
      */
 	private void stepSimulator() {
 	    Timer timer = new Timer();
@@ -178,7 +178,6 @@ public class Main extends Game {
      */
     public static void receiveSteps(float s) {
         stepCount = s;
-        System.out.println(stepCount);
         int newSteps = (int)(stepCount - startSteps);
         startSteps = stepCount;
         party.addSteps(newSteps);
