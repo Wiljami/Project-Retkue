@@ -125,7 +125,7 @@ public class Party {
     }
 
     private void notifyWatchers() {
-        main.getCurrentScene().updateValues();
+        if (main.getCurrentScene() != null) main.getCurrentScene().updateValues();
     }
 
     /**
@@ -137,5 +137,9 @@ public class Party {
         retkus[2] = new Retku("Mei", 100);
         steps = 1000;
         gold = 99;
+    }
+
+    public void addRetku(Retku retku, int slot) {
+        retkus[slot] = retku;
     }
 }

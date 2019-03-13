@@ -87,9 +87,8 @@ public class Main extends Game {
         //backgroundMusic.play();
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         party = new Party(this);
-        party.newGame();
-        //if (!SaveGame.load(saveFileName, party)) party.newGame();
-		initiateScenes();
+        if (!SaveGame.load(saveFileName, party)) party.newGame();
+        initiateScenes();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
 	}

@@ -69,7 +69,7 @@ public class SaveGame {
         party.setSteps(steps);
 
         for (int x = 0; x < 3; x++) {
-            Retku retku = party.findRetku(x);
+            Retku retku = new Retku("", 0);
             String name = save.getString("retku_" + x + "_name", "NO_NAME");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
@@ -77,6 +77,7 @@ public class SaveGame {
             retku.setName(name);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
+            party.addRetku(retku, x);
         }
 
         System.out.println(gold);

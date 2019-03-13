@@ -127,4 +127,5 @@ public class Retku {
     public void healRetku(int heal) {
         setCurrHealth(getCurrHealth() + heal);
     }
+
 }
