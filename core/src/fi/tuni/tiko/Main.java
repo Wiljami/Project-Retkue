@@ -202,4 +202,8 @@ public class Main extends Game {
     public Scene getCurrentScene() {
         return currentScene;
     }
+
+    public static String getSaveFileName() {
+        return saveFileName;
+    }
 }
