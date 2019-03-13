@@ -13,7 +13,7 @@ import java.util.TimerTask;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0313
  */
 public class Main extends Game {
     /**
@@ -184,6 +184,9 @@ public class Main extends Game {
         party.addSteps(newSteps);
     }
 
+    /**
+     * Called by the DesktopLauncher to turn on the StepSimulator. For Dev purposes.
+     */
     public static void useStepSimulator() {
         stepSim = true;
     }
