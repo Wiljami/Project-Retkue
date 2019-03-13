@@ -74,7 +74,7 @@ public class Main extends Game {
 		batch = new SpriteBatch();
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
-        backgroundMusic.play();
+        //backgroundMusic.play();
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         party = new Party();
 		initiateScenes();
