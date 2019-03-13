@@ -3,7 +3,18 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
+/**
+ * Class SaveGame handles loading and saving the data within the game.
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0313
+ */
 public class SaveGame {
+    /**
+     * save method saves the game data to the Preferences file
+     * @param saveFile name of the savefile
+     * @param party reference to the player party
+     */
     public static void save(String saveFile, Party party) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         save.putString("title", "Retkue Save");
@@ -14,12 +25,21 @@ public class SaveGame {
         save.flush();
     }
 
+    /**
+     * Saves the variables in the Config
+     * @param save Preferences to which saves are made
+     */
     private static void saveConfig (Preferences save) {
         save.putString("language",  Config.getLanguageName());
         save.putBoolean("audio", Config.isAudio());
         save.putFloat("stepStartPosition", Config.getStepStartPosition());
     }
 
+    /**
+     * Saves the variables in the player's party
+     * @param save reference to the Preferences save
+     * @param party reference to the player party
+     */
     private static void saveParty (Preferences save, Party party) {
         save.putInteger("gold", party.getGold());
         save.putInteger("steps", party.getSteps());
@@ -32,6 +52,14 @@ public class SaveGame {
         }
     }
 
+    /**
+     * load reads the Preferences file for the game variables. If there is no matching title
+     * variable within the Preferences file, the load will assume that this is a brand new game.
+     * Such as fresh install and return false to inform about it. Otherwise returns true.
+     * @param saveFile filename of the save
+     * @param party reference to the player party
+     * @return boolean wether the load is succesful
+     */
     public static boolean load(String saveFile, Party party) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         String title = save.getString("title", "null");
@@ -46,6 +74,10 @@ public class SaveGame {
         return true;
     }
 
+    /**
+     * Loads Config values from the save
+     * @param save Preference save
+     */
     private static void loadConfig(Preferences save) {
         String language = save.getString("language", "null");
         setLanguage(language);
@@ -62,6 +94,11 @@ public class SaveGame {
         System.out.println(audio);
     }
 
+    /**
+     * Loads party variables from the save
+     * @param save Preferences save
+     * @param party Party object to which the values are saved
+     */
     private static void loadParty(Preferences save, Party party) {
         int gold = save.getInteger("gold", 0);
         party.setGold(gold);
@@ -84,6 +121,11 @@ public class SaveGame {
         System.out.println(steps);
     }
 
+    /**
+     * Converts the language string read from the Preferences file and sets the language in Config
+     * accordingly.
+     * @param language string language
+     */
     private static void setLanguage(String language) {
         if (language.equals("FI")) {
             Config.setLanguage(Config.Language.FINNISH);
