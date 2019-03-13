@@ -11,7 +11,10 @@ import com.badlogic.gdx.Preferences;
  */
 public class SaveGame {
     /**
-     * save method saves the game data to the Preferences file
+     * save method saves the game data to the Preferences file.
+     *
+     * Each save has key "title" with val "Retkue Save". If this is not there upon load, the load
+     * will assume that the save is not valid and start a fresh game.
      * @param saveFile name of the savefile
      * @param party reference to the player party
      */
