@@ -17,6 +17,7 @@ public class Party {
      * Player gold
      */
     private int gold;
+
     /**
      * Player steps
      */
@@ -33,10 +34,16 @@ public class Party {
     private static final int GOLDFROMSTEPS = 5;
 
     /**
+     * Reference to main
+     */
+    private Main main;
+
+    /**
      * Party constructor. atm has dummy values for the retkus and gold and steps
      * TODO: Change this.
      */
-    public Party() {
+    public Party(Main main) {
+        this.main = main;
         retkus = new Retku[3];
         retkus[0] = new Retku("Bill", 100);
         retkus[1] = new Retku("Mik'ed", 100);
@@ -76,7 +83,9 @@ public class Party {
      */
     public void setGold(int gold) {
         this.gold = gold;
-        if(this.gold < 0) this.gold = 0;
+        if(this.gold < 0) {
+            throw new IllegalArgumentException("gold can't be smaller than 0.");
+        }
     }
 
     /**
@@ -92,11 +101,35 @@ public class Party {
      * @return boolean wether the conversion was possible.
      */
     public boolean convert() {
-        if (steps < STEPSTOGOLD) {
+        if (getSteps() < STEPSTOGOLD) {
             return false;
         }
-        steps = steps - STEPSTOGOLD;
+        setSteps(getSteps() - STEPSTOGOLD);
         setGold(getGold() + GOLDFROMSTEPS);
         return true;
+    }
+
+    /**
+     * addSteps. Adds a number of steps to the total steps
+     * @param s int steps to be added to the total
+     */
+    public void addSteps(int s) {
+        setSteps(getSteps() + s);
+    }
+
+    /**
+     * steps setter
+     * @param steps new steps value
+     */
+    public void setSteps(int steps) {
+        if (steps < 0) {
+            throw new IllegalArgumentException("steps can't be smaller than 0.");
+        }
+        this.steps = steps;
+        notifyWatchers();
+    }
+
+    private void notifyWatchers() {
+        main.getCurrentScene().updateValues();
     }
 }

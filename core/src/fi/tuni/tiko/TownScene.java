@@ -127,12 +127,8 @@ public class TownScene extends Scene {
         getStage().addActor(table);
     }
 
-    /**
-     * Overriding the show to add the header.updateValues()
-     */
     @Override
-    public void show() {
-        super.show();
+    public void updateValues() {
         header.updateValues();
     }
 }

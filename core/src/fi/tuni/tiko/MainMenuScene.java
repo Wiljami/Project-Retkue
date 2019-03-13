@@ -73,6 +73,10 @@ public class MainMenuScene extends Scene {
         getStage().addActor(mainMenuTable);
     }
 
+    @Override
+    public void updateValues() {
+    }
+
     /**
      * dispose()
      */
