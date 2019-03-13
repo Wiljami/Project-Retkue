@@ -56,12 +56,17 @@ public class Main extends Game {
     /**
      * party will hold the resources and the player information the player has gathered.
      */
-    private Party party;
+    private static Party party;
 
     /**
      * Locale of the game.
      */
     Locale locale = Locale.getDefault();
+
+    /**
+     * The current Scene in use.
+     */
+    private Scene currentScene;
 
     private static float stepCount;
 
@@ -78,7 +83,7 @@ public class Main extends Game {
         backgroundMusic.setLooping(true);
         //backgroundMusic.play();
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        party = new Party();
+        party = new Party(this);
 		initiateScenes();
         openScene(GameView.mainMenu);
         stepSimulator();
@@ -108,6 +113,7 @@ public class Main extends Game {
         mainMenuScene = new MainMenuScene(this);
         townScene = new TownScene(this);
         forestScene = new ForestScene(this);
+        currentScene = mainMenuScene;
     }
 
     /**
@@ -115,15 +121,14 @@ public class Main extends Game {
      * @param gameView the scene we wish to navigate to
      */
 	public void openScene(GameView gameView) {
-        Scene scene;
         switch(gameView) {
-            case mainMenu: scene = mainMenuScene; break;
-            case gameScreen: scene = townScene; break;
-            case forest: scene = forestScene; break;
+            case mainMenu: currentScene = mainMenuScene; break;
+            case gameScreen: currentScene = townScene; break;
+            case forest: currentScene = forestScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
-        Gdx.input.setInputProcessor(scene.getStage());
-        setScreen(scene);
+        Gdx.input.setInputProcessor(currentScene.getStage());
+        setScreen(currentScene);
     }
 
     /**
@@ -161,6 +166,8 @@ public class Main extends Game {
         return party;
     }
 
+    //The amount of steps already 'used';
+    static float startSteps = 100;
     /**
      * receiveSteps method is called by the android sensors. It receives the STEP_COUNTER float.
      *
@@ -171,5 +178,15 @@ public class Main extends Game {
     public static void receiveSteps(float s) {
         stepCount = s;
         System.out.println(stepCount);
+        int newSteps = (int)(stepCount - startSteps);
+        party.addSteps(newSteps);
+    }
+
+    /**
+     * getter for currentScene.
+     * @return reference to the current Scene in use
+     */
+    public Scene getCurrentScene() {
+        return currentScene;
     }
 }

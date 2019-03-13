@@ -230,12 +230,8 @@ class ForestScene extends Scene{
         this.quest = q;
     }
 
-    /**
-     * Overriding show() to add the header and partyBar updates when this scene is brought in sight
-     */
     @Override
-    public void show() {
-        super.show();
+    public void updateValues() {
         header.updateValues();
         partyBar.updateHealthBars();
     }
