@@ -4,11 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import static fi.tuni.tiko.Utils.toAddZero;
 
 /**
  * ForestScene. Here we see the progress of the party in their current quest. It currently has a
@@ -198,24 +199,8 @@ class ForestScene extends Scene{
         int hours   = (int) ((timeLeft / (1000*60*60)) / 24);
         int minutes = (int) ((timeLeft / (1000*60)) % 60);
         int seconds = (int) (timeLeft / 1000) % 60;
-        timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
-    }
-
-    /**
-     * Check wether the int is a single digit or not. If single digit, then we add a 0 in front
-     * of the String
-     * @param number the int we check
-     * @return the String we return
-     * TODO: Move this to utils
-     */
-    private String toAddZero(int number) {
-        String s;
-        if (number < 10) {
-            s = "0" + Integer.toString(number);
-        } else {
-            s = Integer.toString(number);
-        }
-        return s;
+        String timerText = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
+        timer.setText(timerText);
     }
 
     /**

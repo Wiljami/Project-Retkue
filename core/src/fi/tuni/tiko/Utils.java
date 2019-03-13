@@ -85,4 +85,21 @@ public class Utils {
         }
         return heightArray;
     }
+
+    /**
+     * Check wether the int is a single digit or not. If single digit, then we add a 0 in front
+     * of the String
+     * @param number the int we check
+     * @return the String we return
+     * TODO: Move this to utils
+     */
+    public static String toAddZero(int number) {
+        String s;
+        if (number < 10) {
+            s = "0" + Integer.toString(number);
+        } else {
+            s = Integer.toString(number);
+        }
+        return s;
+    }
 }
