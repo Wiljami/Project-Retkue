@@ -26,6 +26,28 @@ public class SaveGame {
     }
 
     /**
+     * load reads the Preferences file for the game variables. If there is no matching title
+     * variable within the Preferences file, the load will assume that this is a brand new game.
+     * Such as fresh install and return false to inform about it. Otherwise returns true.
+     * @param saveFile filename of the save
+     * @param party reference to the player party
+     * @return boolean wether the load is succesful
+     */
+    public static boolean load(String saveFile, Party party) {
+        Preferences save = (Gdx.app.getPreferences(saveFile));
+        String title = save.getString("title", "null");
+        if (title.equals("null")) {
+            return false;
+        }
+        System.out.println(title);
+
+        loadConfig(save);
+        loadParty(save, party);
+
+        return true;
+    }
+
+    /**
      * Saves the variables in the Config
      * @param save Preferences to which saves are made
      */
@@ -50,28 +72,6 @@ public class SaveGame {
             save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
             save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
         }
-    }
-
-    /**
-     * load reads the Preferences file for the game variables. If there is no matching title
-     * variable within the Preferences file, the load will assume that this is a brand new game.
-     * Such as fresh install and return false to inform about it. Otherwise returns true.
-     * @param saveFile filename of the save
-     * @param party reference to the player party
-     * @return boolean wether the load is succesful
-     */
-    public static boolean load(String saveFile, Party party) {
-        Preferences save = (Gdx.app.getPreferences(saveFile));
-        String title = save.getString("title", "null");
-        if (title.equals("null")) {
-            return false;
-        }
-        System.out.println(title);
-
-        loadConfig(save);
-        loadParty(save, party);
-
-        return true;
     }
 
     /**
