@@ -23,6 +23,13 @@ public class SaveGame {
     private static void saveParty (Preferences save, Party party) {
         save.putInteger("gold", party.getGold());
         save.putInteger("steps", party.getSteps());
+
+        for (int x = 0; x < 3; x++) {
+            Retku retku = party.findRetku(x);
+            save.putString("retku_" + x + "_name", retku.getName());
+            save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
+            save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
+        }
     }
 
     public static boolean load(String saveFile, Party party) {
@@ -49,6 +56,7 @@ public class SaveGame {
         Boolean audio = save.getBoolean("audio", false);
         Config.setAudio(audio);
 
+
         System.out.println(language);
         System.out.println(stepStart);
         System.out.println(audio);
@@ -59,6 +67,17 @@ public class SaveGame {
         party.setGold(gold);
         int steps = save.getInteger("gold", 0);
         party.setSteps(steps);
+
+        for (int x = 0; x < 3; x++) {
+            Retku retku = party.findRetku(x);
+            String name = save.getString("retku_" + x + "_name", "NO_NAME");
+            int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
+            int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
+            System.out.println(name + "::" + currHealth + "/" + currHealth);
+            retku.setName(name);
+            retku.setMaxHealth(maxHealth);
+            retku.setCurrHealth(currHealth);
+        }
 
         System.out.println(gold);
         System.out.println(steps);
