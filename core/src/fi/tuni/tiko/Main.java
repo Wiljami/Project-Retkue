@@ -90,24 +90,7 @@ public class Main extends Game {
         if(stepSim) stepSimulator();
 	}
 
-
-	float testSteps = 100;
-    /**
-     * stepSimulator gives us steps. For dev purposes. Adds a single step every second.
-     */
-	private void stepSimulator() {
-	    Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                testSteps++;
-                receiveSteps(testSteps);
-                stepSimulator();
-            }
-        }, 1000);
-    }
-
-    /**
+	/**
      * Method for initiating all the scenes used in the game.
      */
 	private void initiateScenes() {
@@ -167,8 +150,6 @@ public class Main extends Game {
         return party;
     }
 
-    //The amount of steps already 'used';
-    static float startSteps = 100;
     /**
      * receiveSteps method is called by the android sensors. It receives the STEP_COUNTER float.
      *
@@ -178,9 +159,30 @@ public class Main extends Game {
      */
     public static void receiveSteps(float s) {
         stepCount = s;
-        int newSteps = (int)(stepCount - startSteps);
-        startSteps = stepCount;
-        party.addSteps(newSteps);
+        if (party != null) {
+            int newSteps = (int)(stepCount - Config.getStepStartPosition());
+            Config.setStepStartPosition(stepCount);
+            party.addSteps(newSteps);
+        }
+    }
+
+    /**
+     * This simulates the already existing steps within the STEP_COUNTER sensor
+     */
+    float testSteps = 100f;
+    /**
+     * stepSimulator gives us steps. For dev purposes. Adds a single step every second.
+     */
+    private void stepSimulator() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                testSteps++;
+                receiveSteps(testSteps);
+                stepSimulator();
+            }
+        }, 1000);
     }
 
     /**
