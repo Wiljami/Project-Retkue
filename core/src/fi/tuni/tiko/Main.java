@@ -69,6 +69,7 @@ public class Main extends Game {
     private Scene currentScene;
 
     private static float stepCount;
+    private static boolean stepSim = false;
 
     /**
      * create()
@@ -86,7 +87,7 @@ public class Main extends Game {
         party = new Party(this);
 		initiateScenes();
         openScene(GameView.mainMenu);
-        stepSimulator();
+        if(stepSim) stepSimulator();
 	}
 
 
@@ -181,6 +182,10 @@ public class Main extends Game {
         int newSteps = (int)(stepCount - startSteps);
         startSteps = stepCount;
         party.addSteps(newSteps);
+    }
+
+    public static void useStepSimulator() {
+        stepSim = true;
     }
 
     /**

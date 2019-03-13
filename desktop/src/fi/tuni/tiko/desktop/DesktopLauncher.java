@@ -11,6 +11,7 @@ public class DesktopLauncher {
 		config.title = "Retkue";
 		config.height = 640;
 		config.width = 360;
+		Main.useStepSimulator();
 		new LwjglApplication(new Main(), config);
 	}
 }
