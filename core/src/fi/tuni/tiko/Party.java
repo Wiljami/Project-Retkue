@@ -17,6 +17,7 @@ public class Party {
      * Player gold
      */
     private int gold;
+
     /**
      * Player steps
      */
