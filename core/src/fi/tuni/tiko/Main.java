@@ -71,6 +71,8 @@ public class Main extends Game {
     private static float stepCount;
     private static boolean stepSim = false;
 
+    private static String saveFileName = "RetkueSave";
+
     /**
      * create()
      */
@@ -85,6 +87,7 @@ public class Main extends Game {
         //backgroundMusic.play();
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         party = new Party(this);
+        if (!SaveGame.load(saveFileName, party)) party.newGame();
 		initiateScenes();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();

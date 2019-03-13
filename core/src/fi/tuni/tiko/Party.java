@@ -45,11 +45,6 @@ public class Party {
     public Party(Main main) {
         this.main = main;
         retkus = new Retku[3];
-        retkus[0] = new Retku("Bill", 100);
-        retkus[1] = new Retku("Mik'ed", 100);
-        retkus[2] = new Retku("Mei", 100);
-        steps = 1000;
-        gold = 99;
     }
 
     /**
@@ -131,5 +126,16 @@ public class Party {
 
     private void notifyWatchers() {
         main.getCurrentScene().updateValues();
+    }
+
+    /**
+     * newGame sets the starting values to the party.
+     */
+    public void newGame() {
+        retkus[0] = new Retku("Bill", 100);
+        retkus[1] = new Retku("Mik'ed", 100);
+        retkus[2] = new Retku("Mei", 100);
+        steps = 1000;
+        gold = 99;
     }
 }
