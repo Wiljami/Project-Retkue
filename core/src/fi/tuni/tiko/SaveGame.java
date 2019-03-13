@@ -65,7 +65,7 @@ public class SaveGame {
     private static void loadParty(Preferences save, Party party) {
         int gold = save.getInteger("gold", 0);
         party.setGold(gold);
-        int steps = save.getInteger("gold", 0);
+        int steps = save.getInteger("steps", 0);
         party.setSteps(steps);
 
         for (int x = 0; x < 3; x++) {
