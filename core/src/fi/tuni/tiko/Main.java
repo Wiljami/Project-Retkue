@@ -6,6 +6,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
@@ -79,7 +81,25 @@ public class Main extends Game {
         party = new Party();
 		initiateScenes();
         openScene(GameView.mainMenu);
+        stepSimulator();
 	}
+
+
+	float testSteps = 100;
+    /**
+     * stepSimulator gives us steps. For dev purposes
+     */
+	private void stepSimulator() {
+	    Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                testSteps++;
+                receiveSteps(testSteps);
+                stepSimulator();
+            }
+        }, 1000);
+    }
 
     /**
      * Method for initiating all the scenes used in the game.
@@ -141,6 +161,13 @@ public class Main extends Game {
         return party;
     }
 
+    /**
+     * receiveSteps method is called by the android sensors. It receives the STEP_COUNTER float.
+     *
+     * STEP_COUNTER is the amount of steps the phone sensors have measured since rebooting the
+     * phone.
+     * @param s float stepCount
+     */
     public static void receiveSteps(float s) {
         stepCount = s;
         System.out.println(stepCount);
