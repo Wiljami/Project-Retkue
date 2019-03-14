@@ -53,7 +53,7 @@ public class QuestPopUp extends RetkueDialog {
      * Constructor of QuestPopUp
      * @param tavernPopUp tavernPopUp Reference
      */
-    public QuestPopUp(TavernPopUp tavernPopUp, int id) {
+    public QuestPopUp(final TavernPopUp tavernPopUp, final int id) {
         super(title, skin, windowStyle);
 
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
@@ -61,7 +61,8 @@ public class QuestPopUp extends RetkueDialog {
         this.tavernPopUp = tavernPopUp;
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
 
-        Quest quest = tavernPopUp.getTownInfo().findQuest(id);
+        final TownInfo info = tavernPopUp.getTownInfo();
+        Quest quest = info.findQuest(id);
 
         getTitleLabel().setText(quest.getTitle());
 
@@ -73,6 +74,7 @@ public class QuestPopUp extends RetkueDialog {
         yes.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                info.chooseQuest(id);
                 acceptQuest();
             }
         });

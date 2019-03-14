@@ -4,6 +4,7 @@ package fi.tuni.tiko;
 
 public class TownInfo {
     Quest[] availableQuests;
+    private int chosenQuest = -1;
     public TownInfo() {
         availableQuests = new Quest[3];
         availableQuests[0] = new Quest(1, new Reward(1), 10L, Quest.QuestGiver.oldMan);
@@ -13,5 +14,13 @@ public class TownInfo {
 
     public Quest findQuest(int n) {
         return availableQuests[n];
+    }
+
+    public void chooseQuest(int n) {
+        chosenQuest = n;
+    }
+
+    public Quest findChosenQuest() {
+        return findQuest(chosenQuest);
     }
 }
