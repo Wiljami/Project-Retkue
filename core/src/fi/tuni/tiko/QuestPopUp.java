@@ -46,11 +46,14 @@ public class QuestPopUp extends RetkueDialog {
      */
     private static TavernPopUp tavernPopUp;
 
+
+    private String accept;
+
     /**
      * Constructor of QuestPopUp
      * @param tavernPopUp tavernPopUp Reference
      */
-    public QuestPopUp(TavernPopUp tavernPopUp) {
+    public QuestPopUp(TavernPopUp tavernPopUp, int id) {
         super(title, skin, windowStyle);
 
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
@@ -58,9 +61,13 @@ public class QuestPopUp extends RetkueDialog {
         this.tavernPopUp = tavernPopUp;
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
 
-        getTitleLabel().setText(readLine("QUEST_001_TITLE"));
+        Quest quest = tavernPopUp.getTownInfo().findQuest(id);
 
-        String text = readLine("QUEST_001_TEXT");
+        getTitleLabel().setText(quest.getTitle());
+
+        String text = quest.getBriefing();
+
+        accept = quest.getAcceptText();
 
         yes = new TextButton(readLine("yes"), getSkin());
         yes.addListener(new ClickListener() {
@@ -91,7 +98,6 @@ public class QuestPopUp extends RetkueDialog {
         getContentTable().add(image).prefWidth(image.getPrefWidth() / 5).prefHeight(image.getPrefHeight() / 5).colspan(3);
         getContentTable().row();
 
-
         desc = new RetkueLabel(text);
         getContentTable().add(desc).prefWidth(popUpWidth).colspan(3);
 
@@ -115,7 +121,6 @@ public class QuestPopUp extends RetkueDialog {
      * buttons. It turns the ok button visible.
      */
     public void acceptQuest() {
-        String accept = readLine("QUEST_001_ACCEPT");
         desc.setText(accept);
         no.setVisible(false);
         yes.setVisible(false);

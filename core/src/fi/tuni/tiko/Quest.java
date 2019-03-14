@@ -52,4 +52,20 @@ public class Quest {
     public String getTitle() {
         return title;
     }
+
+    public String getBriefing() {
+        return briefing;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAcceptText() {
+        return acceptText;
+    }
+
+    public String getCompleteText() {
+        return completeText;
+    }
 }

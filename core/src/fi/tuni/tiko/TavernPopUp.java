@@ -53,35 +53,39 @@ public class TavernPopUp extends RetkueDialog {
         String text = readLine("tavern_desc");
         RetkueLabel desc = new RetkueLabel(text);
 
+        Quest quest = townInfo.findQuest(0);
         Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp);
+                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 0);
                 questPopUp.show(getStage());
             }
         });
-        Quest quest = townInfo.findQuest(0);
 
         Label label0 = new Label(quest.getTitle(), skin);
 
+        quest = townInfo.findQuest(1);
         Button quest2 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 1);
+                questPopUp.show(getStage());
             }
         });
-        quest = townInfo.findQuest(1);
 
         Label label1 = new Label(quest.getTitle(), skin);
 
+        quest = townInfo.findQuest(2);
         Button quest3 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 2);
+                questPopUp.show(getStage());
             }
         });
-        quest = townInfo.findQuest(2);
 
         Label label2 = new Label(quest.getTitle(), skin);
 
@@ -100,5 +104,9 @@ public class TavernPopUp extends RetkueDialog {
         getContentTable().add(label2).pad(10).left();
 
         button(readLine("return"), false);
+    }
+
+    public TownInfo getTownInfo() {
+        return townInfo;
     }
 }
