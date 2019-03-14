@@ -48,4 +48,8 @@ public class Quest {
     public long getQuestLength() {
         return questLength;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

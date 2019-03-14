@@ -31,12 +31,15 @@ public class TavernPopUp extends RetkueDialog {
      */
     private static String title = readLine("tavern");
 
+    private TownInfo townInfo;
+
     /**
      * TavernPopUp constructor
      */
-    public TavernPopUp() {
+    public TavernPopUp(TownInfo townInfo) {
         super(title, skin, windowStyle);
         tavernPopUp = this;
+        this.townInfo = townInfo;
         createMenu();
         if (Main.debug) debug();
     }
@@ -58,8 +61,9 @@ public class TavernPopUp extends RetkueDialog {
                 questPopUp.show(getStage());
             }
         });
+        Quest quest = townInfo.findQuest(0);
 
-        Label label1 = new Label("Quest 1", skin);
+        Label label0 = new Label(quest.getTitle(), skin);
 
         Button quest2 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest2.addListener(new ClickListener() {
@@ -67,8 +71,9 @@ public class TavernPopUp extends RetkueDialog {
             public void clicked(InputEvent event, float x, float y) {
             }
         });
+        quest = townInfo.findQuest(1);
 
-        Label label2 = new Label("Quest 2", skin);
+        Label label1 = new Label(quest.getTitle(), skin);
 
         Button quest3 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
         quest3.addListener(new ClickListener() {
@@ -76,22 +81,23 @@ public class TavernPopUp extends RetkueDialog {
             public void clicked(InputEvent event, float x, float y) {
             }
         });
+        quest = townInfo.findQuest(2);
 
-        Label label3 = new Label("Quest 3", skin);
+        Label label2 = new Label(quest.getTitle(), skin);
 
         getContentTable().add(desc).colspan(2).prefWidth(popUpWidth);
 
         getContentTable().row();
         getContentTable().add(quest1).pad(10).left();
-        getContentTable().add(label1).pad(10).left();
+        getContentTable().add(label0).pad(10).left();
 
         getContentTable().row();
         getContentTable().add(quest2).pad(10).left();
-        getContentTable().add(label2).pad(10).left();
+        getContentTable().add(label1).pad(10).left();
 
         getContentTable().row();
         getContentTable().add(quest3).pad(10).left();
-        getContentTable().add(label3).pad(10).left();
+        getContentTable().add(label2).pad(10).left();
 
         button(readLine("return"), false);
     }

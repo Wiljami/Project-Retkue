@@ -21,12 +21,15 @@ public class TownScene extends Scene {
         super(game);
         createMenu();
         setupBackground("village.png");
+        townInfo = new TownInfo();
     }
 
     /**
      * Reference to the party object in the game.
      */
     private Party party;
+
+    private TownInfo townInfo;
 
     /**
      * header object
@@ -67,7 +70,7 @@ public class TownScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp();
+                TavernPopUp tavernPopUp = new TavernPopUp(townInfo);
                 tavernPopUp.show(getStage());
             }
         });
