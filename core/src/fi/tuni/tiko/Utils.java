@@ -101,4 +101,18 @@ public class Utils {
         }
         return s;
     }
+
+    public static String convertToId(int id) {
+        String idString;
+        if (id < 10) {
+            idString = "00";
+            idString += Integer.toString(id);
+        } else if (id < 100) {
+            idString = "0";
+            idString += Integer.toString(id);
+        } else {
+            idString = Integer.toString(id);
+        }
+        return idString;
+    }
 }

@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+
 /**
  * Quest class. This should hold information about the different quests in the game.
  * TODO: This thing
@@ -9,8 +10,10 @@ package fi.tuni.tiko;
 public class Quest {
     private int id;
     private String title;
-    private String shortDescription;
-    private String longDescription;
+    private String briefing;
+    private String description;
+    private String acceptText;
+    private String completeText;
     private Reward reward;
     private long questLength;
     private int difficulty;
@@ -23,6 +26,22 @@ public class Quest {
         this.reward = reward;
         this.questLength = questLength;
         this.questGiver = questGiver;
+        readDescriptions();
+    }
+
+    private void readDescriptions() {
+        String bundle_id = Utils.convertToId(id);
+        String halfKey = "QUEST_" + bundle_id;
+        String key = halfKey + "_TITLE";
+        title = Utils.readBundle(Scene.getBundle(), key);
+        key = halfKey + "_TEXT";
+        briefing = Utils.readBundle(Scene.getBundle(), key);
+        key = halfKey + "_ACCEPT";
+        acceptText = Utils.readBundle(Scene.getBundle(), key);
+        key = halfKey + "_DESC";
+        description = Utils.readBundle(Scene.getBundle(), key);
+        key = halfKey + "_COMPLETE";
+        completeText = Utils.readBundle(Scene.getBundle(), key);
     }
 
     public long getQuestLength() {
