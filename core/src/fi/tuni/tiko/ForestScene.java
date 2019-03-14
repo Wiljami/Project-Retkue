@@ -143,9 +143,15 @@ class ForestScene extends Scene{
     @Override
     public void renderActions() {
         super.renderActions();
-        if (party.getCurrentQuest() != null) {
+        if (party.timeLeft() > 0) {
             updateTimer();
         }
+        if (party.timeLeft() < 0) {
+            ResultsPopUp resultsPopUp = new ResultsPopUp();
+            resultsPopUp.show(getStage());
+            timer.setText("00:00:00");
+        }
+
     }
 
     float timeSinceLastEvent;
@@ -184,11 +190,6 @@ class ForestScene extends Scene{
      */
     private void updateTimer() {
         long timeLeft = party.timeLeft();
-        if (timeLeft < 0) {
-            ResultsPopUp resultsPopUp = new ResultsPopUp();
-            resultsPopUp.show(getStage());
-            timer.setText("00:00:00");
-        }
         events();
 
         int hours   = (int) ((timeLeft / (1000*60*60)) / 24);

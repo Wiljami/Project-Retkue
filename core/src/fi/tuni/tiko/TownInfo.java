@@ -7,9 +7,9 @@ public class TownInfo {
     private int chosenQuest = -1;
     public TownInfo() {
         availableQuests = new Quest[3];
-        availableQuests[0] = new Quest(1, new Reward(1), 10000000L, Quest.QuestGiver.oldMan);
-        availableQuests[1] = new Quest(2, new Reward(1), 10000000L, Quest.QuestGiver.oldMan);
-        availableQuests[2] = new Quest(3, new Reward(1), 10000000L, Quest.QuestGiver.oldMan);
+        availableQuests[0] = new Quest(1, new Reward(1), 10000L, Quest.QuestGiver.oldMan);
+        availableQuests[1] = new Quest(2, new Reward(1), 10000L, Quest.QuestGiver.oldMan);
+        availableQuests[2] = new Quest(3, new Reward(1), 10000L, Quest.QuestGiver.oldMan);
     }
 
     public Quest findQuest(int n) {

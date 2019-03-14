@@ -1,5 +1,10 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
 /**
  * ResultsPopUp contains the functionality of the results pop up in the game.
  *
@@ -38,6 +43,19 @@ public class ResultsPopUp extends RetkueDialog {
         RetkueLabel desc = new RetkueLabel(text);
         getContentTable().add(desc).prefWidth(popUpWidth);
 
+
+        Button ok = new TextButton(readLine("ok"), getSkin());
+        ok.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                remove();
+                System.out.println("wut wut");
+                game.openScene(Main.GameView.gameScreen);
+            }
+        });
+
+        getContentTable().add(ok);
+
         button(readLine("ok"), true);
     }
 
@@ -47,9 +65,8 @@ public class ResultsPopUp extends RetkueDialog {
      * @param obj obj is always true
      */
     public void result(Object obj) {
+        System.out.println("wut?");
         if (obj.equals(true)) {
-            //remove();
-            game.openScene(Main.GameView.gameScreen);
         }
     }
 }
