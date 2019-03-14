@@ -22,10 +22,6 @@ import static fi.tuni.tiko.Utils.toAddZero;
 
 class ForestScene extends Scene{
     /**
-     * Reference to the current quest. If null then we assume that there is no quest currently
-     */
-    private Quest quest;
-    /**
      * Reference to the timer label so that it can be updated.
      */
     private Label timer;
@@ -137,7 +133,7 @@ class ForestScene extends Scene{
     private void faster() {
         if(party.getGold() >= 5) {
             party.spendGold(5);
-            quest.boost();
+            party.boostQuest();
         }
     }
 
@@ -147,7 +143,7 @@ class ForestScene extends Scene{
     @Override
     public void renderActions() {
         super.renderActions();
-        if (quest != null) {
+        if (party.getCurrentQuest() != null) {
             updateTimer();
         }
     }
@@ -187,11 +183,10 @@ class ForestScene extends Scene{
      * Converts the milliseconds to hours, minutes and seconds.
      */
     private void updateTimer() {
-        long timeLeft = quest.timeLeft();
+        long timeLeft = party.timeLeft();
         if (timeLeft < 0) {
             ResultsPopUp resultsPopUp = new ResultsPopUp();
             resultsPopUp.show(getStage());
-            quest = null;
             timer.setText("00:00:00");
         }
         events();
@@ -201,14 +196,6 @@ class ForestScene extends Scene{
         int seconds = (int) (timeLeft / 1000) % 60;
         String timerText = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
         timer.setText(timerText);
-    }
-
-    /**
-     * Set the current quest
-     * @param q the quest we have
-     */
-    public void setQuest(Quest q) {
-        this.quest = q;
     }
 
     @Override

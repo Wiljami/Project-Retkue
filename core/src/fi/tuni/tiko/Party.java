@@ -38,6 +38,15 @@ public class Party {
      */
     private Main main;
 
+    //TODO: Save
+    private Quest currentQuest;
+
+    //TODO: Save
+    private long questStarted;
+
+    //TODO: Save
+    private long questLeft;
+
     /**
      * Party constructor. atm has dummy values for the retkus and gold and steps
      * TODO: Change this.
@@ -141,5 +150,39 @@ public class Party {
 
     public void addRetku(Retku retku, int slot) {
         retkus[slot] = retku;
+    }
+
+    public void beginQuest() {
+        questStarted = System.currentTimeMillis();
+    }
+
+    public long timeLeft() {
+        return questStarted - System.currentTimeMillis() + getQuestLeft();
+    }
+
+    public void boostQuest() {
+        long temp = timeLeft()/2 + System.currentTimeMillis() - questStarted;
+        setQuestLeft(temp);
+    }
+
+    public void setCurrentQuest(Quest currentQuest) {
+        this.currentQuest = currentQuest;
+        setQuestLeft(currentQuest.getQuestLength());
+    }
+
+    public Quest getCurrentQuest() {
+        return currentQuest;
+    }
+
+    public void setQuestLeft(long questLeft) {
+        this.questLeft = questLeft;
+    }
+
+    public long getQuestLeft() {
+        return questLeft;
+    }
+
+    public long getQuestStarted() {
+        return questStarted;
     }
 }

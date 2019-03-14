@@ -7,29 +7,22 @@ package fi.tuni.tiko;
  * @version 2019.0310
  */
 public class Quest {
+    private int ID;
     private String title;
     private String shortDescription;
     private String longDescription;
     private int reward;
     private long questLength;
     private int difficulty;
-    //private enum questGiver?
+    private QuestGiver questGiver;
 
-    private static long questStarted;
+    enum QuestGiver {oldMan}
 
     public Quest () {
         questLength = 1000000L;
     }
 
-    public void begin() {
-        questStarted = System.currentTimeMillis();
-    }
-
-    public long timeLeft() {
-        return questStarted - System.currentTimeMillis() + questLength;
-    }
-
-    public void boost() {
-        questLength = timeLeft()/2 + System.currentTimeMillis() - questStarted;
+    public long getQuestLength() {
+        return questLength;
     }
 }

@@ -50,8 +50,8 @@ public class AdventurePopUp extends RetkueDialog {
         if (obj.equals(true)) {
             remove();
             Quest quest = new Quest();
-            game.getForestScene().setQuest(quest);
-            quest.begin();
+            game.getParty().setCurrentQuest(quest);
+            game.getParty().beginQuest();
             game.openScene(Main.GameView.forest);
         }
     }
