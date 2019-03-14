@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+//TODO: make this part of the save or not? Either that or include this stuff to the config or party
+
 public class TownInfo {
     Quest[] availableQuests;
     public TownInfo() {
