@@ -79,8 +79,10 @@ public class TownScene extends Scene {
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                AdventurePopUp adventurePopUp = new AdventurePopUp();
-                adventurePopUp.show(getStage());
+                if (townInfo.findChosenQuest() != null) {
+                    AdventurePopUp adventurePopUp = new AdventurePopUp(townInfo.findChosenQuest());
+                    adventurePopUp.show(getStage());
+                }
             }
         });
 
