@@ -26,6 +26,7 @@ public class Quest {
         this.reward = reward;
         this.questLength = questLength;
         this.questGiver = questGiver;
+        this.difficulty = 1;
         readDescriptions();
     }
 
