@@ -7,19 +7,22 @@ package fi.tuni.tiko;
  * @version 2019.0310
  */
 public class Quest {
-    private int ID;
+    private int id;
     private String title;
     private String shortDescription;
     private String longDescription;
-    private int reward;
+    private Reward reward;
     private long questLength;
     private int difficulty;
     private QuestGiver questGiver;
 
     enum QuestGiver {oldMan}
 
-    public Quest () {
-        questLength = 1000000L;
+    public Quest (int id, Reward reward, long questLength, QuestGiver questGiver) {
+        this.id = id;
+        this.reward = reward;
+        this.questLength = questLength;
+        this.questGiver = questGiver;
     }
 
     public long getQuestLength() {
