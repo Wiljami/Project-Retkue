@@ -53,20 +53,7 @@ public class ResultsPopUp extends RetkueDialog {
                 game.openScene(Main.GameView.gameScreen);
             }
         });
-
+        getContentTable().row();
         getContentTable().add(ok);
-
-        button(readLine("ok"), true);
-    }
-
-    /**
-     * TODO: Make this neater
-     * When ok button is clicked this is called and the game is redirected to the townMenu
-     * @param obj obj is always true
-     */
-    public void result(Object obj) {
-        System.out.println("wut?");
-        if (obj.equals(true)) {
-        }
     }
 }

@@ -41,6 +41,8 @@ class ForestScene extends Scene{
      */
     private GameHeader header;
 
+    private Boolean questOver = false;
+
     /**
      * ForestScene constructor
      * @param game reference to the Main
@@ -146,7 +148,8 @@ class ForestScene extends Scene{
         if (party.timeLeft() > 0) {
             updateTimer();
         }
-        if (party.timeLeft() < 0) {
+        if (party.timeLeft() < 0 && !questOver) {
+            questOver = true;
             ResultsPopUp resultsPopUp = new ResultsPopUp();
             resultsPopUp.show(getStage());
             timer.setText("00:00:00");
