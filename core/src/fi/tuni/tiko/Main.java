@@ -6,12 +6,14 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0313
  */
 public class Main extends Game {
     /**
@@ -54,14 +56,22 @@ public class Main extends Game {
     /**
      * party will hold the resources and the player information the player has gathered.
      */
-    private Party party;
+    private static Party party;
 
     /**
      * Locale of the game.
      */
     Locale locale = Locale.getDefault();
 
+    /**
+     * The current Scene in use.
+     */
+    private Scene currentScene;
+
     private static float stepCount;
+    private static boolean stepSim = false;
+
+    private static String saveFileName = "RetkueSave";
 
     /**
      * create()
@@ -74,20 +84,23 @@ public class Main extends Game {
 		batch = new SpriteBatch();
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
-        backgroundMusic.play();
+        //backgroundMusic.play();
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        party = new Party();
-		initiateScenes();
+        party = new Party(this);
+        if (!SaveGame.load(saveFileName, party)) party.newGame();
+        initiateScenes();
         openScene(GameView.mainMenu);
+        if(stepSim) stepSimulator();
 	}
 
-    /**
+	/**
      * Method for initiating all the scenes used in the game.
      */
 	private void initiateScenes() {
         mainMenuScene = new MainMenuScene(this);
         townScene = new TownScene(this);
         forestScene = new ForestScene(this);
+        currentScene = mainMenuScene;
     }
 
     /**
@@ -95,15 +108,14 @@ public class Main extends Game {
      * @param gameView the scene we wish to navigate to
      */
 	public void openScene(GameView gameView) {
-        Scene scene;
         switch(gameView) {
-            case mainMenu: scene = mainMenuScene; break;
-            case gameScreen: scene = townScene; break;
-            case forest: scene = forestScene; break;
+            case mainMenu: currentScene = mainMenuScene; break;
+            case gameScreen: currentScene = townScene; break;
+            case forest: currentScene = forestScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
-        Gdx.input.setInputProcessor(scene.getStage());
-        setScreen(scene);
+        Gdx.input.setInputProcessor(currentScene.getStage());
+        setScreen(currentScene);
     }
 
     /**
@@ -141,8 +153,57 @@ public class Main extends Game {
         return party;
     }
 
+    /**
+     * receiveSteps method is called by the android sensors. It receives the STEP_COUNTER float.
+     *
+     * STEP_COUNTER is the amount of steps the phone sensors have measured since rebooting the
+     * phone.
+     * @param s float stepCount
+     */
     public static void receiveSteps(float s) {
         stepCount = s;
-        System.out.println(stepCount);
+        if (party != null) {
+            int newSteps = (int)(stepCount - Config.getStepStartPosition());
+            Config.setStepStartPosition(stepCount);
+            party.addSteps(newSteps);
+        }
+    }
+
+    /**
+     * This simulates the already existing steps within the STEP_COUNTER sensor
+     */
+    float testSteps = 100f;
+    /**
+     * stepSimulator gives us steps. For dev purposes. Adds a single step every second.
+     */
+    private void stepSimulator() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                testSteps++;
+                receiveSteps(testSteps);
+                stepSimulator();
+            }
+        }, 1000);
+    }
+
+    /**
+     * Called by the DesktopLauncher to turn on the StepSimulator. For Dev purposes.
+     */
+    public static void useStepSimulator() {
+        stepSim = true;
+    }
+
+    /**
+     * getter for currentScene.
+     * @return reference to the current Scene in use
+     */
+    public Scene getCurrentScene() {
+        return currentScene;
+    }
+
+    public static String getSaveFileName() {
+        return saveFileName;
     }
 }

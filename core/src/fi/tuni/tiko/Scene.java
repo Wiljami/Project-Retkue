@@ -249,6 +249,7 @@ import java.util.Map;
      */
     @Override
     public void show() {
+        updateValues();
     }
 
     /**
@@ -420,4 +421,6 @@ import java.util.Map;
         String s  = Utils.readBundle(bundle, key);
         return s;
     }
+
+    public abstract void updateValues();
 }

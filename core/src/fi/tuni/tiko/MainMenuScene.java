@@ -48,6 +48,30 @@ public class MainMenuScene extends Scene {
             }
         });
 
+        Button reset = new TextButton( "Reset Game", getSkin());
+        reset.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getGame().getParty().newGame();
+            }
+        });
+
+        Button loadGame = new TextButton( "Load Game", getSkin());
+        loadGame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                SaveGame.load(getGame().getSaveFileName(), getGame().getParty());
+            }
+        });
+
+        Button saveGame = new TextButton( "Save Game", getSkin());
+        saveGame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                SaveGame.save(getGame().getSaveFileName(), getGame().getParty());
+            }
+        });
+
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
         float[] heightArray = {1/16f, 1/8f, 2/3f, 1/16f, 1/12f};
@@ -69,8 +93,14 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add(start).prefWidth(buttonWidth).prefHeight(heightArray[3]);
         mainMenuTable.add(options).prefWidth(buttonWidth).prefHeight(heightArray[3]);
         mainMenuTable.row();
-        mainMenuTable.add().prefHeight(heightArray[4]);
+        mainMenuTable.add(reset).prefHeight(heightArray[4]);
+        mainMenuTable.add(loadGame).prefHeight(heightArray[4]);
+        mainMenuTable.add(saveGame).prefHeight(heightArray[4]);
         getStage().addActor(mainMenuTable);
+    }
+
+    @Override
+    public void updateValues() {
     }
 
     /**

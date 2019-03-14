@@ -4,11 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import static fi.tuni.tiko.Utils.toAddZero;
 
 /**
  * ForestScene. Here we see the progress of the party in their current quest. It currently has a
@@ -121,11 +122,9 @@ class ForestScene extends Scene{
     private void heal() {
         if(party.getGold() >= 5) {
             party.spendGold(5);
-            header.updateValues();
             party.findRetku(0).healRetku(10);
             party.findRetku(1).healRetku(10);
             party.findRetku(2).healRetku(10);
-            partyBar.updateHealthBars();
         }
     }
 
@@ -138,7 +137,6 @@ class ForestScene extends Scene{
     private void faster() {
         if(party.getGold() >= 5) {
             party.spendGold(5);
-            header.updateValues();
             quest.boost();
         }
     }
@@ -182,7 +180,6 @@ class ForestScene extends Scene{
         int retku = MathUtils.random(2);
         System.out.println("Hitting retku no. " + retku);
         party.findRetku(retku).damageRetku(10);
-        partyBar.updateHealthBars();
     }
 
     /**
@@ -202,24 +199,8 @@ class ForestScene extends Scene{
         int hours   = (int) ((timeLeft / (1000*60*60)) / 24);
         int minutes = (int) ((timeLeft / (1000*60)) % 60);
         int seconds = (int) (timeLeft / 1000) % 60;
-        timer.setText(toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds));
-    }
-
-    /**
-     * Check wether the int is a single digit or not. If single digit, then we add a 0 in front
-     * of the String
-     * @param number the int we check
-     * @return the String we return
-     * TODO: Move this to utils
-     */
-    private String toAddZero(int number) {
-        String s;
-        if (number < 10) {
-            s = "0" + Integer.toString(number);
-        } else {
-            s = Integer.toString(number);
-        }
-        return s;
+        String timerText = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
+        timer.setText(timerText);
     }
 
     /**
@@ -230,12 +211,8 @@ class ForestScene extends Scene{
         this.quest = q;
     }
 
-    /**
-     * Overriding show() to add the header and partyBar updates when this scene is brought in sight
-     */
     @Override
-    public void show() {
-        super.show();
+    public void updateValues() {
         header.updateValues();
         partyBar.updateHealthBars();
     }
