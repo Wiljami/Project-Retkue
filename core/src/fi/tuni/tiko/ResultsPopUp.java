@@ -49,7 +49,6 @@ public class ResultsPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 remove();
-                System.out.println("wut wut");
                 game.openScene(Main.GameView.gameScreen);
             }
         });
