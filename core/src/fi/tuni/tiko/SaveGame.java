@@ -72,6 +72,7 @@ public class SaveGame {
         for (int x = 0; x < 3; x++) {
             Retku retku = party.findRetku(x);
             save.putString("retku_" + x + "_name", retku.getName());
+            save.putString("retku_" + x + "_image", retku.getImageFile());
             save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
             save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
         }
@@ -109,12 +110,14 @@ public class SaveGame {
         party.setSteps(steps);
 
         for (int x = 0; x < 3; x++) {
-            Retku retku = new Retku("", 0);
+            Retku retku = new Retku("", 0, "");
             String name = save.getString("retku_" + x + "_name", "NO_NAME");
+            String imageFile = save.getString("retku_" + x + "_image", "");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
             System.out.println(name + "::" + currHealth + "/" + maxHealth);
             retku.setName(name);
+            retku.setImageFile(imageFile);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
             party.addRetku(retku, x);

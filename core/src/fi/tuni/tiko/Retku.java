@@ -35,11 +35,11 @@ public class Retku {
      * @param name name of the Retku
      * @param health max Health of Retku
      */
-    public Retku(String name, int health) {
+    public Retku(String name, int health, String portraitFile) {
         setMaxHealth(health);
         setCurrHealth(health);
         setName(name);
-        imageFile = "bill_c.png";
+        imageFile = portraitFile;
     }
 
     /**
@@ -128,4 +128,7 @@ public class Retku {
         setCurrHealth(getCurrHealth() + heal);
     }
 
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
+    }
 }

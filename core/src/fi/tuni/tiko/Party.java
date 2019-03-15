@@ -141,9 +141,9 @@ public class Party {
      * newGame sets the starting values to the party.
      */
     public void newGame() {
-        retkus[0] = new Retku("Bill", 100);
-        retkus[1] = new Retku("Mik'ed", 100);
-        retkus[2] = new Retku("Mei", 100);
+        retkus[0] = new Retku("Bill", 100, "bill_c.png");
+        retkus[1] = new Retku("Mik'ed", 100, "old_guy1.png");
+        retkus[2] = new Retku("Mei", 100, "mei.png");
         steps = 1000;
         gold = 99;
     }
