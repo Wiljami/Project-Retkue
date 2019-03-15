@@ -59,6 +59,11 @@ public class Main extends Game {
     private static Party party;
 
     /**
+     * townInfo holds the resources and variables regarding to the state of the town
+     */
+    private static TownInfo townInfo;
+
+    /**
      * Locale of the game.
      */
     Locale locale = Locale.getDefault();
@@ -81,23 +86,24 @@ public class Main extends Game {
         //TODO: implement elegant exit on BackKey
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
-		batch = new SpriteBatch();
-		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
-        backgroundMusic.setLooping(true);
         //backgroundMusic.play();
-        //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        party = new Party(this);
-        if (!SaveGame.load(saveFileName, party)) party.newGame();
-        initiateScenes();
+        initiateGame();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
 	}
 
 	/**
-     * Method for initiating all the scenes used in the game.
+     * Method for initiating game elements used in the game.
      */
-	private void initiateScenes() {
+	private void initiateGame() {
+        batch = new SpriteBatch();
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
+        backgroundMusic.setLooping(true);
+        party = new Party(this);
+        //TODO: Create the load and save. Here we need to check if a party already exists and load it.
+        if (!SaveGame.load(saveFileName, party)) party.newGame();
         mainMenuScene = new MainMenuScene(this);
+        townInfo = new TownInfo();
         townScene = new TownScene(this);
         forestScene = new ForestScene(this);
         currentScene = mainMenuScene;
@@ -205,5 +211,9 @@ public class Main extends Game {
 
     public static String getSaveFileName() {
         return saveFileName;
+    }
+
+    public static TownInfo getTownInfo() {
+        return townInfo;
     }
 }

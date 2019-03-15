@@ -24,4 +24,12 @@ public class TownInfo {
         if (chosenQuest == -1) return null;
         return findQuest(chosenQuest);
     }
+
+    public int getChosenQuest() {
+        return chosenQuest;
+    }
+
+    public void clearChosenQuest() {
+        chosenQuest = -1;
+    }
 }

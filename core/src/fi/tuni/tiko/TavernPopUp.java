@@ -36,10 +36,10 @@ public class TavernPopUp extends RetkueDialog {
     /**
      * TavernPopUp constructor
      */
-    public TavernPopUp(TownInfo townInfo) {
+    public TavernPopUp() {
         super(title, skin, windowStyle);
         tavernPopUp = this;
-        this.townInfo = townInfo;
+        this.townInfo = Main.getTownInfo();
         createMenu();
         if (Main.debug) debug();
     }

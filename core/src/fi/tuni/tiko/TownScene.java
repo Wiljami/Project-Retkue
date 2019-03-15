@@ -20,8 +20,8 @@ public class TownScene extends Scene {
     public TownScene(Main game) {
         super(game);
         createMenu();
+        this.townInfo = Main.getTownInfo();
         setupBackground("village.png");
-        townInfo = new TownInfo();
     }
 
     /**
@@ -70,7 +70,7 @@ public class TownScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp(townInfo);
+                TavernPopUp tavernPopUp = new TavernPopUp();
                 tavernPopUp.show(getStage());
             }
         });
@@ -135,5 +135,9 @@ public class TownScene extends Scene {
     @Override
     public void updateValues() {
         header.updateValues();
+    }
+
+    public TownInfo getTownInfo() {
+        return townInfo;
     }
 }

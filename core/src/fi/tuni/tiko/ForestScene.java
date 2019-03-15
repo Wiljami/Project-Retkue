@@ -207,4 +207,8 @@ class ForestScene extends Scene{
         header.updateValues();
         partyBar.updateHealthBars();
     }
+
+    public void setQuestOver(Boolean questOver) {
+        this.questOver = questOver;
+    }
 }
