@@ -39,7 +39,7 @@ public class Retku {
         setMaxHealth(health);
         setCurrHealth(health);
         setName(name);
-        imageFile = "old_guy1.png";
+        imageFile = "bill_c.png";
     }
 
     /**

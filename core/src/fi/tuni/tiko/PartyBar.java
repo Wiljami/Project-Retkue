@@ -45,7 +45,7 @@ public class PartyBar extends Table {
         float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
         float healthBarHeight = height / 6f;
 
-        float charHeight = height - healthBarHeight;
+        float charSize = height - healthBarHeight;
 
         bar0 = new HealthBar(healthBarWidth, healthBarHeight);
         bar1 = new HealthBar(healthBarWidth, healthBarHeight);
@@ -61,9 +61,9 @@ public class PartyBar extends Table {
 
         row();
 
-        add(retku0).prefHeight(charHeight);
-        add(retku1).prefHeight(charHeight);
-        add(retku2).prefHeight(charHeight);
+        add(retku0).prefHeight(charSize).prefWidth(charSize);
+        add(retku1).prefHeight(charSize).prefWidth(charSize);
+        add(retku2).prefHeight(charSize).prefWidth(charSize);
 
         background(Utils.loadButtonImage("partybar_old.png", 0, 0));
     }
