@@ -38,14 +38,15 @@ public class PartyBar extends Table {
     public PartyBar(float height, Party party) {
         this.party = party;
 
+        float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
+        float healthBarHeight = height / 6f;
+        float charSize = height - healthBarHeight;
+
+        AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet.png", 8 , 1, 1/2f, charSize, charSize);
+
         Image retku0 = new Image(party.findRetku(0).getTexture());
         Image retku1 = new Image(party.findRetku(1).getTexture());
         Image retku2 = new Image(party.findRetku(2).getTexture());
-
-        float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
-        float healthBarHeight = height / 6f;
-
-        float charSize = height - healthBarHeight;
 
         bar0 = new HealthBar(healthBarWidth, healthBarHeight);
         bar1 = new HealthBar(healthBarWidth, healthBarHeight);
@@ -61,7 +62,7 @@ public class PartyBar extends Table {
 
         row();
 
-        add(retku0).prefHeight(charSize).prefWidth(charSize);
+        add(retkuA).prefHeight(charSize).prefWidth(charSize);
         add(retku1).prefHeight(charSize).prefWidth(charSize);
         add(retku2).prefHeight(charSize).prefWidth(charSize);
 
