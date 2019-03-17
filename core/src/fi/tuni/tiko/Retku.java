@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Retku class holds information and functionality of a Retku.
  *
@@ -25,7 +27,12 @@ public class Retku {
     private int currHealth;
 
     /**
-     * Image of the Retku
+     * Texture of the Retku
+     */
+    private Texture texture;
+
+    /**
+     * FileName of the texture used
      */
     private String imageFile;
 
@@ -39,7 +46,8 @@ public class Retku {
         setMaxHealth(health);
         setCurrHealth(health);
         setName(name);
-        imageFile = portraitFile;
+        System.out.println(portraitFile);
+        initPortrait(portraitFile);
     }
 
     /**
@@ -102,14 +110,6 @@ public class Retku {
     }
 
     /**
-     * get imageFile
-     * @return imageFile
-     */
-    public String getImageFile() {
-        return imageFile;
-    }
-
-    /**
      * damageRetku reduces the Retku's currHealth by the damage amount
      * @param damage damage done
      */
@@ -128,7 +128,24 @@ public class Retku {
         setCurrHealth(getCurrHealth() + heal);
     }
 
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
     public void setImageFile(String imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public void initPortrait(String portraitFile) {
+        this.imageFile = portraitFile;
+        this.texture = Utils.loadTexture(portraitFile);
     }
 }

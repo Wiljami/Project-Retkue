@@ -92,7 +92,6 @@ public class SaveGame {
         Boolean audio = save.getBoolean("audio", false);
         Config.setAudio(audio);
 
-
         System.out.println(language);
         System.out.println(stepStart);
         System.out.println(audio);
@@ -116,8 +115,9 @@ public class SaveGame {
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
             System.out.println(name + "::" + currHealth + "/" + maxHealth);
+            System.out.println(imageFile);
             retku.setName(name);
-            retku.setImageFile(imageFile);
+            retku.initPortrait(imageFile);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
             party.addRetku(retku, x);

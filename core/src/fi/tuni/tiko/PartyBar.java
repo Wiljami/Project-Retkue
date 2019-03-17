@@ -38,9 +38,9 @@ public class PartyBar extends Table {
     public PartyBar(float height, Party party) {
         this.party = party;
 
-        Image retku0 = new Image(Utils.loadTexture(party.findRetku(0).getImageFile()));
-        Image retku1 = new Image(Utils.loadTexture(party.findRetku(1).getImageFile()));
-        Image retku2 = new Image(Utils.loadTexture(party.findRetku(2).getImageFile()));
+        Image retku0 = new Image(party.findRetku(0).getTexture());
+        Image retku1 = new Image(party.findRetku(1).getTexture());
+        Image retku2 = new Image(party.findRetku(2).getTexture());
 
         float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
         float healthBarHeight = height / 6f;
@@ -55,9 +55,9 @@ public class PartyBar extends Table {
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
 
-        add(bar0).width(healthBarWidth);
-        add(bar1).width(healthBarWidth);
-        add(bar2).width(healthBarWidth);
+        add(bar0).width(healthBarWidth).padLeft(2).padRight(2);
+        add(bar1).width(healthBarWidth).padLeft(2).padRight(2);
+        add(bar2).width(healthBarWidth).padLeft(2).padRight(2);
 
         row();
 
