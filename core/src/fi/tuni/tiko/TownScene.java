@@ -50,7 +50,7 @@ public class TownScene extends Scene {
             }
         });
 
-        Button inn = new TextButton( readLine("inn"), getSkin());
+/*        Button inn = new TextButton( readLine("inn"), getSkin());
         inn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -75,7 +75,7 @@ public class TownScene extends Scene {
                 TavernPopUp tavernPopUp = new TavernPopUp();
                 tavernPopUp.show(getStage());
             }
-        });
+        });*/
 
         Button adventure = new TextButton( readLine("adventure"), getSkin());
         adventure.addListener(new ClickListener() {
@@ -101,7 +101,7 @@ public class TownScene extends Scene {
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/4f, 1/16f, 1/8f, 1/16f, 1/8f, 1/16f, 1/24f, 1/16f, 1/19.2f};
 
-        FadeActor houseButton1 = new FadeActor(Utils.loadTexture("house1_button.png"));
+/*        FadeActor houseButton1 = new FadeActor(Utils.loadTexture("house1_button.png"));
         houseButton1.setSize(Main.WORLDPIXELWIDTH,Main.WORLDPIXELHEIGHT);
         getStage().addActor(houseButton1);
 
@@ -111,7 +111,7 @@ public class TownScene extends Scene {
 
         FadeActor houseButton2 = new FadeActor(Utils.loadTexture("house2_button.png"));
         houseButton2.setSize(Main.WORLDPIXELWIDTH,Main.WORLDPIXELHEIGHT);
-        getStage().addActor(houseButton2);
+        getStage().addActor(houseButton2);*/
 
         Utils.convertToPixels(heightArray);
 
@@ -126,9 +126,10 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[1]);
         table.row();
-        table.add(inn).padRight(10).padLeft(10).prefHeight(heightArray[2]);
-        table.add(shop).padRight(10).padLeft(10).prefHeight(heightArray[2]);
-        table.add(tavern).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        //table.add(inn).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        //table.add(shop).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        //table.add(tavern).padRight(10).padLeft(10).prefHeight(heightArray[2]);
+        table.add().prefHeight(heightArray[2]);
         table.row();
         table.add().prefHeight(heightArray[3]);
         table.row();
@@ -144,6 +145,51 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[9]);
         getStage().addActor(table);
+
+        FadeActor shop = new FadeActor(Utils.loadTexture("shop_button.png"));
+        float wRatio = shop.getWidth() / 1080;
+        float hRatio = shop.getHeight() / 1920;
+        shop.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        shop.setY(316f);
+        shop.setX(87f);
+        shop.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ShopPopUp shopPopUp = new ShopPopUp();
+                shopPopUp.show(getStage());
+            }
+        });
+
+        FadeActor inn = new FadeActor(Utils.loadTexture("inn_button.png"));
+        wRatio = inn.getWidth() / 1080;
+        hRatio = inn.getHeight() / 1920;
+        inn.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        inn.setY(177f);
+        inn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                InnPopUp innPopUp = new InnPopUp();
+                innPopUp.show(getStage());
+            }
+        });
+
+        FadeActor tavern = new FadeActor(Utils.loadTexture("tavern_button.png"));
+        wRatio = tavern.getWidth() / 1080;
+        hRatio = tavern.getHeight() / 1920;
+        tavern.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        tavern.setY(215f);
+        tavern.setX(229f);
+        tavern.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                TavernPopUp tavernPopUp = new TavernPopUp();
+                tavernPopUp.show(getStage());
+            }
+        });
+
+        getStage().addActor(tavern);
+        getStage().addActor(shop);
+        getStage().addActor(inn);
     }
 
     @Override
