@@ -14,8 +14,8 @@ public class AnimatedActor extends Actor {
     private float height;
     TextureRegion currentFrame;
 
-    public AnimatedActor(String file, int cols, int rows, float speed, float widht, float height) {
-        this.width = widht;
+    public AnimatedActor(String file, int cols, int rows, float speed, float width, float height) {
+        this.width = width;
         this.height = height;
         this.speed = speed;
         Texture animationSheet = Utils.loadTexture(file);
