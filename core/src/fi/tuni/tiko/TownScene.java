@@ -101,15 +101,15 @@ public class TownScene extends Scene {
         //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/4f, 1/16f, 1/8f, 1/16f, 1/8f, 1/16f, 1/24f, 1/16f, 1/19.2f};
 
-        Image houseButton1 = new Image(Utils.loadTexture("house1_button.png"));
+        FadeActor houseButton1 = new FadeActor(Utils.loadTexture("house1_button.png"));
         houseButton1.setSize(Main.WORLDPIXELWIDTH,Main.WORLDPIXELHEIGHT);
         getStage().addActor(houseButton1);
 
-        Image houseButton3 = new Image(Utils.loadTexture("house3_button.png"));
+        FadeActor houseButton3 = new FadeActor(Utils.loadTexture("house3_button.png"));
         houseButton3.setSize(Main.WORLDPIXELWIDTH,Main.WORLDPIXELHEIGHT);
         getStage().addActor(houseButton3);
 
-        Image houseButton2 = new Image(Utils.loadTexture("house2_button.png"));
+        FadeActor houseButton2 = new FadeActor(Utils.loadTexture("house2_button.png"));
         houseButton2.setSize(Main.WORLDPIXELWIDTH,Main.WORLDPIXELHEIGHT);
         getStage().addActor(houseButton2);
 
