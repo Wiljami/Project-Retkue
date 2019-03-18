@@ -43,6 +43,8 @@ public class PartyBar extends Table {
         float charSize = height - healthBarHeight;
 
         AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet.png", 8 , 1, 1/2f, charSize, charSize);
+        AnimatedActor retkuC = new AnimatedActor("miked_sprite_sheet.png", 5 , 1, 1/1.5f, charSize*4/5f, charSize);
+
 
         Image retku0 = new Image(party.findRetku(0).getTexture());
         Image retku1 = new Image(party.findRetku(1).getTexture());
@@ -64,9 +66,9 @@ public class PartyBar extends Table {
 
         add(retkuA).prefHeight(charSize).prefWidth(charSize);
         add(retku1).prefHeight(charSize).prefWidth(charSize);
-        add(retku2).prefHeight(charSize).prefWidth(charSize);
+        add(retkuC).prefHeight(charSize).prefWidth(charSize);
 
-        background(Utils.loadButtonImage("partybar_old.png", 0, 0));
+       // background(Utils.loadButtonImage("partybar_old.png", 0, 0));
     }
 
     /**
