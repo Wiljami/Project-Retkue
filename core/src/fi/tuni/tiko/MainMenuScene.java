@@ -29,8 +29,6 @@ public class MainMenuScene extends Scene {
      * createMenu creates the UI of the mainMenu.
      */
     private void createMenu() {
-        Image title = new Image(Utils.loadTexture("retkue_title.png"));
-
         Button start = new TextButton(readLine("start"), getSkin());
         start.addListener(new ClickListener() {
             @Override
@@ -86,7 +84,7 @@ public class MainMenuScene extends Scene {
         mainMenuTable.setFillParent(true);
         mainMenuTable.add().height(heightArray[0]);
         mainMenuTable.row();
-        mainMenuTable.add(title).colspan(2).prefWidth(titleWidth).prefHeight(heightArray[1]);
+        mainMenuTable.add().prefHeight(heightArray[1]);
         mainMenuTable.row();
         mainMenuTable.add().prefHeight(heightArray[2]);
         mainMenuTable.row();
