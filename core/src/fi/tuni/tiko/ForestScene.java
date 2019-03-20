@@ -185,6 +185,7 @@ class ForestScene extends Scene{
         int retku = MathUtils.random(2);
         System.out.println("Hitting retku no. " + retku);
         party.findRetku(retku).damageRetku(10);
+        updateValues();
     }
 
     /**

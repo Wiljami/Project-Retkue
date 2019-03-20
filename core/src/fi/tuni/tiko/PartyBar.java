@@ -66,7 +66,7 @@ public class PartyBar extends Table {
 
         add(retkuA).prefHeight(charSize).prefWidth(charSize);
         add(retku1).prefHeight(charSize).prefWidth(charSize);
-        add(retkuC).prefHeight(charSize).prefWidth(charSize);
+        add(retkuC).prefHeight(charSize).prefWidth(charSize).center();
 
        // background(Utils.loadButtonImage("partybar_old.png", 0, 0));
     }
