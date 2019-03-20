@@ -64,8 +64,8 @@ public class ShopPopUp extends RetkueDialog {
     private void generateItemGrid() {
         shopItems = new Table();
         for (int y = 0; y < 2; y++) {
-            for (int x = 0; x < 5; x++) {
-                Image item = new Image(Utils.loadTexture("horze_white.png"));
+           // for (int x = 0; x < 5; x++) {
+                Image item = new Image(Utils.loadTexture("items/bucket.png"));
                 item.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -75,7 +75,51 @@ public class ShopPopUp extends RetkueDialog {
                 float scale = itemWidth / item.getWidth();
                 float itemHeight = item.getHeight() * scale;
                 shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-            }
+
+                item = new Image(Utils.loadTexture("items/horze_white.png"));
+                item.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        desc.setText("I am a horse, lol");
+                    }
+                });
+                scale = itemWidth / item.getWidth();
+                itemHeight = item.getHeight() * scale;
+                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+
+                item = new Image(Utils.loadTexture("items/hat.png"));
+                item.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        desc.setText("I am a horse, lol");
+                    }
+                });
+                scale = itemWidth / item.getWidth();
+                itemHeight = item.getHeight() * scale;
+                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+
+                item = new Image(Utils.loadTexture("items/hat-blue.png"));
+                item.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        desc.setText("I am a horse, lol");
+                    }
+                });
+                scale = itemWidth / item.getWidth();
+                itemHeight = item.getHeight() * scale;
+                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+
+                item = new Image(Utils.loadTexture("items/pot.png"));
+                item.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        desc.setText("I am a horse, lol");
+                    }
+                });
+                scale = itemWidth / item.getWidth();
+                itemHeight = item.getHeight() * scale;
+                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+          //  }
             shopItems.row();
         }
     }
