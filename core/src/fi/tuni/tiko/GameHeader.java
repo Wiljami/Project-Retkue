@@ -63,7 +63,7 @@ public class GameHeader extends Table {
         add(convert).width(elementWidth);
         add(goldImage).width(elementWidth).padBottom(10);
         add(goldCount).width(elementWidth).center();
-        background(Utils.loadButtonImage("retkue_header_old.png", 0, 0));
+        background(Utils.loadButtonImage("retkue_header_wood.png", 0, 0));
     }
 
     /**
