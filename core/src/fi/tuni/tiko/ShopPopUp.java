@@ -60,11 +60,13 @@ public class ShopPopUp extends RetkueDialog {
         button(readLine("return"), false);
     }
 
+    /**
+     * generateItemGrid creates a 2d table to be inserted in the UI. It adds 5 x 2 buttons to it.
+     */
     private void generateItemGrid() {
         shopItems = new Table();
         for (int i = 0; i < 5; i++) {
             generateItemButton(i);
-
         }
         shopItems.row();
         for (int i = 5; i < 10; i++) {
@@ -72,6 +74,12 @@ public class ShopPopUp extends RetkueDialog {
         }
     }
 
+    /**
+     * generateItemButton generates an item button for the shopItems UI table.
+     *
+     * It finds the items from townInfo and then generates the button and listener for each.
+     * @param i id of the item in the items array within townInfo
+     */
     private void generateItemButton(int i) {
         Item item = townInfo.findItem(i);
         Image itemButton = new Image(item.getIcon());
