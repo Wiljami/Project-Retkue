@@ -1,14 +1,9 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
-import javax.rmi.CORBA.Util;
 
 /**
  * ShopPopUp class holds the functionality and the UI elements of the game's shop.
@@ -31,11 +26,15 @@ public class ShopPopUp extends RetkueDialog {
 
     private float itemWidth;
 
+    private TownInfo townInfo;
+
+
     /**
      * ShopPopUp constructor
      */
     public ShopPopUp() {
         super(title, skin, windowStyle);
+        this.townInfo = Main.getTownInfo();
         createMenu();
         if (Main.debug) debug();
     }
@@ -63,64 +62,28 @@ public class ShopPopUp extends RetkueDialog {
 
     private void generateItemGrid() {
         shopItems = new Table();
-        for (int y = 0; y < 2; y++) {
-           // for (int x = 0; x < 5; x++) {
-                Image item = new Image(Utils.loadTexture("items/bucket.png"));
-                item.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        desc.setText("I am a horse, lol");
-                    }
-                });
-                float scale = itemWidth / item.getWidth();
-                float itemHeight = item.getHeight() * scale;
-                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        for (int i = 0; i < 5; i++) {
+            generateItemButton(i);
 
-                item = new Image(Utils.loadTexture("items/horze_white.png"));
-                item.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        desc.setText("I am a horse, lol");
-                    }
-                });
-                scale = itemWidth / item.getWidth();
-                itemHeight = item.getHeight() * scale;
-                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-
-                item = new Image(Utils.loadTexture("items/hat.png"));
-                item.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        desc.setText("I am a horse, lol");
-                    }
-                });
-                scale = itemWidth / item.getWidth();
-                itemHeight = item.getHeight() * scale;
-                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-
-                item = new Image(Utils.loadTexture("items/hat-blue.png"));
-                item.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        desc.setText("I am a horse, lol");
-                    }
-                });
-                scale = itemWidth / item.getWidth();
-                itemHeight = item.getHeight() * scale;
-                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-
-                item = new Image(Utils.loadTexture("items/pot.png"));
-                item.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        desc.setText("I am a horse, lol");
-                    }
-                });
-                scale = itemWidth / item.getWidth();
-                itemHeight = item.getHeight() * scale;
-                shopItems.add(item).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-          //  }
-            shopItems.row();
         }
+        shopItems.row();
+        for (int i = 5; i < 10; i++) {
+            generateItemButton(i);
+        }
+    }
+
+    private void generateItemButton(int i) {
+        Item item = townInfo.findItem(i);
+        Image itemButton = new Image(item.getIcon());
+        final String description = item.getDescription();
+        itemButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                desc.setText(description);
+            }
+        });
+        float scale = itemWidth / itemButton.getWidth();
+        float itemHeight = itemButton.getHeight() * scale;
+        shopItems.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
     }
 }
