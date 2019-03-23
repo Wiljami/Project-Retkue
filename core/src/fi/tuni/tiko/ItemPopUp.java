@@ -49,7 +49,7 @@ public class ItemPopUp extends RetkueDialog {
 
         getContentTable().row();
 
-        TextButton sell = new TextButton(readLine("sell"), getSkin());
+        TextButton sell = new TextButton(readLine("sell") + " $" + item.getPrice()/2, getSkin());
         sell.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

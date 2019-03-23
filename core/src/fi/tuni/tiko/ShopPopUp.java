@@ -135,7 +135,10 @@ public class ShopPopUp extends RetkueDialog {
         itemButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                desc.setText(description);
+                String itemText = description + "\nATT: " + item.getAttack();
+                itemText += "\nDEF: " +item.getDefense();
+                itemText += "\n\n" + readLine("price") + ": " + item.getPrice();
+                desc.setText(itemText);
                 displayedItem = item;
                 buy.setVisible(true);
             }
