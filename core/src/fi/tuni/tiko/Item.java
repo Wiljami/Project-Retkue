@@ -67,4 +67,8 @@ public class Item {
     public Slot getSlot() {
         return slot;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

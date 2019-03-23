@@ -1,8 +1,10 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -27,6 +29,10 @@ public class ShopPopUp extends RetkueDialog {
     private float itemWidth;
 
     private TownInfo townInfo;
+
+    private Item displayedItem;
+
+    private Button buy;
 
 
     /**
@@ -56,6 +62,20 @@ public class ShopPopUp extends RetkueDialog {
         getContentTable().add(desc).prefWidth(popUpWidth).prefHeight(descHeight).pad(5);
         getContentTable().row();
         getContentTable().add(shopItems);
+        getContentTable().row();
+
+        buy = new TextButton( readLine("buy"), getSkin());
+        buy.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+            }
+        });
+
+        getContentTable().add(buy);
+        buy.setVisible(false);
+
+        getContentTable().row();
 
         button(readLine("return"), false);
     }
@@ -81,13 +101,15 @@ public class ShopPopUp extends RetkueDialog {
      * @param i id of the item in the items array within townInfo
      */
     private void generateItemButton(int i) {
-        Item item = townInfo.findItem(i);
+        final Item item = townInfo.findItem(i);
         Image itemButton = new Image(item.getIcon());
         final String description = item.getDescription();
         itemButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 desc.setText(description);
+                displayedItem = item;
+                buy.setVisible(true);
             }
         });
         float scale = itemWidth / itemButton.getWidth();
