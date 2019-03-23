@@ -198,4 +198,8 @@ public class Party {
     public long getQuestStarted() {
         return questStarted;
     }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
 }
