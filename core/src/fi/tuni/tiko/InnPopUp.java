@@ -69,12 +69,16 @@ public class InnPopUp extends RetkueDialog {
     private void generateInventory() {
         inventory.reset();
         int tmp = 0;
-        for (int i = 0; i < party.getInventory().size(); i++) {
+        for (int i = 0; i < 10; i++) {
             if (tmp == 5) {
                 tmp = 0;
                 inventory.row();
             }
-            generateItemButton(i);
+            if (i < party.getInventory().size()) {
+                generateItemButton(i);
+            } else {
+                inventory.add().prefWidth(itemWidth).prefHeight(itemWidth);
+            }
             tmp++;
         }
     }
