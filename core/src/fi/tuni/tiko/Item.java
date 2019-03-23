@@ -16,6 +16,7 @@ public class Item {
     private int attack;
     private int defense;
     private Slot slot;
+    private int price;
 
     public enum Slot {
         TOOL, GARB, TRINKET
@@ -25,10 +26,11 @@ public class Item {
      * TODO: Create the item constructor
      * Constructor should read the information to the name and description from localization files
      */
-    public Item(int id, int attack, int defense, Slot slot) {
+    public Item(int id, int attack, int defense, Slot slot, int price) {
         this.slot = slot;
         this.attack = attack;
         this.defense = defense;
+        this.price = price;
         String bundle_id = Utils.convertToId(id);
         readDescriptions(bundle_id);
         icon = Utils.loadTexture("items/item" + bundle_id + ".png");

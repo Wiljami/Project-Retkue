@@ -20,7 +20,7 @@ public class TownInfo {
 
     private void generateItems() {
         for (int x = 0; x < 10; x++) {
-            Item item = new Item(x, 1, 2, TRINKET);
+            Item item = new Item(x, 1, 2, TRINKET, x*100);
             availableItems[x] = item;
         }
     }
