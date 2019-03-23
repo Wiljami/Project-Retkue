@@ -143,7 +143,7 @@ public class TownScene extends Scene {
         shop.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ShopPopUp shopPopUp = new ShopPopUp();
+                ShopPopUp shopPopUp = new ShopPopUp(party);
                 shopPopUp.show(getStage());
             }
         });

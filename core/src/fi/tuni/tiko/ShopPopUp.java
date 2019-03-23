@@ -1,7 +1,9 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -34,13 +36,16 @@ public class ShopPopUp extends RetkueDialog {
 
     private Button buy;
 
+    private Party party;
+
 
     /**
      * ShopPopUp constructor
      */
-    public ShopPopUp() {
+    public ShopPopUp(Party party) {
         super(title, skin, windowStyle);
         this.townInfo = Main.getTownInfo();
+        this.party = party;
         createMenu();
         if (Main.debug) debug();
     }
@@ -53,6 +58,7 @@ public class ShopPopUp extends RetkueDialog {
     private void createMenu() {
         float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         float descHeight = Main.WORLDPIXELHEIGHT*2f/5f;
+
         itemWidth = Main.WORLDPIXELWIDTH/6f;
         String text = readLine("shop_desc");
         desc = new RetkueLabel(text);
@@ -61,23 +67,43 @@ public class ShopPopUp extends RetkueDialog {
 
         getContentTable().add(desc).prefWidth(popUpWidth).prefHeight(descHeight).pad(5);
         getContentTable().row();
-        getContentTable().add(shopItems);
-        getContentTable().row();
+
 
         buy = new TextButton( readLine("buy"), getSkin());
         buy.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                if (displayedItem.getPrice() > party.getGold()) {
+                    System.out.println("You're too poor");
+                } else {
+                    System.out.println("Here you buy it");
+                    party.spendGold(displayedItem.getPrice());
+                    party.addItem(displayedItem);
+                }
             }
         });
 
-        getContentTable().add(buy);
+        getContentTable().add(buy).right();
         buy.setVisible(false);
+        getContentTable().row();
 
+        getContentTable().add(shopItems);
         getContentTable().row();
 
         button(readLine("return"), false);
+    }
+
+    /**
+     * Override the show method to adjust the location of the shop PopUp slightly
+     * @param stage stage
+     * @return this
+     */
+    @Override
+    public Dialog show(Stage stage) {
+        show(stage, null);
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                Math.round((stage.getHeight() - getHeight()) / 2)+ - 30f);
+        return this;
     }
 
     /**

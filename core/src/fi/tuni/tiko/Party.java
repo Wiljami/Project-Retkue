@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import java.util.ArrayList;
+
 /**
  * Party is a class that will hold the functions and information of the player's group
  * It holds the resources the player has and the information of different Retkus.
@@ -12,6 +14,11 @@ public class Party {
      * Array of the Retkus in the party
      */
     private Retku[] retkus;
+
+    /**
+     * Array of the items in the party
+     */
+    private ArrayList<Item> inventory;
 
     /**
      * Player gold
@@ -52,6 +59,7 @@ public class Party {
      * TODO: Change this.
      */
     public Party(Main main) {
+        inventory = new ArrayList<Item>();
         this.main = main;
         retkus = new Retku[3];
     }
@@ -111,6 +119,11 @@ public class Party {
         setSteps(getSteps() - STEPSTOGOLD);
         setGold(getGold() + GOLDFROMSTEPS);
         return true;
+    }
+
+    public void addItem(Item item) {
+        inventory.add(item);
+        System.out.println(inventory);
     }
 
     /**
