@@ -17,10 +17,11 @@ public class Party {
 
     /**
      * Array of the items in the party
+     * TODO: Add this to SAVE AND LOAD
      */
     private ArrayList<Item> inventory;
 
-    private int inventorySize = 10;
+    private static int inventorySize = 10;
 
     /**
      * Player gold
