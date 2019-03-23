@@ -82,6 +82,8 @@ public class InnPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked: " + item.getName() + " " + item.getDescription());
+                ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item);
+                itemPopUp.show(getStage());
             }
         });
         float scale = itemWidth / itemButton.getWidth();
