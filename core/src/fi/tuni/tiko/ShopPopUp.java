@@ -75,6 +75,8 @@ public class ShopPopUp extends RetkueDialog {
             public void clicked(InputEvent event, float x, float y) {
                 if (displayedItem.getPrice() > party.getGold()) {
                     System.out.println("You're too poor");
+                } else if (!party.isThereInventorySpace()) {
+                    System.out.println("Your party inventory is full");
                 } else {
                     System.out.println("Here you buy it");
                     party.spendGold(displayedItem.getPrice());

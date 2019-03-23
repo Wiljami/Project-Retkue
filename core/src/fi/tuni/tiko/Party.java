@@ -20,6 +20,8 @@ public class Party {
      */
     private ArrayList<Item> inventory;
 
+    private int inventorySize = 10;
+
     /**
      * Player gold
      */
@@ -123,7 +125,6 @@ public class Party {
 
     public void addItem(Item item) {
         inventory.add(item);
-        System.out.println(inventory);
     }
 
     /**
@@ -201,5 +202,13 @@ public class Party {
 
     public ArrayList<Item> getInventory() {
         return inventory;
+    }
+
+    public boolean isThereInventorySpace() {
+        if (inventory.size() >= inventorySize) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
