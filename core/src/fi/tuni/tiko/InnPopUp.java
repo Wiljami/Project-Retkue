@@ -29,6 +29,8 @@ public class InnPopUp extends RetkueDialog {
 
     private float itemWidth;
 
+    private InnPopUp inn;
+
     private Table inventory;
     /**
      * Constructor.
@@ -36,6 +38,7 @@ public class InnPopUp extends RetkueDialog {
     public InnPopUp(Party party) {
         super(title, skin, windowStyle);
         this.party = party;
+        inn = this;
         createMenu();
         if (Main.debug) debug();
     }
@@ -47,6 +50,7 @@ public class InnPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         itemWidth = Main.WORLDPIXELWIDTH/6f;
 
+        inventory = new Table();
         generateInventory();
 
         String text = readLine("inn_desc");
@@ -63,7 +67,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void generateInventory() {
-        inventory = new Table();
+        inventory.reset();
         int tmp = 0;
         for (int i = 0; i < party.getInventory().size(); i++) {
             if (tmp == 5) {
@@ -75,6 +79,10 @@ public class InnPopUp extends RetkueDialog {
         }
     }
 
+    public void reloadInventory() {
+        generateInventory();
+    }
+
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
         Image itemButton = new Image(item.getIcon());
@@ -82,7 +90,7 @@ public class InnPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clicked: " + item.getName() + " " + item.getDescription());
-                ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party);
+                ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party,inn);
                 itemPopUp.show(getStage());
             }
         });

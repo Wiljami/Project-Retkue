@@ -10,12 +10,14 @@ public class ItemPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
     private Item item;
     private Party party;
+    private InnPopUp inn;
 
-    public ItemPopUp(String title, Item i, Party party) {
+    public ItemPopUp(String title, Item i, Party party, InnPopUp inn) {
         super(title, skin, windowStyle);
 
         this.item = i;
         this.party = party;
+        this.inn = inn;
         createMenu();
     }
 
@@ -51,9 +53,7 @@ public class ItemPopUp extends RetkueDialog {
         sell.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("sold");
                 sellItem(item);
-                closeMe();
             }
         });
         getContentTable().add(sell).left();
@@ -69,7 +69,10 @@ public class ItemPopUp extends RetkueDialog {
     }
 
     private void sellItem(Item item) {
+        System.out.println("sold");
         party.sellItem(item);
+        inn.reloadInventory();
+        closeMe();
     }
 
     private void closeMe() {
