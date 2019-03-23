@@ -75,16 +75,9 @@ public class InnPopUp extends RetkueDialog {
         }
     }
 
-    /**
-     * generateItemButton generates an item button for the shopItems UI table.
-     *
-     * It finds the items from townInfo and then generates the button and listener for each.
-     * @param i id of the item in the items array within townInfo
-     */
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
         Image itemButton = new Image(item.getIcon());
-        final String description = item.getDescription();
         itemButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
