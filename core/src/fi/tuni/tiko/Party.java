@@ -110,6 +110,10 @@ public class Party {
         setGold(getGold() - n);
     }
 
+    public void earnGold(int n) {
+        setGold(getGold() + n);
+    }
+
     /**
      * Convert steps to gold. If the conversion is not possible, then return false.
      * @return boolean wether the conversion was possible.
@@ -210,5 +214,10 @@ public class Party {
         } else {
             return true;
         }
+    }
+
+    public void sellItem(Item item) {
+        earnGold(item.getPrice()/2);
+        inventory.remove(item);
     }
 }

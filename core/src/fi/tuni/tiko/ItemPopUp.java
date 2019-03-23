@@ -1,10 +1,78 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
 public class ItemPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
+    private Item item;
+    private Party party;
 
-    public ItemPopUp(String title, Item item) {
+    public ItemPopUp(String title, Item i, Party party) {
         super(title, skin, windowStyle);
-        button(readLine("return"), false);
+
+        this.item = i;
+        this.party = party;
+        createMenu();
+    }
+
+    private void createMenu() {
+        float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
+        float itemWidth = Main.WORLDPIXELWIDTH/3f;
+
+        Image itemImage = new Image(item.getIcon());
+        float scale = itemWidth / itemImage.getWidth();
+        float itemHeight = itemImage.getHeight() * scale;
+        getContentTable().add(itemImage).prefWidth(itemWidth).prefHeight(itemHeight).left();
+
+        Table statGroup = new Table();
+        String stats = "ATT +" + item.getAttack();
+        RetkueLabel attLabel = new RetkueLabel(stats);
+        stats = "DEF + " + item.getDefense();
+        RetkueLabel defLabel = new RetkueLabel(stats);
+
+        statGroup.add(attLabel).pad(5);
+        statGroup.row();
+        statGroup.add(defLabel).pad(5);
+
+        getContentTable().add(statGroup).left().top();
+
+        getContentTable().row();
+
+        RetkueLabel desc = new RetkueLabel(item.getDescription());
+        getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
+
+        getContentTable().row();
+
+        TextButton sell = new TextButton(readLine("sell"), getSkin());
+        sell.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("sold");
+                sellItem(item);
+                closeMe();
+            }
+        });
+        getContentTable().add(sell).left();
+
+        TextButton back = new TextButton(readLine("return"), getSkin());
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                closeMe();
+            }
+        });
+        getContentTable().add(back).right();
+    }
+
+    private void sellItem(Item item) {
+        party.sellItem(item);
+    }
+
+    private void closeMe() {
+        remove();
     }
 }
