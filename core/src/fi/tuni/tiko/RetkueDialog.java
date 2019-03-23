@@ -20,7 +20,7 @@ public abstract class RetkueDialog extends Dialog {
 
 
     /**
-     * RetkuDialog consturctor
+     * RetkuDialog constructor
      * @param title title of the window
      * @param skin skin of the window
      * @param windowStyle windowStyle used
