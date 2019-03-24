@@ -53,10 +53,7 @@ public class InnPopUp extends RetkueDialog {
         inventory = new Table();
         generateInventory();
 
-        String text = readLine("inn_desc");
-        RetkueLabel desc = new RetkueLabel(text);
-
-        getContentTable().add(desc).prefWidth(popUpWidth);
+        generateCharSheets();
 
         getContentTable().row();
 
@@ -64,6 +61,61 @@ public class InnPopUp extends RetkueDialog {
 
         getContentTable().row();
         button(readLine("return"), false);
+    }
+
+    private void generateCharSheets() {
+
+        float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
+        float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
+
+        AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet_new.png", 6 , 1, 1/2f, charSize, charSize);
+        AnimatedActor retkuC = new AnimatedActor("miked_sprite_sheet.png", 5 , 1, 1/1.5f, charSize*4/5f, charSize);
+        Image retku1 = new Image(party.findRetku(1).getTexture());
+
+        HealthBar bar0 = new HealthBar(healthBarWidth, charSize);
+        HealthBar bar1 = new HealthBar(healthBarWidth, charSize);
+        HealthBar bar2 = new HealthBar(healthBarWidth, charSize);
+
+        bar0.setValue(party.findRetku(0).healthPercentage());
+        bar1.setValue(party.findRetku(1).healthPercentage());
+        bar2.setValue(party.findRetku(2).healthPercentage());
+
+        Table charImages = new Table();
+
+        charImages.add(retkuA).prefHeight(charSize).prefWidth(charSize);
+        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.row();
+        charImages.add(bar0);
+        charImages.row();
+        charImages.add(retku1).prefHeight(charSize).prefWidth(charSize);
+        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.row();
+        charImages.add(bar1);
+        charImages.row();
+        charImages.add(retkuC).prefHeight(charSize).prefWidth(charSize/5f*4f);
+        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.row();
+        charImages.add(bar2);
+
+        getContentTable().add(charImages).left().pad(2);
+    }
+
+    private Table generateCharItems(Retku retku) {
+        Image itemA = new Image(Utils.loadTexture("non"));
+        Image itemB = new Image(Utils.loadTexture("non"));
+        Image itemC = new Image(Utils.loadTexture("non"));
+
+        Table charInventories = new Table();
+
+        float scale = itemWidth / itemA.getWidth();
+        float itemHeight = itemA.getHeight() * scale;
+        inventory.add(itemA).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+
+        charInventories.add(itemA).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        charInventories.add(itemB).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        charInventories.add(itemC).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+
+        return charInventories;
     }
 
     private void generateInventory() {

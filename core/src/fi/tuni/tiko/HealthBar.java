@@ -43,7 +43,7 @@ public class HealthBar extends ProgressBar{
      * setupStyle() generates a new ProgressBarStyle using pixmaps.
      */
     private void setupStyle() {
-        Pixmap pixmap = new Pixmap(100, 20, Format.RGBA8888);
+        Pixmap pixmap = new Pixmap(50, 10, Format.RGBA8888);
         pixmap.setColor(Color.RED);
         pixmap.fill();
 
@@ -53,7 +53,7 @@ public class HealthBar extends ProgressBar{
         progressBarStyle = new ProgressBarStyle();
         progressBarStyle.background = drawable;
 
-        pixmap = new Pixmap(0, 20, Format.RGBA8888);
+        pixmap = new Pixmap(0, 10, Format.RGBA8888);
         pixmap.setColor(Color.GREEN);
         pixmap.fill();
         drawable = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
@@ -61,7 +61,7 @@ public class HealthBar extends ProgressBar{
 
         progressBarStyle.knob = drawable;
 
-        pixmap = new Pixmap(100, 20, Format.RGBA8888);
+        pixmap = new Pixmap(50, 10, Format.RGBA8888);
         pixmap.setColor(Color.GREEN);
         pixmap.fill();
         drawable = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
