@@ -107,15 +107,33 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private Table generateCharItems(Retku retku) {
-        Image itemA = new Image(Utils.loadTexture("non"));
-        Image itemB = new Image(Utils.loadTexture("non"));
-        Image itemC = new Image(Utils.loadTexture("non"));
-
         Table charInventories = new Table();
 
-        charInventories.add(itemA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
-        charInventories.add(itemB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
-        charInventories.add(itemC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        if (retku.getSlotA() != null) {
+            Image itemA = new Image(retku.getSlotA().getIcon());
+            charInventories.add(itemA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        } else {
+            Image slotA = new Image(Utils.loadTexture("emptyHand"));
+            charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        }
+
+        if (retku.getSlotA() != null) {
+            Image itemB = new Image(retku.getSlotA().getIcon());
+            charInventories.add(itemB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        } else {
+            Image slotB = new Image(Utils.loadTexture("emptyArmor"));
+            charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+
+        }
+
+        if (retku.getSlotA() != null) {
+            Image itemC = new Image(retku.getSlotA().getIcon());
+            charInventories.add(itemC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        } else {
+            Image slotC = new Image(Utils.loadTexture("emptyTrinket"));
+            charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+
+        }
 
         return charInventories;
     }
@@ -131,7 +149,8 @@ public class InnPopUp extends RetkueDialog {
             if (i < party.getInventory().size()) {
                 generateItemButton(i);
             } else {
-                inventory.add().prefWidth(itemSize).prefHeight(itemSize);
+                Image emptySlot = new Image(Utils.loadTexture("emptySlot"));
+                inventory.add(emptySlot).prefWidth(itemSize).prefHeight(itemSize).pad(1);
             }
             tmp++;
         }

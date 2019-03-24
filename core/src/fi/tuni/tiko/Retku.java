@@ -36,6 +36,12 @@ public class Retku {
      */
     private String imageFile;
 
+    private Item slotA;
+
+    private Item slotB;
+
+    private Item slotC;
+
     /**
      * Retku constructor
      * TODO: Needs new Retku graphics
@@ -147,5 +153,29 @@ public class Retku {
     public void initPortrait(String portraitFile) {
         this.imageFile = portraitFile;
         this.texture = Utils.loadTexture(portraitFile);
+    }
+
+    public Item getSlotA() {
+        return slotA;
+    }
+
+    public void setSlotA(Item slotA) {
+        this.slotA = slotA;
+    }
+
+    public Item getSlotB() {
+        return slotB;
+    }
+
+    public void setSlotB(Item slotB) {
+        this.slotB = slotB;
+    }
+
+    public Item getSlotC() {
+        return slotC;
+    }
+
+    public void setSlotC(Item slotC) {
+        this.slotC = slotC;
     }
 }

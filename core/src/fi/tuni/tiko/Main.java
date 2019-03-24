@@ -87,7 +87,7 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
         initiateGame();
-        backgroundMusic.play();
+        //backgroundMusic.play();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
 	}
