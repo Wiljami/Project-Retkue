@@ -4,9 +4,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
 /**
  * InnPopUp contains functionality of the inn within the game.
@@ -71,8 +73,10 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(back);
     }
 
-    private void generateCharSheets() {
+    private Image[][] charSlots;
 
+    private void generateCharSheets() {
+        charSlots = new Image[3][3];
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
@@ -93,51 +97,56 @@ public class InnPopUp extends RetkueDialog {
         Table charImages = new Table();
 
         charImages.add(retkuA).prefHeight(charSize).prefWidth(charSize);
-        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.add(generateCharItems(party.findRetku(0), 0)).center();
         charImages.row();
         charImages.add(bar0);
         charImages.row();
         charImages.add(retku1).prefHeight(charSize).prefWidth(charSize);
-        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.add(generateCharItems(party.findRetku(1), 1)).center();
         charImages.row();
         charImages.add(bar1);
         charImages.row();
         charImages.add(retkuC).prefHeight(charSize).prefWidth(charSize/5f*4f);
-        charImages.add(generateCharItems(party.findRetku(0))).center();
+        charImages.add(generateCharItems(party.findRetku(2), 2)).center();
         charImages.row();
         charImages.add(bar2);
 
         getContentTable().add(charImages).left().pad(2);
     }
 
-    private Table generateCharItems(Retku retku) {
+    private Table generateCharItems(Retku retku, int i) {
         Table charInventories = new Table();
 
+        Image slotA;
         if (retku.getSlotA() != null) {
-            Image itemA = new Image(retku.getSlotA().getIcon());
-            charInventories.add(itemA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+            slotA = new Image(retku.getSlotA().getIcon());
+            charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            Image slotA = new Image(Utils.loadTexture("items/empty_weapon.png"));
+            slotA = new Image(Utils.loadTexture("items/empty_weapon.png"));
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
+        charSlots[i][0] = slotA;
 
+        Image slotB;
         if (retku.getSlotA() != null) {
-            Image itemB = new Image(retku.getSlotA().getIcon());
-            charInventories.add(itemB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+            slotB = new Image(retku.getSlotA().getIcon());
+            charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            Image slotB = new Image(Utils.loadTexture("items/empty_armor.png"));
+            slotB = new Image(Utils.loadTexture("items/empty_armor.png"));
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         }
+        charSlots[i][1] = slotB;
 
+        Image slotC;
         if (retku.getSlotA() != null) {
-            Image itemC = new Image(retku.getSlotA().getIcon());
-            charInventories.add(itemC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
-        } else {
-            Image slotC = new Image(Utils.loadTexture("items/empty_trinket.png"));
+            slotC = new Image(retku.getSlotA().getIcon());
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
-
+        } else {
+            slotC = new Image(Utils.loadTexture("items/empty_trinket.png"));
+            charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
+        charSlots[i][2] = slotC;
 
         return charInventories;
     }
@@ -164,20 +173,50 @@ public class InnPopUp extends RetkueDialog {
         generateInventory();
     }
 
+    private boolean isDragging = false;
+
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
-        Image itemButton = new Image(item.getIcon());
+        final Image itemButton = new Image(item.getIcon());
         itemButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Clicked: " + item.getName() + " " + item.getDescription());
-                ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party,inn);
-                itemPopUp.show(getStage());
+                if (!isDragging) {
+                    System.out.println("Clicked: " + item.getName() + " " + item.getDescription());
+                    ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party, inn);
+                    itemPopUp.show(getStage());
+                    System.out.println(itemButton.getX() + " " + itemButton.getY());
+                }
+            }
+
+            @Override
+            public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                isDragging = true;
+                super.touchDragged(event, x, y, pointer);
+                itemButton.toFront();
+                System.out.println(x + " " + y);
+                float xOrigin = itemButton.getX();
+                float yOrigin = itemButton.getY();
+                itemButton.setPosition(xOrigin + x - itemSize/2, yOrigin + y - itemSize/2);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                System.out.println("yarp");
+                equip(x, y, item);
+                isDragging = false;
+                reloadInventory();
             }
         });
+
         float scale = itemSize / itemButton.getWidth();
         float itemHeight = itemButton.getHeight() * scale;
         inventory.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(1);
+    }
+
+    private void equip(float x, float y, Item item) {
+
     }
 
     private void closeMe() {
