@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -174,6 +175,8 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private boolean isDragging = false;
+    private float dragX;
+    private float dragY;
 
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
@@ -182,10 +185,8 @@ public class InnPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!isDragging) {
-                    System.out.println("Clicked: " + item.getName() + " " + item.getDescription());
                     ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party, inn);
                     itemPopUp.show(getStage());
-                    System.out.println(itemButton.getX() + " " + itemButton.getY());
                 }
             }
 
@@ -194,17 +195,17 @@ public class InnPopUp extends RetkueDialog {
                 isDragging = true;
                 super.touchDragged(event, x, y, pointer);
                 itemButton.toFront();
-                System.out.println(x + " " + y);
                 float xOrigin = itemButton.getX();
                 float yOrigin = itemButton.getY();
-                itemButton.setPosition(xOrigin + x - itemSize/2, yOrigin + y - itemSize/2);
+                dragX = xOrigin + x - itemSize/2;
+                dragY = yOrigin + y - itemSize/2;
+                itemButton.setPosition(dragX, dragY);
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
-                System.out.println("yarp");
-                equip(x, y, item);
+                equip(item);
                 isDragging = false;
                 reloadInventory();
             }
@@ -215,8 +216,21 @@ public class InnPopUp extends RetkueDialog {
         inventory.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(1);
     }
 
-    private void equip(float x, float y, Item item) {
+    private void equip(Item item) {
+        System.out.println("x:" + dragX +" y: " + dragY);
 
+        for (int i = 0; i < 3; i++) {
+            for (Image target: charSlots[i]) {
+                System.out.println(target.getY());
+                if (dragX > target.getX() && dragX < target.getX() + itemSize) {
+                    if (dragY > target.getY() && dragY < target.getY() + itemSize) {
+                        System.out.println("Hello");
+                        System.out.println(target.getX() + " < " + dragX + " x < " + (target.getX()+itemSize));
+                        System.out.println(target.getY() + " < " + dragX + " y < " + (target.getY()+itemSize));
+                    }
+                }
+            }
+        }
     }
 
     private void closeMe() {
