@@ -113,7 +113,7 @@ public class InnPopUp extends RetkueDialog {
             Image itemA = new Image(retku.getSlotA().getIcon());
             charInventories.add(itemA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            Image slotA = new Image(Utils.loadTexture("emptyHand"));
+            Image slotA = new Image(Utils.loadTexture("items/empty_weapon.png"));
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
 
@@ -121,7 +121,7 @@ public class InnPopUp extends RetkueDialog {
             Image itemB = new Image(retku.getSlotA().getIcon());
             charInventories.add(itemB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            Image slotB = new Image(Utils.loadTexture("emptyArmor"));
+            Image slotB = new Image(Utils.loadTexture("items/empty_armor.png"));
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         }
@@ -130,7 +130,7 @@ public class InnPopUp extends RetkueDialog {
             Image itemC = new Image(retku.getSlotA().getIcon());
             charInventories.add(itemC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            Image slotC = new Image(Utils.loadTexture("emptyTrinket"));
+            Image slotC = new Image(Utils.loadTexture("items/empty_trinket.png"));
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         }
@@ -149,7 +149,7 @@ public class InnPopUp extends RetkueDialog {
             if (i < party.getInventory().size()) {
                 generateItemButton(i);
             } else {
-                Image emptySlot = new Image(Utils.loadTexture("emptySlot"));
+                Image emptySlot = new Image(Utils.loadTexture("items/empty_slot.png"));
                 inventory.add(emptySlot).prefWidth(itemSize).prefHeight(itemSize).pad(1);
             }
             tmp++;
