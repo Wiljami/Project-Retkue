@@ -1,6 +1,8 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -178,5 +180,18 @@ public class InnPopUp extends RetkueDialog {
 
     private void closeMe() {
         remove();
+    }
+
+    /**
+     * Override the show method to adjust the location of the inn PopUp slightly
+     * @param stage stage
+     * @return this
+     */
+    @Override
+    public Dialog show(Stage stage) {
+        show(stage, null);
+        setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                Math.round((stage.getHeight() - getHeight()) / 2) - 40f);
+        return this;
     }
 }
