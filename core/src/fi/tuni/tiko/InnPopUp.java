@@ -1,11 +1,9 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -27,7 +25,7 @@ public class InnPopUp extends RetkueDialog {
 
     private Party party;
 
-    private float itemWidth;
+    private float itemSize;
 
     private InnPopUp inn;
 
@@ -47,8 +45,8 @@ public class InnPopUp extends RetkueDialog {
      * createMenu generates different visible UI actors.
      */
     private void createMenu() {
-        float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
-        itemWidth = Main.WORLDPIXELWIDTH/6f;
+        //float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
+        itemSize = Main.WORLDPIXELWIDTH/6f;
 
         inventory = new Table();
         generateInventory();
@@ -60,7 +58,15 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(inventory);
 
         getContentTable().row();
-        button(readLine("return"), false);
+
+        TextButton back = new TextButton(readLine("return"), getSkin());
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                closeMe();
+            }
+        });
+        getContentTable().add(back);
     }
 
     private void generateCharSheets() {
@@ -107,13 +113,9 @@ public class InnPopUp extends RetkueDialog {
 
         Table charInventories = new Table();
 
-        float scale = itemWidth / itemA.getWidth();
-        float itemHeight = itemA.getHeight() * scale;
-        inventory.add(itemA).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-
-        charInventories.add(itemA).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-        charInventories.add(itemB).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
-        charInventories.add(itemC).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        charInventories.add(itemA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        charInventories.add(itemB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
+        charInventories.add(itemC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         return charInventories;
     }
@@ -129,7 +131,7 @@ public class InnPopUp extends RetkueDialog {
             if (i < party.getInventory().size()) {
                 generateItemButton(i);
             } else {
-                inventory.add().prefWidth(itemWidth).prefHeight(itemWidth);
+                inventory.add().prefWidth(itemSize).prefHeight(itemSize);
             }
             tmp++;
         }
@@ -150,8 +152,12 @@ public class InnPopUp extends RetkueDialog {
                 itemPopUp.show(getStage());
             }
         });
-        float scale = itemWidth / itemButton.getWidth();
+        float scale = itemSize / itemButton.getWidth();
         float itemHeight = itemButton.getHeight() * scale;
-        inventory.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        inventory.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(1);
+    }
+
+    private void closeMe() {
+        remove();
     }
 }
