@@ -86,8 +86,8 @@ public class Main extends Game {
         //TODO: implement elegant exit on BackKey
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
-        //backgroundMusic.play();
         initiateGame();
+        backgroundMusic.play();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
 	}
