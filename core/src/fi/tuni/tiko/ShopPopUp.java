@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -59,7 +60,7 @@ public class ShopPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         float descHeight = Main.WORLDPIXELHEIGHT*2f/5f;
 
-        itemWidth = Main.WORLDPIXELWIDTH/6f;
+        itemWidth = Main.WORLDPIXELWIDTH/5f;
         String text = readLine("shop_desc");
         desc = new RetkueLabel(text);
 
@@ -113,11 +114,11 @@ public class ShopPopUp extends RetkueDialog {
      */
     private void generateItemGrid() {
         shopItems = new Table();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             generateItemButton(i);
         }
         shopItems.row();
-        for (int i = 5; i < 10; i++) {
+        for (int i = 4; i < 8; i++) {
             generateItemButton(i);
         }
     }
@@ -130,7 +131,13 @@ public class ShopPopUp extends RetkueDialog {
      */
     private void generateItemButton(int i) {
         final Item item = townInfo.findItem(i);
-        Image itemButton = new Image(item.getIcon());
+        Image greenBorder = new Image(Utils.loadTexture("items/border_green.png"));
+        greenBorder.setSize(itemWidth, itemWidth);
+        Image itemGraphic = new Image(item.getIcon());
+        itemGraphic.setSize(itemWidth, itemWidth);
+        Group itemButton = new Group();
+        itemButton.addActor(itemGraphic);
+        itemButton.addActor(greenBorder);
         final String description = item.getDescription();
         itemButton.addListener(new ClickListener() {
             @Override
@@ -143,8 +150,8 @@ public class ShopPopUp extends RetkueDialog {
                 buy.setVisible(true);
             }
         });
-        float scale = itemWidth / itemButton.getWidth();
-        float itemHeight = itemButton.getHeight() * scale;
-        shopItems.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(1);
+        float scale = itemWidth / itemGraphic.getWidth();
+        float itemHeight = itemGraphic.getHeight() * scale;
+        shopItems.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(3);
     }
 }
