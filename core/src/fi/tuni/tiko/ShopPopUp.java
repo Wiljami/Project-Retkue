@@ -131,13 +131,7 @@ public class ShopPopUp extends RetkueDialog {
      */
     private void generateItemButton(int i) {
         final Item item = townInfo.findItem(i);
-        Image greenBorder = new Image(Utils.loadTexture("items/border_green.png"));
-        greenBorder.setSize(itemWidth, itemWidth);
-        Image itemGraphic = new Image(item.getIcon());
-        itemGraphic.setSize(itemWidth, itemWidth);
-        Group itemButton = new Group();
-        itemButton.addActor(itemGraphic);
-        itemButton.addActor(greenBorder);
+        Group itemButton = item.getIcon();
         final String description = item.getDescription();
         itemButton.addListener(new ClickListener() {
             @Override
@@ -150,8 +144,9 @@ public class ShopPopUp extends RetkueDialog {
                 buy.setVisible(true);
             }
         });
-        float scale = itemWidth / itemGraphic.getWidth();
-        float itemHeight = itemGraphic.getHeight() * scale;
+        float itemHeight = itemWidth;
+        System.out.println(itemWidth);
+        itemButton.setSize(itemWidth,itemWidth);
         shopItems.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(3);
     }
 }

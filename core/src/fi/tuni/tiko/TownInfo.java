@@ -1,6 +1,7 @@
 package fi.tuni.tiko;
 
 import static fi.tuni.tiko.Item.Slot.*;
+import static fi.tuni.tiko.Item.Rarity.*;
 
 //TODO: make this part of the save or not? Either that or include this stuff to the config or party
 
@@ -20,7 +21,7 @@ public class TownInfo {
 
     private void generateItems() {
         for (int x = 0; x < 10; x++) {
-            Item item = new Item(x, 1, 2, TRINKET, x*100);
+            Item item = new Item(x, 1, 2, TRINKET, UNCOMMON, x*100);
             availableItems[x] = item;
         }
     }

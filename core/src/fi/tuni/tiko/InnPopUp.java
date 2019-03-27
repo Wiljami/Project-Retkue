@@ -1,6 +1,7 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -74,10 +75,10 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(back);
     }
 
-    private Image[][] charSlots;
+    private Group[][] charSlots;
 
     private void generateCharSheets() {
-        charSlots = new Image[3][3];
+        charSlots = new Group[3][3];
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
@@ -118,38 +119,47 @@ public class InnPopUp extends RetkueDialog {
     private Table generateCharItems(Retku retku, int i) {
         Table charInventories = new Table();
 
-        Image slotA;
+        Group slotA;
         if (retku.getSlotA() != null) {
-            slotA = new Image(retku.getSlotA().getIcon());
+            slotA = retku.getSlotA().getIcon();
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotA = new Image(Utils.loadTexture("items/empty_weapon.png"));
+            slotA = emptySlot("weapon");
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
         charSlots[i][0] = slotA;
 
-        Image slotB;
+        Group slotB;
         if (retku.getSlotA() != null) {
-            slotB = new Image(retku.getSlotA().getIcon());
+            slotB = retku.getSlotA().getIcon();
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotB = new Image(Utils.loadTexture("items/empty_armor.png"));
+            slotB = emptySlot("armor");
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         }
         charSlots[i][1] = slotB;
 
-        Image slotC;
+        Group slotC;
         if (retku.getSlotA() != null) {
-            slotC = new Image(retku.getSlotA().getIcon());
+            slotC = retku.getSlotA().getIcon();
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotC = new Image(Utils.loadTexture("items/empty_trinket.png"));
+            slotC = emptySlot("trinket");
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
         charSlots[i][2] = slotC;
 
         return charInventories;
+    }
+
+    private Group emptySlot (String slot) {
+        String file = "items/empty_" + slot + ".png";
+        Group button = new Group();
+        Image tempImage = new Image(Utils.loadTexture(file));
+        tempImage.setSize(itemSize, itemSize);
+        button.addActor(tempImage);
+        return button;
     }
 
     private void generateInventory() {
@@ -180,7 +190,7 @@ public class InnPopUp extends RetkueDialog {
 
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
-        final Image itemButton = new Image(item.getIcon());
+        final Group itemButton = item.getIcon();
         itemButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -220,7 +230,7 @@ public class InnPopUp extends RetkueDialog {
         System.out.println("x:" + dragX +" y: " + dragY);
 
         for (int i = 0; i < 3; i++) {
-            for (Image target: charSlots[i]) {
+            for (Group target: charSlots[i]) {
                 System.out.println(target.getY());
                 if (dragX > target.getX() && dragX < target.getX() + itemSize) {
                     if (dragY > target.getY() && dragY < target.getY() + itemSize) {

@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -25,7 +26,7 @@ public class ItemPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
         float itemWidth = Main.WORLDPIXELWIDTH/3f;
 
-        Image itemImage = new Image(item.getIcon());
+        Group itemImage = item.getIcon();
         float scale = itemWidth / itemImage.getWidth();
         float itemHeight = itemImage.getHeight() * scale;
         getContentTable().add(itemImage).prefWidth(itemWidth).prefHeight(itemHeight).left();
