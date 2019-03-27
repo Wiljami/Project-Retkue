@@ -49,7 +49,6 @@ public class InnPopUp extends RetkueDialog {
         this.party = party;
         inn = this;
         this.stage = townScene.getStage();
-        System.out.println(stage);
         createMenu();
         if (Main.debug) debug();
     }
@@ -62,6 +61,8 @@ public class InnPopUp extends RetkueDialog {
 
         inventory = new Table();
         generateInventory();
+
+        charSlots = new Group[3][3];
 
         generateCharSheets();
 
@@ -84,7 +85,6 @@ public class InnPopUp extends RetkueDialog {
     private Group[][] charSlots;
 
     private void generateCharSheets() {
-        charSlots = new Group[3][3];
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
@@ -142,7 +142,6 @@ public class InnPopUp extends RetkueDialog {
         } else {
             slotB = emptySlot("armor");
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
-
         }
         charSlots[i][1] = slotB;
 
@@ -201,6 +200,9 @@ public class InnPopUp extends RetkueDialog {
             }
         });
         inventory.add(itemButton);
+    }
+
+    public void resetMe() {
     }
 
     private void closeMe() {

@@ -42,17 +42,20 @@ public class Retku {
 
     private Item slotC;
 
+    private Party party;
+
     /**
      * Retku constructor
      * TODO: Needs new Retku graphics
      * @param name name of the Retku
      * @param health max Health of Retku
      */
-    public Retku(String name, int health, String portraitFile) {
+    public Retku(String name, int health, String portraitFile, Party party) {
         setMaxHealth(health);
         setCurrHealth(health);
         setName(name);
         initPortrait(portraitFile);
+        this.party = party;
     }
 
     /**
@@ -152,6 +155,16 @@ public class Retku {
     public void initPortrait(String portraitFile) {
         this.imageFile = portraitFile;
         this.texture = Utils.loadTexture(portraitFile);
+    }
+
+    public void equipItem(Item item) {
+        if (slotA == null) {
+            slotA = item;
+        } else {
+            party.addItem(slotA);
+            slotA = item;
+            party.removeItem(slotA);
+        }
     }
 
     public Item getSlotA() {

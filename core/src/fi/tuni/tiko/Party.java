@@ -161,9 +161,9 @@ public class Party {
      * newGame sets the starting values to the party.
      */
     public void newGame() {
-        retkus[0] = new Retku("Bill", 100, "bill_c.png");
-        retkus[1] = new Retku("Mei", 100, "mei.png");
-        retkus[2] = new Retku("Mik'ed", 100, "horze_white.png");
+        retkus[0] = new Retku("Bill", 100, "bill_c.png", this);
+        retkus[1] = new Retku("Mei", 100, "mei.png", this);
+        retkus[2] = new Retku("Mik'ed", 100, "horze_white.png", this);
         steps = 1000;
         gold = 99;
     }
@@ -220,6 +220,10 @@ public class Party {
 
     public void sellItem(Item item) {
         earnGold(item.getPrice()/2);
+        removeItem(item);
+    }
+
+    public void removeItem(Item item) {
         inventory.remove(item);
     }
 }

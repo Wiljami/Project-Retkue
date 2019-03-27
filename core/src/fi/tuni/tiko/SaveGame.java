@@ -104,7 +104,7 @@ public class SaveGame {
         party.setSteps(steps);
 
         for (int x = 0; x < 3; x++) {
-            Retku retku = new Retku("", 0, "");
+            Retku retku = new Retku("", 0, "", party);
             String name = save.getString("retku_" + x + "_name", "NO_NAME");
             String imageFile = save.getString("retku_" + x + "_image", "");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);

@@ -54,12 +54,31 @@ public class ItemPopUp extends RetkueDialog {
         equipA.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("TIMO SANOO HELLUREI");
+                party.findRetku(0).equipItem(item);
+                inn.resetMe();
+                closeMe();
             }
         });
 
         TextButton equipB = new TextButton (readLine("equipB"), getSkin());
+        equipB.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                party.findRetku(1).equipItem(item);
+                inn.resetMe();
+                closeMe();
+            }
+        });
+
         TextButton equipC = new TextButton (readLine("equipC"), getSkin());
+        equipC.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                party.findRetku(2).equipItem(item);
+                inn.resetMe();
+                closeMe();
+            }
+        });
 
         getContentTable().add(equipA);
         getContentTable().add(equipB);
