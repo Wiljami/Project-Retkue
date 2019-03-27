@@ -7,10 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.*;
+
 
 /**
  * InnPopUp contains functionality of the inn within the game.
@@ -47,12 +50,15 @@ public class InnPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
+    DragAndDrop dragAndDrop;
+
     /**
      * createMenu generates different visible UI actors.
      */
     private void createMenu() {
-        //float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         itemSize = Main.WORLDPIXELWIDTH/6f;
+
+        dragAndDrop = new DragAndDrop();
 
         inventory = new Table();
         generateInventory();
@@ -188,6 +194,28 @@ public class InnPopUp extends RetkueDialog {
         Item item = party.getInventory().get(i);
         Group itemButton = item.getIcon(itemSize);
         inventory.add(itemButton);
+        addDragAndDropSource(itemButton, i);
+    }
+
+    private void addDragAndDropSource(Group item, final int index) {
+        dragAndDrop.addSource(new Source(item) {
+            @Override
+            public Payload dragStart(InputEvent event, float x, float y, int pointer) {
+                Group draggable = party.getInventory().get(index).getIcon();
+                Payload payload = new Payload();
+                payload.setObject("wut am I?");
+
+                Label painload = new Label ("payload", skin);
+
+                payload.setDragActor(draggable);
+                payload.setValidDragActor(painload);
+
+                Label invalidLabel = new Label("invalid", skin);
+                payload.setInvalidDragActor(invalidLabel);
+
+                return payload;
+            }
+        });
     }
 
     private void closeMe() {

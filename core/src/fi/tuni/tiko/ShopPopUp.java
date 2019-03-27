@@ -77,10 +77,14 @@ public class ShopPopUp extends RetkueDialog {
             public void clicked(InputEvent event, float x, float y) {
                 if (displayedItem.getPrice() > party.getGold()) {
                     System.out.println("You're too poor");
+                    desc.setText(readLine("too_poor"));
                 } else if (!party.isThereInventorySpace()) {
                     System.out.println("Your party inventory is full");
+                    desc.setText(readLine("inventory_full"));
                 } else {
                     System.out.println("Here you buy it");
+                    desc.setText(readLine("purchased") + " " + displayedItem.getName());
+                    buy.setVisible(false);
                     party.spendGold(displayedItem.getPrice());
                     party.addItem(displayedItem);
                     townInfo.removeItem(displayedItem);
