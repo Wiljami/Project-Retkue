@@ -22,12 +22,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class TownScene extends Scene {
 
+    Scene townScene;
+
     public TownScene(Main game) {
         super(game);
         createMenu();
         this.townInfo = Main.getTownInfo();
         setupBackground("village.png");
-        townTheme = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
+        townScene = this;
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
     }
 
     /**
@@ -96,7 +99,7 @@ public class TownScene extends Scene {
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                OptionsPopUp options = new OptionsPopUp();
+                OptionsPopUp options = new OptionsPopUp(townScene);
                 options.show(getStage());
             }
         });
@@ -182,16 +185,6 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
-    }
-
-    @Override
-    public void show() {
-        townTheme.play();
-    }
-
-    @Override
-    public void hide() {
-        townTheme.stop();
     }
 
     @Override

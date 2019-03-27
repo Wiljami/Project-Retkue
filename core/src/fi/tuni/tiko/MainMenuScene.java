@@ -1,10 +1,8 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -25,14 +23,26 @@ public class MainMenuScene extends Scene {
         super(game);
         createMenu();
         setupBackground("mainmenu.png");
+        menuScene = this;
     }
+
+    /**
+     * ????
+     */
+    Scene menuScene;
 
     /**
      * createMenu creates the UI of the mainMenu.
      */
     private void createMenu() {
-        mainTheme = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
-        mainTheme.play();
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.play();
+        if(getMute()) {
+            backgroundMusic.setVolume(0);
+        } else {
+            backgroundMusic.setVolume(1);
+        }
 
         Button start = new TextButton(readLine("start"), getSkin());
         start.addListener(new ClickListener() {
@@ -46,7 +56,7 @@ public class MainMenuScene extends Scene {
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                OptionsPopUp options = new OptionsPopUp();
+                OptionsPopUp options = new OptionsPopUp(menuScene);
                 options.show(getStage());
             }
         });
@@ -108,12 +118,17 @@ public class MainMenuScene extends Scene {
 
     @Override
     public void show() {
-        mainTheme.play();
+        if(getMute()) {
+            backgroundMusic.setVolume(0);
+        } else {
+            backgroundMusic.setVolume(1);
+        }
+        backgroundMusic.play();
     }
 
     @Override
     public void hide() {
-        mainTheme.stop();
+        backgroundMusic.stop();
     }
 
     /**

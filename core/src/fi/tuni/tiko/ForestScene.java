@@ -52,6 +52,7 @@ class ForestScene extends Scene{
         party = getGame().getParty();
         createMenu();
         setupBackground("forest.png");
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
     }
 
     /**
