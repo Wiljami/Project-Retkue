@@ -26,7 +26,7 @@ public class ItemPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
         float itemWidth = Main.WORLDPIXELWIDTH/3f;
 
-        Group itemImage = item.getIcon();
+        Image itemImage = new Image (item.getPicture());
         float scale = itemWidth / itemImage.getWidth();
         float itemHeight = itemImage.getHeight() * scale;
         getContentTable().add(itemImage).prefWidth(itemWidth).prefHeight(itemHeight).left();
@@ -34,7 +34,7 @@ public class ItemPopUp extends RetkueDialog {
         Table statGroup = new Table();
         String stats = "ATT +" + item.getAttack();
         RetkueLabel attLabel = new RetkueLabel(stats);
-        stats = "DEF + " + item.getDefense();
+        stats = "DEF +" + item.getDefense();
         RetkueLabel defLabel = new RetkueLabel(stats);
 
         statGroup.add(attLabel).pad(5);
@@ -48,6 +48,22 @@ public class ItemPopUp extends RetkueDialog {
         RetkueLabel desc = new RetkueLabel(item.getDescription());
         getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
 
+        getContentTable().row();
+
+        TextButton equipA = new TextButton (readLine("equipA"), getSkin());
+        equipA.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("TIMO SANOO HELLUREI");
+            }
+        });
+
+        TextButton equipB = new TextButton (readLine("equipB"), getSkin());
+        TextButton equipC = new TextButton (readLine("equipC"), getSkin());
+
+        getContentTable().add(equipA);
+        getContentTable().add(equipB);
+        getContentTable().add(equipC);
         getContentTable().row();
 
         TextButton sell = new TextButton(readLine("sell") + " $" + item.getPrice()/2, getSkin());

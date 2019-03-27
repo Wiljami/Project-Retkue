@@ -38,27 +38,27 @@ public class InnPopUp extends RetkueDialog {
 
     private InnPopUp inn;
 
+    private Stage stage;
+
     private Table inventory;
     /**
      * Constructor.
      */
-    public InnPopUp(Party party) {
+    public InnPopUp(Party party, Scene townScene) {
         super(title, skin, windowStyle);
         this.party = party;
         inn = this;
+        this.stage = townScene.getStage();
+        System.out.println(stage);
         createMenu();
         if (Main.debug) debug();
     }
-
-    DragAndDrop dragAndDrop;
 
     /**
      * createMenu generates different visible UI actors.
      */
     private void createMenu() {
         itemSize = Main.WORLDPIXELWIDTH/6f;
-
-        dragAndDrop = new DragAndDrop();
 
         inventory = new Table();
         generateInventory();
@@ -191,31 +191,16 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void generateItemButton(int i) {
-        Item item = party.getInventory().get(i);
+        final Item item = party.getInventory().get(i);
         Group itemButton = item.getIcon(itemSize);
-        inventory.add(itemButton);
-        addDragAndDropSource(itemButton, i);
-    }
-
-    private void addDragAndDropSource(Group item, final int index) {
-        dragAndDrop.addSource(new Source(item) {
+        itemButton.addListener(new ClickListener(){
             @Override
-            public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-                Group draggable = party.getInventory().get(index).getIcon();
-                Payload payload = new Payload();
-                payload.setObject("wut am I?");
-
-                Label painload = new Label ("payload", skin);
-
-                payload.setDragActor(draggable);
-                payload.setValidDragActor(painload);
-
-                Label invalidLabel = new Label("invalid", skin);
-                payload.setInvalidDragActor(invalidLabel);
-
-                return payload;
+            public void clicked(InputEvent event, float x, float y) {
+                ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party, inn);
+                itemPopUp.show(stage);
             }
         });
+        inventory.add(itemButton);
     }
 
     private void closeMe() {

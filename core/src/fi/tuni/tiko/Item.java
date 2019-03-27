@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -33,6 +34,8 @@ public class Item {
 
     private Image frame;
 
+    private Texture picture;
+
     /**
      * TODO: Create the item constructor
      * Constructor should read the information to the name and description from localization files
@@ -49,7 +52,8 @@ public class Item {
     }
 
     private void generateIcon(String id) {
-        image = new Image (Utils.loadTexture("items/item"+ id + ".png"));
+        picture = Utils.loadTexture("items/item"+ id + ".png");
+        image = new Image(picture);
         String frameName = "items/border_";
         switch(rarity) {
             case COMMON: frameName += "white"; break;
@@ -108,5 +112,9 @@ public class Item {
 
     public int getPrice() {
         return price;
+    }
+
+    public Texture getPicture() {
+        return picture;
     }
 }

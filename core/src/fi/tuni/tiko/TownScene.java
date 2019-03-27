@@ -163,7 +163,7 @@ public class TownScene extends Scene {
         inn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InnPopUp innPopUp = new InnPopUp(party);
+                InnPopUp innPopUp = new InnPopUp(party, townScene);
                 innPopUp.show(getStage());
             }
         });
