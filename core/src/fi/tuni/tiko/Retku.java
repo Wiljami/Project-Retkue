@@ -158,13 +158,11 @@ public class Retku {
     }
 
     public void equipItem(Item item) {
-        if (slotA == null) {
-            slotA = item;
-        } else {
+        if (slotA != null) {
             party.addItem(slotA);
-            slotA = item;
-            party.removeItem(slotA);
         }
+        slotA = item;
+        party.removeItem(slotA);
     }
 
     public Item getSlotA() {

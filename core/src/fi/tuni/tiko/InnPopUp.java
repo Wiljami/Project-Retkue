@@ -1,18 +1,13 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.*;
 
 
 /**
@@ -84,7 +79,14 @@ public class InnPopUp extends RetkueDialog {
 
     private Group[][] charSlots;
 
+    Table charImages;
+
+    Table retkuAItems;
+    Table retkuBItems;
+    Table retkuCItems;
+
     private void generateCharSheets() {
+        charImages = new Table();
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
@@ -102,20 +104,22 @@ public class InnPopUp extends RetkueDialog {
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
 
-        Table charImages = new Table();
+        retkuAItems = generateCharItems(party.findRetku(0), 0);
+        retkuBItems = generateCharItems(party.findRetku(1), 1);
+        retkuCItems = generateCharItems(party.findRetku(2), 2);
 
         charImages.add(retkuA).prefHeight(charSize).prefWidth(charSize);
-        charImages.add(generateCharItems(party.findRetku(0), 0)).center();
+        charImages.add(retkuAItems).center();
         charImages.row();
         charImages.add(bar0);
         charImages.row();
         charImages.add(retku1).prefHeight(charSize).prefWidth(charSize);
-        charImages.add(generateCharItems(party.findRetku(1), 1)).center();
+        charImages.add(retkuBItems).center();
         charImages.row();
         charImages.add(bar1);
         charImages.row();
         charImages.add(retkuC).prefHeight(charSize).prefWidth(charSize/5f*4f);
-        charImages.add(generateCharItems(party.findRetku(2), 2)).center();
+        charImages.add(retkuCItems).center();
         charImages.row();
         charImages.add(bar2);
 
@@ -136,8 +140,8 @@ public class InnPopUp extends RetkueDialog {
         charSlots[i][0] = slotA;
 
         Group slotB;
-        if (retku.getSlotA() != null) {
-            slotB = retku.getSlotA().getIcon(itemSize);
+        if (retku.getSlotB() != null) {
+            slotB = retku.getSlotB().getIcon(itemSize);
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotB = emptySlot("armor");
@@ -146,8 +150,8 @@ public class InnPopUp extends RetkueDialog {
         charSlots[i][1] = slotB;
 
         Group slotC;
-        if (retku.getSlotA() != null) {
-            slotC = retku.getSlotA().getIcon(itemSize);
+        if (retku.getSlotC() != null) {
+            slotC = retku.getSlotC().getIcon(itemSize);
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotC = emptySlot("trinket");
@@ -185,9 +189,6 @@ public class InnPopUp extends RetkueDialog {
         }
     }
 
-    public void reloadInventory() {
-        generateInventory();
-    }
 
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
@@ -203,6 +204,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     public void resetMe() {
+        generateInventory();
     }
 
     private void closeMe() {

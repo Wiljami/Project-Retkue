@@ -107,7 +107,7 @@ public class ItemPopUp extends RetkueDialog {
     private void sellItem(Item item) {
         System.out.println("sold");
         party.sellItem(item);
-        inn.reloadInventory();
+        inn.resetMe();
         closeMe();
     }
 
