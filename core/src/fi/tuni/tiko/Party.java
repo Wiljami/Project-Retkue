@@ -129,6 +129,7 @@ public class Party {
     }
 
     public void addItem(Item item) {
+
         inventory.add(item);
     }
 

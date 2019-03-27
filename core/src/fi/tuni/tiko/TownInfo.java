@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import java.util.ArrayList;
+
 import static fi.tuni.tiko.Item.Slot.*;
 import static fi.tuni.tiko.Item.Rarity.*;
 
@@ -7,7 +9,7 @@ import static fi.tuni.tiko.Item.Rarity.*;
 
 public class TownInfo {
     private Quest[] availableQuests;
-    private Item[] availableItems;
+    private ArrayList<Item> availableItems;
 
     private int chosenQuest = -1;
     public TownInfo() {
@@ -15,14 +17,14 @@ public class TownInfo {
         availableQuests[0] = new Quest(1, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
         availableQuests[1] = new Quest(2, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
         availableQuests[2] = new Quest(3, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
-        availableItems = new Item[10];
+        availableItems = new ArrayList<Item>();
         generateItems();
     }
 
     private void generateItems() {
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < 8; x++) {
             Item item = new Item(x, 1, 2, TRINKET, UNCOMMON, x*100);
-            availableItems[x] = item;
+            availableItems.add(item);
         }
     }
 
@@ -40,7 +42,7 @@ public class TownInfo {
     }
 
     public Item findItem(int n) {
-        return availableItems[n];
+        return availableItems.get(n);
     }
 
     public int getChosenQuest() {
@@ -49,5 +51,13 @@ public class TownInfo {
 
     public void clearChosenQuest() {
         chosenQuest = -1;
+    }
+
+    public void removeItem(Item item) {
+        availableItems.remove(item);
+    }
+
+    public int noItemsLeft() {
+        return availableItems.size();
     }
 }

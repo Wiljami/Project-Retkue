@@ -52,7 +52,6 @@ public class Retku {
         setMaxHealth(health);
         setCurrHealth(health);
         setName(name);
-        System.out.println(portraitFile);
         initPortrait(portraitFile);
     }
 

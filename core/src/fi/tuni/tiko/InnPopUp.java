@@ -121,7 +121,7 @@ public class InnPopUp extends RetkueDialog {
 
         Group slotA;
         if (retku.getSlotA() != null) {
-            slotA = retku.getSlotA().getIcon();
+            slotA = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotA = emptySlot("weapon");
@@ -131,7 +131,7 @@ public class InnPopUp extends RetkueDialog {
 
         Group slotB;
         if (retku.getSlotA() != null) {
-            slotB = retku.getSlotA().getIcon();
+            slotB = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotB = emptySlot("armor");
@@ -142,7 +142,7 @@ public class InnPopUp extends RetkueDialog {
 
         Group slotC;
         if (retku.getSlotA() != null) {
-            slotC = retku.getSlotA().getIcon();
+            slotC = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotC = emptySlot("trinket");
@@ -184,63 +184,10 @@ public class InnPopUp extends RetkueDialog {
         generateInventory();
     }
 
-    private boolean isDragging = false;
-    private float dragX;
-    private float dragY;
-
     private void generateItemButton(int i) {
-        final Item item = party.getInventory().get(i);
-        final Group itemButton = item.getIcon();
-        itemButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (!isDragging) {
-                    ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party, inn);
-                    itemPopUp.show(getStage());
-                }
-            }
-
-            @Override
-            public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                isDragging = true;
-                super.touchDragged(event, x, y, pointer);
-                itemButton.toFront();
-                float xOrigin = itemButton.getX();
-                float yOrigin = itemButton.getY();
-                dragX = xOrigin + x - itemSize/2;
-                dragY = yOrigin + y - itemSize/2;
-                itemButton.setPosition(dragX, dragY);
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                equip(item);
-                isDragging = false;
-                reloadInventory();
-            }
-        });
-
-        float scale = itemSize / itemButton.getWidth();
-        float itemHeight = itemButton.getHeight() * scale;
-        inventory.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(1);
-    }
-
-    private void equip(Item item) {
-        System.out.println("x:" + dragX +" y: " + dragY);
-
-        for (int i = 0; i < 3; i++) {
-            for (Group target: charSlots[i]) {
-                System.out.println(target.getY());
-                if (dragX > target.getX() && dragX < target.getX() + itemSize) {
-                    if (dragY > target.getY() && dragY < target.getY() + itemSize) {
-                        System.out.println("Hello");
-                        System.out.println(target.getX() + " < " + dragX + " x < " + (target.getX()+itemSize));
-                        System.out.println(target.getY() + " < " + dragX + " y < " + (target.getY()+itemSize));
-                    }
-                }
-            }
-        }
+        Item item = party.getInventory().get(i);
+        Group itemButton = item.getIcon(itemSize);
+        inventory.add(itemButton);
     }
 
     private void closeMe() {

@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * Item class will hold the information specific to each item
  *
  * @author Viljami Pietarila
- * @version 2019.0221
+ * @version 2019.0327
  */
 public class Item {
     private String name;
@@ -29,6 +29,10 @@ public class Item {
         COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
     }
 
+    private Image image;
+
+    private Image frame;
+
     /**
      * TODO: Create the item constructor
      * Constructor should read the information to the name and description from localization files
@@ -45,7 +49,7 @@ public class Item {
     }
 
     private void generateIcon(String id) {
-        Image image = new Image (Utils.loadTexture("items/item"+ id + ".png"));
+        image = new Image (Utils.loadTexture("items/item"+ id + ".png"));
         String frameName = "items/border_";
         switch(rarity) {
             case COMMON: frameName += "white"; break;
@@ -55,7 +59,7 @@ public class Item {
             case LEGENDARY: frameName += "yellow"; break;
         }
         frameName += ".png";
-        Image frame = new Image (Utils.loadTexture(frameName));
+        frame = new Image (Utils.loadTexture(frameName));
         icon = new Group();
         image.setSize(72f, 72f);
         icon.addActor(image);
@@ -80,6 +84,13 @@ public class Item {
     }
 
     public Group getIcon() {
+        return icon;
+    }
+
+    public Group getIcon(float size) {
+        image.setSize(size, size);
+        frame.setSize(size, size);
+        icon.setSize(size, size);
         return icon;
     }
 
