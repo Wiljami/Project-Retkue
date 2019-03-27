@@ -103,6 +103,7 @@ import java.util.Map;
 
     /**
      * Checks to see if music is muted
+     * //TODO: Add to load&save
      */
     public static boolean isMuted = false;
 
