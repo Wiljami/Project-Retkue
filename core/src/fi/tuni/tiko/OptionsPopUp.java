@@ -1,10 +1,14 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -26,6 +30,11 @@ public class OptionsPopUp extends RetkueDialog {
     private static String title = readLine("options");
 
     /**
+     * Checkbox for mute
+     */
+    CheckBox muteBox;
+
+    /**
      * Constructor for OptionsPopUp
      */
     public OptionsPopUp() {
@@ -43,7 +52,7 @@ public class OptionsPopUp extends RetkueDialog {
         this.getTitleLabel().setText(readLine("options"));
         String text = readLine("options_desc");
         RetkueLabel desc = new RetkueLabel(text);
-        RetkueLabel volume = new RetkueLabel("Volume");
+
 
         Button optionsButton = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
         optionsButton.addListener(new ClickListener() {
@@ -53,14 +62,20 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
-        Slider volumeSlider = new Slider(0f, 100f, 1, false, this.getSkin());
+        muteBox = new CheckBox("Mute Music", getSkin());
 
         getContentTable().add(desc).prefWidth(popUpWidth);
         getContentTable().row();
         getContentTable().row();
-        getContentTable().add(volume).prefWidth(popUpWidth);
         getContentTable().row();
-        getContentTable().add(volumeSlider);
+        getContentTable().add(muteBox);
+
+        muteBox.addListener(new ChangeListener() {
+            @Override
+            public void changed (ChangeEvent event, Actor actor) {
+                Gdx.graphics.setContinuousRendering(muteBox.isChecked());
+            }
+        });
 
         button(readLine("return"), false);
     }

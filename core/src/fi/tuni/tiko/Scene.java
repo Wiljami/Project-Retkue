@@ -3,6 +3,7 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -94,6 +95,25 @@ import java.util.Map;
      * background Texture of the scene
      */
     private Texture background;
+
+    /**
+     * Music instances for different scenes
+     */
+    public Music townTheme;
+    public Music mainTheme;
+    public Music forestTheme;
+    public Music battleTheme1;
+    public Music battleTheme2;
+
+    /**
+     * Master volume for all music
+     */
+    public float masterVol = 1f;
+
+    /**
+     * Checks to see if music is muted
+     */
+    public boolean isMuted = false;
 
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources

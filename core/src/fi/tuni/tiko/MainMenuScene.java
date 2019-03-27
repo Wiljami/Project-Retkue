@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -29,6 +31,9 @@ public class MainMenuScene extends Scene {
      * createMenu creates the UI of the mainMenu.
      */
     private void createMenu() {
+        mainTheme = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
+        mainTheme.play();
+
         Button start = new TextButton(readLine("start"), getSkin());
         start.addListener(new ClickListener() {
             @Override
@@ -99,6 +104,16 @@ public class MainMenuScene extends Scene {
 
     @Override
     public void updateValues() {
+    }
+
+    @Override
+    public void show() {
+        mainTheme.play();
+    }
+
+    @Override
+    public void hide() {
+        mainTheme.stop();
     }
 
     /**

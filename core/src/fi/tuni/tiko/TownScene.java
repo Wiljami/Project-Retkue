@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -19,11 +21,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * TownScene constructor.
  */
 public class TownScene extends Scene {
+
     public TownScene(Main game) {
         super(game);
         createMenu();
         this.townInfo = Main.getTownInfo();
         setupBackground("village.png");
+        townTheme = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
     }
 
     /**
@@ -178,6 +182,16 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
+    }
+
+    @Override
+    public void show() {
+        townTheme.play();
+    }
+
+    @Override
+    public void hide() {
+        townTheme.stop();
     }
 
     @Override
