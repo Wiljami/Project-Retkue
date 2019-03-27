@@ -20,6 +20,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class OptionsPopUp extends RetkueDialog {
     /**
+     * Receives scene in which it is opened
+     */
+    Scene currentScene;
+
+    /**
      * WindowStyle for the options window
      */
     private static String windowStyle = "dialog";
@@ -37,10 +42,11 @@ public class OptionsPopUp extends RetkueDialog {
     /**
      * Constructor for OptionsPopUp
      */
-    public OptionsPopUp() {
+    public OptionsPopUp(Scene currentScene) {
         super(title, skin, windowStyle);
         createMenu();
         if (Main.debug) debug();
+        this.currentScene = currentScene;
     }
 
     /**
@@ -63,6 +69,9 @@ public class OptionsPopUp extends RetkueDialog {
         });
 
         muteBox = new CheckBox("Mute Music", getSkin());
+        if(currentScene.isMuted) {
+            muteBox.setChecked(true);
+        }
 
         getContentTable().add(desc).prefWidth(popUpWidth);
         getContentTable().row();
@@ -74,6 +83,12 @@ public class OptionsPopUp extends RetkueDialog {
             @Override
             public void changed (ChangeEvent event, Actor actor) {
                 Gdx.graphics.setContinuousRendering(muteBox.isChecked());
+                currentScene.setMute(muteBox.isChecked());
+                if(muteBox.isChecked()) {
+                    currentScene.backgroundMusic.stop();
+                } else {
+                    currentScene.backgroundMusic.play();
+                }
             }
         });
 

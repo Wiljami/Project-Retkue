@@ -99,21 +99,12 @@ import java.util.Map;
     /**
      * Music instances for different scenes
      */
-    public Music townTheme;
-    public Music mainTheme;
-    public Music forestTheme;
-    public Music battleTheme1;
-    public Music battleTheme2;
-
-    /**
-     * Master volume for all music
-     */
-    public float masterVol = 1f;
+    public Music backgroundMusic;
 
     /**
      * Checks to see if music is muted
      */
-    public boolean isMuted = false;
+    public static boolean isMuted = false;
 
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
@@ -270,6 +261,13 @@ import java.util.Map;
     @Override
     public void show() {
         updateValues();
+        if(getMute()) {
+            backgroundMusic.setVolume(0);
+        } else {
+            backgroundMusic.setVolume(1);
+        }
+        backgroundMusic.setLooping(true);
+        backgroundMusic.play();
     }
 
     /**
@@ -301,7 +299,7 @@ import java.util.Map;
      */
     @Override
     public void hide() {
-
+        backgroundMusic.stop();
     }
 
     /**
@@ -440,6 +438,14 @@ import java.util.Map;
     public static String readLine (String key) {
         String s  = Utils.readBundle(bundle, key);
         return s;
+    }
+
+    public void setMute(boolean mute) {
+        isMuted = mute;
+    }
+
+    public boolean getMute() {
+        return isMuted;
     }
 
     public abstract void updateValues();
