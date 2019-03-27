@@ -1,15 +1,19 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.*;
+
 
 /**
  * InnPopUp contains functionality of the inn within the game.
@@ -46,12 +50,15 @@ public class InnPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
+    DragAndDrop dragAndDrop;
+
     /**
      * createMenu generates different visible UI actors.
      */
     private void createMenu() {
-        //float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         itemSize = Main.WORLDPIXELWIDTH/6f;
+
+        dragAndDrop = new DragAndDrop();
 
         inventory = new Table();
         generateInventory();
@@ -74,10 +81,10 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(back);
     }
 
-    private Image[][] charSlots;
+    private Group[][] charSlots;
 
     private void generateCharSheets() {
-        charSlots = new Image[3][3];
+        charSlots = new Group[3][3];
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
@@ -118,38 +125,47 @@ public class InnPopUp extends RetkueDialog {
     private Table generateCharItems(Retku retku, int i) {
         Table charInventories = new Table();
 
-        Image slotA;
+        Group slotA;
         if (retku.getSlotA() != null) {
-            slotA = new Image(retku.getSlotA().getIcon());
+            slotA = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotA = new Image(Utils.loadTexture("items/empty_weapon.png"));
+            slotA = emptySlot("weapon");
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
         charSlots[i][0] = slotA;
 
-        Image slotB;
+        Group slotB;
         if (retku.getSlotA() != null) {
-            slotB = new Image(retku.getSlotA().getIcon());
+            slotB = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotB = new Image(Utils.loadTexture("items/empty_armor.png"));
+            slotB = emptySlot("armor");
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
 
         }
         charSlots[i][1] = slotB;
 
-        Image slotC;
+        Group slotC;
         if (retku.getSlotA() != null) {
-            slotC = new Image(retku.getSlotA().getIcon());
+            slotC = retku.getSlotA().getIcon(itemSize);
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
-            slotC = new Image(Utils.loadTexture("items/empty_trinket.png"));
+            slotC = emptySlot("trinket");
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         }
         charSlots[i][2] = slotC;
 
         return charInventories;
+    }
+
+    private Group emptySlot (String slot) {
+        String file = "items/empty_" + slot + ".png";
+        Group button = new Group();
+        Image tempImage = new Image(Utils.loadTexture(file));
+        tempImage.setSize(itemSize, itemSize);
+        button.addActor(tempImage);
+        return button;
     }
 
     private void generateInventory() {
@@ -174,63 +190,32 @@ public class InnPopUp extends RetkueDialog {
         generateInventory();
     }
 
-    private boolean isDragging = false;
-    private float dragX;
-    private float dragY;
-
     private void generateItemButton(int i) {
-        final Item item = party.getInventory().get(i);
-        final Image itemButton = new Image(item.getIcon());
-        itemButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (!isDragging) {
-                    ItemPopUp itemPopUp = new ItemPopUp(item.getName(), item, party, inn);
-                    itemPopUp.show(getStage());
-                }
-            }
-
-            @Override
-            public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                isDragging = true;
-                super.touchDragged(event, x, y, pointer);
-                itemButton.toFront();
-                float xOrigin = itemButton.getX();
-                float yOrigin = itemButton.getY();
-                dragX = xOrigin + x - itemSize/2;
-                dragY = yOrigin + y - itemSize/2;
-                itemButton.setPosition(dragX, dragY);
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                equip(item);
-                isDragging = false;
-                reloadInventory();
-            }
-        });
-
-        float scale = itemSize / itemButton.getWidth();
-        float itemHeight = itemButton.getHeight() * scale;
-        inventory.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(1);
+        Item item = party.getInventory().get(i);
+        Group itemButton = item.getIcon(itemSize);
+        inventory.add(itemButton);
+        addDragAndDropSource(itemButton, i);
     }
 
-    private void equip(Item item) {
-        System.out.println("x:" + dragX +" y: " + dragY);
+    private void addDragAndDropSource(Group item, final int index) {
+        dragAndDrop.addSource(new Source(item) {
+            @Override
+            public Payload dragStart(InputEvent event, float x, float y, int pointer) {
+                Group draggable = party.getInventory().get(index).getIcon();
+                Payload payload = new Payload();
+                payload.setObject("wut am I?");
 
-        for (int i = 0; i < 3; i++) {
-            for (Image target: charSlots[i]) {
-                System.out.println(target.getY());
-                if (dragX > target.getX() && dragX < target.getX() + itemSize) {
-                    if (dragY > target.getY() && dragY < target.getY() + itemSize) {
-                        System.out.println("Hello");
-                        System.out.println(target.getX() + " < " + dragX + " x < " + (target.getX()+itemSize));
-                        System.out.println(target.getY() + " < " + dragX + " y < " + (target.getY()+itemSize));
-                    }
-                }
+                Label painload = new Label ("payload", skin);
+
+                payload.setDragActor(draggable);
+                payload.setValidDragActor(painload);
+
+                Label invalidLabel = new Label("invalid", skin);
+                payload.setInvalidDragActor(invalidLabel);
+
+                return payload;
             }
-        }
+        });
     }
 
     private void closeMe() {

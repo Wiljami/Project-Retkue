@@ -29,7 +29,7 @@ public class ShopPopUp extends RetkueDialog {
 
     private Table shopItems;
 
-    private float itemWidth;
+    private float itemSize;
 
     private TownInfo townInfo;
 
@@ -60,10 +60,11 @@ public class ShopPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*9f/10f;
         float descHeight = Main.WORLDPIXELHEIGHT*2f/5f;
 
-        itemWidth = Main.WORLDPIXELWIDTH/5f;
+        itemSize = Main.WORLDPIXELWIDTH/5f;
         String text = readLine("shop_desc");
         desc = new RetkueLabel(text);
 
+        shopItems = new Table();
         generateItemGrid();
 
         getContentTable().add(desc).prefWidth(popUpWidth).prefHeight(descHeight).pad(5);
@@ -76,12 +77,18 @@ public class ShopPopUp extends RetkueDialog {
             public void clicked(InputEvent event, float x, float y) {
                 if (displayedItem.getPrice() > party.getGold()) {
                     System.out.println("You're too poor");
+                    desc.setText(readLine("too_poor"));
                 } else if (!party.isThereInventorySpace()) {
                     System.out.println("Your party inventory is full");
+                    desc.setText(readLine("inventory_full"));
                 } else {
                     System.out.println("Here you buy it");
+                    desc.setText(readLine("purchased") + " " + displayedItem.getName());
+                    buy.setVisible(false);
                     party.spendGold(displayedItem.getPrice());
                     party.addItem(displayedItem);
+                    townInfo.removeItem(displayedItem);
+                    generateItemGrid();
                 }
             }
         });
@@ -113,7 +120,7 @@ public class ShopPopUp extends RetkueDialog {
      * generateItemGrid creates a 2d table to be inserted in the UI. It adds 5 x 2 buttons to it.
      */
     private void generateItemGrid() {
-        shopItems = new Table();
+        shopItems.reset();
         for (int i = 0; i < 4; i++) {
             generateItemButton(i);
         }
@@ -130,28 +137,31 @@ public class ShopPopUp extends RetkueDialog {
      * @param i id of the item in the items array within townInfo
      */
     private void generateItemButton(int i) {
-        final Item item = townInfo.findItem(i);
-        Image greenBorder = new Image(Utils.loadTexture("items/border_green.png"));
-        greenBorder.setSize(itemWidth, itemWidth);
-        Image itemGraphic = new Image(item.getIcon());
-        itemGraphic.setSize(itemWidth, itemWidth);
-        Group itemButton = new Group();
-        itemButton.addActor(itemGraphic);
-        itemButton.addActor(greenBorder);
-        final String description = item.getDescription();
-        itemButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                String itemText = description + "\nATT: " + item.getAttack();
-                itemText += "\nDEF: " +item.getDefense();
-                itemText += "\n\n" + readLine("price") + ": " + item.getPrice();
-                desc.setText(itemText);
-                displayedItem = item;
-                buy.setVisible(true);
-            }
-        });
-        float scale = itemWidth / itemGraphic.getWidth();
-        float itemHeight = itemGraphic.getHeight() * scale;
-        shopItems.add(itemButton).prefWidth(itemWidth).prefHeight(itemHeight).pad(3);
+        if (i >= townInfo.noItemsLeft()) {
+            generateEmptyButton();
+        } else {
+            final Item item = townInfo.findItem(i);
+            Group itemButton = item.getIcon();
+            final String description = item.getDescription();
+            itemButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    String itemText = description + "\nATT: " + item.getAttack();
+                    itemText += "\nDEF: " + item.getDefense();
+                    itemText += "\n\n" + readLine("price") + ": " + item.getPrice();
+                    desc.setText(itemText);
+                    displayedItem = item;
+                    buy.setVisible(true);
+                }
+            });
+            float itemHeight = itemSize;
+            itemButton.setSize(itemSize, itemSize);
+            shopItems.add(itemButton).prefWidth(itemSize).prefHeight(itemHeight).pad(3);
+        }
+    }
+
+    private void generateEmptyButton() {
+        Image emptySlot = new Image(Utils.loadTexture("items/empty_slot.png"));
+        shopItems.add(emptySlot).prefWidth(itemSize).prefHeight(itemSize).pad(3);
     }
 }

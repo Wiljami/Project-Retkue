@@ -42,7 +42,6 @@ public class SaveGame {
         if (title.equals("null")) {
             return false;
         }
-        System.out.println(title);
 
         loadConfig(save);
         loadParty(save, party);
@@ -91,10 +90,6 @@ public class SaveGame {
 
         Boolean audio = save.getBoolean("audio", false);
         Config.setAudio(audio);
-
-        System.out.println(language);
-        System.out.println(stepStart);
-        System.out.println(audio);
     }
 
     /**
@@ -114,17 +109,12 @@ public class SaveGame {
             String imageFile = save.getString("retku_" + x + "_image", "");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
-            System.out.println(name + "::" + currHealth + "/" + maxHealth);
-            System.out.println(imageFile);
             retku.setName(name);
             retku.initPortrait(imageFile);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
             party.addRetku(retku, x);
         }
-
-        System.out.println(gold);
-        System.out.println(steps);
     }
 
     /**
