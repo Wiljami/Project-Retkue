@@ -20,15 +20,19 @@ public class Main extends Game {
      * SpriteBatch of the game.
      */
 	SpriteBatch batch;
+
     /**
      * mainMenuScene is the main menu screen of the game. It is an extension of Scene.
      */
 	MainMenuScene mainMenuScene;
-    /**
+
+	/**
      * townScene is the main menu screen of the game. It is an extension of Scene.
      */
+
 	TownScene townScene;
-    /**
+
+	/**
      * forestScene is the main menu screen of the game. It is an extension of Scene.
      */
 	ForestScene forestScene;
@@ -73,9 +77,19 @@ public class Main extends Game {
      */
     private Scene currentScene;
 
+    /**
+     * Number of steps walked.
+     */
     private static float stepCount;
+
+    /**
+     * Boolean for the stepsimulator. Used for testing on desktop.
+     */
     private static boolean stepSim = false;
 
+    /**
+     * Save filename
+     */
     private static String saveFileName = "RetkueSave";
 
     /**
@@ -179,6 +193,7 @@ public class Main extends Game {
      * This simulates the already existing steps within the STEP_COUNTER sensor
      */
     float testSteps = 100f;
+
     /**
      * stepSimulator gives us steps. For dev purposes. Adds a single step every second.
      */
@@ -209,10 +224,18 @@ public class Main extends Game {
         return currentScene;
     }
 
+    /**
+     * getSaveFileName
+     * @return saveFileName
+     */
     public static String getSaveFileName() {
         return saveFileName;
     }
 
+    /**
+     * getTownInfo
+     * @return townInfo
+     */
     public static TownInfo getTownInfo() {
         return townInfo;
     }
