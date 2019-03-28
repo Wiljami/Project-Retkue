@@ -105,7 +105,7 @@ import java.util.Map;
      * Checks to see if music is muted
      * //TODO: Add to load&save
      */
-    public static boolean isMuted = false;
+    public static boolean isMuted = true;
 
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
