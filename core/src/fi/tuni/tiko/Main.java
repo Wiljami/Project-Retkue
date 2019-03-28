@@ -22,22 +22,6 @@ public class Main extends Game {
 	SpriteBatch batch;
 
     /**
-     * mainMenuScene is the main menu screen of the game. It is an extension of Scene.
-     */
-	MainMenuScene mainMenuScene;
-
-	/**
-     * townScene is the main menu screen of the game. It is an extension of Scene.
-     */
-
-	TownScene townScene;
-
-	/**
-     * forestScene is the main menu screen of the game. It is an extension of Scene.
-     */
-	ForestScene forestScene;
-
-    /**
      * needed and we need the pixels for rendering text.
      */
 	public final static int WORLDPIXELHEIGHT = 640;
@@ -47,7 +31,7 @@ public class Main extends Game {
      * GameView is enum for identifying between different scenes in the game.
      */
     public enum GameView {
-        mainMenu, gameScreen, forest
+        mainMenu, town, forest
     }
 
     private Music backgroundMusic;
@@ -101,7 +85,6 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
         initiateGame();
-        //backgroundMusic.play();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
 	}
@@ -116,10 +99,8 @@ public class Main extends Game {
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         if (!SaveGame.load(saveFileName, party)) party.newGame();
-        mainMenuScene = new MainMenuScene(this);
+        MainMenuScene mainMenuScene = new MainMenuScene(this);
         townInfo = new TownInfo();
-        townScene = new TownScene(this);
-        forestScene = new ForestScene(this);
         currentScene = mainMenuScene;
     }
 
@@ -129,9 +110,9 @@ public class Main extends Game {
      */
 	public void openScene(GameView gameView) {
         switch(gameView) {
-            case mainMenu: currentScene = mainMenuScene; break;
-            case gameScreen: currentScene = townScene; break;
-            case forest: currentScene = forestScene; break;
+            case mainMenu: MainMenuScene mainMenuScene = new MainMenuScene(this); currentScene = mainMenuScene; break;
+            case town: TownScene townScene = new TownScene(this); currentScene = townScene; break;
+            case forest: ForestScene forestScene = new ForestScene(this); currentScene = forestScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
         Gdx.input.setInputProcessor(currentScene.getStage());
@@ -144,9 +125,6 @@ public class Main extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
-        mainMenuScene.dispose();
-        townScene.dispose();
-        forestScene.dispose();
 	}
 
     /**
@@ -156,14 +134,6 @@ public class Main extends Game {
     public SpriteBatch getBatch() {
 		return batch;
 	}
-
-    /**
-     * getter for forestScene
-     * @return forestScene
-     */
-    public ForestScene getForestScene() {
-        return forestScene;
-    }
 
     /**
      * getter for party

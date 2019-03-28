@@ -46,7 +46,6 @@ public class QuestPopUp extends RetkueDialog {
      */
     private static TavernPopUp tavernPopUp;
 
-
     private String accept;
 
     /**
@@ -114,6 +113,7 @@ public class QuestPopUp extends RetkueDialog {
      * closeMe method closes the tavernPopUp and the questPopUp
      */
     public void closeMe() {
+        tavernPopUp.getScene().getGame().openScene(Main.GameView.town);
         tavernPopUp.remove();
         remove();
     }

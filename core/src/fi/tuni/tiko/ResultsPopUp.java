@@ -49,7 +49,7 @@ public class ResultsPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 remove();
-                game.openScene(Main.GameView.gameScreen);
+                game.openScene(Main.GameView.town);
             }
         });
         getContentTable().row();

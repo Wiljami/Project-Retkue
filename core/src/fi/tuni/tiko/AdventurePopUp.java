@@ -55,7 +55,7 @@ public class AdventurePopUp extends RetkueDialog {
             game.getParty().setCurrentQuest(quest);
             game.getParty().beginQuest();
             game.getTownInfo().clearChosenQuest();
-            game.getForestScene().setQuestOver(false);
+//            game.getForestScene().setQuestOver(false);
             game.openScene(Main.GameView.forest);
         }
     }
