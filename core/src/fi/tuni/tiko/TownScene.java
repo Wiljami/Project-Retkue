@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class TownScene extends Scene {
 
-    Scene townScene;
+    TownScene townScene;
 
     public TownScene(Main game) {
         super(game);
@@ -139,8 +139,7 @@ public class TownScene extends Scene {
         inn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InnPopUp innPopUp = new InnPopUp(party, townScene);
-                innPopUp.show(getStage());
+                openInn();
             }
         });
 
@@ -161,6 +160,11 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
+    }
+
+    public void openInn() {
+        InnPopUp innPopUp = new InnPopUp(party, townScene);
+        innPopUp.show(getStage());
     }
 
     private void updateQuestButton() {
