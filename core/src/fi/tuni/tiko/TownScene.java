@@ -164,7 +164,8 @@ public class TownScene extends Scene {
 
     private void updateQuestButton() {
         if (townInfo.findChosenQuest() != null) {
-            adventure.setText(readLine("adventure"));
+            String questName = townInfo.findChosenQuest().getTitle();
+            adventure.setText(readLine("adventure") + ":\n" + questName);
         } else {
             adventure.setText(readLine("no_quest"));
         }
