@@ -113,7 +113,7 @@ public class ItemPopUp extends RetkueDialog {
             }
         });
         getContentTable().add(back).right();
-        hideButtons();
+        updateButtons();
     }
 
     private void equipItem(int retkuID) {
@@ -150,6 +150,8 @@ public class ItemPopUp extends RetkueDialog {
 
     private void moveToInventory() {
         party.addItem(item);
+        inn.resetMe();
+        closeMe();
     }
 
     private void sellItem(Item item) {
@@ -159,13 +161,18 @@ public class ItemPopUp extends RetkueDialog {
         closeMe();
     }
 
-    private void hideButtons() {
+    private void updateButtons() {
         switch(item.getLocation()) {
             case RETKUA: equipA.setVisible(false); break;
             case RETKUB: equipB.setVisible(false); break;
             case RETKUC: equipC.setVisible(false); break;
             case PARTY: returnToInventory.setVisible(false); break;
             default: break;
+        }
+
+        if (party.getInventory().size() == 10) {
+            returnToInventory.setDisabled(true);
+            returnToInventory.setText(readLine("invFull"));
         }
     }
 

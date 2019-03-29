@@ -129,8 +129,8 @@ public class Party {
     }
 
     public void addItem(Item item) {
-
         inventory.add(item);
+        item.setLocation(Item.Location.PARTY);
     }
 
     /**

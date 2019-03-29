@@ -212,7 +212,6 @@ public class Retku {
 
     public void removeItem(Item item) {
         Item.Slot slot = item.getSlot();
-        System.out.println(slot);
         switch (slot) {
             case TOOL: setSlotA(null);
             case GARB: setSlotB(null);
