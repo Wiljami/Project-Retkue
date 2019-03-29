@@ -22,12 +22,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class TownScene extends Scene {
 
-    Scene townScene;
+    TownScene townScene;
 
     public TownScene(Main game) {
         super(game);
-        createMenu();
         this.townInfo = Main.getTownInfo();
+        createMenu();
         setupBackground("village.png");
         townScene = this;
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
@@ -45,6 +45,8 @@ public class TownScene extends Scene {
      */
     private GameHeader header;
 
+    private TextButton adventure;
+
     /**
      * createMenu adds various UI actors to the table and to the stage
      */
@@ -57,40 +59,17 @@ public class TownScene extends Scene {
             }
         });
 
-/*        Button inn = new TextButton( readLine("inn"), getSkin());
-        inn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                InnPopUp innPopUp = new InnPopUp();
-                innPopUp.show(getStage());
-            }
-        });
-
-        Button shop = new TextButton( readLine("shop"), getSkin());
-        shop.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ShopPopUp shopPopUp = new ShopPopUp();
-                shopPopUp.show(getStage());
-            }
-        });
-
-        Button tavern = new TextButton( readLine("tavern"), getSkin());
-        tavern.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp();
-                tavernPopUp.show(getStage());
-            }
-        });*/
-
-        Button adventure = new TextButton( readLine("adventure"), getSkin());
+        adventure = new TextButton( "", getSkin());
+        updateQuestButton();
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (townInfo.findChosenQuest() != null) {
                     AdventurePopUp adventurePopUp = new AdventurePopUp(townInfo.findChosenQuest());
                     adventurePopUp.show(getStage());
+                } else {
+                    //TODO: create a tooltip popup?
+                    System.out.println("Clicked a non active quest");
                 }
             }
         });
@@ -121,9 +100,6 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[1]);
         table.row();
-        //table.add(inn).padRight(10).padLeft(10).prefHeight(heightArray[2]);
-        //table.add(shop).padRight(10).padLeft(10).prefHeight(heightArray[2]);
-        //table.add(tavern).padRight(10).padLeft(10).prefHeight(heightArray[2]);
         table.add().prefHeight(heightArray[2]);
         table.row();
         table.add().prefHeight(heightArray[3]);
@@ -163,8 +139,7 @@ public class TownScene extends Scene {
         inn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InnPopUp innPopUp = new InnPopUp(party, townScene);
-                innPopUp.show(getStage());
+                openInn();
             }
         });
 
@@ -177,7 +152,7 @@ public class TownScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp();
+                TavernPopUp tavernPopUp = new TavernPopUp(townScene);
                 tavernPopUp.show(getStage());
             }
         });
@@ -185,6 +160,24 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
+    }
+
+    public void openInn() {
+        InnPopUp innPopUp = new InnPopUp(party, townScene);
+        innPopUp.show(getStage());
+    }
+
+    private void updateQuestButton() {
+        if (townInfo.findChosenQuest() != null) {
+            String questName = townInfo.findChosenQuest().getTitle();
+            adventure.setText(readLine("adventure") + ":\n" + questName);
+        } else {
+            adventure.setText(readLine("no_quest"));
+        }
+    }
+
+    public void updateButtons() {
+        updateQuestButton();
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
@@ -33,10 +34,12 @@ public class TavernPopUp extends RetkueDialog {
 
     private TownInfo townInfo;
 
+    private Scene scene;
+
     /**
      * TavernPopUp constructor
      */
-    public TavernPopUp() {
+    public TavernPopUp(Scene scene) {
         super(title, skin, windowStyle);
         tavernPopUp = this;
         this.townInfo = Main.getTownInfo();
@@ -54,8 +57,9 @@ public class TavernPopUp extends RetkueDialog {
         RetkueLabel desc = new RetkueLabel(text);
 
         Quest quest = townInfo.findQuest(0);
-        Button quest1 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
-        quest1.addListener(new ClickListener() {
+
+        TextButton label0 = new TextButton(quest.getTitle(), skin);
+        label0.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 0);
@@ -63,11 +67,9 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label0 = new Label(quest.getTitle(), skin);
-
         quest = townInfo.findQuest(1);
-        Button quest2 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
-        quest2.addListener(new ClickListener() {
+        TextButton label1 = new TextButton(quest.getTitle(), skin);
+        label1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 1);
@@ -75,11 +77,9 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label1 = new Label(quest.getTitle(), skin);
-
         quest = townInfo.findQuest(2);
-        Button quest3 = new ImageButton(Utils.loadButtonImage("quest icon", 50, 50));
-        quest3.addListener(new ClickListener() {
+        TextButton label2 = new TextButton(quest.getTitle(), skin);
+        label2 .addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 2);
@@ -87,26 +87,25 @@ public class TavernPopUp extends RetkueDialog {
             }
         });
 
-        Label label2 = new Label(quest.getTitle(), skin);
-
-        getContentTable().add(desc).colspan(2).prefWidth(popUpWidth);
+        getContentTable().add(desc).prefWidth(popUpWidth);
 
         getContentTable().row();
-        getContentTable().add(quest1).pad(10).left();
-        getContentTable().add(label0).pad(10).left();
+        getContentTable().add(label0).pad(5);
 
         getContentTable().row();
-        getContentTable().add(quest2).pad(10).left();
-        getContentTable().add(label1).pad(10).left();
+        getContentTable().add(label1).pad(5);
 
         getContentTable().row();
-        getContentTable().add(quest3).pad(10).left();
-        getContentTable().add(label2).pad(10).left();
+        getContentTable().add(label2).pad(5).padBottom(20);
 
         button(readLine("return"), false);
     }
 
     public TownInfo getTownInfo() {
         return townInfo;
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 }

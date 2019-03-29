@@ -35,14 +35,17 @@ public class InnPopUp extends RetkueDialog {
 
     private Stage stage;
 
+    private TownScene town;
+
     private Table inventory;
     /**
      * Constructor.
      */
-    public InnPopUp(Party party, Scene townScene) {
+    public InnPopUp(Party party, TownScene townScene) {
         super(title, skin, windowStyle);
         this.party = party;
         inn = this;
+        this.town = townScene;
         this.stage = townScene.getStage();
         createMenu();
         if (Main.debug) debug();
@@ -204,7 +207,8 @@ public class InnPopUp extends RetkueDialog {
     }
 
     public void resetMe() {
-        generateInventory();
+        town.openInn();
+        remove();
     }
 
     private void closeMe() {
