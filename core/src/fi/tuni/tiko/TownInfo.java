@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import static fi.tuni.tiko.Item.Slot.*;
 import static fi.tuni.tiko.Item.Rarity.*;
+import static fi.tuni.tiko.Item.Location.*;
 
 //TODO: make this part of the save or not? Either that or include this stuff to the config or party
 
@@ -23,7 +24,7 @@ public class TownInfo {
 
     private void generateItems() {
         for (int x = 0; x < 8; x++) {
-            Item item = new Item(x, 1, 2, TRINKET, UNCOMMON, x*100);
+            Item item = new Item(x, 1, 2, TRINKET, UNCOMMON, x*100, SHOP);
             availableItems.add(item);
         }
     }

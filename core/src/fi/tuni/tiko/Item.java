@@ -26,6 +26,10 @@ public class Item {
         TOOL, GARB, TRINKET
     }
 
+    public enum Location {
+        RETKUA, RETKUB, RETKUC, PARTY, SHOP, OTHER
+    }
+
     public enum Rarity {
         COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
     }
@@ -36,16 +40,19 @@ public class Item {
 
     private Texture picture;
 
+    private Location location;
+
     /**
      * TODO: Create the item constructor
      * Constructor should read the information to the name and description from localization files
      */
-    public Item(int id, int attack, int defense, Slot slot, Rarity rarity, int price) {
+    public Item(int id, int attack, int defense, Slot slot, Rarity rarity, int price, Location location) {
         this.slot = slot;
         this.attack = attack;
         this.defense = defense;
         this.price = price;
         this.rarity = rarity;
+        this.location = location;
         String bundle_id = Utils.convertToId(id);
         readDescriptions(bundle_id);
         generateIcon(bundle_id);
@@ -116,5 +123,13 @@ public class Item {
 
     public Texture getPicture() {
         return picture;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

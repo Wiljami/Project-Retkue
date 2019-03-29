@@ -1,17 +1,22 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import fi.tuni.tiko.Item.Location;
 
 public class ItemPopUp extends RetkueDialog {
     private static String windowStyle = "dialog";
     private Item item;
     private Party party;
     private InnPopUp inn;
+
+    private TextButton equipA;
+    private TextButton equipB;
+    private TextButton equipC;
+    private TextButton returnToInventory;
 
     public ItemPopUp(String title, Item i, Party party, InnPopUp inn) {
         super(title, skin, windowStyle);
@@ -50,39 +55,43 @@ public class ItemPopUp extends RetkueDialog {
 
         getContentTable().row();
 
-        TextButton equipA = new TextButton (readLine("equipA"), getSkin());
+        equipA = new TextButton (readLine("equipA"), getSkin());
         equipA.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                party.findRetku(0).equipItem(item);
-                inn.resetMe();
-                closeMe();
+                equipItem(0);
             }
         });
 
-        TextButton equipB = new TextButton (readLine("equipB"), getSkin());
+        equipB = new TextButton (readLine("equipB"), getSkin());
         equipB.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                party.findRetku(1).equipItem(item);
-                inn.resetMe();
-                closeMe();
+                equipItem(1);
             }
         });
 
-        TextButton equipC = new TextButton (readLine("equipC"), getSkin());
+        equipC = new TextButton (readLine("equipC"), getSkin());
         equipC.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                party.findRetku(2).equipItem(item);
-                inn.resetMe();
-                closeMe();
+                equipItem(2);
+            }
+        });
+
+        returnToInventory = new TextButton((readLine("returnToInv")), getSkin());
+        returnToInventory.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                moveToInventory();
             }
         });
 
         getContentTable().add(equipA);
         getContentTable().add(equipB);
         getContentTable().add(equipC);
+        getContentTable().row();
+        getContentTable().add(returnToInventory).colspan(3);
         getContentTable().row();
 
         TextButton sell = new TextButton(readLine("sell") + " $" + item.getPrice()/2, getSkin());
@@ -94,6 +103,8 @@ public class ItemPopUp extends RetkueDialog {
         });
         getContentTable().add(sell).left();
 
+        getContentTable().add();
+
         TextButton back = new TextButton(readLine("return"), getSkin());
         back.addListener(new ClickListener() {
             @Override
@@ -102,6 +113,43 @@ public class ItemPopUp extends RetkueDialog {
             }
         });
         getContentTable().add(back).right();
+        hideButtons();
+    }
+
+    private void equipItem(int retkuID) {
+        party.findRetku(retkuID).equipItem(item);
+        Location loc;
+        switch(retkuID) {
+            case 0: loc = Location.RETKUA; break;
+            case 1: loc = Location.RETKUB; break;
+            case 2: loc = Location.RETKUC; break;
+            default: loc = Location.OTHER; break;
+        }
+        int id = findRetkuID(item.getLocation());
+        if (id == -1) {
+            party.removeItem(item);
+        } else {
+            party.findRetku(id).removeItem(item);
+        }
+        System.out.println(id);
+        item.setLocation(loc);
+        inn.resetMe();
+        closeMe();
+    }
+
+    private int findRetkuID(Location location) {
+        int i;
+        switch(location) {
+            case RETKUA: i = 0; break;
+            case RETKUB: i = 1; break;
+            case RETKUC: i = 2; break;
+            default: i = -1; break;
+        }
+        return i;
+    }
+
+    private void moveToInventory() {
+        party.addItem(item);
     }
 
     private void sellItem(Item item) {
@@ -109,6 +157,16 @@ public class ItemPopUp extends RetkueDialog {
         party.sellItem(item);
         inn.resetMe();
         closeMe();
+    }
+
+    private void hideButtons() {
+        switch(item.getLocation()) {
+            case RETKUA: equipA.setVisible(false); break;
+            case RETKUB: equipB.setVisible(false); break;
+            case RETKUC: equipC.setVisible(false); break;
+            case PARTY: returnToInventory.setVisible(false); break;
+            default: break;
+        }
     }
 
     private void closeMe() {

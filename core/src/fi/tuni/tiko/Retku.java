@@ -158,11 +158,32 @@ public class Retku {
     }
 
     public void equipItem(Item item) {
+        switch(item.getSlot()) {
+            case TOOL: equipTool(item); break;
+            case GARB: equipGarb(item); break;
+            case TRINKET: equipTrinket(item); break;
+        }
+    }
+
+    private void equipTool(Item item) {
         if (slotA != null) {
             party.addItem(slotA);
         }
         slotA = item;
-        party.removeItem(slotA);
+    }
+
+    private void equipGarb(Item item) {
+        if (slotB != null) {
+            party.addItem(slotB);
+        }
+        slotB = item;
+    }
+
+    private void equipTrinket(Item item) {
+        if (slotC != null) {
+            party.addItem(slotC);
+        }
+        slotC = item;
     }
 
     public Item getSlotA() {
@@ -187,5 +208,15 @@ public class Retku {
 
     public void setSlotC(Item slotC) {
         this.slotC = slotC;
+    }
+
+    public void removeItem(Item item) {
+        Item.Slot slot = item.getSlot();
+        System.out.println(slot);
+        switch (slot) {
+            case TOOL: setSlotA(null);
+            case GARB: setSlotB(null);
+            case TRINKET: setSlotC(null);
+        }
     }
 }
