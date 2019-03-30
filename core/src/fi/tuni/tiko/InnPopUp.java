@@ -135,6 +135,7 @@ public class InnPopUp extends RetkueDialog {
         Group slotA;
         if (retku.getSlotA() != null) {
             slotA = retku.getSlotA().getIcon(itemSize);
+            addItemListener(slotA, retku.getSlotA());
             charInventories.add(slotA).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotA = emptySlot("weapon");
@@ -145,6 +146,7 @@ public class InnPopUp extends RetkueDialog {
         Group slotB;
         if (retku.getSlotB() != null) {
             slotB = retku.getSlotB().getIcon(itemSize);
+            addItemListener(slotB, retku.getSlotB());
             charInventories.add(slotB).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotB = emptySlot("armor");
@@ -155,6 +157,7 @@ public class InnPopUp extends RetkueDialog {
         Group slotC;
         if (retku.getSlotC() != null) {
             slotC = retku.getSlotC().getIcon(itemSize);
+            addItemListener(slotC, retku.getSlotC());
             charInventories.add(slotC).prefWidth(itemSize).prefHeight(itemSize).pad(1);
         } else {
             slotC = emptySlot("trinket");
@@ -196,6 +199,11 @@ public class InnPopUp extends RetkueDialog {
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
         Group itemButton = item.getIcon(itemSize);
+        addItemListener(itemButton, item);
+        inventory.add(itemButton);
+    }
+
+    private void addItemListener(final Group itemButton, final Item item) {
         itemButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -203,15 +211,15 @@ public class InnPopUp extends RetkueDialog {
                 itemPopUp.show(stage);
             }
         });
-        inventory.add(itemButton);
     }
 
     public void resetMe() {
-        town.openInn();
-        remove();
+        getContentTable().reset();
+        createMenu();
     }
 
     private void closeMe() {
+        getContentTable().reset();
         remove();
     }
 

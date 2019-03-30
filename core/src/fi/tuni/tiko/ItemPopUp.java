@@ -87,9 +87,13 @@ public class ItemPopUp extends RetkueDialog {
             }
         });
 
-        getContentTable().add(equipA);
-        getContentTable().add(equipB);
-        getContentTable().add(equipC);
+        Table equipButtons = new Table();
+        equipButtons.add(equipA);
+        equipButtons.add(equipB);
+        equipButtons.add(equipC);
+
+        getContentTable().add(equipButtons).colspan(3);
+
         getContentTable().row();
         getContentTable().add(returnToInventory).colspan(3);
         getContentTable().row();
@@ -131,10 +135,9 @@ public class ItemPopUp extends RetkueDialog {
         } else {
             party.findRetku(id).removeItem(item);
         }
-        System.out.println(id);
         item.setLocation(loc);
-        inn.resetMe();
         closeMe();
+        inn.resetMe();
     }
 
     private int findRetkuID(Location location) {
@@ -149,13 +152,21 @@ public class ItemPopUp extends RetkueDialog {
     }
 
     private void moveToInventory() {
+        removeItemFromRetku(item);
         party.addItem(item);
         inn.resetMe();
         closeMe();
     }
 
+    private void removeItemFromRetku(Item item) {
+        int locID = findRetkuID(item.getLocation());
+        if (locID != -1) {
+            party.findRetku(locID).removeItem(item);
+        }
+    }
+
     private void sellItem(Item item) {
-        System.out.println("sold");
+        removeItemFromRetku(item);
         party.sellItem(item);
         inn.resetMe();
         closeMe();

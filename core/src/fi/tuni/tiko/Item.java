@@ -20,8 +20,6 @@ public class Item {
     private Rarity rarity;
     private int price;
 
-    private Group icon;
-
     public enum Slot {
         TOOL, GARB, TRINKET
     }
@@ -34,11 +32,9 @@ public class Item {
         COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
     }
 
-    private Image image;
-
-    private Image frame;
-
     private Texture picture;
+
+    private Texture frame;
 
     private Location location;
 
@@ -60,7 +56,6 @@ public class Item {
 
     private void generateIcon(String id) {
         picture = Utils.loadTexture("items/item"+ id + ".png");
-        image = new Image(picture);
         String frameName = "items/border_";
         switch(rarity) {
             case COMMON: frameName += "white"; break;
@@ -70,12 +65,7 @@ public class Item {
             case LEGENDARY: frameName += "yellow"; break;
         }
         frameName += ".png";
-        frame = new Image (Utils.loadTexture(frameName));
-        icon = new Group();
-        image.setSize(72f, 72f);
-        icon.addActor(image);
-        frame.setSize(72f, 72f);
-        icon.addActor(frame);
+        frame = Utils.loadTexture(frameName);
     }
 
     private void readDescriptions(String id) {
@@ -95,12 +85,18 @@ public class Item {
     }
 
     public Group getIcon() {
+        Group icon = getIcon(72f);
         return icon;
     }
 
     public Group getIcon(float size) {
+        Image image = new Image(picture);
+        Image frameImage = new Image(frame);
         image.setSize(size, size);
-        frame.setSize(size, size);
+        frameImage.setSize(size, size);
+        Group icon = new Group();
+        icon.addActor(image);
+        icon.addActor(frameImage);
         icon.setSize(size, size);
         return icon;
     }
