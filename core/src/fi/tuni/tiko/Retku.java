@@ -163,6 +163,7 @@ public class Retku {
             case GARB: equipGarb(item); break;
             case TRINKET: equipTrinket(item); break;
         }
+        recalculateStats();
     }
 
     private void equipTool(Item item) {
@@ -217,5 +218,10 @@ public class Retku {
             case GARB: setSlotB(null);
             case TRINKET: setSlotC(null);
         }
+        recalculateStats();
+    }
+
+    private void recalculateStats() {
+        //TODO: This
     }
 }
