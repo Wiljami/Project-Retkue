@@ -9,6 +9,10 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fi.tuni.tiko.tutorial.TownSceneTutorial;
+import fi.tuni.tiko.tutorial.TutorialController;
+import fi.tuni.tiko.tutorial.TutorialPrompt;
+
 /**
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
@@ -76,6 +80,9 @@ public class Main extends Game {
      */
     private static String saveFileName = "RetkueSave";
 
+
+    private boolean tutorial = false;
+
     /**
      * create()
      */
@@ -87,7 +94,8 @@ public class Main extends Game {
         initiateGame();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
-	}
+        if (tutorial) startTutorial();
+    }
 
 	/**
      * Method for initiating game elements used in the game.
@@ -98,10 +106,19 @@ public class Main extends Game {
         backgroundMusic.setLooping(true);
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        if (!SaveGame.load(saveFileName, party)) party.newGame();
+        if (!SaveGame.load(saveFileName, party)) {
+            party.newGame();
+            tutorial = true;
+        }
         MainMenuScene mainMenuScene = new MainMenuScene(this);
         townInfo = new TownInfo();
         currentScene = mainMenuScene;
+    }
+
+    private void startTutorial() {
+        TutorialController tutorialController = new TutorialController(this);
+        TutorialPrompt tutorialPrompt = new TutorialPrompt(tutorialController);
+        tutorialPrompt.show(currentScene.getStage());
     }
 
     /**

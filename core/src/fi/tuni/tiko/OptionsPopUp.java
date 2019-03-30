@@ -60,14 +60,6 @@ public class OptionsPopUp extends RetkueDialog {
         RetkueLabel desc = new RetkueLabel(text);
 
 
-        Button optionsButton = new ImageButton(Utils.loadButtonImage("options button", 50, 50));
-        optionsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Hello, you clicked a button in options");
-            }
-        });
-
         muteBox = new CheckBox("Mute Music", getSkin());
         if(currentScene.isMuted) {
             muteBox.setChecked(true);
