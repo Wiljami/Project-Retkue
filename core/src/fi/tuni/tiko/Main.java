@@ -94,7 +94,7 @@ public class Main extends Game {
         initiateGame();
         openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
-        if (tutorial) startTutorial();
+        if(tutorial) startTutorial();
     }
 
 	/**

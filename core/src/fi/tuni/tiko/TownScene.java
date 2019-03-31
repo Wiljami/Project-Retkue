@@ -50,7 +50,7 @@ public class TownScene extends Scene {
     /**
      * createMenu adds various UI actors to the table and to the stage
      */
-    private void createMenu() {
+    public void createMenu() {
         Button mainMenu = new TextButton( readLine("backToMainMenu"), getSkin());
         mainMenu.addListener(new ClickListener() {
             @Override
@@ -143,12 +143,7 @@ public class TownScene extends Scene {
             }
         });
 
-        FadeActor tavern = new FadeActor(Utils.loadTexture("tavern_button.png"));
-        wRatio = tavern.getWidth() / 1080;
-        hRatio = tavern.getHeight() / 1920;
-        tavern.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
-        tavern.setY(215f);
-        tavern.setX(229f);
+        FadeActor tavern = spawnTavern();
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -160,6 +155,16 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
+    }
+
+    public FadeActor spawnTavern() {
+        FadeActor tavern = new FadeActor(Utils.loadTexture("tavern_button.png"));
+        float wRatio = tavern.getWidth() / 1080;
+        float hRatio = tavern.getHeight() / 1920;
+        tavern.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        tavern.setY(215f);
+        tavern.setX(229f);
+        return tavern;
     }
 
     public void openInn() {

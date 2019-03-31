@@ -15,13 +15,15 @@ public class TutorialPopUp extends RetkueDialog {
     private static String title = "";
     private static String windowStyle = "dialog";
     private TutorialScene scene;
+    private int text_id;
     private int id;
     private Position position;
 
     public enum Position {TOP, LEFT}
 
-    public TutorialPopUp(int id, String image, Position position, TutorialScene scene) {
+    public TutorialPopUp(int text_id, int id, String image, Position position, TutorialScene scene) {
         super(title, skin, windowStyle);
+        this.text_id = text_id;
         this.id = id;
         this.scene = scene;
         this.position = position;
@@ -30,7 +32,7 @@ public class TutorialPopUp extends RetkueDialog {
 
     private void createMenu() {
         String key = "TUTORIAL_TEXT_";
-        key += Utils.convertToId(id);
+        key += Utils.convertToId(text_id);
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/5f;
         String text = readLine(key);
         RetkueLabel label = new RetkueLabel(text);
