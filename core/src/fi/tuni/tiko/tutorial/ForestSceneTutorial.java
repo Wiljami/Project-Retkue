@@ -13,6 +13,8 @@ import fi.tuni.tiko.GameHeader;
 import fi.tuni.tiko.Main;
 import fi.tuni.tiko.Party;
 import fi.tuni.tiko.PartyBar;
+import fi.tuni.tiko.ResultsPopUp;
+import fi.tuni.tiko.RetkueDialog;
 import fi.tuni.tiko.Scene;
 import fi.tuni.tiko.Utils;
 
@@ -133,6 +135,8 @@ public class ForestSceneTutorial extends Scene implements TutorialScene{
             case 15: phase15(); break;
             case 16: phase16(); break;
             case 17: phase17(); break;
+            case 18: System.out.println("phase18"); break;
+            case 19: phase19(); break;
         }
     }
 
@@ -200,14 +204,19 @@ public class ForestSceneTutorial extends Scene implements TutorialScene{
     }
 
     private void phase16() {
-        loggedText += "\nThe rabid flees with its tail between its legs.";
+        loggedText += "\nThe rabid flees for its life!";
         textLog.setText(loggedText);
         tutorialPopUp(22,17, "old_guy1.png", TOP);
     }
 
     private void phase17() {
+        ResultsTutorial resultsTutorial = new ResultsTutorial(this);
+        resultsTutorial.show(getStage());
         tutorialPopUp(23,18, "old_guy1.png", TOP);
-        controller.endTutorial();
+    }
+
+    private void phase19() {
+
     }
 
     @Override
