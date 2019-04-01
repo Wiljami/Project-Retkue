@@ -92,7 +92,6 @@ public class Main extends Game {
         //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
         initiateGame();
-        openScene(GameView.mainMenu);
         if(stepSim) stepSimulator();
         if(tutorial) startTutorial();
     }
@@ -113,6 +112,7 @@ public class Main extends Game {
         MainMenuScene mainMenuScene = new MainMenuScene(this);
         townInfo = new TownInfo();
         currentScene = mainMenuScene;
+        openScene(GameView.mainMenu);
     }
 
     private void startTutorial() {
@@ -225,5 +225,13 @@ public class Main extends Game {
      */
     public static TownInfo getTownInfo() {
         return townInfo;
+    }
+
+    public void setTutorial(boolean tutorial) {
+        this.tutorial = tutorial;
+    }
+
+    public void startGame() {
+        initiateGame();
     }
 }

@@ -20,7 +20,7 @@ import static fi.tuni.tiko.Utils.toAddZero;
  */
 //TODO: Everything
 
-class ForestScene extends Scene{
+public class ForestScene extends Scene{
     /**
      * Reference to the timer label so that it can be updated.
      */

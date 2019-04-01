@@ -19,7 +19,7 @@ public class TutorialPopUp extends RetkueDialog {
     private int id;
     private Position position;
 
-    public enum Position {TOP, LEFT}
+    public enum Position {TOP, LEFT, BOTTOM, MIDDLE}
 
     public TutorialPopUp(int text_id, int id, String image, Position position, TutorialScene scene) {
         super(title, skin, windowStyle);
@@ -58,6 +58,10 @@ public class TutorialPopUp extends RetkueDialog {
             case TOP: setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
                 Math.round((stage.getHeight() - getHeight()) / 2) + 300f); break;
             case LEFT: setPosition(Math.round((stage.getWidth() - getWidth()) / 2 - 300f),
+                    Math.round((stage.getHeight() - getHeight()) / 2)); break;
+            case BOTTOM: setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+                    Math.round((stage.getHeight() - getHeight()) / 2) - 300f); break;
+            case MIDDLE: setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
                     Math.round((stage.getHeight() - getHeight()) / 2)); break;
         }
         return this;

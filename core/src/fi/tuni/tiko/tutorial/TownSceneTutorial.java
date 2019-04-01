@@ -20,14 +20,16 @@ public class TownSceneTutorial extends TownScene implements TutorialScene {
     private Image tavern;
     private Image mask;
     private TutorialTavern tutorialTavern;
+    private TutorialController controller;
 
-    public TownSceneTutorial(Main game) {
+    public TownSceneTutorial(Main game, TutorialController controller) {
         super(game);
         this.game = game;
+        this.controller = controller;
         mask = new Image(Utils.loadTexture("mask.png"));
+        fadeOut();
         getStage().addActor(mask);
-        fadeIn();
-        continueTutorial(2);
+        continueTutorial(1);
     }
 
     private void tutorialPopUp(int text_id, int id, String image, Position location) {
@@ -47,7 +49,7 @@ public class TownSceneTutorial extends TownScene implements TutorialScene {
     public void continueTutorial(int id) {
         System.out.println("id: " + id);
         switch (id) {
-            case 1: tutorialPopUp(1 ,id, "old_guy1.png", TOP); break;
+            case 1: tutorialPopUp(1 ,2, "old_guy1.png", TOP); break;
             case 2: phase2(); break;
             case 3: phase3(); break;
             case 4: phase4(); break;
@@ -63,6 +65,7 @@ public class TownSceneTutorial extends TownScene implements TutorialScene {
     }
 
     private void phase2() {
+        fadeIn();
         tutorialPopUp(2,3, "old_guy1.png", LEFT);
         tavern = new Image(Utils.loadTexture("tutorial/tutorial_tavern.png"));
         float wRatio = tavern.getWidth() / 1080;
@@ -91,6 +94,12 @@ public class TownSceneTutorial extends TownScene implements TutorialScene {
 
     private void phase12() {
         TextButton embark = new TextButton("Embark", getSkin());
+        embark.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                controller.tutorialPhase(2);
+            }
+        });
         getStage().addActor(embark);
         float x = Main.WORLDPIXELWIDTH/2 - embark.getWidth()/2;
         embark.setPosition(x,150f);
