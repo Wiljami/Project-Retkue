@@ -34,7 +34,7 @@ public class TutorialPrompt extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 remove();
-                tutorialController.tutorialPhase(1);
+                tutorialController.tutorialPhase(3);
             }
         });
 

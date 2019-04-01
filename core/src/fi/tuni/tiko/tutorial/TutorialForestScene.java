@@ -13,8 +13,6 @@ import fi.tuni.tiko.GameHeader;
 import fi.tuni.tiko.Main;
 import fi.tuni.tiko.Party;
 import fi.tuni.tiko.PartyBar;
-import fi.tuni.tiko.ResultsPopUp;
-import fi.tuni.tiko.RetkueDialog;
 import fi.tuni.tiko.Scene;
 import fi.tuni.tiko.Utils;
 
@@ -22,7 +20,7 @@ import static fi.tuni.tiko.tutorial.TutorialPopUp.Position.BOTTOM;
 import static fi.tuni.tiko.tutorial.TutorialPopUp.Position.MIDDLE;
 import static fi.tuni.tiko.tutorial.TutorialPopUp.Position.TOP;
 
-public class ForestSceneTutorial extends Scene implements TutorialScene{
+public class TutorialForestScene extends Scene implements TutorialScene{
 
     private TutorialController controller;
     private Main game;
@@ -31,7 +29,7 @@ public class ForestSceneTutorial extends Scene implements TutorialScene{
     private GameHeader header;
     private PartyBar partyBar;
 
-    public ForestSceneTutorial(Main game, TutorialController controller) {
+    public TutorialForestScene(Main game, TutorialController controller) {
         super(game);
         this.controller = controller;
         this.game = game;
@@ -210,13 +208,13 @@ public class ForestSceneTutorial extends Scene implements TutorialScene{
     }
 
     private void phase17() {
-        ResultsTutorial resultsTutorial = new ResultsTutorial(this);
-        resultsTutorial.show(getStage());
+        TutorialResults tutorialResults = new TutorialResults(this);
+        tutorialResults.show(getStage());
         tutorialPopUp(23,18, "old_guy1.png", TOP);
     }
 
     private void phase19() {
-
+        controller.tutorialPhase(3);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package fi.tuni.tiko.tutorial;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -9,11 +8,11 @@ import fi.tuni.tiko.Main;
 import fi.tuni.tiko.RetkueDialog;
 
 public class TutorialTavern extends RetkueDialog {
-    private TownSceneTutorial scene;
+    private TutorialTownScene scene;
     private TutorialTavern me;
     private TutorialQuestPopUp tutorialQuestPopUp;
 
-    public TutorialTavern(TownSceneTutorial scene) {
+    public TutorialTavern(TutorialTownScene scene) {
         super("Tavern", skin, "dialog");
         this.scene = scene;
         me = this;
@@ -59,7 +58,7 @@ public class TutorialTavern extends RetkueDialog {
         label0.toFront();
     }
 
-    public TownSceneTutorial getScene() {
+    public TutorialTownScene getScene() {
         return scene;
     }
 

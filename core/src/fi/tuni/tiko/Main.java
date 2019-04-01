@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import fi.tuni.tiko.tutorial.TownSceneTutorial;
 import fi.tuni.tiko.tutorial.TutorialController;
 import fi.tuni.tiko.tutorial.TutorialPrompt;
 

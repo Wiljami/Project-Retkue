@@ -19,19 +19,28 @@ public class TutorialController {
         switch (phase) {
             case 1: phase1(); break;
             case 2: phase2(); break;
+            case 3: phase3(); break;
         }
     }
 
     private void phase1() {
-        TownSceneTutorial townSceneTutorial = new TownSceneTutorial(main, this);
-        Gdx.input.setInputProcessor(townSceneTutorial.getStage());
-        main.setScreen(townSceneTutorial);
+        townPhase(1);
     }
 
     private void phase2() {
-        ForestSceneTutorial forestSceneTutorial = new ForestSceneTutorial(main, this);
-        Gdx.input.setInputProcessor(forestSceneTutorial.getStage());
-        main.setScreen(forestSceneTutorial);
+        TutorialForestScene tutorialForestScene = new TutorialForestScene(main, this);
+        Gdx.input.setInputProcessor(tutorialForestScene.getStage());
+        main.setScreen(tutorialForestScene);
+    }
+
+    private void phase3() {
+        townPhase(3);
+    }
+
+    private void townPhase(int phase) {
+        TutorialTownScene tutorialTownScene = new TutorialTownScene(main, this, phase);
+        Gdx.input.setInputProcessor(tutorialTownScene.getStage());
+        main.setScreen(tutorialTownScene);
     }
 
     public Party getTutorialParty() {

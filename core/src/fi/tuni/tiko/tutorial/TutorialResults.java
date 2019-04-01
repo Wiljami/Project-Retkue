@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import fi.tuni.tiko.RetkueDialog;
 
-public class ResultsTutorial extends RetkueDialog {
-    public ResultsTutorial(final ForestSceneTutorial origin) {
+public class TutorialResults extends RetkueDialog {
+    public TutorialResults(final TutorialForestScene origin) {
         super("Results", skin, "dialog");
 
         Label text = new Label("Your task is a success!\n\nReward: 1000 gold pieces", skin);
