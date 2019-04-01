@@ -1,12 +1,13 @@
 package fi.tuni.tiko.tutorial;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import fi.tuni.tiko.Main;
-import fi.tuni.tiko.TownScene;
+import fi.tuni.tiko.Scene;
 
 import fi.tuni.tiko.Utils;
 import fi.tuni.tiko.tutorial.TutorialPopUp.Position;
@@ -14,7 +15,7 @@ import fi.tuni.tiko.tutorial.TutorialPopUp.Position;
 import static fi.tuni.tiko.tutorial.TutorialPopUp.Position.LEFT;
 import static fi.tuni.tiko.tutorial.TutorialPopUp.Position.TOP;
 
-public class TutorialTownScene extends TownScene implements TutorialScene {
+public class TutorialTownScene extends Scene implements TutorialScene {
 
     private Main game;
     private Image tavern;
@@ -31,6 +32,10 @@ public class TutorialTownScene extends TownScene implements TutorialScene {
         mask = new Image(Utils.loadTexture("mask.png"));
         fadeOut();
         getStage().addActor(mask);
+
+        setupBackground("village.png");
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Chillage.ogg"));
+
         if (phase == 1) {
             continueTutorial(1);
         } else if (phase == 3) {
@@ -41,10 +46,6 @@ public class TutorialTownScene extends TownScene implements TutorialScene {
     private void tutorialPopUp(int text_id, int id, String image, Position location) {
         TutorialPopUp popUp = new TutorialPopUp(text_id, id, image, location, this);
         popUp.show(getStage());
-    }
-
-    @Override
-    public void createMenu() {
     }
 
     @Override

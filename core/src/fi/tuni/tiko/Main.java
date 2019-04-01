@@ -37,8 +37,6 @@ public class Main extends Game {
         mainMenu, town, forest
     }
 
-    private Music backgroundMusic;
-
     /**
      * debug boolean toggles debug features in the code
      */
@@ -100,8 +98,6 @@ public class Main extends Game {
      */
 	private void initiateGame() {
         batch = new SpriteBatch();
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
-        backgroundMusic.setLooping(true);
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         if (!SaveGame.load(saveFileName, party)) {
