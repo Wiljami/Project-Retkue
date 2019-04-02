@@ -118,14 +118,14 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         switch (id) {
             case 1: partyBar.toFront(); tutorialPopUp(8 ,2, "old_guy1.png", TOP); break;
             case 2: phase2(); break;
-            case 3: tutorialPopUp(11,4, "old_guy1.png", TOP); break;
+            case 3: break;
             case 4: phase4(); break;
             case 5: tutorialPopUp(13,6, "old_guy1.png", TOP); break;
             case 6: phase6(); break;
             case 7: System.out.println("phase7"); break;
             case 8: phase8(); break;
             case 9: phase9(); break;
-            case 10: tutorialPopUp(17,11, "old_guy1.png", TOP); break;
+            case 10: break;
             case 11: phase11(); break;
             case 12: System.out.println("phase12"); break;
             case 13: tutorialPopUp(19,14, "old_guy1.png", TOP); break;
@@ -141,7 +141,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     private void phase2() {
         log.setVisible(true);
         log.toFront();
-        tutorialPopUp(9 ,3, "old_guy1.png", BOTTOM);
+        tutorialPopUp(9 ,4, "old_guy1.png", BOTTOM);
     }
 
     String loggedText;
@@ -176,7 +176,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         textLog.setText(loggedText);
         party.findRetku(0).damageRetku(50);
         partyBar.updateHealthBars();
-        tutorialPopUp(16, 10,"old_guy1.png", TOP);
+        tutorialPopUp(16, 11,"old_guy1.png", TOP);
     }
 
     private void phase11() {

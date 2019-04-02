@@ -62,10 +62,10 @@ public class TutorialTownScene extends Scene implements TutorialScene {
             case 4: phase4(); break;
             case 5: System.out.println("phase5"); break;
             case 6: tutorialPopUp(4, 7,"old_guy1_png", TOP); break;
-            case 7: tutorialTavern.getTutorialQuestPopUp().tutorial(8); break;
-            case 8: tutorialPopUp(5, 9,"old_guy1_png", TOP); break;
-            case 9: tutorialTavern.getTutorialQuestPopUp().tutorial(10); break;
-            case 10: tutorialPopUp(6, 11,"old_guy1_png", TOP); break;
+            case 7: break;
+            case 8: break;
+            case 9: break;
+            case 10: break;
             case 11: System.out.println("Phase11"); break;
             case 12: phase12(); break;
             case 13: fadeOut(); break;

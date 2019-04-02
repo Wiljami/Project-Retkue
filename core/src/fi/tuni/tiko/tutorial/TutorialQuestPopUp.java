@@ -46,8 +46,6 @@ public class TutorialQuestPopUp extends RetkueDialog {
             }
         });
 
-        accept.setVisible(false);
-
         getContentTable().add(image).prefWidth(image.getPrefWidth() / 5).prefHeight(image.getPrefHeight() / 5).colspan(3);
         getContentTable().row();
 
@@ -62,19 +60,11 @@ public class TutorialQuestPopUp extends RetkueDialog {
         getContentTable().row();
 
         getContentTable().add(reward).colspan(3);
-        reward.setVisible(false);
         //getContentTable().add(desc).prefWidth(popUpWidth).colspan(3);
 
         getContentTable().row();
 
         getContentTable().add(accept).pad(10).colspan(3);
-    }
-
-    public void tutorial(int id) {
-        switch (id) {
-            case 8: reward.setVisible(true); origin.getScene().continueTutorial(id); break;
-            case 10: accept.setVisible(true); origin.getScene().continueTutorial(id); break;
-        }
     }
 
     public void closeMe() {
