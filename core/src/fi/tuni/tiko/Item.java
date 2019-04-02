@@ -60,7 +60,7 @@ public class Item {
         switch(rarity) {
             case COMMON: frameName += "white"; break;
             case UNCOMMON: frameName += "green"; break;
-            case RARE: frameName += "rare"; break;
+            case RARE: frameName += "blue"; break;
             case EPIC: frameName += "purple"; break;
             case LEGENDARY: frameName += "yellow"; break;
         }

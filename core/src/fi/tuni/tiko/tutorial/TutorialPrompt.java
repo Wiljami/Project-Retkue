@@ -24,7 +24,7 @@ public class TutorialPrompt extends RetkueDialog {
         String text = readLine("tutorial_desc");
         RetkueLabel desc = new RetkueLabel(text);
 
-        getContentTable().add(desc).prefWidth(popUpWidth);
+        getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
         getContentTable().row();
         getContentTable().row();
         getContentTable().row();
@@ -38,6 +38,15 @@ public class TutorialPrompt extends RetkueDialog {
             }
         });
 
+        TextButton skipTutorial = new TextButton(readLine("tutorial_skip"), getSkin());
+        skipTutorial.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                remove();
+            }
+        });
+
+        getContentTable().add(skipTutorial);
         getContentTable().add(ok);
     }
 }
