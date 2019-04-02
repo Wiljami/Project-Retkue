@@ -218,6 +218,12 @@ public class Party {
         }
     }
 
+    public void healParty() {
+        for (Retku retku : retkus) {
+            retku.healRetku(100);
+        }
+    }
+
     public void sellItem(Item item) {
         earnGold(item.getPrice()/2);
         removeItem(item);

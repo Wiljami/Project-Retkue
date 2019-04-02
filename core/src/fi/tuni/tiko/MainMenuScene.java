@@ -37,7 +37,6 @@ public class MainMenuScene extends Scene {
     private void createMenu() {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         backgroundMusic.setLooping(true);
-        backgroundMusic.play();
         if(getMute()) {
             backgroundMusic.setVolume(0);
         } else {

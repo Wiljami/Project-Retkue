@@ -70,6 +70,16 @@ public class InnPopUp extends RetkueDialog {
 
         getContentTable().row();
 
+        Table buttons = new Table();
+
+        final TextButton rest = new TextButton(readLine("rest"), skin);
+        rest.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                rest();
+            }
+        });
+
         TextButton back = new TextButton(readLine("return"), getSkin());
         back.addListener(new ClickListener() {
             @Override
@@ -77,16 +87,28 @@ public class InnPopUp extends RetkueDialog {
                 closeMe();
             }
         });
-        getContentTable().add(back);
+
+        buttons.add(rest).pad(10);
+        buttons.add(back).pad(10);
+        getContentTable().add(buttons);
+    }
+
+    private void rest() {
+        party.healParty();
+        bar0.setValue(party.findRetku(0).healthPercentage());
+        bar1.setValue(party.findRetku(1).healthPercentage());
+        bar2.setValue(party.findRetku(2).healthPercentage());
     }
 
     private Group[][] charSlots;
 
     Table charImages;
-
     Table retkuAItems;
     Table retkuBItems;
     Table retkuCItems;
+    HealthBar bar0;
+    HealthBar bar1;
+    HealthBar bar2;
 
     private void generateCharSheets() {
         charImages = new Table();
@@ -99,9 +121,9 @@ public class InnPopUp extends RetkueDialog {
                 5 , 1, 1/1.5f, charSize*4/5f, charSize);
         Image retku1 = new Image(party.findRetku(1).getTexture());
 
-        HealthBar bar0 = new HealthBar(healthBarWidth, charSize);
-        HealthBar bar1 = new HealthBar(healthBarWidth, charSize);
-        HealthBar bar2 = new HealthBar(healthBarWidth, charSize);
+        bar0 = new HealthBar(healthBarWidth, charSize);
+        bar1 = new HealthBar(healthBarWidth, charSize);
+        bar2 = new HealthBar(healthBarWidth, charSize);
 
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
