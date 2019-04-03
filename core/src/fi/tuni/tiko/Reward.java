@@ -5,4 +5,8 @@ public class Reward {
     public Reward(int g) {
         gold = g;
     }
+
+    public int getGold() {
+        return gold;
+    }
 }

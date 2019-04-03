@@ -29,6 +29,11 @@ public class Party {
     private int gold;
 
     /**
+     * The chosen quest
+     */
+    private Quest quest;
+
+    /**
      * Player steps
      */
     private int steps;
@@ -231,5 +236,13 @@ public class Party {
 
     public void removeItem(Item item) {
         inventory.remove(item);
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        this.quest = quest;
     }
 }

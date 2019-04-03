@@ -147,7 +147,7 @@ public class TownScene extends Scene {
         tavern.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                TavernPopUp tavernPopUp = new TavernPopUp(townScene);
+                TavernPopUp tavernPopUp = new TavernPopUp(townScene, party);
                 tavernPopUp.show(getStage());
             }
         });

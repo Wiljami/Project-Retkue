@@ -151,7 +151,7 @@ public class ForestScene extends Scene{
         }
         if (party.timeLeft() < 0 && !questOver) {
             questOver = true;
-            ResultsPopUp resultsPopUp = new ResultsPopUp();
+            ResultsPopUp resultsPopUp = new ResultsPopUp(party);
             resultsPopUp.show(getStage());
             timer.setText("00:00:00");
         }

@@ -68,4 +68,8 @@ public class Quest {
     public String getCompleteText() {
         return completeText;
     }
+
+    public Reward getReward() {
+        return reward;
+    }
 }

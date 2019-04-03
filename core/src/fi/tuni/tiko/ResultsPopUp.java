@@ -24,10 +24,16 @@ public class ResultsPopUp extends RetkueDialog {
     private static String title = readLine("results");
 
     /**
+     * Reference to the party
+     */
+    private Party party;
+
+    /**
      * ResultsPopUp constructor
      */
-    public ResultsPopUp() {
+    public ResultsPopUp(Party party) {
         super(title, skin, windowStyle);
+        this.party = party;
         createMenu();
         if (Main.debug) debug();
     }
@@ -39,7 +45,11 @@ public class ResultsPopUp extends RetkueDialog {
 
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
-        String text = readLine("results_desc");
+        String text = party.getCurrentQuest().getCompleteText();
+        String reward = "\n\n" + readLine("reward") + ": ";
+        reward += party.getCurrentQuest().getReward().getGold();
+        reward += " " + readLine("golds");
+        text += reward;
         RetkueLabel desc = new RetkueLabel(text);
         getContentTable().add(desc).prefWidth(popUpWidth);
 

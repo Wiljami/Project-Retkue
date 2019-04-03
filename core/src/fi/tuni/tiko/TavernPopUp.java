@@ -36,11 +36,14 @@ public class TavernPopUp extends RetkueDialog {
 
     private Scene scene;
 
+    private Party party;
+
     /**
      * TavernPopUp constructor
      */
-    public TavernPopUp(Scene scene) {
+    public TavernPopUp(Scene scene, Party party) {
         super(title, skin, windowStyle);
+        this.party = party;
         tavernPopUp = this;
         this.townInfo = Main.getTownInfo();
         createMenu();
@@ -62,8 +65,7 @@ public class TavernPopUp extends RetkueDialog {
         label0.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 0);
-                questPopUp.show(getStage());
+            openQuestPopUp(0);
             }
         });
 
@@ -72,8 +74,7 @@ public class TavernPopUp extends RetkueDialog {
         label1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 1);
-                questPopUp.show(getStage());
+                openQuestPopUp(1);
             }
         });
 
@@ -82,8 +83,7 @@ public class TavernPopUp extends RetkueDialog {
         label2 .addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, 2);
-                questPopUp.show(getStage());
+                openQuestPopUp(2);
             }
         });
 
@@ -100,6 +100,12 @@ public class TavernPopUp extends RetkueDialog {
 
         button(readLine("return"), false);
     }
+
+    private void openQuestPopUp (int questId) {
+        QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, questId, party);
+        questPopUp.show(getStage());
+    }
+
 
     public TownInfo getTownInfo() {
         return townInfo;
