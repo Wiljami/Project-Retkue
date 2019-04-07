@@ -222,8 +222,10 @@ public class Retku {
     }
 
     public void giveItemById(int id, int retkuId) {
-        Item item = new Item(id, findRetkuLocation(retkuId));
-        equipItem(item);
+        if (id != 0) {
+            Item item = new Item(id, findRetkuLocation(retkuId));
+            equipItem(item);
+        }
     }
 
     private void recalculateStats() {
