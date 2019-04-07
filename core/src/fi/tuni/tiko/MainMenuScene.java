@@ -21,6 +21,7 @@ public class MainMenuScene extends Scene {
      */
     public MainMenuScene(Main game) {
         super(game);
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         createMenu();
         setupBackground("mainmenu.png");
         menuScene = this;
@@ -35,14 +36,6 @@ public class MainMenuScene extends Scene {
      * createMenu creates the UI of the mainMenu.
      */
     private void createMenu() {
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
-        backgroundMusic.setLooping(true);
-        if(getMute()) {
-            backgroundMusic.setVolume(0);
-        } else {
-            backgroundMusic.setVolume(1);
-        }
-
         Button start = new TextButton(readLine("start"), getSkin());
         start.addListener(new ClickListener() {
             @Override
@@ -113,16 +106,6 @@ public class MainMenuScene extends Scene {
 
     @Override
     public void updateValues() {
-    }
-
-    @Override
-    public void show() {
-        if(getMute()) {
-            backgroundMusic.setVolume(0);
-        } else {
-            backgroundMusic.setVolume(1);
-        }
-        backgroundMusic.play();
     }
 
     @Override

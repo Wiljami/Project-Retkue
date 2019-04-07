@@ -60,7 +60,7 @@ public class OptionsPopUp extends RetkueDialog {
         RetkueLabel desc = new RetkueLabel(text);
 
         muteBox = new CheckBox("Mute Music", getSkin());
-        if(currentScene.isMuted) {
+        if(Config.isMuted()) {
             muteBox.setChecked(true);
         }
 
@@ -74,8 +74,8 @@ public class OptionsPopUp extends RetkueDialog {
             @Override
             public void changed (ChangeEvent event, Actor actor) {
                 Gdx.graphics.setContinuousRendering(muteBox.isChecked());
-                currentScene.setMute(muteBox.isChecked());
-                if(muteBox.isChecked()) {
+                Config.setIsMuted(muteBox.isChecked());
+                if(Config.isMuted()) {
                     currentScene.backgroundMusic.stop();
                 } else {
                     currentScene.backgroundMusic.play();

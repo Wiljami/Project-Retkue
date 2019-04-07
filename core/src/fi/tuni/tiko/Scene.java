@@ -102,12 +102,6 @@ import java.util.Map;
     public Music backgroundMusic;
 
     /**
-     * Checks to see if music is muted
-     * //TODO: Add to load&save
-     */
-    public static boolean isMuted = false;
-
-    /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
      * are generated only once.
      * @param game reference to the main that creates and controls all the scenes
@@ -263,7 +257,7 @@ import java.util.Map;
     public void show() {
         updateValues();
         backgroundMusic.setLooping(true);
-        if(getMute()) {
+        if(Config.isMuted()) {
             backgroundMusic.stop();
         } else {
             backgroundMusic.play();
@@ -438,14 +432,6 @@ import java.util.Map;
     public static String readLine (String key) {
         String s  = Utils.readBundle(bundle, key);
         return s;
-    }
-
-    public void setMute(boolean mute) {
-        isMuted = mute;
-    }
-
-    public boolean getMute() {
-        return isMuted;
     }
 
     public abstract void updateValues();

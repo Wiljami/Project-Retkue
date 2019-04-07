@@ -55,7 +55,7 @@ public class SaveGame {
      */
     private static void saveConfig (Preferences save) {
         save.putString("language",  Config.getLanguageName());
-        save.putBoolean("audio", Config.isAudio());
+        save.putBoolean("audio", Config.isMuted());
         save.putFloat("stepStartPosition", Config.getStepStartPosition());
     }
 
@@ -89,7 +89,7 @@ public class SaveGame {
         Config.setStepStartPosition(stepStart);
 
         Boolean audio = save.getBoolean("audio", false);
-        Config.setAudio(audio);
+        Config.setIsMuted(audio);
     }
 
     /**

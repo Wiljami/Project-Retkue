@@ -2,7 +2,7 @@ package fi.tuni.tiko;
 
 public class Config {
     private static float stepStartPosition = 2;
-    private static boolean audio;
+    private static boolean isMuted = false;
     private static Language language;
 
     enum Language {FINNISH, ENGLISH};
@@ -27,11 +27,11 @@ public class Config {
         language = l;
     }
 
-    public static boolean isAudio() {
-        return audio;
+    public static boolean isMuted() {
+        return isMuted;
     }
 
-    public static void setAudio(boolean audio) {
-        Config.audio = audio;
+    public static void setIsMuted(boolean audio) {
+        Config.isMuted = audio;
     }
 }
