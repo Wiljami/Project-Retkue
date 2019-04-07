@@ -221,7 +221,22 @@ public class Retku {
         recalculateStats();
     }
 
+    public void giveItemById(int id, int retkuId) {
+        Item item = new Item(id, findRetkuLocation(retkuId));
+        equipItem(item);
+    }
+
     private void recalculateStats() {
         //TODO: This
+    }
+
+    private Item.Location findRetkuLocation(int n) {
+        Item.Location location = Item.Location.OTHER;
+        switch (n) {
+            case (0): location = Item.Location.RETKUA; break;
+            case (1): location = Item.Location.RETKUB; break;
+            case (2): location = Item.Location.RETKUC; break;
+        }
+        return location;
     }
 }

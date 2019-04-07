@@ -18,7 +18,7 @@ public class TutorialShop extends RetkueDialog {
     public TutorialShop(final TutorialTownScene origin) {
         super("Shop", skin, "dialog");
 
-        Item item = new Item(0,1,1, Item.Slot.GARB, Item.Rarity.UNCOMMON, 100, Item.Location.SHOP);
+        Item item = new Item(5, Item.Location.SHOP);
 
         icon = item.getIcon();
 

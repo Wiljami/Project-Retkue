@@ -55,7 +55,7 @@ public class SaveGame {
      */
     private static void saveConfig (Preferences save) {
         save.putString("language",  Config.getLanguageName());
-        save.putBoolean("audio", Config.isMuted());
+        save.putBoolean("muted", Config.isMuted());
         save.putFloat("stepStartPosition", Config.getStepStartPosition());
     }
 
@@ -70,10 +70,14 @@ public class SaveGame {
 
         for (int x = 0; x < 3; x++) {
             Retku retku = party.findRetku(x);
-            save.putString("retku_" + x + "_name", retku.getName());
-            save.putString("retku_" + x + "_image", retku.getImageFile());
             save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
             save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
+            if(retku.getSlotA() != null)
+            save.putInteger("retku_" + x + "_slotA", retku.getSlotA().getId());
+            if(retku.getSlotB() != null)
+            save.putInteger("retku_" + x + "_slotB", retku.getSlotB().getId());
+            if(retku.getSlotC() != null)
+            save.putInteger("retku_" + x + "_slotC", retku.getSlotC().getId());
         }
     }
 
@@ -88,8 +92,8 @@ public class SaveGame {
         Float stepStart = save.getFloat("stepStartPosition", 0.0f);
         Config.setStepStartPosition(stepStart);
 
-        Boolean audio = save.getBoolean("audio", false);
-        Config.setIsMuted(audio);
+        Boolean muted = save.getBoolean("muted", false);
+        Config.setIsMuted(muted);
     }
 
     /**
@@ -105,15 +109,17 @@ public class SaveGame {
 
         for (int x = 0; x < 3; x++) {
             Retku retku = new Retku("", 0, "", party);
-            String name = save.getString("retku_" + x + "_name", "NO_NAME");
-            String imageFile = save.getString("retku_" + x + "_image", "");
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
-            retku.setName(name);
-            retku.initPortrait(imageFile);
+            int itemAId = save.getInteger("retku_" + x + "_slotA", 0);
+            int itemBId = save.getInteger("retku_" + x + "_slotB", 0);
+            int itemCId = save.getInteger("retku_" + x + "_slotC", 0);
             retku.setMaxHealth(maxHealth);
             retku.setCurrHealth(currHealth);
-            party.addRetku(retku, x);
+            retku.giveItemById(itemAId, x);
+            retku.giveItemById(itemBId, x);
+            retku.giveItemById(itemCId, x);
+            party.loadRetku(retku, x);
         }
     }
 

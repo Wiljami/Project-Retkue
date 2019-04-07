@@ -173,7 +173,21 @@ public class Party {
         gold = 99;
     }
 
-    public void addRetku(Retku retku, int slot) {
+    public void loadRetku(Retku retku, int slot) {
+        switch(slot) {
+            case 0:
+                retku.setName("Bill");
+                retku.initPortrait("bill_c.png");
+                break;
+            case 1:
+            retku.setName("Mei");
+            retku.initPortrait("mei.png");
+            break;
+            case 2:
+            retku.setName("Mik'ed");
+            retku.initPortrait("horze_white.png");
+            break;
+        }
         retkus[slot] = retku;
     }
 

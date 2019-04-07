@@ -19,6 +19,7 @@ public class Item {
     private Slot slot;
     private Rarity rarity;
     private int price;
+    private int id;
 
     public enum Slot {
         TOOL, GARB, TRINKET
@@ -42,12 +43,13 @@ public class Item {
      * TODO: Create the item constructor
      * Constructor should read the information to the name and description from localization files
      */
-    public Item(int id, int attack, int defense, Slot slot, Rarity rarity, int price, Location location) {
-        this.slot = slot;
-        this.attack = attack;
-        this.defense = defense;
-        this.price = price;
-        this.rarity = rarity;
+    public Item(int id, Location location) {
+        this.id = id;
+        this.slot = Slot.TRINKET;
+        this.attack = id;
+        this.defense = id;
+        this.price = id*10;
+        this.rarity = Rarity.UNCOMMON;
         this.location = location;
         String bundle_id = Utils.convertToId(id);
         readDescriptions(bundle_id);
@@ -127,5 +129,9 @@ public class Item {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -23,8 +23,8 @@ public class TownInfo {
     }
 
     private void generateItems() {
-        for (int x = 0; x < 8; x++) {
-            Item item = new Item(x, 1, 2, TRINKET, UNCOMMON, x*100, SHOP);
+        for (int x = 1; x < 9; x++) {
+            Item item = new Item(x, SHOP);
             availableItems.add(item);
         }
     }
