@@ -40,19 +40,19 @@ public class Item {
     private Location location;
 
     private ItemData[] itemData = {
-            new ItemData(0,1,Slot.TRINKET, 0, Rarity.COMMON),
-            new ItemData(3,7,Slot.GARB, 10, Rarity.LEGENDARY),
-            new ItemData(6,6,Slot.GARB, 20, Rarity.UNCOMMON),
-            new ItemData(1,5,Slot.TRINKET, 30, Rarity.LEGENDARY),
-            new ItemData(2,4,Slot.TOOL, 50, Rarity.LEGENDARY),
-            new ItemData(4,2,Slot.GARB, 90, Rarity.RARE),
-            new ItemData(2,1,Slot.GARB, 120, Rarity.EPIC),
-            new ItemData(3,7,Slot.GARB, 10, Rarity.COMMON),
-            new ItemData(6,6,Slot.GARB, 20, Rarity.LEGENDARY),
-            new ItemData(1,5,Slot.TRINKET, 30, Rarity.LEGENDARY),
-            new ItemData(2,4,Slot.TOOL, 50, Rarity.LEGENDARY),
-            new ItemData(4,2,Slot.GARB, 90, Rarity.LEGENDARY),
-            new ItemData(2,1,Slot.GARB, 120, Rarity.LEGENDARY)
+            new ItemData(0,1, Slot.TRINKET, 0, Rarity.COMMON),
+            new ItemData(3,7, Slot.GARB, 10, Rarity.LEGENDARY),
+            new ItemData(6,6, Slot.GARB, 20, Rarity.UNCOMMON),
+            new ItemData(1,5, Slot.TRINKET, 30, Rarity.LEGENDARY),
+            new ItemData(2,4, Slot.TOOL, 50, Rarity.LEGENDARY),
+            new ItemData(4,2, Slot.GARB, 90, Rarity.RARE),
+            new ItemData(2,1, Slot.GARB, 120, Rarity.EPIC),
+            new ItemData(3,7, Slot.GARB, 10, Rarity.COMMON),
+            new ItemData(6,6, Slot.GARB, 20, Rarity.LEGENDARY),
+            new ItemData(1,5, Slot.TRINKET, 30, Rarity.LEGENDARY),
+            new ItemData(2,4, Slot.TOOL, 50, Rarity.LEGENDARY),
+            new ItemData(4,2, Slot.GARB, 90, Rarity.LEGENDARY),
+            new ItemData(2,1, Slot.GARB, 120, Rarity.LEGENDARY)
     };
 
     private class ItemData {
