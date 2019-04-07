@@ -262,13 +262,12 @@ import java.util.Map;
     @Override
     public void show() {
         updateValues();
-        if(getMute()) {
-            backgroundMusic.setVolume(0);
-        } else {
-            backgroundMusic.setVolume(1);
-        }
         backgroundMusic.setLooping(true);
-        backgroundMusic.play();
+        if(getMute()) {
+            backgroundMusic.stop();
+        } else {
+            backgroundMusic.play();
+        }
     }
 
     /**

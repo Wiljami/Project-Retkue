@@ -59,7 +59,6 @@ public class OptionsPopUp extends RetkueDialog {
         String text = readLine("options_desc");
         RetkueLabel desc = new RetkueLabel(text);
 
-
         muteBox = new CheckBox("Mute Music", getSkin());
         if(currentScene.isMuted) {
             muteBox.setChecked(true);
