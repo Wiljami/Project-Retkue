@@ -185,7 +185,9 @@ import java.util.Map;
      * Setup the different Skins
      */
     public void setupSkins() {
+        skin = new Skin();
         skin = new Skin (Gdx.files.internal("uiskin.json"));
+        skin.add("defaultFont", fonts.get("comicHeadline"), BitmapFont.class);
     }
 
     /**
@@ -255,6 +257,7 @@ import java.util.Map;
      */
     @Override
     public void show() {
+        getGame().saveGame();
         updateValues();
         backgroundMusic.setLooping(true);
         if(Config.isMuted()) {
@@ -293,6 +296,7 @@ import java.util.Map;
      */
     @Override
     public void hide() {
+        getGame().saveGame();
         backgroundMusic.stop();
     }
 
@@ -430,7 +434,7 @@ import java.util.Map;
      * @return String matching the key in bundle
      */
     public static String readLine (String key) {
-        String s  = Utils.readBundle(bundle, key);
+        String s = Utils.readBundle(bundle, key);
         return s;
     }
 

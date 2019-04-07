@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Utils class contains utility methods used in the project
  *
@@ -126,5 +129,16 @@ public class Utils {
             }
         }
         return frames;
+    }
+
+    /**
+     * currentDate() returns a String of the current date and time.
+     * @return String of the date and time
+     */
+    public static String currentDate() {
+        long yourmilliseconds = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd. MMM yyyy HH:mm:ss");
+        Date resultdate = new Date(yourmilliseconds);
+        return sdf.format(resultdate);
     }
 }

@@ -169,8 +169,7 @@ public class Party {
         retkus[0] = new Retku("Bill", 100, "bill_c.png", this);
         retkus[1] = new Retku("Mei", 100, "mei.png", this);
         retkus[2] = new Retku("Mik'ed", 100, "horze_white.png", this);
-        steps = 1000;
-        gold = 99;
+        gold = 1000;
     }
 
     public void loadRetku(Retku retku, int slot) {

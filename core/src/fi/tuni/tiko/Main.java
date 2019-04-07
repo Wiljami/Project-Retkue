@@ -229,4 +229,8 @@ public class Main extends Game {
     public void startGame() {
         initiateGame();
     }
+
+    public void saveGame() {
+        SaveGame.save(getSaveFileName(), getParty());
+    }
 }

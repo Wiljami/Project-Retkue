@@ -26,6 +26,7 @@ public class SaveGame {
         saveParty(save, party);
 
         save.flush();
+        System.out.println("Saving ... " + Utils.currentDate());
     }
 
     /**
