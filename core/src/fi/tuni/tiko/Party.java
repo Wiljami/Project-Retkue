@@ -259,4 +259,13 @@ public class Party {
     public void setQuest(Quest quest) {
         this.quest = quest;
     }
+
+    public static int getInventorySize() {
+        return inventorySize;
+    }
+
+    public void addItemById(int itemId) {
+        Item item = new Item(itemId, Item.Location.PARTY);
+        addItem(item);
+    }
 }

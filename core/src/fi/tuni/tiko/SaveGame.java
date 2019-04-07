@@ -79,6 +79,14 @@ public class SaveGame {
             if(retku.getSlotC() != null)
             save.putInteger("retku_" + x + "_slotC", retku.getSlotC().getId());
         }
+
+        for (int x = 0; x < party.getInventorySize(); x++) {
+            int itemId = 0;
+            if (x < party.getInventory().size()) {
+                itemId = party.getInventory().get(x).getId();
+            }
+            save.putInteger("party_inventory_" + x, itemId);
+        }
     }
 
     /**
@@ -120,6 +128,13 @@ public class SaveGame {
             retku.giveItemById(itemBId, x);
             retku.giveItemById(itemCId, x);
             party.loadRetku(retku, x);
+        }
+
+        for (int x = 0; x < party.getInventorySize(); x++) {
+            int itemId = save.getInteger("party_inventory_" + x, 0);
+            if (itemId != 0) {
+                party.addItemById(itemId);
+            }
         }
     }
 
