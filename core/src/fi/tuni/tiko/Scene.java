@@ -49,6 +49,7 @@ import java.util.Map;
     //TODO: Turn the Labels to a HashMap as well
     private static Label.LabelStyle labelHeadline;
     private static Label.LabelStyle labelComicHeadline;
+    private static Label.LabelStyle labelTextLabel;
 
     //TODO: Turn the skins to a HashMap as well
     private static Skin skin;
@@ -133,6 +134,7 @@ import java.util.Map;
     private void setupStyles() {
         labelHeadline = new Label.LabelStyle(fontType("headline"), Color.BLUE);
         labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
+        labelTextLabel = new Label.LabelStyle(fontType("defaultFont"), Color.WHITE);
     }
 
     /**
@@ -145,9 +147,7 @@ import java.util.Map;
                 new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter =
                 new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 12;
-        parameter.borderColor = Color.BLUE;
-        parameter.borderWidth = 1;
+        parameter.size = 18;
         BitmapFont tempFont = fontGenerator.generateFont(parameter);
 
         fonts.put("defaultFont", tempFont);
@@ -187,7 +187,7 @@ import java.util.Map;
     public void setupSkins() {
         skin = new Skin();
         skin = new Skin (Gdx.files.internal("uiskin.json"));
-        skin.add("defaultFont", fonts.get("comicHeadline"), BitmapFont.class);
+        skin.add("label", fonts.get("defaultFont"), BitmapFont.class);
     }
 
     /**
@@ -377,6 +377,10 @@ import java.util.Map;
      */
     public Label.LabelStyle getLabelComicHeadline() {
         return labelComicHeadline;
+    }
+
+    public static Label.LabelStyle getLabelTextLabel() {
+        return labelTextLabel;
     }
 
     /**

@@ -1,5 +1,6 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -99,7 +100,7 @@ public abstract class RetkueDialog extends Dialog {
      */
     public class RetkueLabel extends Label {
         public RetkueLabel(String text) {
-            super(text, skin);
+            super(text, skin, "label", Color.WHITE);
             setWrap(true);
             setAlignment(1);
         }

@@ -76,15 +76,7 @@ public class ForestScene extends Scene{
         partyBar = new PartyBar(partyBarHeight, party);
 
         Table table = new Table();
-        if (debug) table.debug();
         table.setFillParent(true);
-/*        table.top();
-        table.add(header).colspan(2).expand().fill().prefHeight(heightArray[0]);
-        table.row();
-        table.add().prefHeight(heightArray[1]);
-        table.row();
-        //table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
-*/
 
         float logTableHeight = Main.WORLDPIXELHEIGHT / 4f * 3f;
         float logtableWidth = Main.WORLDPIXELWIDTH;
@@ -122,7 +114,7 @@ public class ForestScene extends Scene{
 
         Label steps = new Label("", getSkin());
 
-        textLog = new Label("", getSkin());
+        textLog = new Label("", getLabelTextLabel());
 
         rawLog = "";
         textLog.setText(rawLog);
