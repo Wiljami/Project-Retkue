@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -59,8 +60,50 @@ public class ForestScene extends Scene{
      * createMenu creates the UI features on the screen.
      */
     private void createMenu() {
-        timer = new Label("00:00:00", getSkin());
+        generateLogTable();
 
+        //Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
+
+        //heightArray is given float values that represent the height of each element in the table
+        //It is a percentage of the entire screen
+        float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
+
+        Utils.convertToPixels(heightArray);
+
+        float partyBarHeight = Main.WORLDPIXELWIDTH / 1080f * 444f;
+
+        header = new GameHeader(heightArray[0], party);
+        partyBar = new PartyBar(partyBarHeight, party);
+
+        Table table = new Table();
+        if (debug) table.debug();
+        table.setFillParent(true);
+/*        table.top();
+        table.add(header).colspan(2).expand().fill().prefHeight(heightArray[0]);
+        table.row();
+        table.add().prefHeight(heightArray[1]);
+        table.row();
+        //table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
+*/
+
+        float logTableHeight = Main.WORLDPIXELHEIGHT / 4f * 3f;
+        float logtableWidth = Main.WORLDPIXELWIDTH;
+
+        table.add(logTable).prefHeight(logTableHeight).prefWidth(logtableWidth).pad(10);
+        table.row();
+
+        table.add(partyBar).prefHeight(partyBarHeight);
+        table.row();
+        table.add().prefHeight(heightArray[7]);
+        getStage().addActor(table);
+    }
+
+    private Table logTable;
+    private Label textLog;
+    private ScrollPane scrollLog;
+
+    private void generateLogTable() {
+        logTable = new Table();
         Button faster = new TextButton("Vauhdita", getSkin());
         faster.addListener(new ClickListener() {
             @Override
@@ -77,39 +120,34 @@ public class ForestScene extends Scene{
             }
         });
 
-        //Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
+        Label steps = new Label("", getSkin());
 
-        //heightArray is given float values that represent the height of each element in the table
-        //It is a percentage of the entire screen
-        float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
+        textLog = new Label("", getSkin());
 
-        Utils.convertToPixels(heightArray);
+        rawLog = "";
+        textLog.setText(rawLog);
 
-        header = new GameHeader(heightArray[0], party);
-        partyBar = new PartyBar(heightArray[6], party);
+        scrollLog = new ScrollPane(textLog);
 
-        Table table = new Table();
-        if (debug) table.debug();
-        table.setFillParent(true);
-        table.top();
-        table.add(header).colspan(2).expand().fill().prefHeight(heightArray[0]);
-        table.row();
-        table.add().prefHeight(heightArray[1]);
-        table.row();
-        //table.add(retkue).prefHeight(heightArray[2]).prefWidth(heightArray[2]).right().padRight(10);
-        table.add(timer).left().padLeft(10).prefHeight(heightArray[2]).colspan(2).center();
-        table.row();
-        table.add().prefHeight(heightArray[3]);
-        table.row();
-        table.add(faster).right().padRight(15).prefHeight(heightArray[4]);
-        table.add(harder).left().padLeft(15).prefHeight(heightArray[4]);
-        table.row();
-        table.add().prefHeight(heightArray[5]);
-        table.row();
-        table.add(partyBar).colspan(2).expand().fill().prefHeight(heightArray[6]);
-        table.row();
-        table.add().prefHeight(heightArray[7]);
-        getStage().addActor(table);
+        scrollLog.layout();
+        scrollLog.scrollTo(0,0,0,0);
+
+        Table logTop = new Table();
+        logTop.add(faster).pad(5);
+        logTop.add(harder).pad(5);
+        logTop.add(steps).pad(5);
+        logTable.add(logTop).top();
+
+        logTable.row();
+
+        timer = new Label("00:00:00", getLabelComicHeadline());
+        logTable.add(timer).center();
+
+        logTable.row();
+
+        logTable.add(scrollLog).expandY();
+
+        logTable.background(Utils.loadButtonImage("log.png", 0, 0));
     }
 
     /**
@@ -184,9 +222,19 @@ public class ForestScene extends Scene{
      */
     private void hitRetku() {
         int retku = MathUtils.random(2);
-        System.out.println("Hitting retku no. " + retku);
+        String text = "\nHitting retku no. " + retku;
+        addToLog(text);
         party.findRetku(retku).damageRetku(10);
         updateValues();
+    }
+
+    private String rawLog;
+
+    private void addToLog(String text) {
+        rawLog += text;
+        textLog.setText(rawLog);
+        scrollLog.layout();
+        scrollLog.scrollTo(0,0,0,0);
     }
 
     /**

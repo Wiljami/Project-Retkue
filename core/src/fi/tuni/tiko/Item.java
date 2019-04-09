@@ -40,7 +40,7 @@ public class Item {
     private Location location;
 
     private ItemData[] itemData = {
-            new ItemData(0,1, Slot.TRINKET, 0, Rarity.COMMON),
+            new ItemData(0,0, Slot.TRINKET, 0, Rarity.COMMON),
             new ItemData(3,7, Slot.GARB, 10, Rarity.LEGENDARY),
             new ItemData(6,6, Slot.GARB, 20, Rarity.UNCOMMON),
             new ItemData(1,5, Slot.TRINKET, 30, Rarity.LEGENDARY),

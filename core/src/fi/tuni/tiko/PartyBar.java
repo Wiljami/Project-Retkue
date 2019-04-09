@@ -38,9 +38,11 @@ public class PartyBar extends Table {
     public PartyBar(float height, Party party) {
         this.party = party;
 
+        debug();
+
         float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
         float healthBarHeight = height / 6f;
-        float charSize = height - healthBarHeight;
+        float charSize = height - healthBarHeight - 20f;
 
         AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet_new.png", 6 , 1, 1/2f, charSize, charSize);
         AnimatedActor retkuC = new AnimatedActor("miked_sprite_sheet.png", 5 , 1, 1/1.5f, charSize*4/5f, charSize);
@@ -58,17 +60,19 @@ public class PartyBar extends Table {
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
 
+
+        add(retkuA).prefHeight(charSize).prefWidth(charSize);
+        add(retkuC).prefHeight(charSize).prefWidth(charSize/5f*4f);
+        add(retku1).prefHeight(charSize).prefWidth(charSize);
+
+        row();
+
         add(bar0).width(healthBarWidth).padLeft(2).padRight(2);
         add(bar1).width(healthBarWidth).padLeft(2).padRight(2);
         add(bar2).width(healthBarWidth).padLeft(2).padRight(2);
 
-        row();
 
-        add(retkuA).prefHeight(charSize).prefWidth(charSize);
-        add(retku1).prefHeight(charSize).prefWidth(charSize);
-        add(retkuC).prefHeight(charSize).prefWidth(charSize/5f*4f);
-
-       // background(Utils.loadButtonImage("partybar_old.png", 0, 0));
+        background(Utils.loadButtonImage("partybar.png", 0, 0));
     }
 
     /**
