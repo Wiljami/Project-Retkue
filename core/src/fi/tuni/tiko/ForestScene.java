@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import java.util.Arrays;
+
+import static com.badlogic.gdx.graphics.g3d.particles.ParticleChannels.Color;
 import static fi.tuni.tiko.Utils.toAddZero;
 
 /**
@@ -96,7 +99,7 @@ public class ForestScene extends Scene{
 
     private void generateLogTable() {
         logTable = new Table();
-        Button faster = new TextButton("Vauhdita", getSkin());
+        Button faster = new TextButton(readLine("faster"), getSkin());
         faster.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -104,7 +107,7 @@ public class ForestScene extends Scene{
             }
         });
 
-        Button harder = new TextButton("Paranna", getSkin());
+        Button harder = new TextButton(readLine("harder"), getSkin());
         harder.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -119,6 +122,8 @@ public class ForestScene extends Scene{
         rawLog = "";
         textLog.setText(rawLog);
 
+        textLog.setAlignment(1);
+
         scrollLog = new ScrollPane(textLog);
 
         scrollLog.layout();
@@ -132,12 +137,13 @@ public class ForestScene extends Scene{
 
         logTable.row();
 
-        timer = new Label("00:00:00", getLabelComicHeadline());
+        timer = new Label("00:00:00", getLabelHeadline());
         logTable.add(timer).center();
 
         logTable.row();
 
         logTable.add(scrollLog).expandY();
+
 
         logTable.background(Utils.loadButtonImage("log.png", 0, 0));
     }
@@ -200,24 +206,33 @@ public class ForestScene extends Scene{
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
         if (timeSinceLastCheck > meanTimeForEvent) {
-            int n = MathUtils.random(1);
-            if (n == 1) {
-                hitRetku();
+            int n = MathUtils.random(5);
+            if (n == 0) {
+                randomEvent();
                 timeSinceLastEvent = 0;
             }
             timeSinceLastCheck = 0;
         }
     }
 
-    /**
-     * hitRetku method simulates some event etc. within game that damages a retku
-     */
-    private void hitRetku() {
+    private int[] damageEvents = {1, 2, 6, 12, 15, 28, 29};
+    private int eventDamage = 10;
+    private int[] healEvents = {3, 11, 15, 26, 27};
+    private int eventHeal = 10;
+
+    private void randomEvent() {
+        int event = MathUtils.random(29) + 1;
+        String eventString = "QUEST_EVENT_RANDOM_";
+        eventString += Utils.convertToId(event);
         int retku = MathUtils.random(2);
-        String text = "\nHitting retku no. " + retku;
-        addToLog(text);
-        party.findRetku(retku).damageRetku(10);
-        updateValues();
+        String eventLine = party.findRetku(retku).getName();
+        eventLine += " " + readLine(eventString) + "\n";
+        addToLog(eventLine);
+        if (Utils.intArrayContains(damageEvents, event)) {
+            party.findRetku(retku).damageRetku(eventDamage);
+        } else if (Utils.intArrayContains(healEvents, event)) {
+            party.findRetku(retku).healRetku(eventHeal);
+        }
     }
 
     private String rawLog;

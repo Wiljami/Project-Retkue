@@ -132,7 +132,7 @@ import java.util.Map;
      * Setup the different Styles
      */
     private void setupStyles() {
-        labelHeadline = new Label.LabelStyle(fontType("headline"), Color.BLUE);
+        labelHeadline = new Label.LabelStyle(fontType("headline"), Color.WHITE);
         labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
         labelTextLabel = new Label.LabelStyle(fontType("defaultFont"), Color.WHITE);
     }
@@ -158,10 +158,8 @@ import java.util.Map;
         fonts.put("bigText", tempFont);
 
         parameter.size = 48;
-        parameter.color = Color.GOLD;
-        parameter.borderColor = Color.WHITE;
-        parameter.borderWidth = 3;
         tempFont = fontGenerator.generateFont(parameter);
+        parameter.color = Color.WHITE;
 
         fonts.put("headline", tempFont);
 

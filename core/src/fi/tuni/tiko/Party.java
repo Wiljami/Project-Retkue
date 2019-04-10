@@ -167,8 +167,8 @@ public class Party {
      */
     public void newGame() {
         retkus[0] = new Retku("Bill", 100, "bill_c.png", this);
-        retkus[1] = new Retku("Mei", 100, "mei.png", this);
-        retkus[2] = new Retku("Mik'ed", 100, "horze_white.png", this);
+        retkus[1] = new Retku("Mik'ed", 100, "mei.png", this);
+        retkus[2] = new Retku("Mei", 100, "horze_white.png", this);
         gold = 1000;
     }
 

@@ -38,8 +38,6 @@ public class PartyBar extends Table {
     public PartyBar(float height, Party party) {
         this.party = party;
 
-        debug();
-
         float healthBarWidth = Main.WORLDPIXELWIDTH/3f - 10f;
         float healthBarHeight = height / 6f;
         float charSize = height - healthBarHeight - 20f;

@@ -141,4 +141,13 @@ public class Utils {
         Date resultdate = new Date(yourmilliseconds);
         return sdf.format(resultdate);
     }
+
+    public static boolean intArrayContains(int[] array, int target) {
+        for (int n = 0; n < array.length; n++) {
+            if (array[n] == target) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
