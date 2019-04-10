@@ -39,6 +39,10 @@ public class Item {
 
     private Location location;
 
+    private ItemData[] items = {
+
+    };
+
     private ItemData[] itemData = {
             new ItemData(0,0, Slot.TRINKET, 0, Rarity.COMMON),
             new ItemData(3,7, Slot.GARB, 10, Rarity.LEGENDARY),
@@ -61,12 +65,16 @@ public class Item {
         public Slot slot;
         public int price;
         public Rarity rarity;
+        public int trinketEffect = 0;
         public ItemData(int attack, int defense, Slot slot, int price, Rarity rarity) {
             this.attack = attack;
             this.defense = defense;
             this.slot = slot;
             this.price = price;
             this.rarity = rarity;
+        }
+        public ItemData(int attack, int defense, Slot slot, int price, Rarity rarity, int trinketEffect) {
+            this(attack, defense, slot, price, rarity);
         }
     }
 
