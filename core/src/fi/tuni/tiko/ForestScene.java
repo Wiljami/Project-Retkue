@@ -187,7 +187,7 @@ public class ForestScene extends Scene{
     /**
      * How often we check with random wether there is an evernt or not
      */
-    private float checkTime = 5;
+    private float checkTime = 5f;
 
     /**
      * float of time since last random event check
@@ -211,7 +211,6 @@ public class ForestScene extends Scene{
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
         if (timeSinceLastCheck > checkTime) {
             float n = MathUtils.random(eventChance);
-            System.out.println(n + " " + timeSinceLastEvent);
             if (n < timeSinceLastEvent) {
                 randomEvent();
                 timeSinceLastEvent = 0;
@@ -241,7 +240,7 @@ public class ForestScene extends Scene{
     private int eventHeal = 10;
 
     private void randomEvent() {
-        int event = MathUtils.random(29) + 1;
+        int event = MathUtils.random(28) + 1;
         String eventString = "QUEST_EVENT_RANDOM_";
         eventString += Utils.convertToId(event);
         int retku = MathUtils.random(2);
