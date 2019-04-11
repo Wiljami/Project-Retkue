@@ -43,7 +43,7 @@ public class PartyBar extends Table {
         float charSize = height - healthBarHeight - 20f;
 
         AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet.png", 6 , 1, 1/2f, charSize, charSize);
-        AnimatedActor retkuB = new AnimatedActor("mei_sprite sheet.png", 17, 1, 1/4f, charSize*4f/5f, charSize);
+        AnimatedActor retkuB = new AnimatedActor("mei_sprite_sheet.png", 17, 1, 1/4f, charSize*4f/5f, charSize);
         AnimatedActor retkuC = new AnimatedActor("miked_sprite_sheet.png", 5 , 1, 1/1.5f, charSize*4/5f, charSize);
 
         bar0 = new HealthBar(healthBarWidth, healthBarHeight);

@@ -95,6 +95,10 @@ public class Item {
         generateIcon(bundle_id);
     }
 
+    /**
+     * Generates the item icon Group with the item's id and its rarity.
+     * @param id id of the item
+     */
     private void generateIcon(String id) {
         picture = Utils.loadTexture("items/item"+ id + ".png");
         String frameName = "items/border_";
@@ -109,6 +113,10 @@ public class Item {
         frame = Utils.loadTexture(frameName);
     }
 
+    /**
+     * Finds the item description from the bundle with the item id
+     * @param id id of the item
+     */
     private void readDescriptions(String id) {
         String halfKey = "ITEM" + id;
         String key = halfKey + "_NAME";
