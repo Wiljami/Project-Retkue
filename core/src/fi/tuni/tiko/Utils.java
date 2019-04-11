@@ -106,6 +106,11 @@ public class Utils {
         return s;
     }
 
+    /**
+     * Converts an Integer to a string and adds 0s in front to make it 4 digit String
+     * @param id int to convert
+     * @return the String result of the conversion
+     */
     public static String convertToId(int id) {
         String idString;
         if (id < 10) {
@@ -142,6 +147,12 @@ public class Utils {
         return sdf.format(resultdate);
     }
 
+    /**
+     * Checks an int array whether it contains a specific int value.
+     * @param array Array to search
+     * @param target Value to search for
+     * @return Boolean whether the value was found or not
+     */
     public static boolean intArrayContains(int[] array, int target) {
         for (int n = 0; n < array.length; n++) {
             if (array[n] == target) {
