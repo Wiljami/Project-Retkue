@@ -8,11 +8,6 @@ package fi.tuni.tiko;
  */
 public class AdventurePopUp extends RetkueDialog {
     /**
-     * windowStyle is the style we're using in here
-     */
-    private static String windowStyle = "dialog";
-
-    /**
      * Title of the RetkueDialog window
      */
     private static String title = readLine("adventure");
@@ -23,7 +18,7 @@ public class AdventurePopUp extends RetkueDialog {
      * Constructor
      */
     public AdventurePopUp(Quest quest) {
-        super(title, skin, windowStyle);
+        super(title);
         this.quest = quest;
         createMenu();
         if (Main.debug) debug();

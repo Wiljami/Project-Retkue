@@ -13,7 +13,7 @@ public class TutorialTavern extends RetkueDialog {
     private TutorialQuestPopUp tutorialQuestPopUp;
 
     public TutorialTavern(TutorialTownScene scene) {
-        super("Tavern", skin, "dialog");
+        super("Tavern");
         this.scene = scene;
         me = this;
         createMenu();

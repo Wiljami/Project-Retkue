@@ -10,9 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import java.util.Arrays;
-
-import static com.badlogic.gdx.graphics.g3d.particles.ParticleChannels.Color;
 import static fi.tuni.tiko.Utils.toAddZero;
 
 /**
@@ -40,11 +37,6 @@ public class ForestScene extends Scene{
      */
     private PartyBar partyBar;
 
-    /**
-     * header is the bar on top of the screen showing information and providing its functionality
-     */
-    private GameHeader header;
-
     private Boolean questOver = false;
 
     /**
@@ -65,17 +57,12 @@ public class ForestScene extends Scene{
     private void createMenu() {
         generateLogTable();
 
-        //Image retkue = new Image(Utils.loadTexture("retkue_title.png"));
-
-        //heightArray is given float values that represent the height of each element in the table
-        //It is a percentage of the entire screen
         float[] heightArray = {1/6.4f, 1/6f, 1/9.6f, 1/6.4f, 1/16f, 1/9.6f, 1/(5f + 1f/3f), 1/16f};
 
         Utils.convertToPixels(heightArray);
 
         float partyBarHeight = Main.WORLDPIXELWIDTH / 1080f * 444f;
 
-        header = new GameHeader(heightArray[0], party);
         partyBar = new PartyBar(partyBarHeight, party);
 
         Table table = new Table();
@@ -96,6 +83,7 @@ public class ForestScene extends Scene{
     private Table logTable;
     private Label textLog;
     private ScrollPane scrollLog;
+    private Label steps;
 
     private void generateLogTable() {
         logTable = new Table();
@@ -115,7 +103,8 @@ public class ForestScene extends Scene{
             }
         });
 
-        Label steps = new Label("", getSkin());
+        steps = new Label("", getSkin());
+        updateSteps();
 
         textLog = new Label("", getLabelTextLabel());
 
@@ -257,11 +246,16 @@ public class ForestScene extends Scene{
         int seconds = (int) (timeLeft / 1000) % 60;
         String timerText = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
         timer.setText(timerText);
+        updateSteps();
+    }
+
+    private void updateSteps() {
+        String stepsString = readLine("steps") + ": " + party.getSteps();
+        steps.setText(stepsString);
     }
 
     @Override
     public void updateValues() {
-        header.updateValues();
         partyBar.updateHealthBars();
     }
 

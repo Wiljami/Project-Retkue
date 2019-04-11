@@ -13,7 +13,7 @@ public class TutorialPrompt extends RetkueDialog {
     private static String title = "";
 
     public TutorialPrompt(TutorialController tutorialController) {
-        super(title, skin, windowStyle);
+        super(title);
         createMenu(tutorialController);
     }
 

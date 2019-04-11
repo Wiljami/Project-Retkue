@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fi.tuni.tiko.Item.Location;
 
 public class ItemPopUp extends RetkueDialog {
-    private static String windowStyle = "dialog";
     private Item item;
     private Party party;
     private InnPopUp inn;
@@ -19,7 +18,7 @@ public class ItemPopUp extends RetkueDialog {
     private TextButton returnToInventory;
 
     public ItemPopUp(String title, Item i, Party party, InnPopUp inn) {
-        super(title, skin, windowStyle);
+        super(title);
 
         this.item = i;
         this.party = party;

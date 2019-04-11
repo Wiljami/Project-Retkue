@@ -109,6 +109,14 @@ public class Party {
     }
 
     /**
+     * Spend n amount of steps
+     * @param n step amount
+     */
+    public void spendSteps(int n) {
+        setSteps(getSteps() - n);
+    }
+
+    /**
      * Spend n amount of gold
      * @param n gold amount
      */

@@ -13,7 +13,6 @@ import fi.tuni.tiko.Utils;
 
 public class TutorialPopUp extends RetkueDialog {
     private static String title = "";
-    private static String windowStyle = "dialog";
     private TutorialScene scene;
     private int text_id;
     private int id;
@@ -22,7 +21,7 @@ public class TutorialPopUp extends RetkueDialog {
     public enum Position {TOP, LEFT, BOTTOM, MIDDLE}
 
     public TutorialPopUp(int text_id, int id, String image, Position position, TutorialScene scene) {
-        super(title, skin, windowStyle);
+        super(title);
         this.text_id = text_id;
         this.id = id;
         this.scene = scene;

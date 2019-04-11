@@ -25,11 +25,6 @@ public class OptionsPopUp extends RetkueDialog {
     Scene currentScene;
 
     /**
-     * WindowStyle for the options window
-     */
-    private static String windowStyle = "dialog";
-
-    /**
      * Title for the options window
      */
     private static String title = readLine("options");
@@ -43,7 +38,7 @@ public class OptionsPopUp extends RetkueDialog {
      * Constructor for OptionsPopUp
      */
     public OptionsPopUp(Scene currentScene) {
-        super(title, skin, windowStyle);
+        super(title);
         createMenu();
         if (Main.debug) debug();
         this.currentScene = currentScene;

@@ -15,11 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class QuestPopUp extends RetkueDialog {
     /**
-     * windowStyle of the quest Window
-     */
-    private static String windowStyle = "dialog";
-
-    /**
      * Title of the quest window. It's empty as it is changed immediately.
      */
     private static String title = "";
@@ -59,7 +54,7 @@ public class QuestPopUp extends RetkueDialog {
      * @param tavernPopUp tavernPopUp Reference
      */
     public QuestPopUp(final TavernPopUp tavernPopUp, final int id, final Party party) {
-        super(title, skin, windowStyle);
+        super(title);
 
         this.party = party;
 

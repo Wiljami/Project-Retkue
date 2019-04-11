@@ -18,7 +18,7 @@ public class TutorialQuestPopUp extends RetkueDialog {
     TextButton accept;
 
     public TutorialQuestPopUp(final TutorialTavern origin) {
-        super("", skin, "dialog");
+        super("");
 
         this.origin = origin;
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;

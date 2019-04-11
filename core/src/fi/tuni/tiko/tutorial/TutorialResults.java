@@ -9,7 +9,7 @@ import fi.tuni.tiko.RetkueDialog;
 
 public class TutorialResults extends RetkueDialog {
     public TutorialResults(final TutorialForestScene origin) {
-        super("Results", skin, "dialog");
+        super("Results");
 
         Label text = new Label("Your task is a success!\n\nReward: 1000 gold pieces", skin);
 

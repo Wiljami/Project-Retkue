@@ -62,6 +62,7 @@ public class TownInfo {
     }
 
     public void rollNewQuests() {
+        clearChosenQuest();
         generateQuests();
     }
 

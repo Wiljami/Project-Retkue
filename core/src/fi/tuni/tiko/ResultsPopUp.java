@@ -12,12 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0310
  */
 public class ResultsPopUp extends RetkueDialog {
-    //TODO: More elegant solution here
-    /**
-     * WindowStyle of the results window
-     */
-    private static String windowStyle = "dialog";
-
     /**
      * Title of the RetkeuDialog
      */
@@ -32,7 +26,7 @@ public class ResultsPopUp extends RetkueDialog {
      * ResultsPopUp constructor
      */
     public ResultsPopUp(Party party) {
-        super(title, skin, windowStyle);
+        super(title);
         this.party = party;
         createMenu();
         Main.getTownInfo().rollNewQuests();

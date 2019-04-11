@@ -18,11 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class InnPopUp extends RetkueDialog {
     /**
-     * windowStyle
-     */
-    private static String windowStyle = "dialog";
-
-    /**
      * Title of the InnPopUp window
      */
     private static String title = readLine("inn");
@@ -42,7 +37,7 @@ public class InnPopUp extends RetkueDialog {
      * Constructor.
      */
     public InnPopUp(Party party, TownScene townScene) {
-        super(title, skin, windowStyle);
+        super(title);
         this.party = party;
         inn = this;
         this.town = townScene;

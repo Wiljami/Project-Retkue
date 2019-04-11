@@ -16,12 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @version 2019.0310
  */
 public class TavernPopUp extends RetkueDialog {
-
-    /**
-     * WindowStyle of the TavernPopUp
-     */
-    private static String windowStyle = "dialog";
-
     /**
      * Reference to itself. Because of the subclasses we need this.
      */
@@ -42,7 +36,7 @@ public class TavernPopUp extends RetkueDialog {
      * TavernPopUp constructor
      */
     public TavernPopUp(Scene scene, Party party) {
-        super(title, skin, windowStyle);
+        super(title);
         this.party = party;
         tavernPopUp = this;
         this.townInfo = Main.getTownInfo();

@@ -14,7 +14,7 @@ public class TutorialInn extends RetkueDialog {
     private TutorialTownScene origin;
 
     public TutorialInn(TutorialTownScene origin) {
-        super("Inn", skin, "dialog");
+        super("Inn");
 
         this.origin = origin;
 

@@ -23,11 +23,9 @@ public abstract class RetkueDialog extends Dialog {
     /**
      * RetkuDialog constructor
      * @param title title of the window
-     * @param skin skin of the window
-     * @param windowStyle windowStyle used
      */
-    public RetkueDialog(String title, Skin skin, String windowStyle) {
-        super(title, skin, windowStyle);
+    public RetkueDialog(String title) {
+        super(title, skin, "dialog");
     }
 
     /**
