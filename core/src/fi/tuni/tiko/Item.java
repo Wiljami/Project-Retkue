@@ -125,11 +125,20 @@ public class Item {
         return description;
     }
 
+    /**
+     * Get the item icon Group as in the frame and the icon picture in a default size 72px.
+     * @return Group of the image icon.
+     */
     public Group getIcon() {
         Group icon = getIcon(72f);
         return icon;
     }
 
+    /**
+     * Gets the image icon group in a set size.
+     * @param size requested size of the icon
+     * @return Group of the icon frame and picture
+     */
     public Group getIcon(float size) {
         Image image = new Image(picture);
         Image frameImage = new Image(frame);
