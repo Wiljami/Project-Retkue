@@ -144,12 +144,8 @@ public class ForestScene extends Scene{
      * TODO: More and better here
      */
     private void heal() {
-        if(party.getGold() >= 5) {
-            party.spendGold(5);
-            party.findRetku(0).healRetku(10);
-            party.findRetku(1).healRetku(10);
-            party.findRetku(2).healRetku(10);
-        }
+        HealDialog healDialog = new HealDialog(party);
+        healDialog.show(getStage());
     }
 
     /**
@@ -159,10 +155,8 @@ public class ForestScene extends Scene{
      * TODO: More and better here
      */
     private void faster() {
-        if(party.getGold() >= 5) {
-            party.spendGold(5);
-            party.boostQuest();
-        }
+        FasterDialog fasterDialog = new FasterDialog(party);
+        fasterDialog.show(getStage());
     }
 
     /**

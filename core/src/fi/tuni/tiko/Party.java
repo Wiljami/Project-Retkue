@@ -206,11 +206,6 @@ public class Party {
         return questStarted - System.currentTimeMillis() + getQuestLeft();
     }
 
-    public void boostQuest() {
-        long temp = timeLeft()/2 + System.currentTimeMillis() - questStarted;
-        setQuestLeft(temp);
-    }
-
     public void setCurrentQuest(Quest currentQuest) {
         this.currentQuest = currentQuest;
         setQuestLeft(currentQuest.getQuestLength());
@@ -244,7 +239,54 @@ public class Party {
         }
     }
 
+    public void resetCosts() {
+        healCost = 10;
+        fasterCost = 10;
+    }
+
+    private int fasterCost = 10;
+    private int healCost = 10;
+
+    public int getHealCost() {
+        return healCost;
+    }
+
     public void healParty() {
+        for (Retku retku : retkus) {
+            retku.healRetku(20);
+        }
+        spendSteps(healCost);
+        healCost = healCost * 2;
+    }
+
+    public boolean canAffordToHeal() {
+        if (getSteps() > getHealCost()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getFasterCost() {
+        return fasterCost;
+    }
+
+    public void fasterQuest() {
+        spendSteps(fasterCost);
+        long temp = (long) (timeLeft()/1.1 + System.currentTimeMillis() - questStarted);
+        setQuestLeft(temp);
+        fasterCost = fasterCost * 2;
+    }
+
+    public boolean canAffordToFaster() {
+        if (getSteps() > getFasterCost()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void restParty() {
         for (Retku retku : retkus) {
             retku.healRetku(100);
         }

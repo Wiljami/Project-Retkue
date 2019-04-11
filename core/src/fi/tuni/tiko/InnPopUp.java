@@ -89,7 +89,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void rest() {
-        party.healParty();
+        party.restParty();
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
