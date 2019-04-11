@@ -16,6 +16,7 @@ public class Quest {
     private String completeText;
     private Reward reward;
     private long questLength;
+    private long[] encounterPoint;
     private int difficulty;
     private QuestGiver questGiver;
 

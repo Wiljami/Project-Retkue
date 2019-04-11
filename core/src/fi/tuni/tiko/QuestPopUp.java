@@ -52,6 +52,8 @@ public class QuestPopUp extends RetkueDialog {
 
     private Quest quest;
 
+    private Image image;
+
     /**
      * Constructor of QuestPopUp
      * @param tavernPopUp tavernPopUp Reference
@@ -64,7 +66,7 @@ public class QuestPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
         this.tavernPopUp = tavernPopUp;
-        Image image = new Image(Utils.loadTexture("old_guy1.png"));
+        image = new Image(Utils.loadTexture("old_guy1.png"));
 
         final TownInfo info = tavernPopUp.getTownInfo();
         quest = info.findQuest(id);
@@ -73,7 +75,10 @@ public class QuestPopUp extends RetkueDialog {
 
         String text = quest.getBriefing();
 
-        accept = quest.getAcceptText();
+        text += "\n\n" + readLine("reward");
+        text += ": " + quest.getReward();
+
+        accept = quest.getDescription();
 
         yes = new TextButton(readLine("yes"), getSkin());
         yes.addListener(new ClickListener() {
@@ -132,6 +137,7 @@ public class QuestPopUp extends RetkueDialog {
     public void acceptQuest() {
         desc.setText(accept);
         no.setVisible(false);
+        image.setVisible(false);
         yes.setVisible(false);
         ok.setVisible(true);
     }

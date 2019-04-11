@@ -9,4 +9,9 @@ public class Reward {
     public int getGold() {
         return gold;
     }
+
+    @Override
+    public String toString() {
+        return gold + " " + Scene.readLine("golds");
+    }
 }

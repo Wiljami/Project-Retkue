@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import java.util.ArrayList;
 
 import static fi.tuni.tiko.Item.Slot.*;
@@ -11,15 +13,45 @@ import static fi.tuni.tiko.Item.Location.*;
 public class TownInfo {
     private Quest[] availableQuests;
     private ArrayList<Item> availableItems;
+    private Quest[] questPool = {
+            new Quest(1, new Reward(10), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(2, new Reward(20), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(3, new Reward(30), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(4, new Reward(40), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(5, new Reward(50), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(6, new Reward(60), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(7, new Reward(70), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(8, new Reward(80), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(9, new Reward(90), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(10, new Reward(100), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(11, new Reward(110), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(12, new Reward(120), 100000L, Quest.QuestGiver.oldMan),
+            new Quest(13, new Reward(130), 100000L, Quest.QuestGiver.oldMan),
+    };
 
     private int chosenQuest = -1;
     public TownInfo() {
         availableQuests = new Quest[3];
-        availableQuests[0] = new Quest(1, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
-        availableQuests[1] = new Quest(2, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
-        availableQuests[2] = new Quest(3, new Reward(1), 100000L, Quest.QuestGiver.oldMan);
+        generateQuests();
         availableItems = new ArrayList<Item>();
         generateItems();
+    }
+
+    private void generateQuests () {
+        int quest1;
+        int quest2;
+        int quest3;
+        int numberOfQuests = questPool.length;
+        quest1 = MathUtils.random(numberOfQuests-1);
+        do {
+            quest2 = MathUtils.random(numberOfQuests-1);
+        } while (quest2 == quest1);
+        do {
+            quest3 = MathUtils.random(numberOfQuests-1);
+        } while (quest3 == quest1 || quest3 == quest2);
+        availableQuests[0] = questPool[quest1];
+        availableQuests[1] = questPool[quest2];
+        availableQuests[2] = questPool[quest3];
     }
 
     private void generateItems() {
