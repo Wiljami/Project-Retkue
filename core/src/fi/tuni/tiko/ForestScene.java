@@ -10,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import static fi.tuni.tiko.Utils.toAddZero;
-
 /**
  * ForestScene. Here we see the progress of the party in their current quest. It currently has a
  * simple timer to keep track of the progress
@@ -81,9 +79,9 @@ public class ForestScene extends Scene{
     }
 
     private Table logTable;
-    private Label textLog;
+    private RetkueLabel textLog;
     private ScrollPane scrollLog;
-    private Label steps;
+    private RetkueLabel steps;
 
     private void generateLogTable() {
         logTable = new Table();
@@ -103,19 +101,23 @@ public class ForestScene extends Scene{
             }
         });
 
-        steps = new Label("", getSkin());
+        steps = new RetkueLabel("");
+        steps.setAlignment(0);
+        steps.setWrap(false);
         updateSteps();
 
-        textLog = new Label("", getLabelTextLabel());
+        textLog = new RetkueLabel("", "log");
+        textLog.setWrap(false);
+
+        textLog.setAlignment(0);
 
         rawLog = "";
         textLog.setText(rawLog);
 
-        textLog.setAlignment(1);
-
         scrollLog = new ScrollPane(textLog);
 
         scrollLog.layout();
+        scrollLog.isForceScrollY();
         scrollLog.scrollTo(0,0,0,0);
 
         Table logTop = new Table();
@@ -131,7 +133,7 @@ public class ForestScene extends Scene{
 
         logTable.row();
 
-        logTable.add(scrollLog).expandY();
+        logTable.add(scrollLog).expandY().pad(5);
 
 
         logTable.background(Utils.loadButtonImage("log.png", 0, 0));
@@ -208,7 +210,8 @@ public class ForestScene extends Scene{
         String eventString = "QUEST_EVENT_RANDOM_";
         eventString += Utils.convertToId(event);
         int retku = MathUtils.random(2);
-        String eventLine = party.findRetku(retku).getName();
+        String eventLine = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
+        eventLine += party.findRetku(retku).getName();
         eventLine += " " + readLine(eventString) + "\n";
         addToLog(eventLine);
         if (Utils.intArrayContains(damageEvents, event)) {
@@ -235,10 +238,7 @@ public class ForestScene extends Scene{
         long timeLeft = party.timeLeft();
         events();
 
-        int hours   = (int) ((timeLeft / (1000*60*60)) / 24);
-        int minutes = (int) ((timeLeft / (1000*60)) % 60);
-        int seconds = (int) (timeLeft / 1000) % 60;
-        String timerText = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
+        String timerText = Utils.convertToTimeStamp(timeLeft);
         timer.setText(timerText);
         updateSteps();
     }

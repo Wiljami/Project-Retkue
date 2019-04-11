@@ -161,4 +161,17 @@ public class Utils {
         }
         return false;
     }
+
+    /**
+     * Takes time in milliseconds and converts it to a String in the format of HH:MM:SS
+     * @param time long of the milliseconds
+     * @return String of the timeStamp
+     */
+    public static String convertToTimeStamp (long time) {
+        int hours   = (int) ((time / (1000*60*60)) / 24);
+        int minutes = (int) ((time / (1000*60)) % 60);
+        int seconds = (int) (time / 1000) % 60;
+        String timeStamp = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
+        return timeStamp;
+    }
 }

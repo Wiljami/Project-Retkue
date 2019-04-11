@@ -317,4 +317,8 @@ public class Party {
         Item item = new Item(itemId, Item.Location.PARTY);
         addItem(item);
     }
+
+    public long timeSpent() {
+        return System.currentTimeMillis() - questStarted;
+    }
 }

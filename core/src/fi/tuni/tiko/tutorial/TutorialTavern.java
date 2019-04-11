@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import fi.tuni.tiko.Main;
 import fi.tuni.tiko.RetkueDialog;
+import fi.tuni.tiko.RetkueLabel;
 
 public class TutorialTavern extends RetkueDialog {
     private TutorialTownScene scene;
@@ -26,7 +27,7 @@ public class TutorialTavern extends RetkueDialog {
         setMovable(false);
 
         String text = readLine("tavern_desc");
-        RetkueDialog.RetkueLabel desc = new RetkueDialog.RetkueLabel(text);
+        RetkueLabel desc = new RetkueLabel(text);
 
         TextButton label0 = new TextButton("Tutorial Quest", skin);
         label0.addListener(new ClickListener() {

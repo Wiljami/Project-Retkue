@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import fi.tuni.tiko.Main;
 import fi.tuni.tiko.RetkueDialog;
+import fi.tuni.tiko.RetkueLabel;
 import fi.tuni.tiko.Utils;
 
 public class TutorialPopUp extends RetkueDialog {

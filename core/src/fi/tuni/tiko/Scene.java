@@ -152,6 +152,11 @@ import java.util.Map;
 
         fonts.put("defaultFont", tempFont);
 
+        parameter.size = 12;
+        tempFont = fontGenerator.generateFont(parameter);
+
+        fonts.put("logFont", tempFont);
+
         parameter.size = 24;
         tempFont = fontGenerator.generateFont(parameter);
 
@@ -186,6 +191,7 @@ import java.util.Map;
         skin = new Skin();
         skin = new Skin (Gdx.files.internal("uiskin.json"));
         skin.add("label", fonts.get("defaultFont"), BitmapFont.class);
+        skin.add("log", fonts.get("logFont"), BitmapFont.class);
     }
 
     /**

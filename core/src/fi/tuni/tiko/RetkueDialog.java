@@ -92,15 +92,4 @@ public abstract class RetkueDialog extends Dialog {
         return s;
     }
 
-    /**
-     * RetkueLabel is a customized Label for the use of the game. We set text wrapping on and text
-     * is centered.
-     */
-    public class RetkueLabel extends Label {
-        public RetkueLabel(String text) {
-            super(text, skin, "label", Color.WHITE);
-            setWrap(true);
-            setAlignment(1);
-        }
-    }
 }
