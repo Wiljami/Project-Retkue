@@ -179,20 +179,40 @@ public class ForestScene extends Scene{
 
     }
 
-    float timeSinceLastEvent;
-    float meanTimeForEvent = 1;
-    float timeSinceLastCheck;
+    /**
+     * float of time since last random event
+     */
+    private float timeSinceLastEvent;
 
     /**
-     * events randomizes whether an event happens within x amount of seconds or not.
-     * TODO: Create an EventManager class that handles the random events and such.
+     * How often we check with random wether there is an evernt or not
+     */
+    private float checkTime = 5;
+
+    /**
+     * float of time since last random event check
+     */
+    private float timeSinceLastCheck;
+
+    /**
+     * float that determines the chance of events, higher means less frequently
+     */
+    private float eventChance = 2000f;
+
+    /**
+     * events triggers random events based on time spent
+     *
+     * events runs on every frame and adds DeltaTime to the helper variables. Every checkTime
+     * seconds it randomizes a value between 0 and eventChance. If it is less than
+     * timeSinceLastEvent an event will trigger
      */
     private void events() {
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
-        if (timeSinceLastCheck > meanTimeForEvent) {
-            int n = MathUtils.random(5);
-            if (n == 0) {
+        if (timeSinceLastCheck > checkTime) {
+            float n = MathUtils.random(eventChance);
+            System.out.println(n + " " + timeSinceLastEvent);
+            if (n < timeSinceLastEvent) {
                 randomEvent();
                 timeSinceLastEvent = 0;
             }
@@ -200,9 +220,24 @@ public class ForestScene extends Scene{
         }
     }
 
+    /**
+     * Array of event IDs that cause damage to the party
+     */
     private int[] damageEvents = {1, 2, 6, 12, 15, 28, 29};
+
+    /**
+     * The amount of damage the events cause
+     */
     private int eventDamage = 10;
+
+    /**
+     * Array of event IDs that heal the party
+     */
     private int[] healEvents = {3, 11, 15, 26, 27};
+
+    /**
+     * The amount healed by the events
+     */
     private int eventHeal = 10;
 
     private void randomEvent() {
