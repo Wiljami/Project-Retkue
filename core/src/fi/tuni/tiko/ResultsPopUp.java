@@ -35,6 +35,8 @@ public class ResultsPopUp extends RetkueDialog {
         super(title, skin, windowStyle);
         this.party = party;
         createMenu();
+        Main.getTownInfo().rollNewQuests();
+        Main.getTownInfo().rollNewItems();
         if (Main.debug) debug();
     }
 

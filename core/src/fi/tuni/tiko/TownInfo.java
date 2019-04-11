@@ -61,6 +61,14 @@ public class TownInfo {
         }
     }
 
+    public void rollNewQuests() {
+        generateQuests();
+    }
+
+    public void rollNewItems() {
+        generateItems();
+    }
+
     public Quest findQuest(int n) {
         return availableQuests[n];
     }
