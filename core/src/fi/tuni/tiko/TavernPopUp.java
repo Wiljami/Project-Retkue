@@ -88,7 +88,21 @@ public class TavernPopUp extends RetkueDialog {
         getContentTable().row();
         getContentTable().add(label2).pad(5).padBottom(20);
 
-        button(readLine("return"), false);
+        TextButton close = new TextButton(readLine("return"), getSkin());
+        close.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                closeMe();
+            }
+        });
+
+        getContentTable().row();
+        getContentTable().add(close);
+    }
+
+    private void closeMe() {
+        getGame().saveGame();
+        remove();
     }
 
     private void openQuestPopUp (int questId) {

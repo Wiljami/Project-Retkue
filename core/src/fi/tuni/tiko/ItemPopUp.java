@@ -187,6 +187,7 @@ public class ItemPopUp extends RetkueDialog {
     }
 
     private void closeMe() {
+        getGame().saveGame();
         remove();
     }
 }

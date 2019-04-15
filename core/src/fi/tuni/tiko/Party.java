@@ -49,6 +49,11 @@ public class Party {
     private static final int GOLDFROMSTEPS = 5;
 
     /**
+     * The amount of gold resting in the inn costs
+     */
+    private static final int RESTCOST = 100;
+
+    /**
      * Reference to main
      */
     private Main main;
@@ -267,6 +272,14 @@ public class Party {
         }
     }
 
+    public boolean canAffordToRest() {
+        if (getGold() > RESTCOST) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public int getFasterCost() {
         return fasterCost;
     }
@@ -288,8 +301,9 @@ public class Party {
 
     public void restParty() {
         for (Retku retku : retkus) {
-            retku.healRetku(100);
+            retku.healRetku(200);
         }
+        spendGold(RESTCOST);
     }
 
     public void sellItem(Item item) {

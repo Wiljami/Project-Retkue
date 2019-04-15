@@ -71,7 +71,8 @@ public class InnPopUp extends RetkueDialog {
         rest.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                rest();
+                RestDialog restDialog = new RestDialog(party, inn);
+                restDialog.show(getStage());
             }
         });
 
@@ -86,13 +87,6 @@ public class InnPopUp extends RetkueDialog {
         buttons.add(rest).pad(10);
         buttons.add(back).pad(10);
         getContentTable().add(buttons);
-    }
-
-    private void rest() {
-        party.restParty();
-        bar0.setValue(party.findRetku(0).healthPercentage());
-        bar1.setValue(party.findRetku(1).healthPercentage());
-        bar2.setValue(party.findRetku(2).healthPercentage());
     }
 
     private Group[][] charSlots;
@@ -237,8 +231,15 @@ public class InnPopUp extends RetkueDialog {
     }
 
     private void closeMe() {
+        getGame().saveGame();
         getContentTable().reset();
         remove();
+    }
+
+    public void updateHealthBars() {
+        bar0.setValue(party.findRetku(0).healthPercentage());
+        bar1.setValue(party.findRetku(1).healthPercentage());
+        bar2.setValue(party.findRetku(2).healthPercentage());
     }
 
     /**

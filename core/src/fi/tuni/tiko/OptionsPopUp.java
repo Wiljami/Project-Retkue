@@ -2,8 +2,11 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * OptionsPopUp contains the functionality of the options menu within the game.
@@ -72,6 +75,20 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
-        button(readLine("return"), false);
+        TextButton close = new TextButton(readLine("return"), getSkin());
+        close.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                closeMe();
+            }
+        });
+
+        getContentTable().row();
+        getContentTable().add(close);
+    }
+
+    private void closeMe() {
+        getGame().saveGame();
+        remove();
     }
 }

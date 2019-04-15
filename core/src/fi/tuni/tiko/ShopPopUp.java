@@ -95,7 +95,21 @@ public class ShopPopUp extends RetkueDialog {
         getContentTable().add(shopItems);
         getContentTable().row();
 
-        button(readLine("return"), false);
+        TextButton close = new TextButton(readLine("return"), getSkin());
+        close.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                closeMe();
+            }
+        });
+
+        getContentTable().row();
+        getContentTable().add(close);
+    }
+
+    private void closeMe() {
+        getGame().saveGame();
+        remove();
     }
 
     /**

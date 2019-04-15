@@ -91,5 +91,12 @@ public abstract class RetkueDialog extends Dialog {
         String s  = Utils.readBundle(bundle, key);
         return s;
     }
+    private void closeMe() {
+        getGame().saveGame();
+        remove();
+    }
 
+    public static Main getGame() {
+        return game;
+    }
 }
