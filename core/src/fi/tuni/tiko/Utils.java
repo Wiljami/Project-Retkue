@@ -168,10 +168,24 @@ public class Utils {
      * @return String of the timeStamp
      */
     public static String convertToTimeStamp (long time) {
-        int hours   = (int) ((time / (1000*60*60)) / 24);
-        int minutes = (int) ((time / (1000*60)) % 60);
-        int seconds = (int) (time / 1000) % 60;
-        String timeStamp = toAddZero(hours) + ":" + toAddZero(minutes) + ":" + toAddZero(seconds);
+        int clock[] = convertMillisToTime(time);
+        String timeStamp = toAddZero(clock[0]) + ":"
+                + toAddZero(clock[1]) + ":"
+                + toAddZero(clock[2]);
         return timeStamp;
+    }
+
+    /**
+     * converts a long value to three integers in an array.
+     * [0] is hours, [1] is minutes, [2] is seconds
+     * @param time long of the time in milliseconds
+     * @return array of the time
+     */
+    private static int[] convertMillisToTime(long time) {
+        int[] clock = new int[3];
+        clock[0] = (int) ((time / (1000*60*60)) / 24);
+        clock[1] = (int) ((time / (1000*60)) % 60);
+        clock[2] = (int) (time / 1000) % 60;
+        return clock;
     }
 }

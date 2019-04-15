@@ -72,6 +72,8 @@ public class QuestPopUp extends RetkueDialog {
 
         text += "\n\n" + readLine("reward");
         text += ": " + quest.getReward();
+        text += "\n" + readLine("questLength");
+        text += ": " + Utils.convertToTimeStamp(quest.getQuestLength());
 
         accept = quest.getDescription();
 
