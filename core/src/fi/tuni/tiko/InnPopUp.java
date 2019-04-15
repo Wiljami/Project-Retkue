@@ -99,14 +99,22 @@ public class InnPopUp extends RetkueDialog {
     HealthBar bar1;
     HealthBar bar2;
 
+    private AnimatedActor retkuA;
+    private AnimatedActor retkuB;
+    private AnimatedActor retkuC;
+
+    private void generatePortraits() {
+        retkuA = party.findRetku(0).getPortrait();
+        retkuB = party.findRetku(1).getPortrait();
+        retkuC = party.findRetku(2).getPortrait();
+    }
+
     private void generateCharSheets() {
         charImages = new Table();
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
-        AnimatedActor retkuA = party.findRetku(0).getPortrait();
-        AnimatedActor retkuB = party.findRetku(1).getPortrait();
-        AnimatedActor retkuC = party.findRetku(2).getPortrait();
+        generatePortraits();
 
         bar0 = new HealthBar(healthBarWidth, charSize);
         bar1 = new HealthBar(healthBarWidth, charSize);
@@ -223,6 +231,7 @@ public class InnPopUp extends RetkueDialog {
     }
 
     public void resetMe() {
+        generatePortraits();
         getContentTable().reset();
         createMenu();
     }
@@ -237,6 +246,7 @@ public class InnPopUp extends RetkueDialog {
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
         bar2.setValue(party.findRetku(2).healthPercentage());
+        generatePortraits();
     }
 
     /**

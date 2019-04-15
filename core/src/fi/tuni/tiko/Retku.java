@@ -280,7 +280,7 @@ public class Retku {
 
     public AnimatedActor getPortrait() {
         if (currHealth < 50) {
-            getDamagedPortrait();
+            return getDamagedPortrait();
         }
         return portrait;
     }

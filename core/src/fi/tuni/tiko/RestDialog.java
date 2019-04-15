@@ -51,6 +51,7 @@ public class RestDialog extends RetkueDialog {
 
     private void closeMe() {
         inn.updateHealthBars();
+        getGame().saveGame();
         remove();
     }
 }
