@@ -117,7 +117,7 @@ public class SaveGame {
         party.setSteps(steps);
 
         for (int x = 0; x < 3; x++) {
-            Retku retku = new Retku("", 0, "", party);
+            Retku retku = new Retku(x, 0, party);
             int maxHealth = save.getInteger("retku_" + x + "_maxHealth", 100);
             int currHealth = save.getInteger("retku_" + x + "_currHealth", 0);
             int itemAId = save.getInteger("retku_" + x + "_slotA", 0);

@@ -179,28 +179,14 @@ public class Party {
      * newGame sets the starting values to the party.
      */
     public void newGame() {
-        retkus[0] = new Retku("Bill", 100, "bill_c.png", this);
-        retkus[1] = new Retku("Mik'ed", 100, "mei.png", this);
-        retkus[2] = new Retku("Mei", 100, "horze_white.png", this);
+        retkus[0] = new Retku(0, 100,this);
+        retkus[1] = new Retku(1, 100, this);
+        retkus[2] = new Retku(2, 100,this);
         gold = 1000;
     }
 
     public void loadRetku(Retku retku, int slot) {
-        switch(slot) {
-            case 0:
-                retku.setName("Bill");
-                retku.initPortrait("bill_c.png");
-                break;
-            case 1:
-            retku.setName("Mei");
-            retku.initPortrait("mei.png");
-            break;
-            case 2:
-            retku.setName("Mik'ed");
-            retku.initPortrait("horze_white.png");
-            break;
-        }
-        retkus[slot] = retku;
+         retkus[slot] = retku;
     }
 
     public void beginQuest() {

@@ -31,6 +31,10 @@ public class Retku {
      */
     private Texture texture;
 
+    private AnimatedActor portrait;
+
+    private AnimatedActor damagedPortrait;
+
     /**
      * FileName of the texture used
      */
@@ -44,17 +48,45 @@ public class Retku {
 
     private Party party;
 
+    private  RetkuInfo[] retkuInfos = {
+            new RetkuInfo("Bill", "bill_sprite_sheet.png",
+                    "bill_sprite_sheet_damage.png", 6, 1/2f, 1f),
+            new RetkuInfo("Mei", "mei_sprite_sheet.png",
+                    "mei_sprite_sheet.png", 17, 1/4f, 4f/5f),
+            new RetkuInfo("Mik'ed", "miked_sprite_sheet.png",
+                    "miked_sprite_sheet_damage.png", 4, 1f, 4f/5f)
+    };
+
+    class RetkuInfo {
+        public String name;
+        public String animationFile;
+        public String damagedFile;
+        public int animationLength;
+        public float animationSpeed;
+        public float widthMultiplier;
+        public RetkuInfo(String name, String animationFile, String damagedFile, int animationLength,
+                         float animationSpeed, float widthMultiplier) {
+            this.name = name;
+            this.animationFile = animationFile;
+            this.damagedFile = damagedFile;
+            this.animationLength = animationLength;
+            this.animationSpeed = animationSpeed;
+            this.widthMultiplier = widthMultiplier;
+        }
+    }
+
     /**
      * Retku constructor
      * TODO: Needs new Retku graphics
-     * @param name name of the Retku
      * @param health max Health of Retku
      */
-    public Retku(String name, int health, String portraitFile, Party party) {
-        setMaxHealth(health);
+    public Retku(int id, int health, Party party) {
+        setMaxHealth(100);
         setCurrHealth(health);
         setName(name);
-        initPortrait(portraitFile);
+        RetkuInfo retkuInfo = retkuInfos[id];
+        initPortrait(retkuInfo.animationFile, retkuInfo.damagedFile, retkuInfo.animationLength,
+                retkuInfo.animationSpeed, retkuInfo.widthMultiplier);
         this.party = party;
     }
 
@@ -152,9 +184,13 @@ public class Retku {
         this.imageFile = imageFile;
     }
 
-    public void initPortrait(String portraitFile) {
-        this.imageFile = portraitFile;
-        this.texture = Utils.loadTexture(portraitFile);
+    public void initPortrait(String animationFile, String damagedFile, int cols, float speed,
+                             float widthMultiplier) {
+        float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
+        portrait = new AnimatedActor(animationFile, cols , 1, speed,
+                charSize*widthMultiplier, charSize);
+        damagedPortrait = new AnimatedActor(damagedFile, cols , 1, speed,
+                charSize*widthMultiplier, charSize);
     }
 
     public void equipItem(Item item) {
@@ -240,5 +276,16 @@ public class Retku {
             case (2): location = Item.Location.RETKUC; break;
         }
         return location;
+    }
+
+    public AnimatedActor getPortrait() {
+        if (currHealth < 50) {
+            getDamagedPortrait();
+        }
+        return portrait;
+    }
+
+    public AnimatedActor getDamagedPortrait() {
+        return damagedPortrait;
     }
 }

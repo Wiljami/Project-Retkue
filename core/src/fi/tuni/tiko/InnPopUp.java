@@ -104,12 +104,9 @@ public class InnPopUp extends RetkueDialog {
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         float healthBarWidth = Main.WORLDPIXELWIDTH*(1/20f);
 
-        AnimatedActor retkuA = new AnimatedActor("bill_sprite_sheet.png",
-                6 , 1, 1/2f, charSize, charSize);
-        AnimatedActor retkuB = new AnimatedActor("mei_sprite_sheet.png",
-                17 , 1, 1/4f, charSize*4/5f, charSize);
-        AnimatedActor retkuC = new AnimatedActor("miked_sprite_sheet.png",
-                5 , 1, 1/1.5f, charSize*4/5f, charSize);
+        AnimatedActor retkuA = party.findRetku(0).getPortrait();
+        AnimatedActor retkuB = party.findRetku(1).getPortrait();
+        AnimatedActor retkuC = party.findRetku(2).getPortrait();
 
         bar0 = new HealthBar(healthBarWidth, charSize);
         bar1 = new HealthBar(healthBarWidth, charSize);
