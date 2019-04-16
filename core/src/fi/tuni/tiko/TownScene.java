@@ -115,7 +115,6 @@ public class TownScene extends Scene {
         table.add(mainMenu).colspan(3).prefHeight(heightArray[8]);
         table.row();
         table.add().prefHeight(heightArray[9]);
-        getStage().addActor(table);
 
         FadeActor shop = new FadeActor(Utils.loadTexture("shop_button.png"));
         float wRatio = shop.getWidth() / 1080;
@@ -155,6 +154,8 @@ public class TownScene extends Scene {
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
+        getStage().addActor(table);
+
     }
 
     public FadeActor spawnTavern() {
