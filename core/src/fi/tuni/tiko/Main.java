@@ -96,17 +96,16 @@ public class Main extends Game {
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         townInfo = new TownInfo();
-        if (!SaveGame.load(saveFileName, party, townInfo)) {
-            if (Locale.getDefault().getCountry().equals("FI")) {
-                Config.setLanguage(Config.Language.FINNISH);
-            } else {
-                Config.setLanguage(Config.Language.ENGLISH);
-            }
-            party.newGame();
-            townInfo.newGame();
-            tutorial = true;
+        if (Locale.getDefault().getCountry().equals("FI")) {
+            Config.setLanguage(Config.Language.FINNISH);
+        } else {
+            Config.setLanguage(Config.Language.ENGLISH);
         }
-        MainMenuScene mainMenuScene = new MainMenuScene(this);
+        if (!SaveGame.load(saveFileName, party, townInfo)) {
+            loadGame();
+        }
+        Scene.initiateScene(this);
+        MainMenuScene mainMenuScene = new MainMenuScene();
         currentScene = mainMenuScene;
         openScene(GameView.mainMenu);
     }
@@ -117,15 +116,22 @@ public class Main extends Game {
         tutorialPrompt.show(currentScene.getStage());
     }
 
+    private void loadGame() {
+        Scene.initiateScene(this);
+        party.newGame();
+        townInfo.newGame();
+        tutorial = true;
+    }
+
     /**
      * openScene is a method handling opening a new scene. It works using enum GameView.
      * @param gameView the scene we wish to navigate to
      */
 	public void openScene(GameView gameView) {
         switch(gameView) {
-            case mainMenu: MainMenuScene mainMenuScene = new MainMenuScene(this); currentScene = mainMenuScene; break;
-            case town: TownScene townScene = new TownScene(this); currentScene = townScene; break;
-            case forest: ForestScene forestScene = new ForestScene(this); currentScene = forestScene; break;
+            case mainMenu: MainMenuScene mainMenuScene = new MainMenuScene(); currentScene = mainMenuScene; break;
+            case town: TownScene townScene = new TownScene(); currentScene = townScene; break;
+            case forest: ForestScene forestScene = new ForestScene(); currentScene = forestScene; break;
             default: throw new IllegalArgumentException ("openScene defaulted with " + gameView);
         }
         Gdx.input.setInputProcessor(currentScene.getStage());

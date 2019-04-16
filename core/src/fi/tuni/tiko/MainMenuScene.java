@@ -18,10 +18,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class MainMenuScene extends Scene {
     /**
      * MainMenuScene constructor.
-     * @param game pointer to the Main.
      */
-    public MainMenuScene(Main game) {
-        super(game);
+    public MainMenuScene() {
+        super();
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("retkuetheme.ogg"));
         createMenu();
         setupBackground("mainmenu.png");

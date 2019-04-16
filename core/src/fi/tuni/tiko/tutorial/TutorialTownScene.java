@@ -26,7 +26,7 @@ public class TutorialTownScene extends Scene implements TutorialScene {
     private TutorialController controller;
 
     public TutorialTownScene(Main game, TutorialController controller, int phase) {
-        super(game);
+        super();
         this.game = game;
         this.controller = controller;
         mask = new Image(Utils.loadTexture("mask.png"));

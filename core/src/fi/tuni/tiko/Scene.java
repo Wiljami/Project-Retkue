@@ -106,15 +106,17 @@ import java.util.Map;
     /**
      * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
      * are generated only once.
-     * @param game reference to the main that creates and controls all the scenes
      */
-    public Scene(Main game) {
+    public Scene() {
         stage = new Stage(new FitViewport(Main.WORLDPIXELWIDTH,
                 Main.WORLDPIXELHEIGHT), game.getBatch());
+    }
+
+    public static void initiateScene(Main main) {
         if (!initialized) {
             initialized = true;
-            this.game = game;
-            this.batch = game.getBatch();
+            game = main;
+            batch = game.getBatch();
             setupFonts();
             setupCameras();
             setupSkins();
@@ -132,7 +134,7 @@ import java.util.Map;
     /**
      * Setup the different Styles
      */
-    private void setupStyles() {
+    private static void setupStyles() {
         labelHeadline = new Label.LabelStyle(fontType("headline"), Color.WHITE);
         labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
         labelTextLabel = new Label.LabelStyle(fontType("defaultFont"), Color.WHITE);
@@ -142,7 +144,7 @@ import java.util.Map;
      * Setup the different Fonts and add them to the fonts HashMap
      * TODO: Refactor some of this code?
      */
-    private void setupFonts() {
+    private static void setupFonts() {
         fonts = new HashMap<String, BitmapFont>();
         FreeTypeFontGenerator fontGenerator =
                 new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
@@ -188,7 +190,7 @@ import java.util.Map;
     /**
      * Setup the different Skins
      */
-    public void setupSkins() {
+    private static void setupSkins() {
         skin = new Skin();
         skin = new Skin (Gdx.files.internal("uiskin.json"));
         skin.add("label", fonts.get("defaultFont"), BitmapFont.class);
@@ -198,7 +200,7 @@ import java.util.Map;
     /**
      * Setup the camera.
      */
-    private void setupCameras () {
+    private static void setupCameras () {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Main.WORLDPIXELWIDTH, Main.WORLDPIXELHEIGHT);
     }

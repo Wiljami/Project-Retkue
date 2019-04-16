@@ -39,10 +39,9 @@ public class ForestScene extends Scene{
 
     /**
      * ForestScene constructor
-     * @param game reference to the Main
      */
-    public ForestScene(Main game) {
-        super(game);
+    public ForestScene() {
+        super();
         party = getGame().getParty();
         createMenu();
         setupBackground("forest.png");

@@ -30,7 +30,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     private PartyBar partyBar;
 
     public TutorialForestScene(Main game, TutorialController controller) {
-        super(game);
+        super();
         this.controller = controller;
         this.game = game;
 

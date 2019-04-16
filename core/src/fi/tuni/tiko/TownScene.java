@@ -24,8 +24,8 @@ public class TownScene extends Scene {
 
     TownScene townScene;
 
-    public TownScene(Main game) {
-        super(game);
+    public TownScene() {
+        super();
         this.townInfo = Main.getTownInfo();
         createMenu();
         setupBackground("village.png");
