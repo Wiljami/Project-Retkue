@@ -32,6 +32,9 @@ public class TownInfo {
     private int chosenQuest = -1;
     public TownInfo() {
         availableQuests = new Quest[3];
+    }
+
+    public void newGame() {
         generateQuests();
         availableItems = new ArrayList<Item>();
         generateItems();
@@ -52,6 +55,14 @@ public class TownInfo {
         availableQuests[0] = questPool[quest1];
         availableQuests[1] = questPool[quest2];
         availableQuests[2] = questPool[quest3];
+    }
+
+    public void loadQuest(int questSlot, int questId) {
+        if (questId != -1) {
+            availableQuests[questSlot] = questPool[questId];
+        } else {
+            rollNewQuests();
+        }
     }
 
     private void generateItems() {
@@ -97,6 +108,13 @@ public class TownInfo {
 
     public void removeItem(Item item) {
         availableItems.remove(item);
+    }
+
+    public void addItemById(int id) {
+        if (id != -1) {
+            Item item = new Item(id, SHOP);
+            availableItems.add(item);
+        }
     }
 
     public int noItemsLeft() {

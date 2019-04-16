@@ -103,6 +103,7 @@ public class Main extends Game {
         townInfo = new TownInfo();
         if (!SaveGame.load(saveFileName, party, townInfo)) {
             party.newGame();
+            townInfo.newGame();
             tutorial = true;
         }
         MainMenuScene mainMenuScene = new MainMenuScene(this);
