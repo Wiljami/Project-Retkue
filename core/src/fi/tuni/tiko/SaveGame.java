@@ -115,16 +115,11 @@ public class SaveGame {
      * @param party Party object to which the values are saved
      */
     private static void loadParty(Preferences save, Party party) {
-        int gold = save.getInteger("gold", 0);
-        party.setGold(gold);
-        int steps = save.getInteger("steps", 0);
-        party.setSteps(steps);
-        int healCost = save.getInteger("healCost", 10);
-        party.setHealCost(healCost);
-        int convCost = save.getInteger("convCost", 100);
-        party.setConvCost(convCost);
-        int fasterCost = save.getInteger("fasterCost", 10);
-        party.setFasterCost(fasterCost);
+        party.setGold(save.getInteger("gold", 0));
+        party.setSteps(save.getInteger("steps", 0));
+        party.setHealCost(save.getInteger("healCost", 10));
+        party.setConvCost(save.getInteger("convCost", 100));
+        party.setFasterCost(save.getInteger("fasterCost", 10));
 
         for (int x = 0; x < 3; x++) {
             Retku retku = new Retku(x, 0, party);

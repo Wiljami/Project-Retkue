@@ -64,7 +64,6 @@ public class Party {
 
     /**
      * Party constructor. atm has dummy values for the retkus and gold and steps
-     * TODO: Change this.
      */
     public Party(Main main) {
         inventory = new ArrayList<Item>();
