@@ -38,20 +38,15 @@ public class Party {
      */
     private int steps;
 
-    //TODO: These values need some thinking through
-    /**
-     * The amount of steps per conversion
-     */
-    private static final int STEPSTOGOLD = 100;
-    /**
-     * The amount of gold gained per conversion
-     */
-    private static final int GOLDFROMSTEPS = 5;
-
     /**
      * The amount of gold resting in the inn costs
      */
     private static final int RESTCOST = 100;
+
+    /**
+     * The amount of gold you gain from one step to gold conversion
+     */
+    private static final int CONVGOLD = 50;
 
     /**
      * Reference to main
@@ -137,13 +132,10 @@ public class Party {
      * Convert steps to gold. If the conversion is not possible, then return false.
      * @return boolean wether the conversion was possible.
      */
-    public boolean convert() {
-        if (getSteps() < STEPSTOGOLD) {
-            return false;
-        }
-        setSteps(getSteps() - STEPSTOGOLD);
-        setGold(getGold() + GOLDFROMSTEPS);
-        return true;
+    public void convert() {
+        setSteps(getSteps() - getConvCost());
+        setGold(getGold() + CONVGOLD);
+        convCost = convCost * 2;
     }
 
     public void addItem(Item item) {
@@ -233,6 +225,7 @@ public class Party {
     public void resetCosts() {
         healCost = 10;
         fasterCost = 10;
+        convCost = 100;
     }
 
     private int fasterCost = 10;
@@ -260,6 +253,24 @@ public class Party {
 
     public boolean canAffordToRest() {
         if (getGold() > RESTCOST) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private int convCost = 100;
+
+    public int getConvGold() {
+        return CONVGOLD;
+    }
+
+    public int getConvCost() {
+        return convCost;
+    }
+
+    public boolean canAffordToConvert() {
+        if (getSteps() > getConvCost()) {
             return true;
         } else {
             return false;

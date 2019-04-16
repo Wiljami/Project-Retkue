@@ -19,6 +19,7 @@ public class GameHeader extends Table {
     Label stepCount;
     Label goldCount;
     Party party;
+    GameHeader header;
 
     /**
      * GameHeader constructor.
@@ -31,6 +32,7 @@ public class GameHeader extends Table {
     public GameHeader (float height, final Party party) {
         if (Main.debug) debug();
         this.party = party;
+        this.header = this;
 
         int buttonWidth = (int)(height * 5f / 8f);
         int buttonHeight = (int)height;
@@ -48,9 +50,8 @@ public class GameHeader extends Table {
         convert.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(party.convert()) {
-                    updateValues();
-                }
+                ConversionDialog conversionDialog = new ConversionDialog(party, header);
+                conversionDialog.show(getStage());
             }
         });
 
