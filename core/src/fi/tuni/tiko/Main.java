@@ -2,7 +2,6 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Locale;
@@ -101,10 +100,10 @@ public class Main extends Game {
         } else {
             Config.setLanguage(Config.Language.ENGLISH);
         }
-        if (!SaveGame.load(saveFileName, party, townInfo)) {
-            loadGame();
-        }
         Scene.initiateScene(this);
+        if (!SaveGame.load(saveFileName, party, townInfo)) {
+            newGame();
+        }
         MainMenuScene mainMenuScene = new MainMenuScene();
         currentScene = mainMenuScene;
         openScene(GameView.mainMenu);
@@ -116,8 +115,7 @@ public class Main extends Game {
         tutorialPrompt.show(currentScene.getStage());
     }
 
-    private void loadGame() {
-        Scene.initiateScene(this);
+    private void newGame() {
         party.newGame();
         townInfo.newGame();
         tutorial = true;

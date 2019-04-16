@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * @version 2019.0327
  */
 public class Item {
-    private String name;
-    private String description;
+    private String nameKey;
+    private String descrptionKey;
 
     private int attack;
     private int defense;
@@ -80,7 +80,7 @@ public class Item {
 
     /**
      * TODO: Create the item constructor
-     * Constructor should read the information to the name and description from localization files
+     * Constructor should read the information to the nameKey and descrptionKey from localization files
      */
     public Item(int id, Location location) {
         this.id = id;
@@ -91,7 +91,7 @@ public class Item {
         this.rarity = itemData[id].rarity;
         this.location = location;
         String bundle_id = Utils.convertToId(id);
-        readDescriptions(bundle_id);
+        generateBundleKeys(bundle_id);
         generateIcon(bundle_id);
     }
 
@@ -114,23 +114,21 @@ public class Item {
     }
 
     /**
-     * Finds the item description from the bundle with the item id
+     * Finds the item descrptionKey from the bundle with the item id
      * @param id id of the item
      */
-    private void readDescriptions(String id) {
+    private void generateBundleKeys(String id) {
         String halfKey = "ITEM" + id;
-        String key = halfKey + "_NAME";
-        name = Utils.readBundle(Scene.getBundle(), key);
-        key = halfKey + "_DESCRIPTION";
-        description = Utils.readBundle(Scene.getBundle(), key);
+        nameKey = halfKey + "_NAME";
+        descrptionKey = halfKey + "_DESCRIPTION";
     }
 
     public String getName() {
-        return name;
+          return Utils.readBundle(Scene.getBundle(), nameKey);
     }
 
     public String getDescription() {
-        return description;
+        return Utils.readBundle(Scene.getBundle(), descrptionKey);
     }
 
     /**

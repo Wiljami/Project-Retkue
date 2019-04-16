@@ -9,11 +9,11 @@ package fi.tuni.tiko;
  */
 public class Quest {
     private int id;
-    private String title;
-    private String briefing;
-    private String description;
-    private String acceptText;
-    private String completeText;
+    private String titleKey;
+    private String briefingKey;
+    private String descriptionKey;
+    private String acceptTextKey;
+    private String completeTextKey;
     private Reward reward;
     private long questLength;
     private long[] encounterPoint;
@@ -28,22 +28,18 @@ public class Quest {
         this.questLength = questLength;
         this.questGiver = questGiver;
         this.difficulty = 1;
-        readDescriptions();
+        generateBundleKeys();
     }
 
-    private void readDescriptions() {
+    private void generateBundleKeys() {
         String bundle_id = Utils.convertToId(id);
         String halfKey = "QUEST_" + bundle_id;
-        String key = halfKey + "_TITLE";
-        title = Utils.readBundle(Scene.getBundle(), key);
-        key = halfKey + "_TEXT";
-        briefing = Utils.readBundle(Scene.getBundle(), key);
-        key = halfKey + "_ACCEPT";
-        acceptText = Utils.readBundle(Scene.getBundle(), key);
-        key = halfKey + "_DESC";
-        description = Utils.readBundle(Scene.getBundle(), key);
-        key = halfKey + "_COMPLETE";
-        completeText = Utils.readBundle(Scene.getBundle(), key);
+
+        titleKey = halfKey + "_TITLE";
+        briefingKey = halfKey + "_TEXT";
+        acceptTextKey = halfKey + "_ACCEPT";
+        descriptionKey = halfKey + "_DESC";
+        completeTextKey = halfKey + "_COMPLETE";
     }
 
     public long getQuestLength() {
@@ -51,23 +47,23 @@ public class Quest {
     }
 
     public String getTitle() {
-        return title;
+        return Utils.readBundle(Scene.getBundle(), titleKey);
     }
 
     public String getBriefing() {
-        return briefing;
+        return Utils.readBundle(Scene.getBundle(), briefingKey);
     }
 
     public String getDescription() {
-        return description;
+        return Utils.readBundle(Scene.getBundle(), descriptionKey);
     }
 
     public String getAcceptText() {
-        return acceptText;
+        return Utils.readBundle(Scene.getBundle(), acceptTextKey);
     }
 
     public String getCompleteText() {
-        return completeText;
+        return Utils.readBundle(Scene.getBundle(), completeTextKey);
     }
 
     public Reward getReward() {
