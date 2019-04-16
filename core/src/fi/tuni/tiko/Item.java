@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public class Item {
     private String nameKey;
-    private String descrptionKey;
+    private String descriptionKey;
 
     private int attack;
     private int defense;
@@ -80,7 +80,7 @@ public class Item {
 
     /**
      * TODO: Create the item constructor
-     * Constructor should read the information to the nameKey and descrptionKey from localization files
+     * Constructor should read the information to the nameKey and descriptionKey from localization files
      */
     public Item(int id, Location location) {
         this.id = id;
@@ -114,13 +114,13 @@ public class Item {
     }
 
     /**
-     * Finds the item descrptionKey from the bundle with the item id
+     * Finds the item descriptionKey from the bundle with the item id
      * @param id id of the item
      */
     private void generateBundleKeys(String id) {
         String halfKey = "ITEM" + id;
         nameKey = halfKey + "_NAME";
-        descrptionKey = halfKey + "_DESCRIPTION";
+        descriptionKey = halfKey + "_DESCRIPTION";
     }
 
     public String getName() {
@@ -128,7 +128,7 @@ public class Item {
     }
 
     public String getDescription() {
-        return Utils.readBundle(Scene.getBundle(), descrptionKey);
+        return Utils.readBundle(Scene.getBundle(), descriptionKey);
     }
 
     /**
