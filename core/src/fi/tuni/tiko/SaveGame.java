@@ -18,12 +18,13 @@ public class SaveGame {
      * @param saveFile name of the savefile
      * @param party reference to the player party
      */
-    public static void save(String saveFile, Party party) {
+    public static void save(String saveFile, Party party, TownInfo townInfo) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         save.putString("title", "Retkue Save");
 
         saveConfig(save);
         saveParty(save, party);
+        saveTownInfo(save, townInfo);
 
         save.flush();
         System.out.println("Saving ... " + Utils.currentDate());
@@ -37,7 +38,7 @@ public class SaveGame {
      * @param party reference to the player party
      * @return boolean wether the load is succesful
      */
-    public static boolean load(String saveFile, Party party) {
+    public static boolean load(String saveFile, Party party, TownInfo townInfo) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         String title = save.getString("title", "null");
         if (title.equals("null")) {
@@ -46,6 +47,7 @@ public class SaveGame {
 
         loadConfig(save);
         loadParty(save, party);
+        loadTownInfo(save, townInfo);
 
         return true;
     }
@@ -91,6 +93,32 @@ public class SaveGame {
                 itemId = party.getInventory().get(x).getId();
             }
             save.putInteger("party_inventory_" + x, itemId);
+        }
+    }
+
+    private static void saveTownInfo(Preferences save, TownInfo townInfo) {
+        save.putInteger("quest_1", townInfo.getAvailableQuests()[0].getId());
+        save.putInteger("quest_2", townInfo.getAvailableQuests()[1].getId());
+        save.putInteger("quest_3", townInfo.getAvailableQuests()[2].getId());
+
+        int numberOfItems = townInfo.getAvailableItems().size();
+
+        save.putInteger("availableItems", numberOfItems);
+
+        for (int n = 0; n < numberOfItems; n++) {
+            save.putInteger("townItem_" + n, townInfo.getAvailableItems().get(n).getId());
+        }
+    }
+
+    private static void loadTownInfo(Preferences save, TownInfo townInfo) {
+        int questId1 = save.getInteger("quest_1", -1);
+        int questId2 = save.getInteger("quest_2", -1);
+        int questId3 = save.getInteger("quest_3", -1);
+
+        int numberOfItems = save.getInteger("availableItems", 0);
+
+        for (int n = 0; n < numberOfItems; n++) {
+            int itemId = save.getInteger("townItem_" + n, -1);
         }
     }
 

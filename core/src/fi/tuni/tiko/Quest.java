@@ -73,4 +73,8 @@ public class Quest {
     public Reward getReward() {
         return reward;
     }
+
+    public int getId() {
+        return id;
+    }
 }

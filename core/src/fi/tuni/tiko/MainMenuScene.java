@@ -66,7 +66,7 @@ public class MainMenuScene extends Scene {
         loadGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                SaveGame.load(getGame().getSaveFileName(), getGame().getParty());
+                SaveGame.load(getGame().getSaveFileName(), getGame().getParty(), getGame().getTownInfo());
             }
         });
 
@@ -74,7 +74,7 @@ public class MainMenuScene extends Scene {
         saveGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                SaveGame.save(getGame().getSaveFileName(), getGame().getParty());
+                getGame().saveGame();
             }
         });
 

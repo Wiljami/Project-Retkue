@@ -100,12 +100,12 @@ public class Main extends Game {
         batch = new SpriteBatch();
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        if (!SaveGame.load(saveFileName, party)) {
+        townInfo = new TownInfo();
+        if (!SaveGame.load(saveFileName, party, townInfo)) {
             party.newGame();
             tutorial = true;
         }
         MainMenuScene mainMenuScene = new MainMenuScene(this);
-        townInfo = new TownInfo();
         currentScene = mainMenuScene;
         openScene(GameView.mainMenu);
     }
@@ -231,6 +231,6 @@ public class Main extends Game {
     }
 
     public void saveGame() {
-        SaveGame.save(getSaveFileName(), getParty());
+        SaveGame.save(getSaveFileName(), getParty(), getTownInfo());
     }
 }

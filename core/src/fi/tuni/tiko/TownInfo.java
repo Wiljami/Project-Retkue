@@ -102,4 +102,12 @@ public class TownInfo {
     public int noItemsLeft() {
         return availableItems.size();
     }
+
+    public Quest[] getAvailableQuests() {
+        return availableQuests;
+    }
+
+    public ArrayList<Item> getAvailableItems() {
+        return availableItems;
+    }
 }
