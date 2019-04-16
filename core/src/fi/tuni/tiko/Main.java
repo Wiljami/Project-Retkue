@@ -53,11 +53,6 @@ public class Main extends Game {
     private static TownInfo townInfo;
 
     /**
-     * Locale of the game.
-     */
-    Locale locale = Locale.getDefault();
-
-    /**
      * The current Scene in use.
      */
     private Scene currentScene;
@@ -102,6 +97,11 @@ public class Main extends Game {
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
         townInfo = new TownInfo();
         if (!SaveGame.load(saveFileName, party, townInfo)) {
+            if (Locale.getDefault().getCountry().equals("FI")) {
+                Config.setLanguage(Config.Language.FINNISH);
+            } else {
+                Config.setLanguage(Config.Language.ENGLISH);
+            }
             party.newGame();
             townInfo.newGame();
             tutorial = true;

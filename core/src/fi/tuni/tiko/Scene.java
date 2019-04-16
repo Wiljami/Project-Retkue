@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -122,8 +123,8 @@ import java.util.Map;
             //Set default skin for the dialogs in the game
             RetkueDialog.setRetkueSkin(getSkin());
             RetkueDialog.pointToGame(getGame());
-            //TODO: Actually add the localization properly
-            bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), game.locale);
+            Locale locale = new Locale(Config.getLanguageName());
+            bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
             RetkueDialog.giveBundle(bundle);
         }
     }

@@ -32,11 +32,11 @@ public class TownInfo {
     private int chosenQuest = -1;
     public TownInfo() {
         availableQuests = new Quest[3];
+        availableItems = new ArrayList<Item>();
     }
 
     public void newGame() {
         generateQuests();
-        availableItems = new ArrayList<Item>();
         generateItems();
     }
 
@@ -59,7 +59,7 @@ public class TownInfo {
 
     public void loadQuest(int questSlot, int questId) {
         if (questId != -1) {
-            availableQuests[questSlot] = questPool[questId];
+            availableQuests[questSlot] = questPool[questId-1];
         } else {
             rollNewQuests();
         }

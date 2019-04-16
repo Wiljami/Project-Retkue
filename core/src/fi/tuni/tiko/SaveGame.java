@@ -113,6 +113,8 @@ public class SaveGame {
     private static void loadTownInfo(Preferences save, TownInfo townInfo) {
         for (int n = 0; n < 3; n++) {
             int questId = save.getInteger("quest_" + n, -1);
+            System.out.println(n);
+            System.out.println(questId);
             townInfo.loadQuest(n, questId);
         }
 
