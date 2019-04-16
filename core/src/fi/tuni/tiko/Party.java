@@ -296,6 +296,18 @@ public class Party {
         }
     }
 
+    public void setFasterCost(int fasterCost) {
+        this.fasterCost = fasterCost;
+    }
+
+    public void setHealCost(int healCost) {
+        this.healCost = healCost;
+    }
+
+    public void setConvCost(int convCost) {
+        this.convCost = convCost;
+    }
+
     public void restParty() {
         for (Retku retku : retkus) {
             retku.healRetku(200);

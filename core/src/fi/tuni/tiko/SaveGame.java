@@ -68,6 +68,10 @@ public class SaveGame {
     private static void saveParty (Preferences save, Party party) {
         save.putInteger("gold", party.getGold());
         save.putInteger("steps", party.getSteps());
+        save.putInteger("healCost", party.getHealCost());
+        save.putInteger("convCost", party.getConvGold());
+        save.putInteger("fasterCost", party.getFasterCost());
+
 
         for (int x = 0; x < 3; x++) {
             Retku retku = party.findRetku(x);
@@ -115,6 +119,12 @@ public class SaveGame {
         party.setGold(gold);
         int steps = save.getInteger("steps", 0);
         party.setSteps(steps);
+        int healCost = save.getInteger("healCost", 10);
+        party.setHealCost(healCost);
+        int convCost = save.getInteger("convCost", 100);
+        party.setConvCost(convCost);
+        int fasterCost = save.getInteger("fasterCost", 10);
+        party.setFasterCost(fasterCost);
 
         for (int x = 0; x < 3; x++) {
             Retku retku = new Retku(x, 0, party);
