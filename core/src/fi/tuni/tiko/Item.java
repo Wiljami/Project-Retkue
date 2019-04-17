@@ -376,13 +376,23 @@ public class Item {
         return id;
     }
 
+    private String readType() {
+        switch (slot) {
+            case TOOL: return Utils.readBundle(Scene.getBundle(), "weapon");
+            case GARB: return Utils.readBundle(Scene.getBundle(), "armor");
+            case TRINKET: return Utils.readBundle(Scene.getBundle(), "trinket");
+            default: throw new IllegalArgumentException("Missing slot for readtype! id: " + id);
+        }
+    }
+
     public String itemText() {
         String text = "";
+        text += readType();
         text += getDescription();
         switch(slot) {
             case TOOL: text += "\nATT: "; break;
             case GARB: text += "\nDEF: "; break;
-            case TRINKET: text += "\nTrinket: "; break;
+            case TRINKET: text += "\n"; break;
             default: throw new IllegalArgumentException("Missing slot for itemText! id: " + id);
         }
         text += getEffect();
