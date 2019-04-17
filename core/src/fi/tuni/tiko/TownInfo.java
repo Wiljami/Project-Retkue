@@ -8,8 +8,6 @@ import static fi.tuni.tiko.Item.Slot.*;
 import static fi.tuni.tiko.Item.Rarity.*;
 import static fi.tuni.tiko.Item.Location.*;
 
-//TODO: make this part of the save or not? Either that or include this stuff to the config or party
-
 public class TownInfo {
     private Quest[] availableQuests;
     private ArrayList<Item> availableItems;
@@ -114,6 +112,8 @@ public class TownInfo {
         if (id != -1) {
             Item item = new Item(id, SHOP);
             availableItems.add(item);
+        } else {
+            rollNewItems();
         }
     }
 

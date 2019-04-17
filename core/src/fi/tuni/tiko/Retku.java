@@ -48,7 +48,10 @@ public class Retku {
 
     private Party party;
 
-    private  RetkuInfo[] retkuInfos = {
+    /**
+     * Helper array that holds the info of different Retkus using RetkuInfo class.
+     */
+    private RetkuInfo[] retkuInfos = {
             new RetkuInfo("Bill", "bill_sprite_sheet.png",
                     "bill_sprite_sheet_damage.png", 6, 1/2f, 1f),
             new RetkuInfo("Mei", "mei_sprite_sheet.png",
@@ -57,6 +60,9 @@ public class Retku {
                     "miked_sprite_sheet_damage.png", 4, 1f, 4f/5f)
     };
 
+    /**
+     * Helper class that holds information of different Retkus
+     */
     class RetkuInfo {
         public String name;
         public String animationFile;
@@ -83,8 +89,8 @@ public class Retku {
     public Retku(int id, int health, Party party) {
         setMaxHealth(100);
         setCurrHealth(health);
-        setName(name);
         RetkuInfo retkuInfo = retkuInfos[id];
+        setName(retkuInfo.name);
         initPortrait(retkuInfo.animationFile, retkuInfo.damagedFile, retkuInfo.animationLength,
                 retkuInfo.animationSpeed, retkuInfo.widthMultiplier);
         this.party = party;
