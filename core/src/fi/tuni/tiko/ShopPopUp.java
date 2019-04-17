@@ -151,12 +151,11 @@ public class ShopPopUp extends RetkueDialog {
         } else {
             final Item item = townInfo.findItem(i);
             Group itemButton = item.getIcon();
-            final String description = item.getDescription();
+            final String description = item.itemText();
             itemButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    String itemText = description + "\nATT: " + item.getAttack();
-                    itemText += "\nDEF: " + item.getDefense();
+                    String itemText = description;
                     itemText += "\n\n" + readLine("price") + ": " + item.getPrice();
                     desc.setText(itemText);
                     displayedItem = item;

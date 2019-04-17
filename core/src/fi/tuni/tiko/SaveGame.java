@@ -80,17 +80,17 @@ public class SaveGame {
             save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
             save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
             if(retku.getSlotA() != null)
-            save.putInteger("retku_" + x + "_slotA", retku.getSlotA().getId());
+            save.putInteger("retku_" + x + "_slotA", retku.getSlotA().saveableId());
             if(retku.getSlotB() != null)
-            save.putInteger("retku_" + x + "_slotB", retku.getSlotB().getId());
+            save.putInteger("retku_" + x + "_slotB", retku.getSlotB().saveableId());
             if(retku.getSlotC() != null)
-            save.putInteger("retku_" + x + "_slotC", retku.getSlotC().getId());
+            save.putInteger("retku_" + x + "_slotC", retku.getSlotC().saveableId());
         }
 
         for (int x = 0; x < party.getInventorySize(); x++) {
             int itemId = 0;
             if (x < party.getInventory().size()) {
-                itemId = party.getInventory().get(x).getId();
+                itemId = party.getInventory().get(x).saveableId();
             }
             save.putInteger("party_inventory_" + x, itemId);
         }
@@ -106,7 +106,7 @@ public class SaveGame {
         save.putInteger("availableItems", numberOfItems);
 
         for (int n = 0; n < numberOfItems; n++) {
-            save.putInteger("townItem_" + n, townInfo.getAvailableItems().get(n).getId());
+            save.putInteger("townItem_" + n, townInfo.getAvailableItems().get(n).saveableId());
         }
     }
 

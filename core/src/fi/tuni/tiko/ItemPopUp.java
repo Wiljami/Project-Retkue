@@ -35,21 +35,9 @@ public class ItemPopUp extends RetkueDialog {
         float itemHeight = itemImage.getHeight() * scale;
         getContentTable().add(itemImage).prefWidth(itemWidth).prefHeight(itemHeight).left();
 
-        Table statGroup = new Table();
-        String stats = "ATT +" + item.getAttack();
-        RetkueLabel attLabel = new RetkueLabel(stats);
-        stats = "DEF +" + item.getDefense();
-        RetkueLabel defLabel = new RetkueLabel(stats);
-
-        statGroup.add(attLabel).pad(5);
-        statGroup.row();
-        statGroup.add(defLabel).pad(5);
-
-        getContentTable().add(statGroup).left().top();
-
         getContentTable().row();
 
-        RetkueLabel desc = new RetkueLabel(item.getDescription());
+        RetkueLabel desc = new RetkueLabel(item.itemText());
         getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
 
         getContentTable().row();

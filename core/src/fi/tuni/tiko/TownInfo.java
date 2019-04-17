@@ -65,7 +65,7 @@ public class TownInfo {
 
     private void generateItems() {
         for (int x = 1; x < 9; x++) {
-            Item item = new Item(x, SHOP);
+            Item item = new Item();
             availableItems.add(item);
         }
     }
