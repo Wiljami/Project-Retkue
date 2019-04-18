@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.resizable = false;
-		config.title = "Retkue";
+		config.title = "Sysilehto";
 		config.height = 640;
 		config.width = 360;
 		Main.useStepSimulator();

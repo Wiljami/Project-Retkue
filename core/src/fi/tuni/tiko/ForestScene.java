@@ -128,6 +128,7 @@ public class ForestScene extends Scene{
         logTable.row();
 
         timer = new Label("00:00:00", getLabelHeadline());
+
         logTable.add(timer).center();
 
         logTable.row();

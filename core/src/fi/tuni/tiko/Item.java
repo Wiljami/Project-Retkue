@@ -387,7 +387,7 @@ public class Item {
 
     public String itemText() {
         String text = "";
-        text += readType();
+        text += readType() + ". ";
         text += getDescription();
         switch(slot) {
             case TOOL: text += "\nATT: "; break;
