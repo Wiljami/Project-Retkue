@@ -105,6 +105,7 @@ public class Party {
         if(this.gold < 0) {
             throw new IllegalArgumentException("gold can't be smaller than 0.");
         }
+        notifyWatchers();
     }
 
     /**

@@ -187,7 +187,7 @@ public class ForestScene extends Scene{
     /**
      * How often we check with random wether there is an evernt or not
      */
-    private float checkTime = 5f;
+    private float checkTime = 1f;
 
     /**
      * float of time since last random event check
@@ -197,7 +197,7 @@ public class ForestScene extends Scene{
     /**
      * float that determines the chance of events, higher means less frequently
      */
-    private float eventChance = 2000f;
+    private float eventChance = 2f;
 
     /**
      * events triggers random events based on time spent

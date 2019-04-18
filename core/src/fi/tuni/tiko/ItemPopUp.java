@@ -33,12 +33,13 @@ public class ItemPopUp extends RetkueDialog {
         Image itemImage = new Image (item.getPicture());
         float scale = itemWidth / itemImage.getWidth();
         float itemHeight = itemImage.getHeight() * scale;
+
         getContentTable().add(itemImage).prefWidth(itemWidth).prefHeight(itemHeight).left();
 
         getContentTable().row();
 
-        RetkueLabel desc = new RetkueLabel(item.itemText());
-        getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
+        RetkueLabel desc = new RetkueLabel(item.itemText(), "log");
+        getContentTable().add(desc).prefWidth(popUpWidth).colspan(3);
 
         getContentTable().row();
 
