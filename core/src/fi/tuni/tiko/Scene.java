@@ -192,7 +192,7 @@ import java.util.Map;
      */
     private static void setupSkins() {
         skin = new Skin();
-        skin = new Skin (Gdx.files.internal("uiskin.json"));
+        skin = new Skin (Gdx.files.internal("sysilehto_uus2.json"));
         skin.add("label", fonts.get("defaultFont"), BitmapFont.class);
         skin.add("log", fonts.get("logFont"), BitmapFont.class);
     }

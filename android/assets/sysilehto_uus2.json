@@ -1,0 +1,125 @@
+{
+"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"font-default": {
+		"file": "font-export.fnt"
+	},
+	"sysilehto": {
+		"file": "Cardenio Modern Std.fnt"
+	}
+},
+"com.badlogic.gdx.graphics.Color": {
+	"green": {
+		"r": 0.33333334,
+		"g": 0.43137255,
+		"b": 0.20784314,
+		"a": 1
+	},
+	"greenish": {
+		"r": 0.5411765,
+		"g": 0.59607846,
+		"b": 0.5411765,
+		"a": 1
+	},
+	"white": {
+		"r": 1,
+		"g": 1,
+		"b": 1,
+		"a": 1
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
+	"round-greenish": {
+		"name": "round-gray",
+		"color": {
+			"r": 0.5411765,
+			"g": 0.59607846,
+			"b": 0.5411765,
+			"a": 1
+		}
+	},
+	"round-green": {
+		"name": "round-gray",
+		"color": "green"
+	},
+	"green-lighter": {
+		"name": "round-gray",
+		"color": {
+			"r": 0.4985064,
+			"g": 0.58666664,
+			"b": 0.38133332,
+			"a": 1
+		}
+	},
+	"round-red": {
+		"name": "round-gray",
+		"color": {
+			"r": 0.5966667,
+			"g": 0.19093335,
+			"b": 0.19093335,
+			"a": 1
+		}
+	},
+	"window-green": {
+		"name": "window",
+		"color": "green"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+	"default": {
+		"up": "green-lighter",
+		"down": "round-greenish",
+		"over": "round-green"
+	},
+	"retkue": {
+		"up": "green-lighter",
+		"down": "round-greenish",
+		"over": "round-green"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+	"default": {
+		"font": "font-default",
+		"fontColor": "white",
+		"background": "green-lighter"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
+	"default": {
+		"font": "font-default",
+		"fontColorSelected": "white",
+		"fontColorUnselected": "white",
+		"selection": "green-lighter"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+	"default": {
+		"font": "font-default",
+		"fontColor": "white",
+		"downFontColor": "white",
+		"up": "green-lighter",
+		"down": "round-greenish",
+		"over": "round-green"
+	},
+	"sysilehto": {
+		"font": "font-default",
+		"fontColor": "white",
+		"downFontColor": "white",
+		"up": "green-lighter",
+		"down": "round-greenish",
+		"over": "round-green"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
+	"default": {
+		"label": "default"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
+	"default": {
+		"background": "window-green",
+		"titleFont": "sysilehto",
+		"titleFontColor": "white",
+		"stageBackground": "window-green"
+	}
+}
+}
