@@ -12,6 +12,7 @@ public class TownInfo {
     private Quest[] availableQuests;
     private Party party;
     private ArrayList<Item> availableItems;
+    private final float MAINQUESTCHANCE = 0.2f;
     private Quest[] questPool = {
             new Quest(1, new Reward(10), 100000L, Quest.QuestGiver.oldMan),
             new Quest(2, new Reward(20), 100000L, Quest.QuestGiver.oldMan),
@@ -68,7 +69,7 @@ public class TownInfo {
         availableQuests[1] = questPool[quest2];
         availableQuests[2] = questPool[quest3];
         float random = MathUtils.random(1f);
-        if (random > 0) {
+        if (random < MAINQUESTCHANCE) {
             availableQuests[0] = mainQuestPool[party.getCurrentMainQuest()];
         }
     }
