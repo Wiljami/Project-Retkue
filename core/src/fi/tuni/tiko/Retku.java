@@ -161,6 +161,7 @@ public class Retku {
      */
     public void damageRetku(int damage) {
         setCurrHealth(getCurrHealth() - damage);
+        checkHealthForPortrait();
         if (currHealth <= 0) {
             System.out.println("Retku nimeltä " + getName() + " has deaded");
         }
@@ -172,6 +173,7 @@ public class Retku {
      */
     public void healRetku(int heal) {
         setCurrHealth(getCurrHealth() + heal);
+        checkHealthForPortrait();
     }
 
     public Texture getTexture() {
@@ -195,8 +197,7 @@ public class Retku {
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
         portrait = new AnimatedActor(animationFile, cols , 1, speed,
                 charSize*widthMultiplier, charSize);
-        damagedPortrait = new AnimatedActor(damagedFile, cols , 1, speed,
-                charSize*widthMultiplier, charSize);
+        portrait.initateWoundedAnimation(damagedFile);
     }
 
     public void equipItem(Item item) {
@@ -284,10 +285,17 @@ public class Retku {
         return location;
     }
 
-    public AnimatedActor getPortrait() {
+    private void checkHealthForPortrait() {
         if (currHealth < 50) {
-            return getDamagedPortrait();
+            portrait.setWoundedAnimation();
+        } else {
+            portrait.setNormalAnimation();
         }
+
+    }
+
+    public AnimatedActor getPortrait() {
+        checkHealthForPortrait();
         return portrait;
     }
 
