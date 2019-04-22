@@ -17,14 +17,15 @@ public class Config {
 
     public static String getLanguageName() {
         if (language == Language.FINNISH) {
-            return "FI";
+            return "fi";
         } else {
-            return "EN";
+            return "en";
         }
     }
 
     public static void setLanguage (Language l) {
         language = l;
+        Scene.loadBundle();
     }
 
     public static boolean isMuted() {

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -48,19 +49,37 @@ public class OptionsPopUp extends RetkueDialog {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
         this.getTitleLabel().setText(readLine("options"));
-        String text = readLine("options_desc");
-        RetkueLabel desc = new RetkueLabel(text);
+        RetkueLabel desc = new RetkueLabel("");
+
+        ImageButton en_flag = new ImageButton(Utils.loadButtonImage("en_flag.png", 100, 100));
+        ImageButton fi_flag = new ImageButton(Utils.loadButtonImage("fi_flag.png", 100, 100));
+
+        en_flag.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Config.setLanguage(Config.Language.ENGLISH);
+            }
+        });
+
+        fi_flag.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Config.setLanguage(Config.Language.FINNISH);
+            }
+        });
 
         muteBox = new CheckBox("Mute Music", getSkin());
         if(Config.isMuted()) {
             muteBox.setChecked(true);
         }
 
-        getContentTable().add(desc).prefWidth(popUpWidth);
+        getContentTable().add(desc).prefWidth(popUpWidth).colspan(2);
+        getContentTable().row();
+        getContentTable().add(fi_flag);
+        getContentTable().add(en_flag);
         getContentTable().row();
         getContentTable().row();
-        getContentTable().row();
-        getContentTable().add(muteBox);
+        getContentTable().add(muteBox).colspan(2);
 
         muteBox.addListener(new ChangeListener() {
             @Override
@@ -84,7 +103,7 @@ public class OptionsPopUp extends RetkueDialog {
         });
 
         getContentTable().row();
-        getContentTable().add(close);
+        getContentTable().add(close).colspan(2);
     }
 
     private void closeMe() {

@@ -124,10 +124,14 @@ import java.util.Map;
             //Set default skin for the dialogs in the game
             RetkueDialog.setRetkueSkin(getSkin());
             RetkueDialog.pointToGame(getGame());
-            Locale locale = new Locale(Config.getLanguageName());
-            bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
-            RetkueDialog.giveBundle(bundle);
         }
+    }
+
+    public static void loadBundle() {
+        Locale locale = new Locale(Config.getLanguageName());
+
+        bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
+        RetkueDialog.giveBundle(bundle);
     }
 
     /**

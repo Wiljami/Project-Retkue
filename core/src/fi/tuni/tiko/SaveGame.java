@@ -217,7 +217,7 @@ public class SaveGame {
      * @param language string language
      */
     private static void setLanguage(String language) {
-        if (language.equals("FI")) {
+        if (language.equals("fi")) {
             Config.setLanguage(Config.Language.FINNISH);
         } else {
             Config.setLanguage(Config.Language.ENGLISH);
