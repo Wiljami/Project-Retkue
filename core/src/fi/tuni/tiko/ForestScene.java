@@ -201,9 +201,9 @@ public class ForestScene extends Scene{
     private float eventChance = 2f;
 
     /**
-     *
+     * float to determine how often we autosave the game while in forestscene.
      */
-    private float autoSaveTimer = 1000f;
+    private float autoSaveTimer = 300f;
 
     private float timeSinceLastAutoSave;
 
