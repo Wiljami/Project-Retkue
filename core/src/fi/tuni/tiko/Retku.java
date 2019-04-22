@@ -33,8 +33,6 @@ public class Retku {
 
     private AnimatedActor portrait;
 
-    private AnimatedActor damagedPortrait;
-
     /**
      * FileName of the texture used
      */
@@ -47,6 +45,11 @@ public class Retku {
     private Item slotC;
 
     private Party party;
+
+    private int attack = 0;
+    private int defence = 0;
+
+    private final int BASESTAT = 10;
 
     /**
      * Helper array that holds the info of different Retkus using RetkuInfo class.
@@ -94,6 +97,7 @@ public class Retku {
         initPortrait(retkuInfo.animationFile, retkuInfo.damagedFile, retkuInfo.animationLength,
                 retkuInfo.animationSpeed, retkuInfo.widthMultiplier);
         this.party = party;
+        recalculateStats();
     }
 
     /**
@@ -162,9 +166,6 @@ public class Retku {
     public void damageRetku(int damage) {
         setCurrHealth(getCurrHealth() - damage);
         checkHealthForPortrait();
-        if (currHealth <= 0) {
-            System.out.println("Retku nimeltä " + getName() + " has deaded");
-        }
     }
 
     /**
@@ -272,7 +273,16 @@ public class Retku {
     }
 
     private void recalculateStats() {
-        //TODO: This
+        if (slotA != null) {
+            attack = BASESTAT + slotA.getEffect();
+        } else {
+            attack = BASESTAT;
+        }
+        if (slotB != null) {
+            defence = BASESTAT + slotB.getEffect();
+        } else {
+            defence = BASESTAT;
+        }
     }
 
     private Item.Location findRetkuLocation(int n) {
@@ -299,7 +309,11 @@ public class Retku {
         return portrait;
     }
 
-    public AnimatedActor getDamagedPortrait() {
-        return damagedPortrait;
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefence() {
+        return defence;
     }
 }

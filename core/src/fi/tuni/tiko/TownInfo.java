@@ -4,8 +4,6 @@ import com.badlogic.gdx.math.MathUtils;
 
 import java.util.ArrayList;
 
-import static fi.tuni.tiko.Item.Slot.*;
-import static fi.tuni.tiko.Item.Rarity.*;
 import static fi.tuni.tiko.Item.Location.*;
 import static fi.tuni.tiko.Quest.*;
 
