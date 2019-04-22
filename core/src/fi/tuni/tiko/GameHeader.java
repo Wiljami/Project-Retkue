@@ -30,7 +30,6 @@ public class GameHeader extends Table {
      * @param party reference to the game's party
      */
     public GameHeader (float height, final Party party) {
-        if (Main.debug) debug();
         this.party = party;
         this.header = this;
 
@@ -42,8 +41,6 @@ public class GameHeader extends Table {
         String steps = Integer.toString(party.getSteps());
         String gold = Integer.toString(party.getGold());
 
-        Skin skin = Scene.getSkin();
-        ImageButton stepImage = new ImageButton(Utils.loadButtonImage("boot.png", buttonWidth, buttonHeight));
         stepCount = new RetkueLabel(steps);
         stepCount.setAlignment(1);
         ImageButton convert = new ImageButton(Utils.loadButtonImage("arrow.png", buttonWidth, buttonHeight));
@@ -55,15 +52,12 @@ public class GameHeader extends Table {
             }
         });
 
-        ImageButton goldImage = new ImageButton(Utils.loadButtonImage("gold-sack.png", buttonWidth, buttonHeight));
         goldCount = new RetkueLabel(gold);
         goldCount.setAlignment(1);
 
-        add(stepImage).width(elementWidth).padBottom(10);
-        add(stepCount).width(elementWidth).center();
+        add(stepCount).width(elementWidth).center().padRight(50);
         add(convert).width(elementWidth);
-        add(goldImage).width(elementWidth).padBottom(10);
-        add(goldCount).width(elementWidth).center();
+        add(goldCount).width(elementWidth).center().padLeft(50);
         background(Utils.loadButtonImage("retkue_header_wood.png", 0, 0));
     }
 
