@@ -1,7 +1,5 @@
 package fi.tuni.tiko;
 
-import com.badlogic.gdx.graphics.Texture;
-
 /**
  * Retku class holds information and functionality of a Retku.
  *
@@ -26,17 +24,7 @@ public class Retku {
      */
     private int currHealth;
 
-    /**
-     * Texture of the Retku
-     */
-    private Texture texture;
-
     private AnimatedActor portrait;
-
-    /**
-     * FileName of the texture used
-     */
-    private String imageFile;
 
     private Item slotA;
 
@@ -175,22 +163,6 @@ public class Retku {
     public void healRetku(int heal) {
         setCurrHealth(getCurrHealth() + heal);
         checkHealthForPortrait();
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
-
-    public String getImageFile() {
-        return imageFile;
-    }
-
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
     }
 
     public void initPortrait(String animationFile, String damagedFile, int cols, float speed,
