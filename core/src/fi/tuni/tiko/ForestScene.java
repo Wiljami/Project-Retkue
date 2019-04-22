@@ -203,7 +203,7 @@ public class ForestScene extends Scene{
     /**
      *
      */
-    private float autoSaveTimer = 1f;
+    private float autoSaveTimer = 1000f;
 
     private float timeSinceLastAutoSave;
 

@@ -338,6 +338,7 @@ public class Party {
 
     public void setQuest(Quest quest) {
         this.quest = quest;
+        setCurrentQuest(quest);
     }
 
     public static int getInventorySize() {
