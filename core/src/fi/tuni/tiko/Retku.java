@@ -74,7 +74,6 @@ public class Retku {
 
     /**
      * Retku constructor
-     * TODO: Needs new Retku graphics
      * @param health max Health of Retku
      */
     public Retku(int id, int health, Party party) {
