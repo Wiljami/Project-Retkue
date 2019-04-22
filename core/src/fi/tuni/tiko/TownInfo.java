@@ -73,13 +73,19 @@ public class TownInfo {
         }
     }
 
-    public void loadQuest(int questSlot, int questId) {
-        if (questId > 1000) {
-            availableQuests[questSlot] = mainQuestPool[questId-1001];
-        } else if (questId != -1) {
-            availableQuests[questSlot] = questPool[questId-1];
+    public void loadQuestPool(int questSlot, int questId) {
+        if (questId == -1) {
+             rollNewQuests();
         } else {
-            rollNewQuests();
+            availableQuests[questSlot] = loadQuest(questId);
+        }
+    }
+
+    public Quest loadQuest(int id) {
+        if (id > 1000) {
+            return mainQuestPool[id-1001];
+        } else {
+            return questPool[id - 1];
         }
     }
 

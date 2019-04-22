@@ -36,6 +36,11 @@ public class Party {
     private Quest quest;
 
     /**
+     *
+     */
+    private boolean onQuest = false;
+
+    /**
      * Player steps
      */
     private int steps;
@@ -57,13 +62,10 @@ public class Party {
      */
     private Main main;
 
-    //TODO: Save
     private Quest currentQuest;
 
-    //TODO: Save
     private long questStarted;
 
-    //TODO: Save
     private long questLeft;
 
     /**
@@ -345,6 +347,8 @@ public class Party {
         addItem(item);
     }
 
+
+
     public Retku getRandomConsciousRetku() {
         boolean foundOk = false;
         int random = 0;
@@ -379,5 +383,17 @@ public class Party {
 
     public void setCurrentMainQuest(int currentMainQuest) {
         this.currentMainQuest = currentMainQuest;
+    }
+
+    public boolean isOnQuest() {
+        return onQuest;
+    }
+
+    public void setOnQuest(boolean onQuest) {
+        this.onQuest = onQuest;
+    }
+
+    public void setQuestStarted(long questStarted) {
+        this.questStarted = questStarted;
     }
 }

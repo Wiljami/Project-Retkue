@@ -10,6 +10,7 @@ import com.badlogic.gdx.Preferences;
  * @version 2019.0313
  */
 public class SaveGame {
+    private static TownInfo townInfoRef;
     /**
      * save method saves the game data to the Preferences file.
      *
@@ -22,6 +23,8 @@ public class SaveGame {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         save.flush();
         save.putString("title", "Retkue Save");
+
+        townInfoRef = townInfo;
 
         saveConfig(save);
         saveParty(save, party);
@@ -75,6 +78,12 @@ public class SaveGame {
         save.putInteger("convCost", party.getConvGold());
         save.putInteger("fasterCost", party.getFasterCost());
         save.putInteger("currentMainQuest", party.getCurrentMainQuest());
+        save.putBoolean("onQuest", party.isOnQuest());
+        if (party.isOnQuest()) {
+            save.putLong("questStarted", party.getQuestStarted());
+            save.putLong("questLeft", party.getQuestLeft());
+        }
+        save.putInteger("currentQuest", party.getQuest().getId());
 
 
         for (int x = 0; x < 3; x++) {
@@ -124,7 +133,7 @@ public class SaveGame {
     private static void loadTownInfo(Preferences save, TownInfo townInfo) {
         for (int n = 0; n < 3; n++) {
             int questId = save.getInteger("quest_" + n, -1);
-            townInfo.loadQuest(n, questId);
+            townInfo.loadQuestPool(n, questId);
         }
 
         int numberOfItems = save.getInteger("availableItems", 0);
@@ -162,6 +171,21 @@ public class SaveGame {
         party.setConvCost(save.getInteger("convCost", 100));
         party.setFasterCost(save.getInteger("fasterCost", 10));
         party.setCurrentMainQuest(save.getInteger("currentMainQuest", 0));
+
+        party.setOnQuest(save.getBoolean("onQuest", false));
+        if (party.isOnQuest()) {
+            party.setQuestStarted(save.getLong("questStarted", 0));
+            party.setQuestLeft(save.getLong("questLeft", 0));
+        }
+
+        party.setQuest(townInfoRef.loadQuest(save.getInteger("currentQuest", -1)));
+
+        save.putBoolean("onQuest", party.isOnQuest());
+        if (party.isOnQuest()) {
+            save.putLong("questStarted", party.getQuestStarted());
+            save.putLong("questLeft", party.getQuestLeft());
+        }
+
 
         for (int x = 0; x < 3; x++) {
             Retku retku = new Retku(x, 0, party);
