@@ -9,16 +9,17 @@ package fi.tuni.tiko;
  */
 public class Quest {
     private int id;
-    private String titleKey;
-    private String briefingKey;
-    private String descriptionKey;
-    private String acceptTextKey;
-    private String completeTextKey;
+    private String titleKey = "";
+    private String briefingKey = "";
+    private String descriptionKey = "";
+    private String acceptTextKey = "";
+    private String completeTextKey = "";
     private Reward reward;
     private long questLength;
     private long[] encounterPoint;
     private int difficulty;
     private QuestGiver questGiver;
+    private Boolean mainQuest = false;
 
     enum QuestGiver {oldMan}
 
@@ -31,15 +32,34 @@ public class Quest {
         generateBundleKeys();
     }
 
+    public Quest (int id, Reward reward, long questLength, QuestGiver questGiver, Boolean mainQuest) {
+        this.mainQuest = mainQuest;
+        this.id = id;
+        this.reward = reward;
+        this.questLength = questLength;
+        this.questGiver = questGiver;
+        this.difficulty = 1;
+        addMainQuestTagToBundleKeys();
+    }
+
     private void generateBundleKeys() {
         String bundle_id = Utils.convertToId(id);
         String halfKey = "QUEST_" + bundle_id;
 
-        titleKey = halfKey + "_TITLE";
-        briefingKey = halfKey + "_TEXT";
-        acceptTextKey = halfKey + "_ACCEPT";
-        descriptionKey = halfKey + "_DESC";
-        completeTextKey = halfKey + "_COMPLETE";
+        titleKey += halfKey + "_TITLE";
+        briefingKey += halfKey + "_TEXT";
+        acceptTextKey += halfKey + "_ACCEPT";
+        descriptionKey += halfKey + "_DESC";
+        completeTextKey += halfKey + "_COMPLETE";
+    }
+
+    private void addMainQuestTagToBundleKeys() {
+        titleKey += "MAIN_";
+        briefingKey += "MAIN_";
+        acceptTextKey += "MAIN_";
+        descriptionKey += "MAIN_";
+        completeTextKey  += "MAIN_";
+        generateBundleKeys();
     }
 
     public long getQuestLength() {
@@ -71,6 +91,9 @@ public class Quest {
     }
 
     public int getId() {
+        if (mainQuest) return id + 1000;
         return id;
     }
+
+
 }

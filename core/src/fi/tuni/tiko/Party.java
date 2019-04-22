@@ -50,6 +50,8 @@ public class Party {
      */
     private static final int CONVGOLD = 50;
 
+    private int currentMainQuest = 0;
+
     /**
      * Reference to main
      */
@@ -369,5 +371,13 @@ public class Party {
 
     public long timeSpent() {
         return System.currentTimeMillis() - questStarted;
+    }
+
+    public int getCurrentMainQuest() {
+        return currentMainQuest;
+    }
+
+    public void setCurrentMainQuest(int currentMainQuest) {
+        this.currentMainQuest = currentMainQuest;
     }
 }

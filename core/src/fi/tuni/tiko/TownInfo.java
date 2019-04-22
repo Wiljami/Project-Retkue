@@ -10,6 +10,7 @@ import static fi.tuni.tiko.Item.Location.*;
 
 public class TownInfo {
     private Quest[] availableQuests;
+    private Party party;
     private ArrayList<Item> availableItems;
     private Quest[] questPool = {
             new Quest(1, new Reward(10), 100000L, Quest.QuestGiver.oldMan),
@@ -27,8 +28,21 @@ public class TownInfo {
             new Quest(13, new Reward(130), 100000L, Quest.QuestGiver.oldMan),
     };
 
+    private Quest[] mainQuestPool = {
+            new Quest(1, new Reward(10), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(2, new Reward(20), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(3, new Reward(30), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(4, new Reward(40), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(5, new Reward(50), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(6, new Reward(60), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(7, new Reward(70), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(8, new Reward(80), 100000L, Quest.QuestGiver.oldMan, true),
+            new Quest(9, new Reward(90), 100000L, Quest.QuestGiver.oldMan, true),
+    };
+
     private int chosenQuest = -1;
-    public TownInfo() {
+    public TownInfo(Party party) {
+        this.party = party;
         availableQuests = new Quest[3];
         availableItems = new ArrayList<Item>();
     }
@@ -53,10 +67,16 @@ public class TownInfo {
         availableQuests[0] = questPool[quest1];
         availableQuests[1] = questPool[quest2];
         availableQuests[2] = questPool[quest3];
+        float random = MathUtils.random(1f);
+        if (random > 0) {
+            availableQuests[0] = mainQuestPool[party.getCurrentMainQuest()];
+        }
     }
 
     public void loadQuest(int questSlot, int questId) {
-        if (questId != -1) {
+        if (questId > 1000) {
+            availableQuests[questSlot] = mainQuestPool[questId-1001];
+        } else if (questId != -1) {
             availableQuests[questSlot] = questPool[questId-1];
         } else {
             rollNewQuests();

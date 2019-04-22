@@ -74,6 +74,7 @@ public class SaveGame {
         save.putInteger("healCost", party.getHealCost());
         save.putInteger("convCost", party.getConvGold());
         save.putInteger("fasterCost", party.getFasterCost());
+        save.putInteger("currentMainQuest", party.getCurrentMainQuest());
 
 
         for (int x = 0; x < 3; x++) {
@@ -160,6 +161,7 @@ public class SaveGame {
         party.setHealCost(save.getInteger("healCost", 10));
         party.setConvCost(save.getInteger("convCost", 100));
         party.setFasterCost(save.getInteger("fasterCost", 10));
+        party.setCurrentMainQuest(save.getInteger("currentMainQuest", 0));
 
         for (int x = 0; x < 3; x++) {
             Retku retku = new Retku(x, 0, party);

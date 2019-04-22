@@ -94,7 +94,7 @@ public class Main extends Game {
         batch = new SpriteBatch();
         party = new Party(this);
         //TODO: Create the load and save. Here we need to check if a party already exists and load it.
-        townInfo = new TownInfo();
+        townInfo = new TownInfo(party);
         if (Locale.getDefault().getCountry().equals("FI")) {
             Config.setLanguage(Config.Language.FINNISH);
         } else {
