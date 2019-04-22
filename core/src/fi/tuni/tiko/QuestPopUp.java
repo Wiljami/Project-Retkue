@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * QuestPopUp holds the dialog between the player and the questgiver.
@@ -49,6 +51,8 @@ public class QuestPopUp extends RetkueDialog {
 
     private Image image;
 
+    TextureRegionDrawable old_guy2;
+
     /**
      * Constructor of QuestPopUp
      * @param tavernPopUp tavernPopUp Reference
@@ -62,6 +66,8 @@ public class QuestPopUp extends RetkueDialog {
 
         this.tavernPopUp = tavernPopUp;
         image = new Image(Utils.loadTexture("old_guy1.png"));
+        old_guy2 = new TextureRegionDrawable(Utils.loadTexture("old_guy2.png"));
+
 
         final TownInfo info = tavernPopUp.getTownInfo();
         quest = info.findQuest(id);
@@ -134,8 +140,7 @@ public class QuestPopUp extends RetkueDialog {
     public void acceptQuest() {
         desc.setText(accept);
         no.setVisible(false);
-        image.setVisible(false);
-        yes.setVisible(false);
+        image.setDrawable(old_guy2);
         ok.setVisible(true);
     }
 }

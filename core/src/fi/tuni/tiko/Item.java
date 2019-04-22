@@ -138,6 +138,11 @@ public class Item {
             new Trinket(11, 10, 11),
     };
 
+    /**
+     * saveableId generates an id that is used to identify items with their id, rarity and slot.
+     * The saveableId is used for saving the game data.
+     * @return saveableId integer
+     */
     public int saveableId() {
         int saveableId = id;
         switch (slot) {
@@ -175,7 +180,7 @@ public class Item {
         String bundle_id = Utils.convertToId(id);
         generateBundleKeys(bundle_id);
         generateIcon(bundle_id);
-
+        applyRarityEffect();
     }
 
     public Item() {
@@ -212,6 +217,17 @@ public class Item {
             this.rarity = Rarity.UNCOMMON;
         } else {
             this.rarity = Rarity.COMMON;
+        }
+    }
+
+    private void applyRarityEffect() {
+        switch (rarity) {
+            case COMMON: this.effect = this.effect + 0; price = price * 1; break;
+            case UNCOMMON: this.effect = this.effect + 1; price = price * 2; break;
+            case RARE: this.effect = this.effect + 3; price = price * 4; break;
+            case EPIC: this.effect = this.effect + 5; price = price * 8; break;
+            case LEGENDARY: this.effect = this.effect + 8; price = price * 16; break;
+            default: throw new IllegalArgumentException("Missing rarity!");
         }
     }
 
@@ -315,7 +331,17 @@ public class Item {
     }
 
     public String getName() {
-          return Utils.readBundle(Scene.getBundle(), nameKey);
+        String name = "";
+        switch (rarity) {
+            case COMMON: name += Utils.readBundle(Scene.getBundle(), "common"); break;
+            case UNCOMMON: name += Utils.readBundle(Scene.getBundle(), "uncommon"); break;
+            case RARE: name += Utils.readBundle(Scene.getBundle(), "rare"); break;
+            case EPIC: name += Utils.readBundle(Scene.getBundle(), "epic"); break;
+            case LEGENDARY: name += Utils.readBundle(Scene.getBundle(), "legendary"); break;
+            default: throw new IllegalArgumentException("Missing rarity!");
+        }
+        name += " " + Utils.readBundle(Scene.getBundle(), nameKey);
+        return name;
     }
 
     public String getDescription() {

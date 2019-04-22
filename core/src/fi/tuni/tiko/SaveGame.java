@@ -20,6 +20,7 @@ public class SaveGame {
      */
     public static void save(String saveFile, Party party, TownInfo townInfo) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
+        save.flush();
         save.putString("title", "Retkue Save");
 
         saveConfig(save);
@@ -79,12 +80,21 @@ public class SaveGame {
             Retku retku = party.findRetku(x);
             save.putInteger("retku_" + x + "_maxHealth", retku.getMaxHealth());
             save.putInteger("retku_" + x + "_currHealth", retku.getCurrHealth());
-            if(retku.getSlotA() != null)
-            save.putInteger("retku_" + x + "_slotA", retku.getSlotA().saveableId());
-            if(retku.getSlotB() != null)
-            save.putInteger("retku_" + x + "_slotB", retku.getSlotB().saveableId());
-            if(retku.getSlotC() != null)
-            save.putInteger("retku_" + x + "_slotC", retku.getSlotC().saveableId());
+            if(retku.getSlotA() != null) {
+                save.putInteger("retku_" + x + "_slotA", retku.getSlotA().saveableId());
+            } else {
+                save.putInteger("retku_" + x + "_slotA", 0);
+            }
+            if(retku.getSlotB() != null) {
+                save.putInteger("retku_" + x + "_slotB", retku.getSlotB().saveableId());
+            } else {
+                save.putInteger("retku_" + x + "_slotB", 0);
+            }
+            if(retku.getSlotC() != null) {
+                save.putInteger("retku_" + x + "_slotC", retku.getSlotC().saveableId());
+            } else {
+                save.putInteger("retku_" + x + "_slotC", 0);
+            }
         }
 
         for (int x = 0; x < party.getInventorySize(); x++) {

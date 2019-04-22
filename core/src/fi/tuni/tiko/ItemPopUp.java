@@ -80,6 +80,10 @@ public class ItemPopUp extends RetkueDialog {
         equipButtons.add(equipB);
         equipButtons.add(equipC);
 
+        RetkueLabel equip = new RetkueLabel(readLine("equip"));
+        getContentTable().add(equip).colspan(3);
+        getContentTable().row();
+
         getContentTable().add(equipButtons).colspan(3);
 
         getContentTable().row();
