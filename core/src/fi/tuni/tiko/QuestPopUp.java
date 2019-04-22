@@ -140,6 +140,7 @@ public class QuestPopUp extends RetkueDialog {
     public void acceptQuest() {
         desc.setText(accept);
         no.setVisible(false);
+        yes.setVisible(false);
         image.setDrawable(old_guy2);
         ok.setVisible(true);
     }

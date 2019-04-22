@@ -2,6 +2,7 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -42,12 +43,18 @@ public class ResultsPopUp extends RetkueDialog {
 
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
+        Image image = new Image(Utils.loadTexture("old_guy3.png"));
+
         String text = party.getCurrentQuest().getCompleteText();
         String reward = "\n\n" + readLine("reward") + ": ";
         reward += party.getCurrentQuest().getReward().getGold();
         reward += " " + readLine("golds");
         text += reward;
         RetkueLabel desc = new RetkueLabel(text);
+
+        getContentTable().add(image).prefWidth(image.getPrefWidth() / 5).prefHeight(image.getPrefHeight() / 5).colspan(3);
+        getContentTable().row();
+
         getContentTable().add(desc).prefWidth(popUpWidth);
 
 
