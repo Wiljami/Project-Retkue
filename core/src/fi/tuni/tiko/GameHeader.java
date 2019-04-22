@@ -44,7 +44,7 @@ public class GameHeader extends Table {
 
         Skin skin = Scene.getSkin();
         ImageButton stepImage = new ImageButton(Utils.loadButtonImage("boot.png", buttonWidth, buttonHeight));
-        stepCount = new Label(steps, skin);
+        stepCount = new RetkueLabel(steps);
         stepCount.setAlignment(1);
         ImageButton convert = new ImageButton(Utils.loadButtonImage("arrow.png", buttonWidth, buttonHeight));
         convert.addListener(new ClickListener() {
@@ -56,7 +56,7 @@ public class GameHeader extends Table {
         });
 
         ImageButton goldImage = new ImageButton(Utils.loadButtonImage("gold-sack.png", buttonWidth, buttonHeight));
-        goldCount = new Label(gold, skin);
+        goldCount = new RetkueLabel(gold);
         goldCount.setAlignment(1);
 
         add(stepImage).width(elementWidth).padBottom(10);

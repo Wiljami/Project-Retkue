@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 public class RetkueLabel extends Label {
 
     public RetkueLabel(String text) {
-        this(text, "label");
+        super(text, RetkueDialog.skin);
+        setWrap(true);
+        setAlignment(1);
     }
 
     public RetkueLabel(String text, String font) {

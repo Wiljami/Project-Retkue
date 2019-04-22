@@ -49,7 +49,6 @@ import java.util.Map;
 
     //TODO: Turn the Labels to a HashMap as well
     private static Label.LabelStyle labelHeadline;
-    private static Label.LabelStyle labelComicHeadline;
     private static Label.LabelStyle labelTextLabel;
 
     //TODO: Turn the skins to a HashMap as well
@@ -170,21 +169,6 @@ import java.util.Map;
         parameter.color = Color.WHITE;
 
         fonts.put("headline", tempFont);
-
-        FreeTypeFontGenerator fontGeneratorComic =
-                new FreeTypeFontGenerator(Gdx.files.internal("comic.ttf"));
-        parameter.size = 10;
-        parameter.color = Color.PINK;
-        parameter.borderColor = Color.BLACK;
-        parameter.borderWidth = 1;
-        tempFont = fontGeneratorComic.generateFont(parameter);
-
-        fonts.put("comicSans", tempFont);
-
-        parameter.size = 48;
-        tempFont = fontGeneratorComic.generateFont(parameter);
-
-        fonts.put("comicHeadline", tempFont);
     }
 
     /**
@@ -192,7 +176,7 @@ import java.util.Map;
      */
     private static void setupSkins() {
         skin = new Skin();
-        skin = new Skin (Gdx.files.internal("sysilehto_uus2.json"));
+        skin = new Skin (Gdx.files.internal("retku_final2.json"));
         skin.add("label", fonts.get("defaultFont"), BitmapFont.class);
         skin.add("log", fonts.get("logFont"), BitmapFont.class);
     }
