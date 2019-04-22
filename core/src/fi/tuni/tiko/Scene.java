@@ -135,7 +135,6 @@ import java.util.Map;
      */
     private static void setupStyles() {
         labelHeadline = new Label.LabelStyle(fontType("headline"), Color.WHITE);
-        labelComicHeadline = new Label.LabelStyle(fontType("comicHeadline"), Color.PINK);
         labelTextLabel = new Label.LabelStyle(fontType("defaultFont"), Color.WHITE);
     }
 
@@ -359,15 +358,6 @@ import java.util.Map;
      */
     public Label.LabelStyle getLabelHeadline() {
         return labelHeadline;
-    }
-
-    /**
-     * GetLabel
-     * TODO: Implement the HashList
-     * @return
-     */
-    public Label.LabelStyle getLabelComicHeadline() {
-        return labelComicHeadline;
     }
 
     public static Label.LabelStyle getLabelTextLabel() {
