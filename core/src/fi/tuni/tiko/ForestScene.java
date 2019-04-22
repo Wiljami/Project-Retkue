@@ -201,6 +201,13 @@ public class ForestScene extends Scene{
     private float eventChance = 2f;
 
     /**
+     *
+     */
+    private float autoSaveTimer = 1f;
+
+    private float timeSinceLastAutoSave;
+
+    /**
      * events triggers random events based on time spent
      *
      * events runs on every frame and adds DeltaTime to the helper variables. Every checkTime
@@ -210,6 +217,7 @@ public class ForestScene extends Scene{
     private void events() {
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
+        timeSinceLastAutoSave += Gdx.graphics.getDeltaTime();
         if (timeSinceLastCheck > checkTime) {
             float n = MathUtils.random(eventChance);
             if (n < timeSinceLastEvent) {
@@ -217,6 +225,9 @@ public class ForestScene extends Scene{
                 timeSinceLastEvent = 0;
             }
             timeSinceLastCheck = 0;
+        }
+        if (timeSinceLastAutoSave > autoSaveTimer) {
+            getGame().saveGame();
         }
     }
 
@@ -251,11 +262,13 @@ public class ForestScene extends Scene{
         addToLog(eventLine);
         if (Utils.intArrayContains(damageEvents, event)) {
             retku.damageRetku(eventDamage);
+            partyBar.updateHealthBars();
             if (!party.checkForConsciousness()) {
                 failQuest();
             }
         } else if (Utils.intArrayContains(healEvents, event)) {
             retku.healRetku(eventHeal);
+            partyBar.updateHealthBars();
         }
     }
 

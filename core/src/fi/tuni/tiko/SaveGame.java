@@ -24,8 +24,6 @@ public class SaveGame {
         save.flush();
         save.putString("title", "Retkue Save");
 
-        townInfoRef = townInfo;
-
         saveConfig(save);
         saveParty(save, party);
         saveTownInfo(save, townInfo);
@@ -44,6 +42,7 @@ public class SaveGame {
      */
     public static boolean load(String saveFile, Party party, TownInfo townInfo) {
         Preferences save = (Gdx.app.getPreferences(saveFile));
+        townInfoRef = townInfo;
         String title = save.getString("title", "null");
         if (title.equals("null")) {
             return false;
@@ -83,7 +82,7 @@ public class SaveGame {
             save.putLong("questStarted", party.getQuestStarted());
             save.putLong("questLeft", party.getQuestLeft());
         }
-        save.putInteger("currentQuest", party.getQuest().getId());
+        if (party.getQuest() != null) save.putInteger("currentQuest", party.getQuest().getId());
 
 
         for (int x = 0; x < 3; x++) {
@@ -178,7 +177,9 @@ public class SaveGame {
             party.setQuestLeft(save.getLong("questLeft", 0));
         }
 
-        party.setQuest(townInfoRef.loadQuest(save.getInteger("currentQuest", -1)));
+        int partyQuest = save.getInteger("currentQuest", -1);
+        if (partyQuest != -1) party.setQuest(townInfoRef.loadQuest(partyQuest));
+
 
         save.putBoolean("onQuest", party.isOnQuest());
         if (party.isOnQuest()) {

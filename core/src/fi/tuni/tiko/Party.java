@@ -188,6 +188,7 @@ public class Party {
     }
 
     public void beginQuest() {
+        setOnQuest(true);
         questStarted = System.currentTimeMillis();
     }
 
@@ -229,6 +230,7 @@ public class Party {
     }
 
     public void resetCosts() {
+        setOnQuest(false);
         healCost = 10;
         fasterCost = 10;
         convCost = 100;

@@ -104,9 +104,15 @@ public class Main extends Game {
         if (!SaveGame.load(saveFileName, party, townInfo)) {
             newGame();
         }
-        MainMenuScene mainMenuScene = new MainMenuScene();
-        currentScene = mainMenuScene;
-        openScene(GameView.mainMenu);
+        if(party.isOnQuest()) {
+            ForestScene forestScene = new ForestScene();
+            currentScene = forestScene;
+            openScene(GameView.forest);
+        } else {
+            MainMenuScene mainMenuScene = new MainMenuScene();
+            currentScene = mainMenuScene;
+            openScene(GameView.mainMenu);
+        }
     }
 
     private void startTutorial() {
