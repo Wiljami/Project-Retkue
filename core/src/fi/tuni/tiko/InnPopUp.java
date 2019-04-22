@@ -105,8 +105,29 @@ public class InnPopUp extends RetkueDialog {
 
     private void generatePortraits() {
         retkuA = party.findRetku(0).getPortrait();
+        retkuA.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                RetkuPopUp retkuPopUp = new RetkuPopUp(party.findRetku(0));
+                retkuPopUp.show(stage);
+            }
+        });
         retkuB = party.findRetku(1).getPortrait();
+        retkuB.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                RetkuPopUp retkuPopUp = new RetkuPopUp(party.findRetku(1));
+                retkuPopUp.show(stage);
+            }
+        });
         retkuC = party.findRetku(2).getPortrait();
+        retkuC.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                RetkuPopUp retkuPopUp = new RetkuPopUp(party.findRetku(2));
+                retkuPopUp.show(stage);
+            }
+        });
     }
 
     private void generateCharSheets() {

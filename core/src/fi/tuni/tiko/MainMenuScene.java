@@ -98,9 +98,6 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add(start).prefWidth(buttonWidth).prefHeight(heightArray[3]);
         mainMenuTable.add(options).prefWidth(buttonWidth).prefHeight(heightArray[3]);
         mainMenuTable.row();
-/*        mainMenuTable.add(reset).prefHeight(heightArray[4]);
-        mainMenuTable.add(loadGame).prefHeight(heightArray[4]);
-        mainMenuTable.add(saveGame).prefHeight(heightArray[4]);*/
         getStage().addActor(mainMenuTable);
     }
 

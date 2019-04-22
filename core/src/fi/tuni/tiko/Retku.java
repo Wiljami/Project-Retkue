@@ -46,7 +46,7 @@ public class Retku {
             new RetkuInfo("Bill", "bill_sprite_sheet.png",
                     "bill_sprite_sheet_damage.png", 6, 1/2f, 1f),
             new RetkuInfo("Mei", "mei_sprite_sheet.png",
-                    "mei_sprite_sheet.png", 17, 1/4f, 4f/5f),
+                    "mei_sprite_sheet_damage.png", 17, 1/4f, 4f/5f),
             new RetkuInfo("Mik'ed", "miked_sprite_sheet.png",
                     "miked_sprite_sheet_damage.png", 4, 1f, 4f/5f)
     };
@@ -153,6 +153,12 @@ public class Retku {
     public void damageRetku(int damage) {
         setCurrHealth(getCurrHealth() - damage);
         checkHealthForPortrait();
+    }
+
+    public String getRetkuDesc() {
+        String key = name + "_desc";
+        String desc = Utils.readBundle(Scene.getBundle(), key);
+        return desc;
     }
 
     /**
