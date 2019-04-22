@@ -327,7 +327,7 @@ public class Item {
         }
         halfKey += id;
         nameKey = halfKey + "_NAME";
-        descriptionKey = halfKey + "_DESCRIPTION";
+        descriptionKey = halfKey + "_DESC";
     }
 
     public String getName() {
