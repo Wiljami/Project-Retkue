@@ -64,7 +64,7 @@ public class TownScene extends Scene {
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (townInfo.findChosenQuest() != null) {
+                if (townInfo.findChosenQuest() != null && party.checkForConsciousness()) {
                     AdventurePopUp adventurePopUp = new AdventurePopUp(townInfo.findChosenQuest());
                     adventurePopUp.show(getStage());
                 } else {

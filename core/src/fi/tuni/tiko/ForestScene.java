@@ -46,6 +46,7 @@ public class ForestScene extends Scene{
         createMenu();
         setupBackground("forest.png");
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("foresttheme.ogg"));
+        questOver = false;
     }
 
     /**
@@ -243,16 +244,25 @@ public class ForestScene extends Scene{
         int event = MathUtils.random(28) + 1;
         String eventString = "QUEST_EVENT_RANDOM_";
         eventString += Utils.convertToId(event);
-        int retku = MathUtils.random(2);
+        Retku retku = party.getRandomConsciousRetku();
         String eventLine = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
-        eventLine += party.findRetku(retku).getName();
+        eventLine += retku.getName();
         eventLine += " " + readLine(eventString) + "\n";
         addToLog(eventLine);
         if (Utils.intArrayContains(damageEvents, event)) {
-            party.findRetku(retku).damageRetku(eventDamage);
+            retku.damageRetku(eventDamage);
+            if (!party.checkForConsciousness()) {
+                failQuest();
+            }
         } else if (Utils.intArrayContains(healEvents, event)) {
-            party.findRetku(retku).healRetku(eventHeal);
+            retku.healRetku(eventHeal);
         }
+    }
+
+    private void failQuest() {
+        setQuestOver(true);
+        ResultsPopUp resultsPopUp = new ResultsPopUp(party);
+        resultsPopUp.show(getStage());
     }
 
     private String rawLog;
@@ -269,12 +279,14 @@ public class ForestScene extends Scene{
      * Converts the milliseconds to hours, minutes and seconds.
      */
     private void updateTimer() {
-        long timeLeft = party.timeLeft();
-        events();
+        if (!questOver) {
+            long timeLeft = party.timeLeft();
+            events();
 
-        String timerText = Utils.convertToTimeStamp(timeLeft);
-        timer.setText(timerText);
-        updateSteps();
+            String timerText = Utils.convertToTimeStamp(timeLeft);
+            timer.setText(timerText);
+            updateSteps();
+        }
     }
 
     private void updateSteps() {

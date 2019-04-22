@@ -1,5 +1,7 @@
 package fi.tuni.tiko;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import java.util.ArrayList;
 
 /**
@@ -339,6 +341,30 @@ public class Party {
     public void addItemById(int itemId) {
         Item item = new Item(itemId, Item.Location.PARTY);
         addItem(item);
+    }
+
+    public Retku getRandomConsciousRetku() {
+        boolean foundOk = false;
+        int random = 0;
+        while (!foundOk) {
+            random = MathUtils.random(2);
+            if (retkus[random].getCurrHealth() != 0) {
+                foundOk = true;
+            }
+        }
+        return retkus[random];
+    }
+
+    /**
+     * Check if there is a Retku with at least some health.
+     * As long as any Retku has at least 1 health, return true. Otherwise return false.
+     * @return boolean if whether there is healthy Retkus left.
+     */
+    public boolean checkForConsciousness() {
+        if (retkus[0].getCurrHealth() != 0) return true;
+        if (retkus[1].getCurrHealth() != 0) return true;
+        if (retkus[2].getCurrHealth() != 0) return true;
+        return false;
     }
 
     public long timeSpent() {
