@@ -181,6 +181,7 @@ public class ForestScene extends Scene{
         }
         if (party.timeLeft() < 0 && !questOver && !paused) {
             questOver = true;
+            if(party.getCurrentQuest().getMainQuest()) party.completedMainQuest();
             ResultsPopUp resultsPopUp = new ResultsPopUp(party);
             resultsPopUp.show(getStage());
             timer.setText("00:00:00");
@@ -307,7 +308,7 @@ public class ForestScene extends Scene{
                 logLine = time + retku.getName() + " " + attacks + " " + enemy + "!\n";
             }
             addToLog(logLine);
-            logLine = enemy + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
+            logLine = enemy + " " + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
             addToLog(logLine);
         }
 

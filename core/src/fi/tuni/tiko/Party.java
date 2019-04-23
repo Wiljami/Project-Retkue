@@ -438,4 +438,8 @@ public class Party {
     public void increaseQuestTime(long time) {
         setQuestLeft(getQuestLeft() + time);
     }
+
+    public void completedMainQuest() {
+        setCurrentMainQuest(getCurrentMainQuest() + 1);
+    }
 }

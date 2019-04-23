@@ -101,4 +101,8 @@ public class Quest {
     public String getEnemyName() {
         return Utils.readBundle(Scene.getBundle(), enemyKey);
     }
+
+    public Boolean getMainQuest() {
+        return mainQuest;
+    }
 }
