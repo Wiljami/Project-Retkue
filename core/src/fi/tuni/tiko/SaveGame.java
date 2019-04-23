@@ -23,6 +23,7 @@ public class SaveGame {
         Preferences save = (Gdx.app.getPreferences(saveFile));
         save.flush();
         save.putString("title", "Retkue Save");
+        save.putInteger("version", 1);
 
         saveConfig(save);
         saveParty(save, party);
