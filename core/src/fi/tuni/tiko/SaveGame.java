@@ -81,6 +81,8 @@ public class SaveGame {
         if (party.isOnQuest()) {
             save.putLong("questStarted", party.getQuestStarted());
             save.putLong("questLeft", party.getQuestLeft());
+            save.putLong("timeToEncounter", party.getTimeToEncounter());
+            save.putBoolean("questEncounter", party.isQuestEncounter());
         }
         if (party.getQuest() != null) save.putInteger("currentQuest", party.getQuest().getId());
 
@@ -178,7 +180,11 @@ public class SaveGame {
         }
 
         int partyQuest = save.getInteger("currentQuest", -1);
-        if (partyQuest != -1) party.setQuest(townInfoRef.loadQuest(partyQuest));
+        if (partyQuest != -1) {
+            party.setQuest(townInfoRef.loadQuest(partyQuest));
+            party.setTimeToEncounter(save.getLong("timeToEncounter", 0));
+            party.setQuestEncounter(save.getBoolean("questEncounter", false));
+        }
 
 
         save.putBoolean("onQuest", party.isOnQuest());

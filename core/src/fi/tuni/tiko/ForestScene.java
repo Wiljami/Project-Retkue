@@ -25,6 +25,8 @@ public class ForestScene extends Scene{
      */
     private Label timer;
 
+    private Label timerToEncounter;
+
     /**
      * Reference to the party of the game
      */
@@ -35,7 +37,9 @@ public class ForestScene extends Scene{
      */
     private PartyBar partyBar;
 
-    private Boolean questOver = false;
+    private Boolean questOver;
+
+    private Boolean paused;
 
     /**
      * ForestScene constructor
@@ -47,6 +51,7 @@ public class ForestScene extends Scene{
         setupBackground("forest.png");
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("foresttheme.ogg"));
         questOver = false;
+        paused = false;
     }
 
     /**
@@ -128,8 +133,11 @@ public class ForestScene extends Scene{
 
         logTable.row();
 
-        timer = new Label("00:00:00", getLabelHeadline());
+        timer = new Label("00:00:00", getLabelSmallHeadLine());
+        timerToEncounter = new Label("00:00:00", getLabelHeadline());
 
+        logTable.add(timerToEncounter).center();
+        logTable.row();
         logTable.add(timer).center();
 
         logTable.row();
@@ -215,6 +223,10 @@ public class ForestScene extends Scene{
      * timeSinceLastEvent an event will trigger
      */
     private void events() {
+        if (party.timeLeftToEncounter() < 0) {
+            paused = true;
+            encounter();
+        }
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
         timeSinceLastAutoSave += Gdx.graphics.getDeltaTime();
@@ -229,6 +241,20 @@ public class ForestScene extends Scene{
         if (timeSinceLastAutoSave > autoSaveTimer) {
             getGame().saveGame();
         }
+    }
+
+    private long encounterTime;
+    String enemy;
+
+    private void encounter() {
+        encounterTime = System.currentTimeMillis();
+        enemy = party.getQuest().getEnemyName();
+        fighting();
+    }
+
+    private void fighting() {
+        String logLine = "Bill syö " + enemy;
+        addToLog(logLine);
     }
 
     /**
@@ -292,14 +318,26 @@ public class ForestScene extends Scene{
      * Converts the milliseconds to hours, minutes and seconds.
      */
     private void updateTimer() {
-        if (!questOver) {
+        if (!questOver || !paused) {
             long timeLeft = party.timeLeft();
             events();
-
             String timerText = Utils.convertToTimeStamp(timeLeft);
-            timer.setText(timerText);
+            if (!party.isQuestEncounter()) {
+                timer.setText(timerText);
+                generateEncounterTimer();
+            } else {
+                timerToEncounter.setText(timerText);
+                timer.setText("00:00:00");
+            }
             updateSteps();
         }
+    }
+
+    private void generateEncounterTimer() {
+        long timeLeft = party.timeLeftToEncounter();
+        String timerText = Utils.convertToTimeStamp(timeLeft);
+        if (timeLeft < 0) timerText = "00:00:00";
+        timerToEncounter.setText(timerText);
     }
 
     private void updateSteps() {

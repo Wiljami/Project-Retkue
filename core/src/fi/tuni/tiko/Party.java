@@ -292,8 +292,17 @@ public class Party {
     public void fasterQuest() {
         spendSteps(fasterCost);
         long temp = (long) (timeLeft()/1.1 + System.currentTimeMillis() - questStarted);
+        fasterEncounter();
         setQuestLeft(temp);
         fasterCost = fasterCost * 2;
+    }
+
+    private long timeToEncounter;
+
+    private void fasterEncounter() {
+        if (timeToEncounter > 0) {
+            long temp = (long) (timeToEncounter/1.1 + System.currentTimeMillis() - questStarted);
+        }
     }
 
     public boolean canAffordToFaster() {
@@ -339,6 +348,8 @@ public class Party {
     public void setQuest(Quest quest) {
         this.quest = quest;
         setCurrentQuest(quest);
+        timeToEncounter = quest.getQuestLength()/2;
+        questEncounter = false;
     }
 
     public static int getInventorySize() {
@@ -364,6 +375,20 @@ public class Party {
         return retkus[random];
     }
 
+    public long timeLeftToEncounter() {
+        return questStarted - System.currentTimeMillis() + getTimeToEncounter();
+    }
+
+
+    public long getTimeToEncounter() {
+        if (timeToEncounter < 0) return 0;
+        return timeToEncounter;
+    }
+
+    public void setTimeToEncounter(long timeToEncounter) {
+        this.timeToEncounter = timeToEncounter;
+    }
+
     /**
      * Check if there is a Retku with at least some health.
      * As long as any Retku has at least 1 health, return true. Otherwise return false.
@@ -374,6 +399,16 @@ public class Party {
         if (retkus[1].getCurrHealth() != 0) return true;
         if (retkus[2].getCurrHealth() != 0) return true;
         return false;
+    }
+
+    private boolean questEncounter;
+
+    public boolean isQuestEncounter() {
+        return questEncounter;
+    }
+
+    public void setQuestEncounter(boolean questEncounter) {
+        this.questEncounter = questEncounter;
     }
 
     public long timeSpent() {

@@ -14,6 +14,7 @@ public class Quest {
     private String descriptionKey = "";
     private String acceptTextKey = "";
     private String completeTextKey = "";
+    private String enemyKey = "";
     private Reward reward;
     private long questLength;
     private long[] encounterPoint;
@@ -51,6 +52,7 @@ public class Quest {
         acceptTextKey += halfKey + "_ACCEPT";
         descriptionKey += halfKey + "_DESC";
         completeTextKey += halfKey + "_COMPLETE";
+        enemyKey += halfKey + "_ENEMY";
     }
 
     private void addMainQuestTagToBundleKeys() {
@@ -58,7 +60,8 @@ public class Quest {
         briefingKey += "MAIN_";
         acceptTextKey += "MAIN_";
         descriptionKey += "MAIN_";
-        completeTextKey  += "MAIN_";
+        completeTextKey += "MAIN_";
+        enemyKey += "MAIN_";
         generateBundleKeys();
     }
 
@@ -95,5 +98,7 @@ public class Quest {
         return id;
     }
 
-
+    public String getEnemyName() {
+        return Utils.readBundle(Scene.getBundle(), enemyKey);
+    }
 }

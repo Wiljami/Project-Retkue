@@ -49,6 +49,7 @@ import java.util.Map;
 
     //TODO: Turn the Labels to a HashMap as well
     private static Label.LabelStyle labelHeadline;
+    private static Label.LabelStyle labelSmallHeadLine;
     private static Label.LabelStyle labelTextLabel;
 
     //TODO: Turn the skins to a HashMap as well
@@ -139,6 +140,7 @@ import java.util.Map;
      */
     private static void setupStyles() {
         labelHeadline = new Label.LabelStyle(fontType("headline"), Color.WHITE);
+        labelSmallHeadLine = new Label.LabelStyle(fontType("smallheadline"), Color.WHITE);
         labelTextLabel = new Label.LabelStyle(fontType("defaultFont"), Color.WHITE);
     }
 
@@ -172,6 +174,10 @@ import java.util.Map;
         parameter.color = Color.WHITE;
 
         fonts.put("headline", tempFont);
+
+        parameter.size = 18;
+        tempFont = fontGenerator.generateFont(parameter);
+        fonts.put("smallheadline", tempFont);
     }
 
     /**
@@ -425,6 +431,10 @@ import java.util.Map;
     public static String readLine (String key) {
         String s = Utils.readBundle(bundle, key);
         return s;
+    }
+
+    public static Label.LabelStyle getLabelSmallHeadLine() {
+        return labelSmallHeadLine;
     }
 
     public void generateTexts() {
