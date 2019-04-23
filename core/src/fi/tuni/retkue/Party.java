@@ -285,7 +285,7 @@ public class Party {
 
     private void fasterEncounter() {
         if (timeToEncounter > 0) {
-            long temp = (long) (timeToEncounter/1.1 + System.currentTimeMillis() - questStarted);
+            long temp = (long) (timeLeftToEncounter()/1.1 + System.currentTimeMillis() - questStarted);
             setTimeToEncounter(temp);
         }
     }

@@ -3,6 +3,7 @@ package fi.tuni.retkue;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -32,6 +33,8 @@ public class OptionsPopUp extends RetkueDialog {
      */
     CheckBox muteBox;
 
+    private Stage stage;
+
     /**
      * Constructor for OptionsPopUp
      */
@@ -40,6 +43,7 @@ public class OptionsPopUp extends RetkueDialog {
         createMenu();
         if (Main.debug) debug();
         this.currentScene = currentScene;
+        this.stage = getStage();
     }
 
     /**
@@ -106,6 +110,17 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
+        TextButton credits = new TextButton("Credits", getSkin());
+        credits.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                CreditsPopUp creditsPopUp = new CreditsPopUp();
+                creditsPopUp.show(getStage());
+            }
+        });
+
+        getContentTable().row();
+        getContentTable().add(credits).colspan(2);
         getContentTable().row();
         getContentTable().add(close).colspan(2);
         generateTexts();
