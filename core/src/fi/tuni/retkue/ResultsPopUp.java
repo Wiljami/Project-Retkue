@@ -52,6 +52,8 @@ public class ResultsPopUp extends RetkueDialog {
         text += reward;
         RetkueLabel desc = new RetkueLabel(text);
 
+        party.earnGold(party.getCurrentQuest().getReward().getGold());
+
         getContentTable().add(image).prefWidth(image.getPrefWidth() / 5).prefHeight(image.getPrefHeight() / 5).colspan(3);
         getContentTable().row();
 

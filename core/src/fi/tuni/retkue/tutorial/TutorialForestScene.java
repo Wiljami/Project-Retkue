@@ -84,7 +84,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         steps = new Label("STEPS: 400", getSkin());
         timer = new Label("00:10:00", getSkin());
         encounter = new TextButton(readLine("startEncounter"), getSkin());
-        textLog = new Label(readLine(readLine("forestTutMsg1")), getSkin());
+        textLog = new Label(readLine("forestTutMsg1"), getSkin());
         log.background(Utils.loadButtonImage("log.png", 0, 0));
         log.add(harder).pad(5);
         log.add(faster).pad(5);
