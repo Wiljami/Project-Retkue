@@ -68,7 +68,7 @@ public class TownInfo {
         availableQuests[1] = questPool[quest2];
         availableQuests[2] = questPool[quest3];
         float random = MathUtils.random(1f);
-        if (random < MAINQUESTCHANCE) {
+        if (random < MAINQUESTCHANCE && party.getCurrentMainQuest() != mainQuestPool.length) {
             availableQuests[0] = mainQuestPool[party.getCurrentMainQuest()];
         }
     }

@@ -161,6 +161,12 @@ public class Retku {
         return desc;
     }
 
+    public String getRetkuAsTarget() {
+        String key = name + "_target";
+        String target = Utils.readBundle(Scene.getBundle(), key);
+        return target;
+    }
+
     /**
      * healRetku increases the Retku's currHealth by the heal amount
      * @param heal heal amount

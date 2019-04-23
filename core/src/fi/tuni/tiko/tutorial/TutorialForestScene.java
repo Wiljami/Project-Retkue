@@ -81,7 +81,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         log = new Table();
         faster = new TextButton("Vauhdita", getSkin());
         harder = new TextButton("Heal Party", getSkin());
-        steps = new Label("STEPS: 4000", getSkin());
+        steps = new Label("STEPS: 400", getSkin());
         timer = new Label("00:10:00", getSkin());
         encounter = new TextButton("Start Encounter", getSkin());
         textLog = new Label("The party is ready to adventure!", getSkin());

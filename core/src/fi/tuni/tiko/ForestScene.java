@@ -179,7 +179,7 @@ public class ForestScene extends Scene{
         if (party.timeLeft() > 0) {
             updateTimer();
         }
-        if (party.timeLeft() < 0 && !questOver) {
+        if (party.timeLeft() < 0 && !questOver && !paused) {
             questOver = true;
             ResultsPopUp resultsPopUp = new ResultsPopUp(party);
             resultsPopUp.show(getStage());
@@ -281,8 +281,12 @@ public class ForestScene extends Scene{
         String hits = readLine("hits");
         Retku retku = party.getRandomConsciousRetku();
         String time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
-        logLine += time + enemy + " " + attacks + " " + retku.getName() + "\n";
-        retku.damageRetku(enemyAttack - retku.getDefence());
+        int damage = enemyAttack - retku.getDefence();
+        if (damage < 0) damage = 0;
+        logLine += time + enemy + " " + hits + " " + retku.getRetkuAsTarget() + "\n";
+
+        retku.damageRetku(damage);
+        partyBar.updateHealthBars();
 
         if (!party.checkForConsciousness()) {
             failQuest();
@@ -290,13 +294,20 @@ public class ForestScene extends Scene{
 
         addToLog(logLine);
 
+        logLine = retku.getName() + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
+        addToLog(logLine);
+
         for (int n = 0; n < 3; n++) {
             retku = party.findRetku(n);
             if (retku.isConscious()) {
-                enemyLife = enemyLife - retku.getAttack() + enemyDefence;
+                damage = retku.getAttack() - enemyDefence;
+                if (damage < 0) damage = 0;
+                enemyLife = enemyLife - damage;
                 time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
-                logLine = time + retku.getName() + " " + hits + " " + enemy + "!\n";
+                logLine = time + retku.getName() + " " + attacks + " " + enemy + "!\n";
             }
+            addToLog(logLine);
+            logLine = enemy + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
             addToLog(logLine);
         }
 
@@ -310,6 +321,10 @@ public class ForestScene extends Scene{
         long timePassed = System.currentTimeMillis() - encounterTime;
         party.increaseQuestTime(timePassed);
         paused = false;
+        String time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
+        String logText = time;
+        logText += enemy + " " + readLine("defeated") + "\n";
+        addToLog(logText);
     }
 
     /**
@@ -373,9 +388,9 @@ public class ForestScene extends Scene{
      * Converts the milliseconds to hours, minutes and seconds.
      */
     private void updateTimer() {
-        if (!questOver || !paused) {
+        events();
+        if (!paused) {
             long timeLeft = party.timeLeft();
-            events();
             String timerText = Utils.convertToTimeStamp(timeLeft);
             if (!party.isQuestEncounter()) {
                 timer.setText(timerText);
