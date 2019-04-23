@@ -293,4 +293,11 @@ public class Retku {
     public int getDefence() {
         return defence;
     }
+
+    public boolean isConscious() {
+        if (currHealth > 0) {
+            return true;
+        }
+        return false;
+    }
 }

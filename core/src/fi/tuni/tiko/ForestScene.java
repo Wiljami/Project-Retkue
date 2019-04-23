@@ -196,7 +196,7 @@ public class ForestScene extends Scene{
     /**
      * How often we check with random wether there is an evernt or not
      */
-    private float checkTime = 1f;
+    private float checkTime = 5f;
 
     /**
      * float of time since last random event check
@@ -206,7 +206,7 @@ public class ForestScene extends Scene{
     /**
      * float that determines the chance of events, higher means less frequently
      */
-    private float eventChance = 2f;
+    private float eventChance = 100f;
 
     /**
      * float to determine how often we autosave the game while in forestscene.
@@ -214,6 +214,12 @@ public class ForestScene extends Scene{
     private float autoSaveTimer = 300f;
 
     private float timeSinceLastAutoSave;
+
+    private boolean encounter = false;
+
+    private float timeSinceLastEncounterTurn;
+
+    private float encounterTurnTimer = 5f;
 
     /**
      * events triggers random events based on time spent
@@ -223,13 +229,20 @@ public class ForestScene extends Scene{
      * timeSinceLastEvent an event will trigger
      */
     private void events() {
-        if (party.timeLeftToEncounter() < 0) {
+        if (party.timeLeftToEncounter() < 0 && !party.isQuestEncounter()) {
             paused = true;
             encounter();
         }
         timeSinceLastEvent += Gdx.graphics.getDeltaTime();
         timeSinceLastCheck += Gdx.graphics.getDeltaTime();
         timeSinceLastAutoSave += Gdx.graphics.getDeltaTime();
+        if (encounter) {
+            timeSinceLastEncounterTurn += Gdx.graphics.getDeltaTime();
+            if (timeSinceLastEncounterTurn > encounterTurnTimer) {
+                fighting();
+                timeSinceLastEncounterTurn = 0;
+            }
+        }
         if (timeSinceLastCheck > checkTime) {
             float n = MathUtils.random(eventChance);
             if (n < timeSinceLastEvent) {
@@ -240,21 +253,63 @@ public class ForestScene extends Scene{
         }
         if (timeSinceLastAutoSave > autoSaveTimer) {
             getGame().saveGame();
+            timeSinceLastAutoSave = 0;
         }
     }
 
     private long encounterTime;
     String enemy;
 
+    private int enemyLife;
+    private int enemyAttack;
+    private int enemyDefence;
+
     private void encounter() {
         encounterTime = System.currentTimeMillis();
         enemy = party.getQuest().getEnemyName();
-        fighting();
+        enemyLife = 100;
+        enemyDefence = 5;
+        enemyAttack = 10;
+        encounter = true;
+        party.setQuestEncounter(true);
+        paused = true;
     }
 
     private void fighting() {
-        String logLine = "Bill syö " + enemy;
+        String logLine = "";
+        String attacks = readLine("attacks");
+        String hits = readLine("hits");
+        Retku retku = party.getRandomConsciousRetku();
+        String time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
+        logLine += time + enemy + " " + attacks + " " + retku.getName() + "\n";
+        retku.damageRetku(enemyAttack - retku.getDefence());
+
+        if (!party.checkForConsciousness()) {
+            failQuest();
+        }
+
         addToLog(logLine);
+
+        for (int n = 0; n < 3; n++) {
+            retku = party.findRetku(n);
+            if (retku.isConscious()) {
+                enemyLife = enemyLife - retku.getAttack() + enemyDefence;
+                time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
+                logLine = time + retku.getName() + " " + hits + " " + enemy + "!\n";
+            }
+            addToLog(logLine);
+        }
+
+        if (enemyLife < 0) {
+            encounterOver();
+        }
+    }
+
+    private void encounterOver() {
+        encounter = false;
+        long timePassed = System.currentTimeMillis() - encounterTime;
+        party.increaseQuestTime(timePassed);
+        paused = false;
     }
 
     /**

@@ -434,4 +434,8 @@ public class Party {
     public void setQuestStarted(long questStarted) {
         this.questStarted = questStarted;
     }
+
+    public void increaseQuestTime(long time) {
+        setQuestLeft(getQuestLeft() + time);
+    }
 }
