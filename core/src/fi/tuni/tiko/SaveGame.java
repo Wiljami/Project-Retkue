@@ -168,9 +168,9 @@ public class SaveGame {
     private static void loadParty(Preferences save, Party party) {
         party.setGold(save.getInteger("gold", 0));
         party.setSteps(save.getInteger("steps", 0));
-        party.setHealCost(save.getInteger("healCost", 10));
-        party.setConvCost(save.getInteger("convCost", 100));
-        party.setFasterCost(save.getInteger("fasterCost", 10));
+        party.setHealCost(save.getInteger("healCost", 50));
+        party.setConvCost(save.getInteger("convCost", 50));
+        party.setFasterCost(save.getInteger("fasterCost", 50));
         party.setCurrentMainQuest(save.getInteger("currentMainQuest", 0));
 
         party.setOnQuest(save.getBoolean("onQuest", false));

@@ -231,13 +231,13 @@ public class Party {
 
     public void resetCosts() {
         setOnQuest(false);
-        healCost = 10;
-        fasterCost = 10;
-        convCost = 100;
+        healCost = 50;
+        fasterCost = 50;
+        convCost = 50;
     }
 
-    private int fasterCost = 10;
-    private int healCost = 10;
+    private int fasterCost = 50;
+    private int healCost = 50;
 
     public int getHealCost() {
         return healCost;
