@@ -64,7 +64,7 @@ public class QuestPopUp extends RetkueDialog {
 
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
-        this.tavernPopUp = tavernPopUp;
+        QuestPopUp.tavernPopUp = tavernPopUp;
         image = new Image(Utils.loadTexture("old_guy1.png"));
         old_guy2 = new TextureRegionDrawable(Utils.loadTexture("old_guy2.png"));
 
@@ -128,7 +128,7 @@ public class QuestPopUp extends RetkueDialog {
      * closeMe method closes the tavernPopUp and the questPopUp
      */
     public void closeMe() {
-        tavernPopUp.getScene().getGame().openScene(Main.GameView.town);
+        Scene.getGame().openScene(Main.GameView.town);
         tavernPopUp.remove();
         remove();
     }

@@ -222,11 +222,7 @@ public class Party {
     }
 
     public boolean isThereInventorySpace() {
-        if (inventory.size() >= inventorySize) {
-            return false;
-        } else {
-            return true;
-        }
+        return inventory.size() < inventorySize;
     }
 
     public void resetCosts() {
@@ -252,19 +248,11 @@ public class Party {
     }
 
     public boolean canAffordToHeal() {
-        if (getSteps() > getHealCost()) {
-            return true;
-        } else {
-            return false;
-        }
+        return getSteps() > getHealCost();
     }
 
     public boolean canAffordToRest() {
-        if (getGold() > RESTCOST) {
-            return true;
-        } else {
-            return false;
-        }
+        return getGold() > RESTCOST;
     }
 
     private int convCost = 100;
@@ -278,11 +266,7 @@ public class Party {
     }
 
     public boolean canAffordToConvert() {
-        if (getSteps() > getConvCost()) {
-            return true;
-        } else {
-            return false;
-        }
+        return getSteps() > getConvCost();
     }
 
     public int getFasterCost() {
@@ -307,11 +291,7 @@ public class Party {
     }
 
     public boolean canAffordToFaster() {
-        if (getSteps() > getFasterCost()) {
-            return true;
-        } else {
-            return false;
-        }
+        return getSteps() > getFasterCost();
     }
 
     public void setFasterCost(int fasterCost) {
@@ -398,8 +378,7 @@ public class Party {
     public boolean checkForConsciousness() {
         if (retkus[0].getCurrHealth() != 0) return true;
         if (retkus[1].getCurrHealth() != 0) return true;
-        if (retkus[2].getCurrHealth() != 0) return true;
-        return false;
+        return retkus[2].getCurrHealth() != 0;
     }
 
     private boolean questEncounter;

@@ -5,7 +5,7 @@ public class Config {
     private static boolean isMuted = false;
     private static Language language;
 
-    enum Language {FINNISH, ENGLISH};
+    enum Language {FINNISH, ENGLISH}
 
     public static float getStepStartPosition() {
         return stepStartPosition;

@@ -64,8 +64,6 @@ public class TownScene extends Scene {
                     AdventurePopUp adventurePopUp = new AdventurePopUp(townInfo.findChosenQuest());
                     adventurePopUp.show(getStage());
                 } else {
-                    //TODO: create a tooltip popup?
-                    System.out.println("Clicked a non active quest");
                 }
             }
         });

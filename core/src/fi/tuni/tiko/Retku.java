@@ -301,9 +301,6 @@ public class Retku {
     }
 
     public boolean isConscious() {
-        if (currHealth > 0) {
-            return true;
-        }
-        return false;
+        return currHealth > 0;
     }
 }

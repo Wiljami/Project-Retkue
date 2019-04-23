@@ -65,7 +65,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         Table table = new Table();
         table.setFillParent(true);
         table.top();
-        float height = game.WORLDPIXELHEIGHT *3f/4f;
+        float height = Main.WORLDPIXELHEIGHT *3f/4f;
         table.add(log).colspan(2).pad(20).prefHeight(height);
         table.row();
         table.add(partyBar).colspan(2).expand().fill().prefHeight(heightArray[6]);
@@ -96,8 +96,8 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         log.row();
         log.add(encounter).colspan(3).pad(10);
         log.row();
-        float height = game.WORLDPIXELHEIGHT *3f/4f;
-        float width = game.WORLDPIXELWIDTH * 6f/5f;
+        float height = Main.WORLDPIXELHEIGHT *3f/4f;
+        float width = Main.WORLDPIXELWIDTH * 6f/5f;
         log.add(textLog).prefWidth(width).prefHeight(height).colspan(3).pad(10);
         //steps.setVisible(false);
         //timer.setVisible(false);

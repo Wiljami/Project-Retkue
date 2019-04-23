@@ -108,7 +108,7 @@ public class SaveGame {
             }
         }
 
-        for (int x = 0; x < party.getInventorySize(); x++) {
+        for (int x = 0; x < Party.getInventorySize(); x++) {
             int itemId = 0;
             if (x < party.getInventory().size()) {
                 itemId = party.getInventory().get(x).saveableId();
@@ -215,7 +215,7 @@ public class SaveGame {
             party.loadRetku(retku, x);
         }
 
-        for (int x = 0; x < party.getInventorySize(); x++) {
+        for (int x = 0; x < Party.getInventorySize(); x++) {
             int itemId = save.getInteger("party_inventory_" + x, 0);
             if (itemId != 0) {
                 party.addItemById(itemId);
