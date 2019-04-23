@@ -29,7 +29,6 @@ public class SaveGame {
         saveTownInfo(save, townInfo);
 
         save.flush();
-        System.out.println("Saving ... " + Utils.currentDate());
     }
 
     /**
