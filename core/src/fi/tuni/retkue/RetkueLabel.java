@@ -1,0 +1,23 @@
+package fi.tuni.retkue;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+/**
+ * RetkueLabel is a customized Label for the use of the game. We set text wrapping on and text
+ * is centered.
+ */
+public class RetkueLabel extends Label {
+
+    public RetkueLabel(String text) {
+        super(text, RetkueDialog.skin);
+        setWrap(true);
+        setAlignment(1);
+    }
+
+    public RetkueLabel(String text, String font) {
+        super(text, RetkueDialog.skin, font, Color.WHITE);
+        setWrap(true);
+        setAlignment(1);
+    }
+}
