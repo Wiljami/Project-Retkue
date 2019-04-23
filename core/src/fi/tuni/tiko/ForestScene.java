@@ -282,7 +282,7 @@ public class ForestScene extends Scene{
         String hits = readLine("hits");
         Retku retku = party.getRandomConsciousRetku();
         String time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
-        int damage = enemyAttack - retku.getDefence();
+        int damage = enemyAttack + combatRandomizer() - retku.getDefence();
         if (damage < 0) damage = 0;
         logLine += time + enemy + " " + hits + " " + retku.getRetkuAsTarget() + "\n";
 
@@ -301,7 +301,7 @@ public class ForestScene extends Scene{
         for (int n = 0; n < 3; n++) {
             retku = party.findRetku(n);
             if (retku.isConscious()) {
-                damage = retku.getAttack() - enemyDefence;
+                damage = retku.getAttack() + combatRandomizer() - enemyDefence;
                 if (damage < 0) damage = 0;
                 enemyLife = enemyLife - damage;
                 time = Utils.convertToTimeStamp(party.timeSpent()) + " - ";
@@ -367,6 +367,11 @@ public class ForestScene extends Scene{
             retku.healRetku(eventHeal);
             partyBar.updateHealthBars();
         }
+    }
+
+    private int combatRandomizer() {
+        int random = MathUtils.random(6);
+        return random;
     }
 
     private void failQuest() {
