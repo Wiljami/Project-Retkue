@@ -58,7 +58,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
 
         Utils.convertToPixels(heightArray);
 
-        partyBar = new PartyBar(heightArray[6], party);
+        partyBar = new PartyBar(heightArray[6], party, getStage());
 
         generateLog();
 

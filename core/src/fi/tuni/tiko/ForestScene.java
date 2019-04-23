@@ -61,7 +61,7 @@ public class ForestScene extends Scene{
 
         float partyBarHeight = Main.WORLDPIXELWIDTH / 1080f * 444f;
 
-        partyBar = new PartyBar(partyBarHeight, party);
+        partyBar = new PartyBar(partyBarHeight, party, getStage());
 
         Table table = new Table();
         table.setFillParent(true);
