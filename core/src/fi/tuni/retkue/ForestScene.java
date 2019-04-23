@@ -300,7 +300,7 @@ public class ForestScene extends Scene{
 
         addToLog(logLine);
 
-        logLine = retku.getName() + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
+        logLine = retku.getName() + " " + readLine("takes") + " " + damage + " " + readLine("damage") + ".\n";
         addToLog(logLine);
 
         for (int n = 0; n < 3; n++) {
