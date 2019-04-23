@@ -416,12 +416,11 @@ public class Item {
         text += readType() + ". ";
         text += getDescription();
         switch(slot) {
-            case TOOL: text += "\nATT: "; break;
-            case GARB: text += "\nDEF: "; break;
+            case TOOL: text += "\nATT: " + getEffect(); break;
+            case GARB: text += "\nDEF: " + getEffect(); break;
             case TRINKET: text += "\n"; break;
             default: throw new IllegalArgumentException("Missing slot for itemText! id: " + id);
         }
-        text += getEffect();
         return text;
     }
 }

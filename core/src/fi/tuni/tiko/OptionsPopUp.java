@@ -58,6 +58,8 @@ public class OptionsPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Config.setLanguage(Config.Language.ENGLISH);
+                currentScene.generateTexts();
+                generateTexts();
             }
         });
 
@@ -65,10 +67,12 @@ public class OptionsPopUp extends RetkueDialog {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Config.setLanguage(Config.Language.FINNISH);
+                currentScene.generateTexts();
+                generateTexts();
             }
         });
 
-        muteBox = new CheckBox("Mute Music", getSkin());
+        muteBox = new CheckBox("", getSkin());
         if(Config.isMuted()) {
             muteBox.setChecked(true);
         }
@@ -104,10 +108,15 @@ public class OptionsPopUp extends RetkueDialog {
 
         getContentTable().row();
         getContentTable().add(close).colspan(2);
+        generateTexts();
     }
 
     private void closeMe() {
         getGame().saveGame();
         remove();
+    }
+
+    private void generateTexts() {
+        muteBox.setText(readLine("mute"));
     }
 }

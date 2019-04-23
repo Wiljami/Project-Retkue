@@ -47,11 +47,15 @@ public class TownScene extends Scene {
 
     private TextButton adventure;
 
+    private TextButton menu;
+
+    private TextButton mainMenu;
+
     /**
      * createMenu adds various UI actors to the table and to the stage
      */
     public void createMenu() {
-        Button mainMenu = new TextButton( readLine("backToMainMenu"), getSkin());
+        mainMenu = new TextButton( "", getSkin());
         mainMenu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -60,7 +64,6 @@ public class TownScene extends Scene {
         });
 
         adventure = new TextButton( "", getSkin());
-        updateQuestButton();
         adventure.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -74,7 +77,7 @@ public class TownScene extends Scene {
             }
         });
 
-        Button menu = new TextButton( readLine("options"), getSkin());
+        menu = new TextButton( "", getSkin());
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -155,7 +158,7 @@ public class TownScene extends Scene {
         getStage().addActor(shop);
         getStage().addActor(inn);
         getStage().addActor(table);
-
+        generateTexts();
     }
 
     public FadeActor spawnTavern() {
@@ -183,6 +186,13 @@ public class TownScene extends Scene {
     }
 
     public void updateButtons() {
+        updateQuestButton();
+    }
+
+    @Override
+    public void generateTexts() {
+        menu.setText(readLine("options"));
+        mainMenu.setText(readLine("backToMainMenu"));
         updateQuestButton();
     }
 

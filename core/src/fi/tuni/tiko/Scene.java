@@ -427,5 +427,8 @@ import java.util.Map;
         return s;
     }
 
+    public void generateTexts() {
+    }
+
     public abstract void updateValues();
 }

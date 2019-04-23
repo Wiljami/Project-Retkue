@@ -32,11 +32,14 @@ public class MainMenuScene extends Scene {
      */
     Scene menuScene;
 
+    private TextButton start;
+    private TextButton options;
+
     /**
      * createMenu creates the UI of the mainMenu.
      */
     private void createMenu() {
-        Button start = new TextButton(readLine("start"), getSkin());
+        start = new TextButton("", getSkin());
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -44,7 +47,7 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        Button options = new TextButton(readLine("options"), getSkin());
+        options = new TextButton("", getSkin());
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -76,6 +79,8 @@ public class MainMenuScene extends Scene {
                 getGame().saveGame();
             }
         });
+
+        generateTexts();
 
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
@@ -115,5 +120,11 @@ public class MainMenuScene extends Scene {
      */
     public void dispose() {
         super.dispose();
+    }
+
+    @Override
+    public void generateTexts() {
+        start.setText(readLine("start"));
+        options.setText(readLine("options"));
     }
 }
