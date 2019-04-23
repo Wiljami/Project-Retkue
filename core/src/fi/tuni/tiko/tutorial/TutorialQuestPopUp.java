@@ -26,7 +26,7 @@ public class TutorialQuestPopUp extends RetkueDialog {
 
         Image image = new Image(Utils.loadTexture("old_guy1.png"));
 
-        String text = "rololo";
+        String text = "";
 
         getTitleLabel().setText("Tutorial quest");
 
@@ -38,7 +38,7 @@ public class TutorialQuestPopUp extends RetkueDialog {
             }
         });
 
-        accept = new TextButton("Accept", skin);
+        accept = new TextButton(readLine("accept"), skin);
         accept.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

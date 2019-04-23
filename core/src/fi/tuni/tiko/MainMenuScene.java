@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -33,7 +34,7 @@ public class MainMenuScene extends Scene {
     Scene menuScene;
 
     private TextButton start;
-    private TextButton options;
+    private ImageButton options;
 
     /**
      * createMenu creates the UI of the mainMenu.
@@ -47,7 +48,7 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        options = new TextButton("", getSkin());
+        options = new ImageButton(Utils.loadButtonImage("options.png", 50, 50));
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -56,29 +57,9 @@ public class MainMenuScene extends Scene {
             }
         });
 
-        Button reset = new TextButton( "Reset Game", getSkin());
-        reset.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                getGame().getParty().newGame();
-            }
-        });
-
-        Button loadGame = new TextButton( "Load Game", getSkin());
-        loadGame.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                SaveGame.load(getGame().getSaveFileName(), getGame().getParty(), getGame().getTownInfo());
-            }
-        });
-
-        Button saveGame = new TextButton( "Save Game", getSkin());
-        saveGame.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                getGame().saveGame();
-            }
-        });
+        getStage().addActor(options);
+        options.setX(300);
+        options.setY(20);
 
         generateTexts();
 
@@ -101,7 +82,6 @@ public class MainMenuScene extends Scene {
         mainMenuTable.add().prefHeight(heightArray[2]);
         mainMenuTable.row();
         mainMenuTable.add(start).prefWidth(buttonWidth).prefHeight(heightArray[3]);
-        mainMenuTable.add(options).prefWidth(buttonWidth).prefHeight(heightArray[3]);
         mainMenuTable.row();
         getStage().addActor(mainMenuTable);
     }
@@ -125,6 +105,5 @@ public class MainMenuScene extends Scene {
     @Override
     public void generateTexts() {
         start.setText(readLine("start"));
-        options.setText(readLine("options"));
     }
 }

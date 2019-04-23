@@ -24,7 +24,7 @@ public class TutorialShop extends RetkueDialog {
 
         this.origin = origin;
 
-        Button buy = new TextButton("Buy", skin);
+        Button buy = new TextButton(readLine("buy"), skin);
 
         buy.addListener(new ClickListener(){
             @Override

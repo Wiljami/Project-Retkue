@@ -80,11 +80,11 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     private void generateLog() {
         log = new Table();
         faster = new TextButton("Vauhdita", getSkin());
-        harder = new TextButton("Heal Party", getSkin());
+        harder = new TextButton(readLine("heal"), getSkin());
         steps = new Label("STEPS: 400", getSkin());
         timer = new Label("00:10:00", getSkin());
-        encounter = new TextButton("Start Encounter", getSkin());
-        textLog = new Label("The party is ready to adventure!", getSkin());
+        encounter = new TextButton(readLine("startEncounter"), getSkin());
+        textLog = new Label(readLine(readLine("forestTutMsg1")), getSkin());
         log.background(Utils.loadButtonImage("log.png", 0, 0));
         log.add(harder).pad(5);
         log.add(faster).pad(5);
@@ -147,7 +147,7 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     String loggedText;
 
     private void phase4() {
-        loggedText = "A rabid wolf emerges from the bushes.";
+        loggedText = readLine("forestTutMsg2");
         textLog.setText(loggedText);
         tutorialPopUp(12,5, "old_guy1.png", TOP);
     }
@@ -166,13 +166,13 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     }
 
     private void phase8() {
-        loggedText += "\nA rabid wolf eyes Bill hungrily.";
+        loggedText += "\n" + readLine("forestTutMsg3");
         textLog.setText(loggedText);
         tutorialPopUp(15,9, "old_guy1.png", TOP);
     }
 
     private void phase9() {
-        loggedText += "\nA rabid wolf takes a bite out of Bill!";
+        loggedText += "\n" + readLine("forestTutMsg4");
         textLog.setText(loggedText);
         party.findRetku(0).damageRetku(50);
         partyBar.updateHealthBars();
@@ -194,15 +194,15 @@ public class TutorialForestScene extends Scene implements TutorialScene{
     }
 
     private void phase15() {
-        loggedText += "\nBill pummels the rabid wolf!";
-        loggedText += "\nMei ninjachops the rabid wolf!";
-        loggedText += "\nMik'ed reads poetry to the rabid wolf!";
+        loggedText += "\n" + readLine("forestTutMsg5");
+        loggedText += "\n" + readLine("forestTutMsg6");
+        loggedText += "\n" + readLine("forestTutMsg7");
         textLog.setText(loggedText);
         tutorialPopUp(21,16, "old_guy1.png", TOP);
     }
 
     private void phase16() {
-        loggedText += "\nThe rabid flees for its life!";
+        loggedText += "\n" + readLine("forestTutMsg8");
         textLog.setText(loggedText);
         tutorialPopUp(22,17, "old_guy1.png", TOP);
     }

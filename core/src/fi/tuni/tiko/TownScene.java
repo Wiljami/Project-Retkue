@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -47,7 +48,7 @@ public class TownScene extends Scene {
 
     private TextButton adventure;
 
-    private TextButton menu;
+    private ImageButton options;
 
     private TextButton mainMenu;
 
@@ -55,14 +56,6 @@ public class TownScene extends Scene {
      * createMenu adds various UI actors to the table and to the stage
      */
     public void createMenu() {
-        mainMenu = new TextButton( "", getSkin());
-        mainMenu.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                getGame().openScene(Main.GameView.mainMenu);
-            }
-        });
-
         adventure = new TextButton( "", getSkin());
         adventure.addListener(new ClickListener() {
             @Override
@@ -77,8 +70,8 @@ public class TownScene extends Scene {
             }
         });
 
-        menu = new TextButton( "", getSkin());
-        menu.addListener(new ClickListener() {
+        options = new ImageButton(Utils.loadButtonImage("options.png", 50, 50));
+        options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 OptionsPopUp options = new OptionsPopUp(townScene);
@@ -111,11 +104,11 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[5]);
         table.row();
-        table.add(menu).colspan(3).prefHeight(heightArray[6]);
+        table.add().colspan(3).prefHeight(heightArray[6]);
         table.row();
         table.add().prefHeight(heightArray[7]);
         table.row();
-        table.add(mainMenu).colspan(3).prefHeight(heightArray[8]);
+        table.add().colspan(3).prefHeight(heightArray[8]);
         table.row();
         table.add().prefHeight(heightArray[9]);
 
@@ -154,6 +147,10 @@ public class TownScene extends Scene {
             }
         });
 
+        getStage().addActor(options);
+        options.setX(300);
+        options.setY(20);
+
         getStage().addActor(tavern);
         getStage().addActor(shop);
         getStage().addActor(inn);
@@ -191,8 +188,6 @@ public class TownScene extends Scene {
 
     @Override
     public void generateTexts() {
-        menu.setText(readLine("options"));
-        mainMenu.setText(readLine("backToMainMenu"));
         updateQuestButton();
     }
 

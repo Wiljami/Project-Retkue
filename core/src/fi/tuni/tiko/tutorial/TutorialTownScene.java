@@ -54,7 +54,6 @@ public class TutorialTownScene extends Scene implements TutorialScene {
 
     @Override
     public void continueTutorial(int id) {
-        System.out.println("id: " + id);
         switch (id) {
             case 1: tutorialPopUp(1 ,2, "old_guy1.png", TOP); break;
             case 2: phase2(); break;
@@ -120,7 +119,7 @@ public class TutorialTownScene extends Scene implements TutorialScene {
     }
 
     private void phase12() {
-        TextButton embark = new TextButton("Embark", getSkin());
+        TextButton embark = new TextButton(readLine("embark"), getSkin());
         embark.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

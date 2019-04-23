@@ -180,7 +180,7 @@ public class Party {
         retkus[0] = new Retku(0, 100,this);
         retkus[1] = new Retku(1, 100, this);
         retkus[2] = new Retku(2, 100,this);
-        gold = 1000;
+        gold = 100;
     }
 
     public void loadRetku(Retku retku, int slot) {

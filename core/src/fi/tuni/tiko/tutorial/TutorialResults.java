@@ -13,7 +13,7 @@ public class TutorialResults extends RetkueDialog {
 
         Label text = new Label("Your task is a success!\n\nReward: 1000 gold pieces", skin);
 
-        TextButton ok = new TextButton("Return to town", skin);
+        TextButton ok = new TextButton(readLine("ready"), skin);
         ok.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

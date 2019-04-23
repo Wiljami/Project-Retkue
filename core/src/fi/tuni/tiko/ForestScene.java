@@ -271,9 +271,14 @@ public class ForestScene extends Scene{
         enemyLife = 100;
         enemyDefence = 5;
         enemyAttack = 10;
-        encounter = true;
         party.setQuestEncounter(true);
         paused = true;
+        EncounterPopUp encounterPopUp = new EncounterPopUp(enemy, this);
+        encounterPopUp.show(getStage());
+    }
+
+    public void beginEncounter() {
+        encounter = true;
     }
 
     private void fighting() {

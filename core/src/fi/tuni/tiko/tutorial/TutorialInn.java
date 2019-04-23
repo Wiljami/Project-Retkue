@@ -21,7 +21,7 @@ public class TutorialInn extends RetkueDialog {
         Label text = new Label("Hello, dears.", skin);
         Image emilia = new Image(Utils.loadTexture("emilia.png"));
 
-        Button rest = new TextButton("Rest", skin);
+        Button rest = new TextButton(readLine("rest"), skin);
 
         rest.addListener(new ClickListener(){
             @Override
