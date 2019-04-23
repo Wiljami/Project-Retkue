@@ -122,6 +122,10 @@ public class SaveGame {
         save.putInteger("quest_1", townInfo.getAvailableQuests()[1].getId());
         save.putInteger("quest_2", townInfo.getAvailableQuests()[2].getId());
 
+        save.putFloat("quest_0_diff", townInfo.getAvailableQuests()[0].getDifficulty());
+        save.putFloat("quest_1_diff", townInfo.getAvailableQuests()[1].getDifficulty());
+        save.putFloat("quest_2_diff", townInfo.getAvailableQuests()[2].getDifficulty());
+
         int numberOfItems = townInfo.getAvailableItems().size();
 
         save.putInteger("availableItems", numberOfItems);
@@ -135,6 +139,8 @@ public class SaveGame {
         for (int n = 0; n < 3; n++) {
             int questId = save.getInteger("quest_" + n, -1);
             townInfo.loadQuestPool(n, questId);
+            float questDiff = save.getFloat("quest_" + n + "_diff", 0.5f);
+            townInfo.getAvailableQuests()[n].setDifficulty(questDiff);
         }
 
         int numberOfItems = save.getInteger("availableItems", 0);

@@ -96,46 +96,46 @@ public class Item {
 
     private Weapon[] weaponData = {
             new Weapon(1,10,1),
-            new Weapon(2,20,2),
-            new Weapon(3,40,3),
-            new Weapon(4,80,4),
-            new Weapon(101,160,5),
-            new Weapon(102,320,6),
-            new Weapon(103,640,7),
-            new Weapon(104,1280,8),
-            new Weapon(201,2560,9),
-            new Weapon(202,5120,10),
-            new Weapon(203,10240,11),
-            new Weapon(204,20480,12)
+            new Weapon(2,40,2),
+            new Weapon(3,90,3),
+            new Weapon(4,160,4),
+            new Weapon(101,250,5),
+            new Weapon(102,360,6),
+            new Weapon(103,490,7),
+            new Weapon(104,640,8),
+            new Weapon(201,810,9),
+            new Weapon(202,1000,10),
+            new Weapon(203,1210,11),
+            new Weapon(204,1440,12)
     };
 
     private Armor[] armorData = {
             new Armor(1,10,1),
-            new Armor(2,20,2),
-            new Armor(3,40,3),
-            new Armor(4,80,4),
-            new Armor(101,160,5),
-            new Armor(102,320,6),
-            new Armor(103,640,7),
-            new Armor(104,1280,8),
-            new Armor(201,2560,9),
-            new Armor(202,5120,10),
-            new Armor(203,10240,11),
-            new Armor(204,20480,12)
+            new Armor(2,40,2),
+            new Armor(3,90,3),
+            new Armor(4,160,4),
+            new Armor(101,250,5),
+            new Armor(102,360,6),
+            new Armor(103,490,7),
+            new Armor(104,640,8),
+            new Armor(201,810,9),
+            new Armor(202,1000,10),
+            new Armor(203,1210,11),
+            new Armor(204,1440,12)
     };
 
     private Trinket[] trinketData = {
-            new Trinket(1, 10, 1),
-            new Trinket(2, 10, 2),
-            new Trinket(3, 10, 3),
-            new Trinket(4, 10, 4),
-            new Trinket(5, 10, 5),
-            new Trinket(6, 10, 6),
-            new Trinket(7, 10, 7),
-            new Trinket(8, 10, 8),
-            new Trinket(9, 10, 9),
-            new Trinket(10, 10, 10),
-            new Trinket(11, 10, 11),
+            new Trinket(1, 2000, 1),
+            new Trinket(2, 500, 2),
+            new Trinket(3, 500, 3),
+            new Trinket(4, 500, 4),
+            new Trinket(5, 1000, 5),
+            new Trinket(6, 1000, 6),
+            new Trinket(7, 500, 7),
+            new Trinket(8, 500, 8),
+            new Trinket(9, 1000, 9),
+            new Trinket(10, 500, 10),
+            new Trinket(11, 2000, 11),
     };
 
     /**

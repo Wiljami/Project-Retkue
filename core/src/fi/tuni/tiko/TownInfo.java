@@ -13,31 +13,31 @@ public class TownInfo {
     private ArrayList<Item> availableItems;
     private final float MAINQUESTCHANCE = 0.2f;
     private Quest[] questPool = {
-            new Quest(1, new Reward(10), 100000L, QuestGiver.oldMan),
-            new Quest(2, new Reward(20), 100000L, QuestGiver.oldMan),
-            new Quest(3, new Reward(30), 100000L, QuestGiver.oldMan),
-            new Quest(4, new Reward(40), 100000L, QuestGiver.oldMan),
-            new Quest(5, new Reward(50), 100000L, QuestGiver.oldMan),
-            new Quest(6, new Reward(60), 100000L, QuestGiver.oldMan),
-            new Quest(7, new Reward(70), 100000L, QuestGiver.oldMan),
-            new Quest(8, new Reward(80), 100000L, QuestGiver.oldMan),
-            new Quest(9, new Reward(90), 100000L, QuestGiver.oldMan),
-            new Quest(10, new Reward(100), 100000L, QuestGiver.oldMan),
-            new Quest(11, new Reward(110), 100000L, QuestGiver.oldMan),
-            new Quest(12, new Reward(120), 100000L, QuestGiver.oldMan),
-            new Quest(13, new Reward(130), 100000L, QuestGiver.oldMan),
+            new Quest(1, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(2, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(3, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(4, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(5, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(6, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(7, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(8, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(9, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(10, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(11, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(12, new Reward(100), 3600000L, QuestGiver.oldMan),
+            new Quest(13, new Reward(100), 3600000L, QuestGiver.oldMan),
     };
 
     private Quest[] mainQuestPool = {
-            new Quest(1, new Reward(10), 100000L, QuestGiver.oldMan, true),
-            new Quest(2, new Reward(20), 100000L, QuestGiver.oldMan, true),
-            new Quest(3, new Reward(30), 100000L, QuestGiver.oldMan, true),
-            new Quest(4, new Reward(40), 100000L, QuestGiver.oldMan, true),
-            new Quest(5, new Reward(50), 100000L, QuestGiver.oldMan, true),
-            new Quest(6, new Reward(60), 100000L, QuestGiver.oldMan, true),
-            new Quest(7, new Reward(70), 100000L, QuestGiver.oldMan, true),
-            new Quest(8, new Reward(80), 100000L, QuestGiver.oldMan, true),
-            new Quest(9, new Reward(90), 100000L, QuestGiver.oldMan, true),
+            new Quest(1, new Reward(500), 1800000L, QuestGiver.oldMan, true),
+            new Quest(2, new Reward(1000), 3600000L, QuestGiver.oldMan, true),
+            new Quest(3, new Reward(1500), 7200000L, QuestGiver.oldMan, true),
+            new Quest(4, new Reward(2000), 10800000L, QuestGiver.oldMan, true),
+            new Quest(5, new Reward(2500), 14400000L, QuestGiver.oldMan, true),
+            new Quest(6, new Reward(3000), 18000000L, QuestGiver.oldMan, true),
+            new Quest(7, new Reward(3500), 27000000L, QuestGiver.oldMan, true),
+            new Quest(8, new Reward(4000), 32400000L, QuestGiver.oldMan, true),
+            new Quest(9, new Reward(5000), 36000000L, QuestGiver.oldMan, true),
     };
 
     private int chosenQuest = -1;

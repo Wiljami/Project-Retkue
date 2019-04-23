@@ -1,6 +1,8 @@
 package fi.tuni.tiko;
 
 
+import com.badlogic.gdx.math.MathUtils;
+
 /**
  * Quest class. This should hold information about the different quests in the game.
  * TODO: This thing
@@ -17,8 +19,7 @@ public class Quest {
     private String enemyKey = "";
     private Reward reward;
     private long questLength;
-    private long[] encounterPoint;
-    private int difficulty;
+    private float difficulty;
     private QuestGiver questGiver;
     private Boolean mainQuest = false;
 
@@ -29,7 +30,7 @@ public class Quest {
         this.reward = reward;
         this.questLength = questLength;
         this.questGiver = questGiver;
-        this.difficulty = 1;
+        setDifficulty(generateDifficulty());
         generateBundleKeys();
     }
 
@@ -41,6 +42,11 @@ public class Quest {
         this.questGiver = questGiver;
         this.difficulty = 1;
         addMainQuestTagToBundleKeys();
+    }
+
+    private float generateDifficulty() {
+        float random = MathUtils.random(0.2f, 2f);
+        return random;
     }
 
     private void generateBundleKeys() {
@@ -104,5 +110,17 @@ public class Quest {
 
     public Boolean getMainQuest() {
         return mainQuest;
+    }
+
+    public float getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(float difficulty) {
+        this.difficulty = difficulty;
+        if (!mainQuest) {
+            questLength = (long)(questLength / difficulty);
+            reward.gold = (int)(reward.gold / difficulty);
+        }
     }
 }

@@ -376,8 +376,8 @@ public class ForestScene extends Scene{
 
     private void failQuest() {
         setQuestOver(true);
-        ResultsPopUp resultsPopUp = new ResultsPopUp(party);
-        resultsPopUp.show(getStage());
+        QuestFailPopUp questFailPopUp = new QuestFailPopUp(party);
+        questFailPopUp.show(getStage());
     }
 
     private String rawLog;
