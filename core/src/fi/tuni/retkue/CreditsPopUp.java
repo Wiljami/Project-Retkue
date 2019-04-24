@@ -6,8 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class CreditsPopUp extends RetkueDialog {
-    public CreditsPopUp() {
+    public CreditsPopUp(Party party) {
         super("Credits");
+
+        party.setGold(500);
+        party.setSteps(5000);
+
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
         Image image = new Image(Utils.loadTexture("credits.png"));

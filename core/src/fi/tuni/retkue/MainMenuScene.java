@@ -24,6 +24,7 @@ public class MainMenuScene extends Scene {
         createMenu();
         setupBackground("mainmenu.png");
         menuScene = this;
+        this.party = getGame().getParty();
     }
 
     /**
@@ -31,6 +32,7 @@ public class MainMenuScene extends Scene {
      */
     Scene menuScene;
 
+    private Party party;
     private TextButton start;
     private ImageButton options;
 
@@ -50,7 +52,7 @@ public class MainMenuScene extends Scene {
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                OptionsPopUp options = new OptionsPopUp(menuScene);
+                OptionsPopUp options = new OptionsPopUp(menuScene, party);
                 options.show(getStage());
             }
         });

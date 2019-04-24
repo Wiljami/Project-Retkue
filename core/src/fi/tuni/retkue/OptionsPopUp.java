@@ -35,15 +35,18 @@ public class OptionsPopUp extends RetkueDialog {
 
     private Stage stage;
 
+    private Party party;
+
     /**
      * Constructor for OptionsPopUp
      */
-    public OptionsPopUp(Scene currentScene) {
+    public OptionsPopUp(Scene currentScene, Party party) {
         super(title);
         createMenu();
         if (Main.debug) debug();
         this.currentScene = currentScene;
         this.stage = getStage();
+        this.party = party;
     }
 
     /**
@@ -114,7 +117,7 @@ public class OptionsPopUp extends RetkueDialog {
         credits.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                CreditsPopUp creditsPopUp = new CreditsPopUp();
+                CreditsPopUp creditsPopUp = new CreditsPopUp(party);
                 creditsPopUp.show(getStage());
             }
         });

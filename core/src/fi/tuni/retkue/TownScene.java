@@ -68,7 +68,7 @@ public class TownScene extends Scene {
         options.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                OptionsPopUp options = new OptionsPopUp(townScene);
+                OptionsPopUp options = new OptionsPopUp(townScene, party);
                 options.show(getStage());
             }
         });
