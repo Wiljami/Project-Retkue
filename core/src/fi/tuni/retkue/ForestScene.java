@@ -207,7 +207,7 @@ public class ForestScene extends Scene{
     /**
      * float that determines the chance of events, higher means less frequently
      */
-    private float eventChance = 100f;
+    private float eventChance = 25;
 
     /**
      * float to determine how often we autosave the game while in forestscene.
