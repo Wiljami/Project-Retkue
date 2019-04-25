@@ -45,7 +45,7 @@ public class Quest {
     }
 
     private float generateDifficulty() {
-        float random = MathUtils.random(0.2f, 2f);
+        float random = MathUtils.random(0.2f, 1f);
         return random;
     }
 
