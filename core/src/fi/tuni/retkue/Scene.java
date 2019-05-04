@@ -22,18 +22,12 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * A package containing necessary methods to run the graphical side of the KPS game.
- * Scene class implements screen and contains a stage. It generates an assortment of fonts, styles
- * and skins.
- *
- * TODO: create an HashMap to store fonts, styles and skins to make it neater.
- * TODO: dynamic addition of them as well
- * TODO: Is this worth the trouble? YES
+ * Scene is the abstract class that contains all the shared resources of the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0504
  */
-    public abstract class Scene extends ApplicationAdapter implements Screen {
+public abstract class Scene extends ApplicationAdapter implements Screen {
     /**
      * camera is the camera used in the game
      */
@@ -45,12 +39,24 @@ import java.util.Map;
      */
     private static Map<String, BitmapFont> fonts;
 
-    //TODO: Turn the Labels to a HashMap as well
+    /**
+     * LabelStyle labelHeadLine
+     */
     private static Label.LabelStyle labelHeadline;
+
+    /**
+     * LabelStyle labelSmallHeadLine
+     */
     private static Label.LabelStyle labelSmallHeadLine;
+
+    /**
+     * LabelStyle labelTextLabel
+     */
     private static Label.LabelStyle labelTextLabel;
 
-    //TODO: Turn the skins to a HashMap as well
+    /**
+     * The skin we use in the game
+     */
     private static Skin skin;
 
     /**
@@ -102,14 +108,18 @@ import java.util.Map;
     public Music backgroundMusic;
 
     /**
-     * Constructor for the Scene. Initialized boolean is used to make sure that the static resources
-     * are generated only once.
+     * Constructor for the Scene.
      */
     public Scene() {
         stage = new Stage(new FitViewport(Main.WORLDPIXELWIDTH,
                 Main.WORLDPIXELHEIGHT), game.getBatch());
     }
 
+    /**
+     * initiateScene initiates all the shared resources used within the Scene. initialized boolean
+     * is used to make sure that it is ran only once.
+     * @param main reference to Main
+     */
     public static void initiateScene(Main main) {
         if (!initialized) {
             initialized = true;
@@ -120,12 +130,14 @@ import java.util.Map;
             setupSkins();
             setupStyles();
             debug = Main.debug;
-            //Set default skin for the dialogs in the game
             RetkueDialog.setRetkueSkin(getSkin());
             RetkueDialog.pointToGame(getGame());
         }
     }
 
+    /**
+     * loadBundle loads the bundle
+     */
     public static void loadBundle() {
         Locale locale = new Locale(Config.getLanguageName());
 
@@ -144,7 +156,6 @@ import java.util.Map;
 
     /**
      * Setup the different Fonts and add them to the fonts HashMap
-     * TODO: Refactor some of this code?
      */
     private static void setupFonts() {
         fonts = new HashMap<String, BitmapFont>();
@@ -251,7 +262,7 @@ import java.util.Map;
     }
 
     /**
-     * show()
+     * Override of the show to add functionality we want for our Scenes
      */
     @Override
     public void show() {
@@ -279,7 +290,6 @@ import java.util.Map;
      */
     @Override
     public void pause() {
-
     }
 
     /**
@@ -290,7 +300,7 @@ import java.util.Map;
     }
 
     /**
-     * hide()
+     * Override for hide. We save the game and stop the backgroundMusic.
      */
     @Override
     public void hide() {
@@ -327,7 +337,7 @@ import java.util.Map;
     }
 
     /**
-     * getBatch()
+     * getBatch returns the SpriteBatch
      * @return SpriteBatch
      */
     public static SpriteBatch getBatch() {
@@ -335,7 +345,7 @@ import java.util.Map;
     }
 
     /**
-     * getGame()
+     * getGame returns the Main
      * @return reference to the game
      */
     public static Main getGame () {
@@ -343,7 +353,7 @@ import java.util.Map;
     }
 
     /**
-     * getStage8)
+     * getStage returns the Stage of this Scene
      * @return reference to the Stage
      */
     public Stage getStage() {
@@ -351,8 +361,7 @@ import java.util.Map;
     }
 
     /**
-     * getSkin()
-     * TODO: Implement the HashList
+     * getSkin returns the skin.
      * @return static reference to a Skin
      */
     public static Skin getSkin() {
@@ -360,16 +369,11 @@ import java.util.Map;
     }
 
     /**
-     * GetLabel
-     * TODO: Implement the HashList
-     * @return
+     * GetLabelHeadLine returns the LabelHeadLineStyle labelHeadLine
+     * @return Label.LabelStyle labelHeadLine
      */
     public Label.LabelStyle getLabelHeadline() {
         return labelHeadline;
-    }
-
-    public static Label.LabelStyle getLabelTextLabel() {
-        return labelTextLabel;
     }
 
     /**
@@ -431,12 +435,22 @@ import java.util.Map;
         return s;
     }
 
+    /**
+     * getLabelSmallHeadLine returns the LabelStyle labelSmallHeadLine
+     * @return LabelStyle labelSmallHeadLine
+     */
     public static Label.LabelStyle getLabelSmallHeadLine() {
         return labelSmallHeadLine;
     }
 
+    /**
+     * An empty method for generating texts. A Scene may want to override this.
+     */
     public void generateTexts() {
     }
 
+    /**
+     * updateValues is an abstract method we want each Scene to have.
+     */
     public abstract void updateValues();
 }
