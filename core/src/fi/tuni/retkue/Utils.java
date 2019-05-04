@@ -13,9 +13,8 @@ import java.util.Date;
  * Utils class contains utility methods used in the project
  *
  * @author Viljami Pietarila
- * @version 2019.0311
+ * @version 2019.0504
  */
-
 public class Utils {
     /**
      * DEBUGTEXTURE is the filename of the image we use when we fail to load a Texture.
@@ -92,7 +91,7 @@ public class Utils {
      * @param number the int we check
      * @return the String we return
      */
-    public static String toAddZero(int number) {
+    private static String toAddZero(int number) {
         String s;
         if (number < 10) {
             s = "0" + Integer.toString(number);
@@ -121,6 +120,13 @@ public class Utils {
         return idString;
     }
 
+    /**
+     * transformTo1D changes a 2D TextureRegion array to a 1D array
+     * @param tmp Array to transform
+     * @param cols Original columns
+     * @param rows Original rows
+     * @return resulting 1D TextureRegion array
+     */
     public static TextureRegion[] transformTo1D(TextureRegion[][] tmp, int cols, int rows) {
         TextureRegion [] frames = new TextureRegion[cols * rows];
         int index = 0;
