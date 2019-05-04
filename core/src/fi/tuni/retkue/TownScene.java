@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * TownScene contains the town view and its functionality. It serves as the hub of the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 
 /**
@@ -19,8 +19,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class TownScene extends Scene {
 
+    /**
+     * Rererence to itself
+     */
     TownScene townScene;
 
+    /**
+     * Constructor
+     */
     public TownScene() {
         super();
         this.townInfo = Main.getTownInfo();
@@ -35,6 +41,9 @@ public class TownScene extends Scene {
      */
     private Party party;
 
+    /**
+     * Reference to the townInfo object
+     */
     private TownInfo townInfo;
 
     /**
@@ -42,11 +51,15 @@ public class TownScene extends Scene {
      */
     private GameHeader header;
 
+    /**
+     * Reference to the button object leading to adventure
+     */
     private TextButton adventure;
 
+    /**
+     * Reference to the button object leading to options
+     */
     private ImageButton options;
-
-    private TextButton mainMenu;
 
     /**
      * createMenu adds various UI actors to the table and to the stage
@@ -106,12 +119,7 @@ public class TownScene extends Scene {
         table.row();
         table.add().prefHeight(heightArray[9]);
 
-        FadeActor shop = new FadeActor(Utils.loadTexture("shop_button.png"));
-        float wRatio = shop.getWidth() / 1080;
-        float hRatio = shop.getHeight() / 1920;
-        shop.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
-        shop.setY(316f);
-        shop.setX(87f);
+        FadeActor shop = spawnShop();
         shop.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -120,15 +128,12 @@ public class TownScene extends Scene {
             }
         });
 
-        FadeActor inn = new FadeActor(Utils.loadTexture("inn_button.png"));
-        wRatio = inn.getWidth() / 1080;
-        hRatio = inn.getHeight() / 1920;
-        inn.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
-        inn.setY(177f);
+        FadeActor inn = spawnInn();
         inn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                openInn();
+                InnPopUp innPopUp = new InnPopUp(party, townScene);
+                innPopUp.show(getStage());
             }
         });
 
@@ -151,8 +156,38 @@ public class TownScene extends Scene {
         getStage().addActor(table);
         generateTexts();
     }
+    /**
+     * spawnShop creates the fading actor button for the shop
+     * @return the FadeActor for the Shop button
+     */
+    private FadeActor spawnShop() {
+        FadeActor shop = new FadeActor(Utils.loadTexture("shop_button.png"));
+        float wRatio = shop.getWidth() / 1080;
+        float hRatio = shop.getHeight() / 1920;
+        shop.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        shop.setY(316f);
+        shop.setX(87f);
+        return shop;
+    }
 
-    public FadeActor spawnTavern() {
+    /**
+     * spawnInn creates the fading actor button for the inn
+     * @return the FadeActor for the Inn button
+     */
+    private FadeActor spawnInn() {
+        FadeActor inn = new FadeActor(Utils.loadTexture("inn_button.png"));
+        float wRatio = inn.getWidth() / 1080;
+        float hRatio = inn.getHeight() / 1920;
+        inn.setSize(Main.WORLDPIXELWIDTH*wRatio,Main.WORLDPIXELHEIGHT*hRatio);
+        inn.setY(177f);
+        return inn;
+    }
+
+    /**
+     * spawnTavern creates the fading actor button for the tavern
+     * @return the FadeActor for the Tavern button
+     */
+    private FadeActor spawnTavern() {
         FadeActor tavern = new FadeActor(Utils.loadTexture("tavern_button.png"));
         float wRatio = tavern.getWidth() / 1080;
         float hRatio = tavern.getHeight() / 1920;
@@ -162,11 +197,9 @@ public class TownScene extends Scene {
         return tavern;
     }
 
-    public void openInn() {
-        InnPopUp innPopUp = new InnPopUp(party, townScene);
-        innPopUp.show(getStage());
-    }
-
+    /**
+     * Updates the text withing the adventure text button with the quest name.
+     */
     private void updateQuestButton() {
         if (townInfo.findChosenQuest() != null) {
             String questName = townInfo.findChosenQuest().getTitle();
@@ -176,21 +209,19 @@ public class TownScene extends Scene {
         }
     }
 
-    public void updateButtons() {
-        updateQuestButton();
-    }
-
+    /**
+     * Override to get updateQuestButton called
+     */
     @Override
     public void generateTexts() {
         updateQuestButton();
     }
 
+    /**
+     * Override to get the header's values updated
+     */
     @Override
     public void updateValues() {
         header.updateValues();
-    }
-
-    public TownInfo getTownInfo() {
-        return townInfo;
     }
 }
