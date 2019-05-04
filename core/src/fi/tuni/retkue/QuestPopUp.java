@@ -9,10 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
  * QuestPopUp holds the dialog between the player and the questgiver.
- * TODO: Fix the resizing when changing between texts
  *
  * @author Viljami Pietarila
- * @version 2019.0308
+ * @version 2019.0504
  */
 public class QuestPopUp extends RetkueDialog {
     /**
@@ -24,10 +23,12 @@ public class QuestPopUp extends RetkueDialog {
      * no-button
      */
     private Button no;
+
     /**
      * yes-button
      */
     private Button yes;
+
     /**
      * ok-button
      */
@@ -42,19 +43,36 @@ public class QuestPopUp extends RetkueDialog {
      */
     private static TavernPopUp tavernPopUp;
 
+    /**
+     * String accept is accept text
+     */
     private String accept;
 
+    /**
+     * Reference to the party
+     */
     private Party party;
 
+    /**
+     * Reference to the Quest
+     */
     private Quest quest;
 
+    /**
+     * Reference to the Image
+     */
     private Image image;
 
-    TextureRegionDrawable old_guy2;
+    /**
+     * TextureRegion of the OldGuy2 image
+     */
+    private TextureRegionDrawable oldGuy2;
 
     /**
-     * Constructor of QuestPopUp
-     * @param tavernPopUp tavernPopUp Reference
+     * QuestPopUp constructor
+     * @param tavernPopUp reference to the tavernPopUp that opened this
+     * @param id id of the quest
+     * @param party player's party
      */
     public QuestPopUp(final TavernPopUp tavernPopUp, final int id, final Party party) {
         super(title);
@@ -65,7 +83,7 @@ public class QuestPopUp extends RetkueDialog {
 
         QuestPopUp.tavernPopUp = tavernPopUp;
         image = new Image(Utils.loadTexture("old_guy1.png"));
-        old_guy2 = new TextureRegionDrawable(Utils.loadTexture("old_guy2.png"));
+        oldGuy2 = new TextureRegionDrawable(Utils.loadTexture("oldGuy2.png"));
 
 
         final TownInfo info = tavernPopUp.getTownInfo();
@@ -140,7 +158,7 @@ public class QuestPopUp extends RetkueDialog {
         desc.setText(accept);
         no.setVisible(false);
         yes.setVisible(false);
-        image.setDrawable(old_guy2);
+        image.setDrawable(oldGuy2);
         ok.setVisible(true);
     }
 }

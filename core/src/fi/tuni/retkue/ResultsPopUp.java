@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * ResultsPopUp contains the functionality of the results pop up in the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 public class ResultsPopUp extends RetkueDialog {
     /**
@@ -25,6 +25,7 @@ public class ResultsPopUp extends RetkueDialog {
 
     /**
      * ResultsPopUp constructor
+     * @param party refence to the party
      */
     public ResultsPopUp(Party party) {
         super(title);
