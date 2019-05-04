@@ -7,7 +7,7 @@ import com.badlogic.gdx.Preferences;
  * Class SaveGame handles loading and saving the data within the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0313
+ * @version 2019.0504
  */
 public class SaveGame {
     private static TownInfo townInfoRef;
@@ -117,6 +117,11 @@ public class SaveGame {
         }
     }
 
+    /**
+     * Saves the variables within the townInfo
+     * @param save Preferences save file
+     * @param townInfo reference to the townInfo
+     */
     private static void saveTownInfo(Preferences save, TownInfo townInfo) {
         save.putInteger("quest_0", townInfo.getAvailableQuests()[0].getId());
         save.putInteger("quest_1", townInfo.getAvailableQuests()[1].getId());
@@ -135,6 +140,11 @@ public class SaveGame {
         }
     }
 
+    /**
+     * Loads the townInfo from a save
+     * @param save Preferences save file
+     * @param townInfo reference to the townInfo
+     */
     private static void loadTownInfo(Preferences save, TownInfo townInfo) {
         for (int n = 0; n < 3; n++) {
             int questId = save.getInteger("quest_" + n, -1);
