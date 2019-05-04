@@ -143,7 +143,7 @@ public class ShopPopUp extends RetkueDialog {
      * @param i id of the item in the items array within townInfo
      */
     private void generateItemButton(int i) {
-        if (i >= townInfo.noItemsLeft()) {
+        if (i >= townInfo.numberOfItemsLeft()) {
             generateEmptyButton();
         } else {
             final Item item = townInfo.findItem(i);
