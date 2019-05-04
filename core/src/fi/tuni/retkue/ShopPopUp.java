@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * ShopPopUp class holds the functionality and the UI elements of the game's shop.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 public class ShopPopUp extends RetkueDialog {
     /**
@@ -22,16 +22,34 @@ public class ShopPopUp extends RetkueDialog {
      */
     private static String title = readLine("shop");
 
+    /**
+     * UI Table where we store the shopItems
+     */
     private Table shopItems;
 
+    /**
+     * Size of the item icons
+     */
     private float itemSize;
 
+    /**
+     * Reference to the townInfo
+     */
     private TownInfo townInfo;
 
+    /**
+     * Reference to the currently selected Item
+     */
     private Item displayedItem;
 
+    /**
+     * Reference to the buy Button
+     */
     private Button buy;
 
+    /**
+     * Reference to the player's party
+     */
     private Party party;
 
 
@@ -46,6 +64,9 @@ public class ShopPopUp extends RetkueDialog {
         if (Main.debug) debug();
     }
 
+    /**
+     * Reference to the RetkueLable desc, so that we can change the text within it.
+     */
     private RetkueLabel desc;
 
     /**
@@ -104,6 +125,9 @@ public class ShopPopUp extends RetkueDialog {
         getContentTable().add(close);
     }
 
+    /**
+     * Tells the popup to close itself and save the game.
+     */
     private void closeMe() {
         getGame().saveGame();
         remove();
@@ -165,6 +189,9 @@ public class ShopPopUp extends RetkueDialog {
         }
     }
 
+    /**
+     * generateEmptyButton generates an empty slot for the shop.
+     */
     private void generateEmptyButton() {
         Image emptySlot = new Image(Utils.loadTexture("items/empty_slot.png"));
         shopItems.add(emptySlot).prefWidth(itemSize).prefHeight(itemSize).pad(3);
