@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * TavernPopUp is a popup window that serves as the tavern for the game
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 public class TavernPopUp extends RetkueDialog {
     /**
@@ -22,10 +22,14 @@ public class TavernPopUp extends RetkueDialog {
      */
     private static String title = readLine("tavern");
 
+    /**
+     * Reference to the townInfo
+     */
     private TownInfo townInfo;
 
-    private Scene scene;
-
+    /**
+     * Reference to the player's party
+     */
     private Party party;
 
     /**
@@ -100,22 +104,28 @@ public class TavernPopUp extends RetkueDialog {
         getContentTable().add(close);
     }
 
+    /**
+     * Tells this popUp to close itself and save the game.
+     */
     private void closeMe() {
         getGame().saveGame();
         remove();
     }
 
+    /**
+     * Opens a questPopUp
+     * @param questId the id of the quest we open
+     */
     private void openQuestPopUp (int questId) {
         QuestPopUp questPopUp = new QuestPopUp(tavernPopUp, questId, party);
         questPopUp.show(getStage());
     }
 
-
+    /**
+     * Getter for the townInfo
+     * @return townInfo
+     */
     public TownInfo getTownInfo() {
         return townInfo;
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }
