@@ -5,7 +5,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * RetkuPopUp is info popup for each player characters/Retkus.
+ * @author Viljami Pietarila
+ * @version 2019.0504
+ */
 public class RetkuPopUp extends RetkueDialog {
+    /**
+     * Constructor for RetkuPopUp
+     * @param retku Retku whose information is displayed
+     */
     public RetkuPopUp(Retku retku) {
         super(retku.getName());
 
@@ -44,6 +53,10 @@ public class RetkuPopUp extends RetkueDialog {
         getContentTable().row();
         getContentTable().add(ok);
     }
+
+    /**
+     * closeMe tells this popUp to close itself.
+     */
     private void closeMe() {
         remove();
     }
