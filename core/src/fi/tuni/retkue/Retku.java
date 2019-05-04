@@ -6,7 +6,7 @@ package fi.tuni.retkue;
  * A retku is a character element in the game. A party is formed of three Retkus.
  *
  * @author Viljami Pietarila
- * @version 2019.0311
+ * @version 2019.0504
  */
 public class Retku {
     /**
@@ -24,19 +24,44 @@ public class Retku {
      */
     private int currHealth;
 
+    /**
+     * Animated actor portrait of the Retku
+     */
     private AnimatedActor portrait;
 
+    /**
+     * Item in slotA
+     */
     private Item slotA;
 
+    /**
+     * Item in slotB
+     */
     private Item slotB;
 
+    /**
+     * Item in slotC
+     */
     private Item slotC;
 
+    /**
+     * Reference to the player's party
+     */
     private Party party;
 
+    /**
+     * Retku's attack value
+     */
     private int attack = 0;
+
+    /**
+     * Retku's defense value
+     */
     private int defence = 0;
 
+    /**
+     * Base value for both attack and defense that is used whenever calculating the stats
+     */
     private final int BASESTAT = 10;
 
     /**
@@ -55,12 +80,40 @@ public class Retku {
      * Helper class that holds information of different Retkus
      */
     class RetkuInfo {
+        /**
+         * Name of the Retku
+         */
         public String name;
+        /**
+         * Animation filename
+         */
         public String animationFile;
+        /**
+         * Damaged animation filename
+         */
         public String damagedFile;
+        /**
+         * Length of the animation in frames
+         */
         public int animationLength;
+        /**
+         * Speed of the animation
+         */
         public float animationSpeed;
+        /**
+         * Width of the portrait
+         */
         public float widthMultiplier;
+
+        /**
+         * Constructor for RetkuInfo
+         * @param name String name
+         * @param animationFile String animationFile
+         * @param damagedFile String damagedFile
+         * @param animationLength int animationLength
+         * @param animationSpeed float animationSpeed
+         * @param widthMultiplier float widthMultiplier
+         */
         public RetkuInfo(String name, String animationFile, String damagedFile, int animationLength,
                          float animationSpeed, float widthMultiplier) {
             this.name = name;
@@ -72,9 +125,12 @@ public class Retku {
         }
     }
 
+
     /**
      * Retku constructor
-     * @param health max Health of Retku
+     * @param id id of the Retku
+     * @param health current health of the Retku
+     * @param party party of the Retku
      */
     public Retku(int id, int health, Party party) {
         setMaxHealth(100);
@@ -155,12 +211,20 @@ public class Retku {
         checkHealthForPortrait();
     }
 
+    /**
+     * getRetkuDesc returns a localized text description of the Retku.
+     * @return String, description of the Retku
+     */
     public String getRetkuDesc() {
         String key = name + "_desc";
         String desc = Utils.readBundle(Scene.getBundle(), key);
         return desc;
     }
 
+    /**
+     * getRetkuAsTarget returns the localized form of the Retku being targeted in textlog
+     * @return String, retku as target
+     */
     public String getRetkuAsTarget() {
         String key = name + "_target";
         String target = Utils.readBundle(Scene.getBundle(), key);
@@ -176,6 +240,14 @@ public class Retku {
         checkHealthForPortrait();
     }
 
+    /**
+     * initPortrait initializes the portrait animation of the Retku
+     * @param animationFile filename of the animation
+     * @param damagedFile filename of the damaged animation
+     * @param cols length of the animation in frames
+     * @param speed speed of the animation
+     * @param widthMultiplier width of the portrait
+     */
     public void initPortrait(String animationFile, String damagedFile, int cols, float speed,
                              float widthMultiplier) {
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
@@ -184,6 +256,10 @@ public class Retku {
         portrait.initateWoundedAnimation(damagedFile);
     }
 
+    /**
+     * equipItem equips an Item for the retku.
+     * @param item Item to be equipped.
+     */
     public void equipItem(Item item) {
         switch(item.getSlot()) {
             case TOOL: equipTool(item); break;
@@ -193,6 +269,10 @@ public class Retku {
         recalculateStats();
     }
 
+    /**
+     * equipTool equips a Tool(Weapon) to the retku
+     * @param item Weapon to be equipped
+     */
     private void equipTool(Item item) {
         if (slotA != null) {
             party.addItem(slotA);
@@ -200,6 +280,10 @@ public class Retku {
         slotA = item;
     }
 
+    /**
+     * equipGarb equips a Garb(Armor) to the Retku
+     * @param item Armor to be equipped
+     */
     private void equipGarb(Item item) {
         if (slotB != null) {
             party.addItem(slotB);
@@ -207,6 +291,10 @@ public class Retku {
         slotB = item;
     }
 
+    /**
+     * equipTrinket equips a trinket to the Retku
+     * @param item Trinket to be equipped
+     */
     private void equipTrinket(Item item) {
         if (slotC != null) {
             party.addItem(slotC);
@@ -214,30 +302,56 @@ public class Retku {
         slotC = item;
     }
 
+    /**
+     * return item in slotA
+     * @return slotA Item
+     */
     public Item getSlotA() {
         return slotA;
     }
 
+    /**
+     * set slotA to a specific item
+     * @param slotA item to be equipped
+     */
     public void setSlotA(Item slotA) {
         this.slotA = slotA;
     }
-
+    /**
+     * return item in slotB
+     * @return slotB Item
+     */
     public Item getSlotB() {
         return slotB;
     }
 
+    /**
+     * set slotB to a specific item
+     * @param slotB item to be equipped
+     */
     public void setSlotB(Item slotB) {
         this.slotB = slotB;
     }
-
+    /**
+     * return item in slotC
+     * @return slotC Item
+     */
     public Item getSlotC() {
         return slotC;
     }
 
+    /**
+     * set slotC to a specific item
+     * @param slotC item to be equipped
+     */
     public void setSlotC(Item slotC) {
         this.slotC = slotC;
     }
 
+    /**
+     * Remove a specific item from the Retku
+     * @param item Item to be removed
+     */
     public void removeItem(Item item) {
         Item.Slot slot = item.getSlot();
         switch (slot) {
@@ -248,6 +362,11 @@ public class Retku {
         recalculateStats();
     }
 
+    /**
+     * Give item by id to the Retku. This is used when the game is loaded.
+     * @param id id of the item
+     * @param retkuId id of the retku
+     */
     public void giveItemById(int id, int retkuId) {
         if (id != 0) {
             Item item = new Item(id, findRetkuLocation(retkuId));
@@ -255,6 +374,9 @@ public class Retku {
         }
     }
 
+    /**
+     * recalculateStats method recalculates the stats of the Retku based on the items and base stat.
+     */
     private void recalculateStats() {
         if (slotA != null) {
             attack = BASESTAT + slotA.getEffect();
@@ -268,6 +390,11 @@ public class Retku {
         }
     }
 
+    /**
+     * findRetkuLocation solves the location of the item and returns it
+     * @param n the id of the Retku
+     * @return location of the item based on the id
+     */
     private Item.Location findRetkuLocation(int n) {
         Item.Location location = Item.Location.OTHER;
         switch (n) {
@@ -278,6 +405,10 @@ public class Retku {
         return location;
     }
 
+    /**
+     * checkHealthForPortrait checks the Retku's current health. If it is below threshold it will then
+     * tell the portrait to use the damaged animation.
+     */
     private void checkHealthForPortrait() {
         if (currHealth < 50) {
             portrait.setWoundedAnimation();
@@ -287,19 +418,35 @@ public class Retku {
 
     }
 
+    /**
+     * getter for the portrait, checks if damaged portrait is used or not first
+     * @return Portrait of the Retku
+     */
     public AnimatedActor getPortrait() {
         checkHealthForPortrait();
         return portrait;
     }
 
+    /**
+     * getter for attack
+     * @return attack
+     */
     public int getAttack() {
         return attack;
     }
 
+    /**
+     * getter for defence
+     * @return defence
+     */
     public int getDefence() {
         return defence;
     }
 
+    /**
+     * isConscious returns true if the Retku's hp is over 0
+     * @return boolean wether health is above 0
+     */
     public boolean isConscious() {
         return currHealth > 0;
     }

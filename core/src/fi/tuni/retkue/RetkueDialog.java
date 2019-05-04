@@ -10,11 +10,22 @@ import com.badlogic.gdx.utils.I18NBundle;
  * compared to it. The actual PopUps need to extend RetkueDialog in turn
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0504
  */
 public abstract class RetkueDialog extends Dialog {
+    /**
+     * Reference to the Skin we use in the game
+     */
     public static Skin skin;
+
+    /**
+     * Reference to the Main
+     */
     public static Main game;
+
+    /**
+     * Reference to the bundle used
+     */
     private static I18NBundle bundle;
 
 
@@ -27,7 +38,7 @@ public abstract class RetkueDialog extends Dialog {
     }
 
     /**
-     * Override the hide method to get rid of the action ran on hide()
+     * Override the hide method to get rid of the action ran on Dialog's hide
      */
     @Override
     public void hide() {
@@ -35,7 +46,7 @@ public abstract class RetkueDialog extends Dialog {
     }
 
     /**
-     * Override the show method to get rid of the action ran on show
+     * Override the show method to get rid of the action ran on Dialog's show
      *
      * @param stage stage
      * @return this
@@ -89,11 +100,11 @@ public abstract class RetkueDialog extends Dialog {
         String s  = Utils.readBundle(bundle, key);
         return s;
     }
-    private void closeMe() {
-        getGame().saveGame();
-        remove();
-    }
 
+    /**
+     * Getter for Main
+     * @return Main reference to Main
+     */
     public static Main getGame() {
         return game;
     }
