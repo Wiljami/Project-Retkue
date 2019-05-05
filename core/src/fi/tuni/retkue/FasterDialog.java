@@ -4,11 +4,27 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * FasterDialog class is the dialog that holds the functionality and UI elements of the faster popUp
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class FasterDialog extends RetkueDialog {
-
+    /**
+     * Reference the party
+     */
     private Party party;
+
+    /**
+     * RetkueLabel text
+     */
     private RetkueLabel text;
 
+    /**
+     * Constructor for FasterDialog
+     * @param party player's party
+     */
     public FasterDialog(Party party) {
         super("");
         this.party = party;
@@ -42,6 +58,9 @@ public class FasterDialog extends RetkueDialog {
         getContentTable().add(heal).pad(10);
     }
 
+    /**
+     * faster speeds the party if the player can afford it, otherwise it changes the text
+     */
     private void faster() {
         if (party.canAffordToFaster()) {
             party.fasterQuest();
@@ -51,6 +70,9 @@ public class FasterDialog extends RetkueDialog {
         }
     }
 
+    /**
+     * closeMe tells HealDialog to close itself
+     */
     private void closeMe() {
         remove();
     }
