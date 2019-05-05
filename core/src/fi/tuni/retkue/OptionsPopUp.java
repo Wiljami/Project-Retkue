@@ -34,6 +34,11 @@ public class OptionsPopUp extends RetkueDialog {
     CheckBox muteBox;
 
     /**
+     * TextButton for leaving the options menu
+     */
+    TextButton close;
+
+    /**
      * Reference to the stage
      */
     private Stage stage;
@@ -105,7 +110,7 @@ public class OptionsPopUp extends RetkueDialog {
             }
         });
 
-        TextButton close = new TextButton(readLine("return"), getSkin());
+        close = new TextButton("", getSkin());
         close.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -142,5 +147,6 @@ public class OptionsPopUp extends RetkueDialog {
      */
     private void generateTexts() {
         muteBox.setText(readLine("mute"));
+        close.setText(readLine("return"));
     }
 }
