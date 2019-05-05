@@ -10,14 +10,36 @@ import fi.tuni.retkue.RetkueDialog;
 import fi.tuni.retkue.RetkueLabel;
 import fi.tuni.retkue.Utils;
 
+/**
+ * TutorialQuestPopUp class has the functionality and ui elements of the questPop for tutorial
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialQuestPopUp extends RetkueDialog {
-
+    /**
+     * origin is the popUp that called this
+     */
     private TutorialTavern origin;
 
+    /**
+     * Label time
+     */
     RetkueLabel time;
+
+    /**
+     * Label reward
+     */
     RetkueLabel reward;
+
+    /**
+     * TextButton accept
+     */
     TextButton accept;
 
+    /**
+     * Constructor for TutorialQuestPopUp
+     * @param origin the class that called this popUp
+     */
     public TutorialQuestPopUp(final TutorialTavern origin) {
         super("");
 
@@ -68,6 +90,9 @@ public class TutorialQuestPopUp extends RetkueDialog {
         getContentTable().add(accept).pad(10).colspan(3);
     }
 
+    /**
+     * closeMe closes this
+     */
     public void closeMe() {
         origin.remove();
         remove();

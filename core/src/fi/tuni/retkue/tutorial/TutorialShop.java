@@ -10,11 +10,27 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fi.tuni.retkue.Item;
 import fi.tuni.retkue.RetkueDialog;
 
+/**
+ * TutorialShop holds the functionality and UI elements for the shop parts of the tutorial
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialShop extends RetkueDialog {
+    /**
+     * Reference to the Scene
+     */
     private TutorialTownScene origin;
 
+    /**
+     * Group image of the Icon
+     */
     private Group icon;
 
+    /**
+     * Constructor for TutorialShop
+     * @param origin Scene that called this
+     */
     public TutorialShop(final TutorialTownScene origin) {
         super("Shop");
 
@@ -40,6 +56,9 @@ public class TutorialShop extends RetkueDialog {
         getContentTable().add(buy).colspan(2);
     }
 
+    /**
+     * Clicked event for the buy button
+     */
     private void clickedBuy() {
         remove();
         origin.continueTutorial(109);

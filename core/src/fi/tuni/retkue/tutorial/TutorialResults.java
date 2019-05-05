@@ -7,7 +7,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import fi.tuni.retkue.RetkueDialog;
 
+/**
+ * TutorialResults class has the functionality and ui elements of the results popUp for tutorial
+ * results
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialResults extends RetkueDialog {
+    /**
+     * Consturctor for TutorialForestScene
+     * @param origin the Scene that called this popUp
+     */
     public TutorialResults(final TutorialForestScene origin) {
         super("Results");
 
@@ -27,6 +37,9 @@ public class TutorialResults extends RetkueDialog {
         getContentTable().add(ok);
     }
 
+    /**
+     * closeMe makes this close itself
+     */
     private void closeMe() {
         remove();
     }
