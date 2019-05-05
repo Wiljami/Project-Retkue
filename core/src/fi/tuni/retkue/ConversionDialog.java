@@ -4,12 +4,34 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * ConversionDialog class is the dialog that holds the functionality and UI elements of the
+ * conversion popUp
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class ConversionDialog extends RetkueDialog {
-
+    /**
+     * Reference to the player party
+     */
     private Party party;
+
+    /**
+     * RetkueLabel text
+     */
     private RetkueLabel text;
+
+    /**
+     * Reference to the GameHeader
+     */
     private GameHeader origin;
 
+    /**
+     * Constructor for ConversionDialog
+     * @param party player's party
+     * @param origin GameHeader that called this
+     */
     public ConversionDialog(Party party, GameHeader origin) {
         super("");
         this.party = party;
@@ -45,6 +67,9 @@ public class ConversionDialog extends RetkueDialog {
         getContentTable().add(convert).pad(10);
     }
 
+    /**
+     * convert converts steps to gold if player can afford it, if unable to afford it, changes text
+     */
     private void convert() {
         if (party.canAffordToConvert()) {
             party.convert();
@@ -55,6 +80,9 @@ public class ConversionDialog extends RetkueDialog {
         }
     }
 
+    /**
+     * closeMe closes this popUp
+     */
     private void closeMe() {
         remove();
     }
