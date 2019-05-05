@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * PartyBar holds UI and functionality of the party display in forest scene.
  *
  * @author Viljami Pietarila
- * @version 2019.0504
+ * @version 2019.0505
  */
 public class PartyBar extends Table {
     /**

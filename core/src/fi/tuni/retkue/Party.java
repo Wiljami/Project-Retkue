@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * It holds the resources the player has and the information of different Retkus.
  *
  * @author Viljami Pietarila
- * @version 2019.0504
+ * @version 2019.0505
  */
 public class Party {
     /**
