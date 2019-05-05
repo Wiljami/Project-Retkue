@@ -15,16 +15,54 @@ import fi.tuni.retkue.tutorial.TutorialPopUp.Position;
 import static fi.tuni.retkue.tutorial.TutorialPopUp.Position.LEFT;
 import static fi.tuni.retkue.tutorial.TutorialPopUp.Position.TOP;
 
+/**
+ * TutorialTownScene holds the functionality and UI elements for the town parts of the tutorial
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialTownScene extends Scene implements TutorialScene {
-
+    /**
+     * Reference to the Main
+     */
     private Main game;
+
+    /**
+     * Imave of the tavenr
+     */
     private Image tavern;
+
+    /**
+     * Image of the Inn
+     */
     private Image inn;
+
+    /**
+     * Image of the shop
+     */
     private Image shop;
+
+    /**
+     * The mask to darken the entire image
+     */
     private Image mask;
+
+    /**
+     * Reference to the tutorialTavern
+     */
     private TutorialTavern tutorialTavern;
+
+    /**
+     * Reference to the TutorialController
+     */
     private TutorialController controller;
 
+    /**
+     * Constructor for TutorialTownScene
+     * @param game main
+     * @param controller tutorialController
+     * @param phase id of the phase
+     */
     public TutorialTownScene(Main game, TutorialController controller, int phase) {
         super();
         this.game = game;
@@ -43,15 +81,29 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         }
     }
 
+    /**
+     * TutorialPopUp opens a popUp with the arguements given
+     * @param text_id bundle id of the text
+     * @param id id of the phase
+     * @param image image displayed
+     * @param location location of the popUp
+     */
     private void tutorialPopUp(int text_id, int id, String image, Position location) {
         TutorialPopUp popUp = new TutorialPopUp(text_id, id, image, location, this);
         popUp.show(getStage());
     }
 
+    /**
+     * Override updateValues
+     */
     @Override
     public void updateValues() {
     }
 
+    /**
+     * Override continueTutorial
+     * @param id id of the phase
+     */
     @Override
     public void continueTutorial(int id) {
         switch (id) {
@@ -89,6 +141,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         }
     }
 
+    /**
+     * phase2 of tutorial
+     */
     private void phase2() {
         fadeIn();
         tutorialPopUp(2,3, "old_guy1.png", LEFT);
@@ -101,6 +156,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         getStage().addActor(tavern);
     }
 
+    /**
+     * phase3 of tutorial
+     */
     private void phase3() {
         tavern.addListener(new ClickListener(){
             @Override
@@ -111,6 +169,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         });
     }
 
+    /**
+     * phase4 of tutorial
+     */
     private void phase4() {
         tavern.setVisible(false);
         tutorialTavern = new TutorialTavern(this);
@@ -118,6 +179,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         tutorialPopUp(3, 5,"old_guy1_png", TOP);
     }
 
+    /**
+     * phase12 of tutorial
+     */
     private void phase12() {
         TextButton embark = new TextButton(readLine("embark"), getSkin());
         embark.addListener(new ClickListener() {
@@ -132,6 +196,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         tutorialPopUp(7, 13,"old_guy1_png", TOP);
     }
 
+    /**
+     * phase101 of tutorial
+     */
     private void phase101() {
         fadeIn();
         tutorialPopUp(24,102, "old_guy1.png", TOP);
@@ -143,6 +210,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         getStage().addActor(inn);
     }
 
+    /**
+     * phase102 of tutorial
+     */
     private void phase102() {
         inn.addListener(new ClickListener() {
             @Override
@@ -153,6 +223,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         });
     }
 
+    /**
+     * phase103 of tutorial
+     */
     private void phase103() {
         inn.setVisible(false);
         TutorialInn tutorialInn = new TutorialInn(this);
@@ -160,6 +233,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         tutorialPopUp(25,104, "old_guy1.png", TOP);
     }
 
+    /**
+     * phase106 of tutorial
+     */
     private void phase106() {
         fadeIn();
         shop = new Image(Utils.loadTexture("tutorial/tutorial_shop.png"));
@@ -180,6 +256,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         getStage().addActor(shop);
     }
 
+    /**
+     * phase107 of tutorial
+     */
     private void phase107() {
         shop.setVisible(false);
         TutorialShop tutorialShop = new TutorialShop(this);
@@ -187,6 +266,9 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         tutorialPopUp(27,108, "old_guy1.png", TOP);
     }
 
+    /**
+     * phase109 of tutorial
+     */
     private void phase109() {
         inn.setVisible(true);
         inn.toFront();
@@ -200,17 +282,25 @@ public class TutorialTownScene extends Scene implements TutorialScene {
         });
     }
 
+    /**
+     * phase111 of tutorial
+     */
     private void phase111() {
         inn.setVisible(false);
-        //TODO: Continue!
         continueTutorial(112);
     }
 
+    /**
+     * brings the mask in front and sets its alpha to 0.4f
+     */
     public void fadeIn() {
         mask.toFront();
         mask.setColor(0,0,0, 0.4f);
     }
 
+    /**
+     * hides the mask by setting its alpha to 0.0f
+     */
     public void fadeOut() {
         mask.setColor(0,0,0, 0.0f);
     }
