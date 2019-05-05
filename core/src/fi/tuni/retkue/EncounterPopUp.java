@@ -4,10 +4,23 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * Encounter PopUp is the UI and functionality of the encounter PopUp
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class EncounterPopUp extends RetkueDialog {
-
+    /**
+     * origin is reference of the Scene that called this
+     */
     ForestScene origin;
 
+    /**
+     * constructor of EncounterPopUp
+     * @param enemy localized name of the enemy
+     * @param origin the Scene that called this popUp
+     */
     public EncounterPopUp(String enemy, ForestScene origin) {
         super("");
         this.origin = origin;
@@ -31,6 +44,9 @@ public class EncounterPopUp extends RetkueDialog {
         getContentTable().add(ok);
     }
 
+    /**
+     * Begins the encounter and removes the popUp
+     */
     private void begin() {
         origin.beginEncounter();
         remove();
