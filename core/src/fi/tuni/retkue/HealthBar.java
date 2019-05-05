@@ -12,10 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
  * HealthBar extends ProgressBar.
  *
  * Its function is to show health % as a green and red bar.
- * TODO: Make this neater for our purposes
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0505
  */
 
 public class HealthBar extends ProgressBar{
