@@ -7,16 +7,54 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fi.tuni.retkue.Item.Location;
 
+/**
+ * ItemPopUp class holds the functionality and features of the Item popup menu
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
+
 public class ItemPopUp extends RetkueDialog {
+    /**
+     * Reference to the Item in question
+     */
     private Item item;
+    /**
+     * Reference to the party
+     */
     private Party party;
+    /**
+     * Reference to the inn
+     */
     private InnPopUp inn;
 
+    /**
+     * TextButton equipA
+     */
     private TextButton equipA;
+
+    /**
+     * TextButton equipB
+     */
     private TextButton equipB;
+
+    /**
+     * TextButton equipC
+     */
     private TextButton equipC;
+
+    /**
+     * TextButton returnToInventory
+     */
     private TextButton returnToInventory;
 
+    /**
+     * Constructor for ItemPopUp
+     * @param title title of the screen
+     * @param i Item in question
+     * @param party player Player
+     * @param inn reference to the InnPopUp that opened this
+     */
     public ItemPopUp(String title, Item i, Party party, InnPopUp inn) {
         super(title);
 
@@ -26,6 +64,9 @@ public class ItemPopUp extends RetkueDialog {
         createMenu();
     }
 
+    /**
+     * Creates the UI elements
+     */
     private void createMenu() {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
         float itemWidth = Main.WORLDPIXELWIDTH/3f;
@@ -112,6 +153,10 @@ public class ItemPopUp extends RetkueDialog {
         updateButtons();
     }
 
+    /**
+     * Equips the Item item to the retku
+     * @param retkuID retku slot to equip to item
+     */
     private void equipItem(int retkuID) {
         party.findRetku(retkuID).equipItem(item);
         Location loc;
@@ -132,6 +177,11 @@ public class ItemPopUp extends RetkueDialog {
         inn.resetMe();
     }
 
+    /**
+     * returns retkuID based on the location
+     * @param location location
+     * @return i
+     */
     private int findRetkuID(Location location) {
         int i;
         switch(location) {
@@ -143,6 +193,9 @@ public class ItemPopUp extends RetkueDialog {
         return i;
     }
 
+    /**
+     * Moves the item to the party inventory
+     */
     private void moveToInventory() {
         removeItemFromRetku(item);
         party.addItem(item);
@@ -150,6 +203,10 @@ public class ItemPopUp extends RetkueDialog {
         closeMe();
     }
 
+    /**
+     * Removes the Item from the Retku
+     * @param item Item to be removed
+     */
     private void removeItemFromRetku(Item item) {
         int locID = findRetkuID(item.getLocation());
         if (locID != -1) {
@@ -157,6 +214,10 @@ public class ItemPopUp extends RetkueDialog {
         }
     }
 
+    /**
+     * Sells the item
+     * @param item Item to be sold
+     */
     private void sellItem(Item item) {
         removeItemFromRetku(item);
         party.sellItem(item);
@@ -164,6 +225,9 @@ public class ItemPopUp extends RetkueDialog {
         closeMe();
     }
 
+    /**
+     * Updates the UI elements
+     */
     private void updateButtons() {
         switch(item.getLocation()) {
             case RETKUA: equipA.setVisible(false); break;
@@ -179,6 +243,9 @@ public class ItemPopUp extends RetkueDialog {
         }
     }
 
+    /**
+     * closeMe calls the game to be saved and closes ItemPopUp
+     */
     private void closeMe() {
         getGame().saveGame();
         remove();
