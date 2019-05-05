@@ -9,88 +9,209 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * Item class will hold the information specific to each item
  *
  * @author Viljami Pietarila
- * @version 2019.0327
+ * @version 2019.0505
  */
 public class Item {
+    /**
+     * bundle key for the Item's name
+     */
     private String nameKey;
+
+    /**
+     * bundle key for the Item's description
+     */
     private String descriptionKey;
 
+    /**
+     * power of the effect of the Item
+     */
     private int effect;
+
+    /**
+     * Slot of the Item
+     */
     private Slot slot;
+
+    /**
+     * Rarity of the Item
+     */
     private Rarity rarity;
+
+    /**
+     * Price of the Item
+     */
     private int price;
+
+    /**
+     * Id of the Item
+     */
     private int id;
 
+
+    /**
+     * enum Slot. Holds different possible Item slots
+     */
     public enum Slot {
         TOOL, GARB, TRINKET
     }
 
+    /**
+     * enum Location. Holds different locations for the Item.
+     */
     public enum Location {
         RETKUA, RETKUB, RETKUC, PARTY, SHOP, OTHER
     }
 
+    /**
+     * enum Rarity. Holds different rarities for the Item.
+     */
     public enum Rarity {
         COMMON, UNCOMMON, RARE, EPIC, LEGENDARY
     }
 
+    /**
+     * Texture of the Item
+     */
     private Texture picture;
 
+    /**
+     * Texture of the Item's frame
+     */
     private Texture frame;
 
+    /**
+     * Location of the Item
+     */
     private Location location;
 
+    /**
+     * class Weapon is a platform for holding information of different Weapons
+     */
     private class Weapon extends ProtoItem {
+        /**
+         * attack value of the Weapon
+         */
         public int attack;
+
+        /**
+         * Constructor of the Weapon
+         * @param id id of the Weapon
+         * @param price price of the Weapon
+         * @param attack attack of the Weapon
+         */
         public Weapon(int id, int price, int attack) {
             super(id, price, Slot.TOOL);
             this.attack = attack;
         }
 
+        /**
+         * getEffect returns the attack value of the weapon
+         * @return attack value
+         */
         @Override
         public int getEffect() {
             return attack;
         }
     }
 
+    /**
+     * class Armor is a platform for holding information of different Armors
+     */
     private class Armor extends ProtoItem {
+        /**
+         * defence value of the Armor
+         */
         public int defense;
+
+        /**
+         * Constructor of the Armor
+         * @param id id of the Armor
+         * @param price price of the Armor
+         * @param defense defence valur of the Armor
+         */
         public Armor(int id, int price, int defense) {
             super(id, price, Slot.GARB);
             this.defense = defense;
         }
 
+        /**
+         * getEffect returns the defence value of the armor
+         * @return defence value
+         */
         @Override
         public int getEffect() {
             return defense;
         }
     }
-
+    /**
+     * class Trinket is a platform for holding information of different Trinkets
+     */
     private class Trinket extends ProtoItem {
+        /**
+         * id of the trinketEffect
+         */
         public int trinketEffect;
+
+        /**
+         * Constructor of Trinket
+         * @param id id of the Trinket
+         * @param price price of the Trinket
+         * @param trinketEffect id of the trinketEffect
+         */
         public Trinket(int id, int price, int trinketEffect) {
             super(id, price, Slot.TRINKET);
             this.trinketEffect = trinketEffect;
         }
 
+        /**
+         * getEffect returns the id of the trinketEffect
+         * @return trinketEffect
+         */
         @Override
         public int getEffect() {
             return trinketEffect;
         }
     }
 
+    /**
+     * class ProtoItem is a abstract class from which rest of the item classes extend
+     */
     private abstract class ProtoItem {
+        /**
+         * id of the item
+         */
         public int id;
+        /**
+         * price of the item
+         */
         public int price;
+        /**
+         * Slot of the item
+         */
         public Slot slot;
 
+        /**
+         * ProtoItem constuctor
+         * @param id id of the item
+         * @param price price of the item
+         * @param slot slot of the item
+         */
         public ProtoItem(int id, int price, Slot slot) {
             this.id = id;
             this.price = price;
             this.slot = slot;
         }
+
+        /**
+         * abstract getEffect class for getting the effect of the item
+         * @return effect of the item
+         */
         public abstract int getEffect();
     }
 
+    /**
+     * Weapon[] holds the information of different weapons in the game
+     */
     private Weapon[] weaponData = {
             new Weapon(1,10,1),
             new Weapon(2,40,2),
@@ -106,6 +227,9 @@ public class Item {
             new Weapon(204,1440,12)
     };
 
+    /**
+     * Armor[] holds the information of different armors in the game
+     */
     private Armor[] armorData = {
             new Armor(1,10,1),
             new Armor(2,40,2),
@@ -121,6 +245,9 @@ public class Item {
             new Armor(204,1440,12)
     };
 
+    /**
+     * Trinket[] holds the information of different trinkets in the game
+     */
     private Trinket[] trinketData = {
             new Trinket(1, 2000, 1),
             new Trinket(2, 500, 2),
@@ -172,6 +299,9 @@ public class Item {
         initiateItem();
     }
 
+    /**
+     * initiates item's stats, bundle keys, icon and applies the effect of rarity
+     */
     private void initiateItem() {
         findItemStats();
         String bundle_id = Utils.convertToId(id);
@@ -180,6 +310,9 @@ public class Item {
         applyRarityEffect();
     }
 
+    /**
+     * Constructor for Item. As given no parameters it will generate a random Item.
+     */
     public Item() {
         int random = MathUtils.random(10);
         if (random < 4) {
@@ -196,12 +329,20 @@ public class Item {
         initiateItem();
     }
 
+    /**
+     * picks a random Item from ProtoItem pools
+     * @param array pool of items to choose from
+     * @return id of the item
+     */
     private int randomItem(ProtoItem[] array) {
         int random = MathUtils.random(array.length-1);
         ProtoItem item = array[random];
         return item.id;
     }
 
+    /**
+     * Randomizes rarity of the item
+     */
     private void randomRarity() {
         int random = MathUtils.random(100);
         if (random == 100) {
@@ -217,6 +358,9 @@ public class Item {
         }
     }
 
+    /**
+     * Applies the effects of the rarity. Increases the effect and the price.
+     */
     private void applyRarityEffect() {
         switch (rarity) {
             case COMMON: this.effect = this.effect + 0; price = price * 1; break;
@@ -228,6 +372,9 @@ public class Item {
         }
     }
 
+    /**
+     * Finds the stats of the item
+     */
     private void findItemStats () {
         ProtoItem[] dataToSearch;
         ProtoItem item;
@@ -251,6 +398,12 @@ public class Item {
         }
     }
 
+    /**
+     * When given an id, sorts out the rarity of the item based on it. Returns the id without the
+     * rarity identification
+     * @param id id of the item
+     * @return id without the rarity information
+     */
     private int sortOutRarityFromId (int id) {
         if (id > 8000) {
             this.rarity = Rarity.LEGENDARY;
@@ -270,6 +423,12 @@ public class Item {
         }
     }
 
+    /**
+     * When given id, sorts out the slot of the item based on it. Returns the id without the slot
+     * information
+     * @param id id of the item
+     * @return id without the slot information
+     */
     private int sortOutSlotFromId (int id) {
         if (id > 30000) {
             this.slot = Slot.TRINKET;
@@ -327,6 +486,10 @@ public class Item {
         descriptionKey = halfKey + "_DESC";
     }
 
+    /**
+     * getName returns the localized rarity and name of the item
+     * @return localized rarity + name of the item
+     */
     public String getName() {
         String name = "";
         switch (rarity) {
@@ -341,6 +504,10 @@ public class Item {
         return name;
     }
 
+    /**
+     * getDescription returns the localized description of the item
+     * @return localized description of the item
+     */
     public String getDescription() {
         return Utils.readBundle(Scene.getBundle(), descriptionKey);
     }
@@ -371,34 +538,66 @@ public class Item {
         return icon;
     }
 
+    /**
+     * getter for effect
+     * @return effect
+     */
     public int getEffect() {
         return effect;
     }
 
+    /**
+     * getter for slot
+     * @return slot
+     */
     public Slot getSlot() {
         return slot;
     }
 
+    /**
+     * getter for price
+     * @return price
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * getter for picture
+     * @return picture
+     */
     public Texture getPicture() {
         return picture;
     }
 
+    /**
+     * getter for location
+     * @return location
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * setter for location
+     * @param location new location
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    /**
+     * getter for id
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * readType returns the localized name of the item's type
+     * @return localized name of the item's type
+     */
     private String readType() {
         switch (slot) {
             case TOOL: return Utils.readBundle(Scene.getBundle(), "weapon");
@@ -408,6 +607,10 @@ public class Item {
         }
     }
 
+    /**
+     * returns localized stats and description of the Item
+     * @return localized stats and description
+     */
     public String itemText() {
         String text = "";
         text += readType() + ". ";
