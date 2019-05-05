@@ -4,7 +4,7 @@ package fi.tuni.retkue;
  * AdventurePopUp is the class that holds the functions for the adventure prompt pop up.
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0505
  */
 public class AdventurePopUp extends RetkueDialog {
     /**
@@ -12,10 +12,14 @@ public class AdventurePopUp extends RetkueDialog {
      */
     private static String title = readLine("adventure");
 
+    /**
+     * Reference to the Quest
+     */
     private Quest quest;
 
     /**
-     * Constructor
+     * constructor for AdventurePopUp
+     * @param quest chosen Quest
      */
     public AdventurePopUp(Quest quest) {
         super(title);
