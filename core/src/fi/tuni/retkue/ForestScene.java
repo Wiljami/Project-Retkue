@@ -181,7 +181,7 @@ public class ForestScene extends Scene{
         }
         if (party.timeLeft() < 0 && !questOver && !paused) {
             questOver = true;
-            if(party.getCurrentQuest().getMainQuest()) party.completedMainQuest();
+            if(party.getCurrentQuest().isMainQuest()) party.completedMainQuest();
             ResultsPopUp resultsPopUp = new ResultsPopUp(party);
             resultsPopUp.show(getStage());
             timer.setText("00:00:00");

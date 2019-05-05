@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * PartyBar holds UI and functionality of the party display in forest scene.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 public class PartyBar extends Table {
     /**
@@ -30,10 +30,24 @@ public class PartyBar extends Table {
      */
     private Party party;
 
+    /**
+     * Reference to the scene
+     */
     private Stage stage;
 
+    /**
+     * AnimatedActor retkuA
+     */
     private AnimatedActor retkuA;
+
+    /**
+     * AnimatedActor retkuB
+     */
     private AnimatedActor retkuB;
+
+    /**
+     * AnimatedActor retkuC
+     */
     private AnimatedActor retkuC;
 
     /**
@@ -42,6 +56,7 @@ public class PartyBar extends Table {
      *
      * @param height height of this element
      * @param party reference to the party
+     * @param stage reference to the Stage
      */
     public PartyBar(float height, Party party, Stage stage) {
         this.party = party;
@@ -76,6 +91,9 @@ public class PartyBar extends Table {
         background(Utils.loadButtonImage("partybar.png", 0, 0));
     }
 
+    /**
+     * generates the portraits for the characters
+     */
     private void generateRetkuPortraits() {
         retkuA = party.findRetku(0).getPortrait();
         retkuA.addListener(new ClickListener() {

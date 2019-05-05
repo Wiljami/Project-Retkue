@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
- * ResultsPopUp contains the functionality of the results pop up in the game.
+ * QuestFailPopUp class holds the functionality of the situation when a quest fails
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 public class QuestFailPopUp extends RetkueDialog {
     /**
