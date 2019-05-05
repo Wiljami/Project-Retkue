@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * OptionsPopUp contains the functionality of the options menu within the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0504
  */
 
 public class OptionsPopUp extends RetkueDialog {
@@ -33,6 +33,9 @@ public class OptionsPopUp extends RetkueDialog {
      */
     CheckBox muteBox;
 
+    /**
+     * Reference to the stage
+     */
     private Stage stage;
 
     /**
@@ -126,11 +129,17 @@ public class OptionsPopUp extends RetkueDialog {
         generateTexts();
     }
 
+    /**
+     * closeMe tells the game to save itself and OptionsPopUp to close itself
+     */
     private void closeMe() {
         getGame().saveGame();
         remove();
     }
 
+    /**
+     * generateTexts is called to generate different texts within the options menu
+     */
     private void generateTexts() {
         muteBox.setText(readLine("mute"));
     }
