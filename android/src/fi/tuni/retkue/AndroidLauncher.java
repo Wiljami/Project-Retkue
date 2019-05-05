@@ -12,18 +12,30 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 /**
- * TODO: this documentation
+ * AndroidLauncher class is run when ran on an android device
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
  */
 public class AndroidLauncher extends AndroidApplication implements SensorEventListener {
-
+    /**
+     * SensorManager sensorManager
+     */
     private SensorManager sensorManager;
+
+    /**
+     * boolean activityRunning
+     */
     boolean activityRunning;
+
+    /**
+     * count of steps
+     */
     private float count;
 
     /**
      * onCreate is called when the app is created. We create a STEP_COUNTER sensor as well
-     * TODO: Better documentation here?
-     * @param savedInstanceState ??
+     * @param savedInstanceState savedInstanceState
      */
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -67,9 +79,8 @@ public class AndroidLauncher extends AndroidApplication implements SensorEventLi
 
     /**
      * onAccuracyChanged
-     * TODO: Comment this, what is this even?
-     * @param sensor
-     * @param accuracy
+     * @param sensor sensor
+     * @param accuracy accuracy
      */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
