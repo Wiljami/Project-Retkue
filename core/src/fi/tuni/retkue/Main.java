@@ -15,7 +15,7 @@ import fi.tuni.retkue.tutorial.TutorialPrompt;
  * Main class for the 2019 spring mobile game project. Controls different scenes and their relations.
  *
  * @author Viljami Pietarila
- * @version 2019.0313
+ * @version 2019.0505
  */
 public class Main extends Game {
     /**
@@ -24,9 +24,13 @@ public class Main extends Game {
 	SpriteBatch batch;
 
     /**
-     * needed and we need the pixels for rendering text.
+     * World height in pixels
      */
 	public final static int WORLDPIXELHEIGHT = 640;
+
+	/**
+     * World width in pixels
+     */
     public final static int WORLDPIXELWIDTH = 360;
 
     /**
@@ -71,16 +75,17 @@ public class Main extends Game {
      */
     private static String saveFileName = "RetkueSave";
 
-
+    /**
+     * Wether we're running a tutorial
+     */
     private boolean tutorial = false;
 
     /**
-     * create()
+     * override create to run our functions. Catch the back key. Start the game. Start stepSimulator
+     * if on computer. Start tutorial if it's true.
      */
     @Override
 	public void create () {
-        //TODO: implement elegant exit on BackKey
-        //TODO: This is needed as default behavior bugs out the graphics
         Gdx.input.setCatchBackKey(true);
         initiateGame();
         if(stepSim) stepSimulator();
@@ -114,12 +119,18 @@ public class Main extends Game {
         }
     }
 
+    /**
+     * functions for starting tutorial
+     */
     private void startTutorial() {
         TutorialController tutorialController = new TutorialController(this);
         TutorialPrompt tutorialPrompt = new TutorialPrompt(tutorialController);
         tutorialPrompt.show(currentScene.getStage());
     }
 
+    /**
+     * functions for new game
+     */
     private void newGame() {
         party.newGame();
         townInfo.newGame();
@@ -232,14 +243,24 @@ public class Main extends Game {
         return townInfo;
     }
 
+    /**
+     * setter for tutorial
+     * @param tutorial new tutorial value
+     */
     public void setTutorial(boolean tutorial) {
         this.tutorial = tutorial;
     }
 
+    /**
+     * startGame
+     */
     public void startGame() {
         initiateGame();
     }
 
+    /**
+     * saveGame
+     */
     public void saveGame() {
         SaveGame.save(getSaveFileName(), getParty(), getTownInfo());
     }

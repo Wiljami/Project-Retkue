@@ -27,11 +27,18 @@ public class MainMenuScene extends Scene {
     }
 
     /**
-     * ????
+     * Reference to itself
      */
     Scene menuScene;
 
+    /**
+     * TextButton start
+     */
     private TextButton start;
+
+    /**
+     * TextButton options
+     */
     private ImageButton options;
 
     /**
@@ -84,10 +91,16 @@ public class MainMenuScene extends Scene {
         getStage().addActor(mainMenuTable);
     }
 
+    /**
+     * Override for updateValues
+     */
     @Override
     public void updateValues() {
     }
 
+    /**
+     * Override for hide to stop the music
+     */
     @Override
     public void hide() {
         backgroundMusic.stop();
@@ -100,6 +113,9 @@ public class MainMenuScene extends Scene {
         super.dispose();
     }
 
+    /**
+     * overRide for generateTexts for the texts in mainMenu
+     */
     @Override
     public void generateTexts() {
         start.setText(readLine("start"));
