@@ -9,32 +9,53 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-
 /**
  * InnPopUp contains functionality of the inn within the game.
  *
  * @author Viljami Pietarila
- * @version 2019.0307
+ * @version 2019.0505
  */
 public class InnPopUp extends RetkueDialog {
+
     /**
      * Title of the InnPopUp window
      */
     private static String title = readLine("inn");
 
+    /**
+     * Reference to the party
+     */
     private Party party;
 
+    /**
+     * size of the item pictures
+     */
     private float itemSize;
 
+    /**
+     * Reference to itself
+     */
     private InnPopUp inn;
 
+    /**
+     * Reference to the stage
+     */
     private Stage stage;
 
+    /**
+     * Reference to the twon
+     */
     private TownScene town;
 
-    private Table inventory;
     /**
-     * Constructor.
+     * Table holding the inventory UI parts
+     */
+    private Table inventory;
+
+    /**
+     * InnPopUp constructor
+     * @param party player's party
+     * @param townScene the townScene
      */
     public InnPopUp(Party party, TownScene townScene) {
         super(title);
@@ -89,20 +110,64 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(buttons);
     }
 
+    /**
+     * Array of Groups
+     */
     private Group[][] charSlots;
 
+    /**
+     * Table with the character portraits
+     */
     Table charImages;
+
+    /**
+     * UI table for the Retku A's items
+     */
     Table retkuAItems;
+
+    /**
+     * UI table for the Retku B's items
+     */
     Table retkuBItems;
+
+    /**
+     * UI table for the Retku C's items
+     */
     Table retkuCItems;
+
+    /**
+     * HealthBar bar0
+     */
     HealthBar bar0;
+
+    /**
+     * HealthBar bar1
+     */
     HealthBar bar1;
+
+    /**
+     * HealthBar bar2
+     */
     HealthBar bar2;
 
+    /**
+     * AnimatedActor retkuA
+     */
     private AnimatedActor retkuA;
+
+    /**
+     * AnimatedActor retkuB
+     */
     private AnimatedActor retkuB;
+
+    /**
+     * AnimatedActor retkuC
+     */
     private AnimatedActor retkuC;
 
+    /**
+     * generatePortraits generates the player portraits
+     */
     private void generatePortraits() {
         retkuA = party.findRetku(0).getPortrait();
         retkuA.addListener(new ClickListener() {
@@ -130,6 +195,9 @@ public class InnPopUp extends RetkueDialog {
         });
     }
 
+    /**
+     * generates teh character sheets
+     */
     private void generateCharSheets() {
         charImages = new Table();
         float charSize = Main.WORLDPIXELHEIGHT*(1f/7f);
@@ -167,6 +235,12 @@ public class InnPopUp extends RetkueDialog {
         getContentTable().add(charImages).left().pad(2);
     }
 
+    /**
+     * generates the character Items
+     * @param retku Retku whose items are generated
+     * @param i placement in charSlots
+     * @return Table of the items
+     */
     private Table generateCharItems(Retku retku, int i) {
         Table charInventories = new Table();
 
@@ -206,6 +280,11 @@ public class InnPopUp extends RetkueDialog {
         return charInventories;
     }
 
+    /**
+     * Generates an emptySlot for the inveotry
+     * @param slot Slot in question
+     * @return Group holding graphics
+     */
     private Group emptySlot (String slot) {
         String file = "items/empty_" + slot + ".png";
         Group button = new Group();
@@ -215,6 +294,9 @@ public class InnPopUp extends RetkueDialog {
         return button;
     }
 
+    /**
+     * Generates the inventory UI
+     */
     private void generateInventory() {
         inventory.reset();
         int tmp = 0;
@@ -233,7 +315,10 @@ public class InnPopUp extends RetkueDialog {
         }
     }
 
-
+    /**
+     * generates an itemButton
+     * @param i placement of the item in the party inventory
+     */
     private void generateItemButton(int i) {
         final Item item = party.getInventory().get(i);
         Group itemButton = item.getIcon(itemSize);
@@ -241,6 +326,11 @@ public class InnPopUp extends RetkueDialog {
         inventory.add(itemButton);
     }
 
+    /**
+     * addItemListener creates a click listener for the item buttons
+     * @param itemButton Group of the item graphics
+     * @param item Reference of the Item
+     */
     private void addItemListener(final Group itemButton, final Item item) {
         itemButton.addListener(new ClickListener(){
             @Override
@@ -251,18 +341,27 @@ public class InnPopUp extends RetkueDialog {
         });
     }
 
+    /**
+     * Resets different UI elements
+     */
     public void resetMe() {
         generatePortraits();
         getContentTable().reset();
         createMenu();
     }
 
+    /**
+     * closeMe saves the game and makes InnPopUp close itself
+     */
     private void closeMe() {
         getGame().saveGame();
         getContentTable().reset();
         remove();
     }
 
+    /**
+     * updates the healthBars within the InnPopUp
+     */
     public void updateHealthBars() {
         bar0.setValue(party.findRetku(0).healthPercentage());
         bar1.setValue(party.findRetku(1).healthPercentage());
