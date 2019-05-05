@@ -11,12 +11,27 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * the game scenes. It will create the table UI and have hold the functionality.
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0505
  */
 public class GameHeader extends Table {
+    /**
+     * Label stepCount
+     */
     Label stepCount;
+
+    /**
+     * Label goldCount
+     */
     Label goldCount;
+
+    /**
+     * Reference the player's party
+     */
     Party party;
+
+    /**
+     * Reference to itself
+     */
     GameHeader header;
 
     /**

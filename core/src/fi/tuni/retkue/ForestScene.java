@@ -15,16 +15,18 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * simple timer to keep track of the progress
  *
  * @author Viljami Pietarila
- * @version 2019.0310
+ * @version 2019.0505
  */
-//TODO: Everything
 
 public class ForestScene extends Scene{
     /**
-     * Reference to the timer label so that it can be updated.
+     * Label timer
      */
     private Label timer;
 
+    /**
+     * Label timerToEncounter
+     */
     private Label timerToEncounter;
 
     /**
@@ -37,8 +39,14 @@ public class ForestScene extends Scene{
      */
     private PartyBar partyBar;
 
+    /**
+     * Boolean wether the quest is over
+     */
     private Boolean questOver;
 
+    /**
+     * Boolean wether the timer is paused
+     */
     private Boolean paused;
 
     /**
@@ -83,11 +91,29 @@ public class ForestScene extends Scene{
         getStage().addActor(table);
     }
 
+    /**
+     * Table logTable
+     */
     private Table logTable;
+
+    /**
+     * RetkueLabel textLog
+     */
     private RetkueLabel textLog;
+
+    /**
+     * ScrollPane scrollLog
+     */
     private ScrollPane scrollLog;
+
+    /**
+     * RetkueLabel steps
+     */
     private RetkueLabel steps;
 
+    /**
+     * generateLogTable creates the log table UI elements
+     */
     private void generateLogTable() {
         logTable = new Table();
         Button faster = new TextButton(readLine("faster"), getSkin());
@@ -152,7 +178,6 @@ public class ForestScene extends Scene{
      * heal() is called when the heal button is pressed within the screen.
      *
      * Heal will increase the health of the Retkus, assuming they have enough gold
-     * TODO: More and better here
      */
     private void heal() {
         HealDialog healDialog = new HealDialog(party);
@@ -163,7 +188,6 @@ public class ForestScene extends Scene{
      * faster() is called when the boost button is pressed within the screen
      *
      * Faster will decrease the time left of the quest.
-     * TODO: More and better here
      */
     private void faster() {
         FasterDialog fasterDialog = new FasterDialog(party);
@@ -197,7 +221,7 @@ public class ForestScene extends Scene{
     /**
      * How often we check with random wether there is an evernt or not
      */
-    private float checkTime = 5f;
+    private final float CHECKTIME = 5f;
 
     /**
      * float of time since last random event check
@@ -207,25 +231,37 @@ public class ForestScene extends Scene{
     /**
      * float that determines the chance of events, higher means less frequently
      */
-    private float eventChance = 100f;
+    private final float EVENTCHANCE = 100f;
 
     /**
      * float to determine how often we autosave the game while in forestscene.
      */
-    private float autoSaveTimer = 300f;
+    private final float AUTOSAVETIMER = 300f;
 
+    /**
+     * float timeSinceLastAutoSave
+     */
     private float timeSinceLastAutoSave;
 
+    /**
+     * boolean encounter - wether you're currently in an encounter
+     */
     private boolean encounter = false;
 
+    /**
+     * float timeSincelastEncounterTurn - time passed since last encounter turn
+     */
     private float timeSinceLastEncounterTurn;
 
-    private float encounterTurnTimer = 5f;
+    /**
+     * Time between encounter turns
+     */
+    private final float ENCOUNTERTURNTIMER = 5f;
 
     /**
      * events triggers random events based on time spent
      *
-     * events runs on every frame and adds DeltaTime to the helper variables. Every checkTime
+     * events runs on every frame and adds DeltaTime to the helper variables. Every CHECKTIME
      * seconds it randomizes a value between 0 and eventChance. If it is less than
      * timeSinceLastEvent an event will trigger
      */
@@ -239,32 +275,53 @@ public class ForestScene extends Scene{
         timeSinceLastAutoSave += Gdx.graphics.getDeltaTime();
         if (encounter) {
             timeSinceLastEncounterTurn += Gdx.graphics.getDeltaTime();
-            if (timeSinceLastEncounterTurn > encounterTurnTimer) {
+            if (timeSinceLastEncounterTurn > ENCOUNTERTURNTIMER) {
                 fighting();
                 timeSinceLastEncounterTurn = 0;
             }
         }
-        if (timeSinceLastCheck > checkTime) {
-            float n = MathUtils.random(eventChance);
+        if (timeSinceLastCheck > CHECKTIME) {
+            float n = MathUtils.random(EVENTCHANCE);
             if (n < timeSinceLastEvent) {
                 randomEvent();
                 timeSinceLastEvent = 0;
             }
             timeSinceLastCheck = 0;
         }
-        if (timeSinceLastAutoSave > autoSaveTimer) {
+        if (timeSinceLastAutoSave > AUTOSAVETIMER) {
             getGame().saveGame();
             timeSinceLastAutoSave = 0;
         }
     }
 
+    /**
+     * Time spent in the encounter
+     */
     private long encounterTime;
+
+    /**
+     * localized name of the enemy
+     */
     String enemy;
 
+    /**
+     * Life of the enemey
+     */
     private int enemyLife;
+
+    /**
+     * attack value of the enemy
+     */
     private int enemyAttack;
+
+    /**
+     * defence value of the enemy
+     */
     private int enemyDefence;
 
+    /**
+     * initalises the encounter
+     */
     private void encounter() {
         encounterTime = System.currentTimeMillis();
         enemy = party.getQuest().getEnemyName();
@@ -277,10 +334,16 @@ public class ForestScene extends Scene{
         encounterPopUp.show(getStage());
     }
 
+    /**
+     * begins the encounter
+     */
     public void beginEncounter() {
         encounter = true;
     }
 
+    /**
+     * when in encounter fighting is called to do encounter turns
+     */
     private void fighting() {
         String logLine = "";
         String attacks = readLine("attacks");
@@ -322,6 +385,9 @@ public class ForestScene extends Scene{
         }
     }
 
+    /**
+     * encounterOver is run when the encounter is over. Resumes the quest.
+     */
     private void encounterOver() {
         encounter = false;
         long timePassed = System.currentTimeMillis() - encounterTime;
@@ -353,6 +419,9 @@ public class ForestScene extends Scene{
      */
     private int eventHeal = 10;
 
+    /**
+     * randomEvent picks a random event from the pool of events
+     */
     private void randomEvent() {
         int event = MathUtils.random(28) + 1;
         String eventString = "QUEST_EVENT_RANDOM_";
@@ -374,19 +443,33 @@ public class ForestScene extends Scene{
         }
     }
 
+    /**
+     * Randomizer for combat.
+     * @return random element for combat rolls
+     */
     private int combatRandomizer() {
         int random = MathUtils.random(6);
         return random;
     }
 
+    /**
+     * failQuest runs the functions and elements of the failQuest
+     */
     private void failQuest() {
         setQuestOver(true);
         QuestFailPopUp questFailPopUp = new QuestFailPopUp(party);
         questFailPopUp.show(getStage());
     }
 
+    /**
+     * rawLog holds the log of the quest in String format
+     */
     private String rawLog;
 
+    /**
+     * adds text to rawLog and sets textLog to it
+     * @param text text to add to the rawLog
+     */
     private void addToLog(String text) {
         rawLog += text;
         textLog.setText(rawLog);
@@ -414,6 +497,9 @@ public class ForestScene extends Scene{
         }
     }
 
+    /**
+     * generates the encounterTimer Label
+     */
     private void generateEncounterTimer() {
         long timeLeft = party.timeLeftToEncounter();
         String timerText = Utils.convertToTimeStamp(timeLeft);
@@ -421,16 +507,26 @@ public class ForestScene extends Scene{
         timerToEncounter.setText(timerText);
     }
 
+    /**
+     * updates the steps displayed on the screen
+     */
     private void updateSteps() {
         String stepsString = readLine("steps") + ": " + party.getSteps();
         steps.setText(stepsString);
     }
 
+    /**
+     * override to update the healthbars of the party
+     */
     @Override
     public void updateValues() {
         partyBar.updateHealthBars();
     }
 
+    /**
+     * setter for questOver
+     * @param questOver new questOver value
+     */
     public void setQuestOver(Boolean questOver) {
         this.questOver = questOver;
     }
