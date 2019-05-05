@@ -8,11 +8,32 @@ import fi.tuni.retkue.Main;
 import fi.tuni.retkue.RetkueDialog;
 import fi.tuni.retkue.RetkueLabel;
 
+/**
+ * TutorialTavern holds the functionality and UI elements for the tavern parts of the tutorial
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialTavern extends RetkueDialog {
+    /**
+     * Reference to the TutorialTownScene
+     */
     private TutorialTownScene scene;
+
+    /**
+     * Reference to itself
+     */
     private TutorialTavern me;
+
+    /**
+     * TutorialQuestPopUp tutorialQuestPopUp
+     */
     private TutorialQuestPopUp tutorialQuestPopUp;
 
+    /**
+     * Consturctor for TutorialTavern
+     * @param scene the Scene that called this popUp
+     */
     public TutorialTavern(TutorialTownScene scene) {
         super("Tavern");
         this.scene = scene;
@@ -20,6 +41,9 @@ public class TutorialTavern extends RetkueDialog {
         createMenu();
     }
 
+    /**
+     * createMenu generates the UI elements of the popup
+     */
     private void createMenu() {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
@@ -59,11 +83,11 @@ public class TutorialTavern extends RetkueDialog {
         label0.toFront();
     }
 
+    /**
+     * getScene returns the scene
+     * @return scene
+     */
     public TutorialTownScene getScene() {
         return scene;
-    }
-
-    public TutorialQuestPopUp getTutorialQuestPopUp() {
-        return tutorialQuestPopUp;
     }
 }
