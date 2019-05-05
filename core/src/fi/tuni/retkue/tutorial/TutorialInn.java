@@ -10,9 +10,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import fi.tuni.retkue.RetkueDialog;
 import fi.tuni.retkue.Utils;
 
+/**
+ * TutorialInn holds the functionality and UI elements for the inn parts of the tutorial
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialInn extends RetkueDialog {
+    /**
+     * the scene that called the Inn
+     */
     private TutorialTownScene origin;
 
+    /**
+     * Constructor of the TutorialInn
+     * @param origin origin of the popUp
+     */
     public TutorialInn(TutorialTownScene origin) {
         super("Inn");
 
@@ -36,6 +49,9 @@ public class TutorialInn extends RetkueDialog {
         getContentTable().add(rest).colspan(2);
     }
 
+    /**
+     * method called when clicked
+     */
     private void clickedRest() {
         remove();
         origin.continueTutorial(105);

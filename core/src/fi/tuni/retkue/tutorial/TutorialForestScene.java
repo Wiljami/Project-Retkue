@@ -19,16 +19,48 @@ import fi.tuni.retkue.Utils;
 import static fi.tuni.retkue.tutorial.TutorialPopUp.Position.BOTTOM;
 import static fi.tuni.retkue.tutorial.TutorialPopUp.Position.MIDDLE;
 import static fi.tuni.retkue.tutorial.TutorialPopUp.Position.TOP;
-
+/**
+ * TutorialForestScene holds the functionality and UI elements for the forest parts of the tutorial
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialForestScene extends Scene implements TutorialScene{
-
+    /**
+     * Reference to the TutorialController
+     */
     private TutorialController controller;
+
+    /**
+     * Reference to the main
+     */
     private Main game;
+
+    /**
+     * Image mask
+     */
     private Image mask;
+
+    /**
+     * Reference to the party
+     */
     private Party party;
+
+    /**
+     * GameHeader header
+     */
     private GameHeader header;
+
+    /**
+     * PartyBar partyBar
+     */
     private PartyBar partyBar;
 
+    /**
+     * Constructor for TutorialForestScene
+     * @param game reference to the game
+     * @param controller reference to the controller
+     */
     public TutorialForestScene(Main game, TutorialController controller) {
         super();
         this.controller = controller;
@@ -46,11 +78,29 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         continueTutorial(1);
     }
 
+    /**
+     * Button faster
+     */
     private Button faster;
+
+    /**
+     * Button harder
+     */
     private Button harder;
+
+    /**
+     * Label steps
+     */
     private Label steps;
+
+    /**
+     * Label timer
+     */
     private Label timer;
 
+    /**
+     * createMenu generates the UI elements
+     */
     private void createMenu() {
         //heightArray is given float values that represent the height of each element in the table
         //It is a percentage of the entire screen
@@ -73,10 +123,24 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         getStage().addActor(table);
     }
 
+    /**
+     * Table log
+     */
     Table log;
+
+    /**
+     * Label textLog
+     */
     Label textLog;
+
+    /**
+     * Button encounter
+     */
     Button encounter;
 
+    /**
+     * generateLog generates the log for tutorial purposes
+     */
     private void generateLog() {
         log = new Table();
         faster = new TextButton("Vauhdita", getSkin());
@@ -107,11 +171,22 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         encounter.setVisible(false);
     }
 
+    /**
+     * calls tutorialPopUp with the given arguements
+     * @param text_id bundle id of the text
+     * @param id phase of the tutorial
+     * @param image image to the popUp
+     * @param location location of the popUp
+     */
     private void tutorialPopUp(int text_id, int id, String image, TutorialPopUp.Position location) {
         TutorialPopUp popUp = new TutorialPopUp(text_id, id, image, location, this);
         popUp.show(getStage());
     }
 
+    /**
+     * override of the continueTutorial to run the tutorial
+     * @param id id of the phase
+     */
     @Override
     public void continueTutorial(int id) {
         System.out.println("id: " + id);
@@ -138,20 +213,32 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         }
     }
 
+    /**
+     * tutorial phase2
+     */
     private void phase2() {
         log.setVisible(true);
         log.toFront();
         tutorialPopUp(9 ,4, "old_guy1.png", BOTTOM);
     }
 
+    /**
+     * The text in the log
+     */
     String loggedText;
 
+    /**
+     * tutorial phase4
+     */
     private void phase4() {
         loggedText = readLine("forestTutMsg2");
         textLog.setText(loggedText);
         tutorialPopUp(12,5, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase6
+     */
     private void phase6() {
         encounter.setVisible(true);
         encounter.addListener(new ClickListener() {
@@ -165,12 +252,18 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         tutorialPopUp(14,7, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase8
+     */
     private void phase8() {
         loggedText += "\n" + readLine("forestTutMsg3");
         textLog.setText(loggedText);
         tutorialPopUp(15,9, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase9
+     */
     private void phase9() {
         loggedText += "\n" + readLine("forestTutMsg4");
         textLog.setText(loggedText);
@@ -179,6 +272,9 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         tutorialPopUp(16, 11,"old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase§§
+     */
     private void phase11() {
         harder.setVisible(true);
         harder.addListener(new ClickListener(){
@@ -193,6 +289,9 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         tutorialPopUp(18,12, "old_guy1.png", MIDDLE);
     }
 
+    /**
+     * tutorial phase15
+     */
     private void phase15() {
         loggedText += "\n" + readLine("forestTutMsg5");
         loggedText += "\n" + readLine("forestTutMsg6");
@@ -201,34 +300,50 @@ public class TutorialForestScene extends Scene implements TutorialScene{
         tutorialPopUp(21,16, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase16
+     */
     private void phase16() {
         loggedText += "\n" + readLine("forestTutMsg8");
         textLog.setText(loggedText);
         tutorialPopUp(22,17, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase17
+     */
     private void phase17() {
         TutorialResults tutorialResults = new TutorialResults(this);
         tutorialResults.show(getStage());
         tutorialPopUp(23,18, "old_guy1.png", TOP);
     }
 
+    /**
+     * tutorial phase19
+     */
     private void phase19() {
         controller.tutorialPhase(3);
     }
 
+    /**
+     * updateValues override
+     */
     @Override
     public void updateValues() {
 
     }
-
+    /**
+     * brings the mask in front and sets its alpha to 0.4f
+     */
     public void fadeIn() {
         mask.toFront();
         mask.setColor(0,0,0, 0.4f);
     }
 
+    /**
+     * hides the mask by setting its alpha to 0.0f
+     */
     public void fadeOut() {
         mask.setColor(0,0,0, 0.0f);
     }
-
 }

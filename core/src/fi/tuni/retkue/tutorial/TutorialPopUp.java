@@ -12,15 +12,51 @@ import fi.tuni.retkue.RetkueDialog;
 import fi.tuni.retkue.RetkueLabel;
 import fi.tuni.retkue.Utils;
 
+/**
+ * TutorialPopUp is a custom popUp for the tutorial messages
+ *
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 public class TutorialPopUp extends RetkueDialog {
+    /**
+     * title of the TutorialPopUp
+     */
     private static String title = "";
+
+    /**
+     * Reference to the scene that called this popUp
+     */
     private TutorialScene scene;
+
+    /**
+     * id bundle of this event
+     */
     private int text_id;
+
+    /**
+     * phase of the tutorial
+     */
     private int id;
+
+    /**
+     * position of the popUp
+     */
     private Position position;
 
+    /**
+     * enum Position - different positions of the popUp
+     */
     public enum Position {TOP, LEFT, BOTTOM, MIDDLE}
 
+    /**
+     * Consturctor of the TutorialPopUp
+     * @param text_id bundle id
+     * @param id phase
+     * @param image image filename to display
+     * @param position position of the popUp
+     * @param scene scene that called this popUp
+     */
     public TutorialPopUp(int text_id, int id, String image, Position position, TutorialScene scene) {
         super(title);
         this.text_id = text_id;
@@ -30,6 +66,9 @@ public class TutorialPopUp extends RetkueDialog {
         createMenu();
     }
 
+    /**
+     * creates the UI elements of the popUp
+     */
     private void createMenu() {
         String key = "TUTORIAL_TEXT_";
         key += Utils.convertToId(text_id);
@@ -51,6 +90,11 @@ public class TutorialPopUp extends RetkueDialog {
         getContentTable().add(ok).center();
     }
 
+    /**
+     * Override of the show
+     * @param stage stage
+     * @return this
+     */
     @Override
     public Dialog show(Stage stage) {
         show(stage, null);

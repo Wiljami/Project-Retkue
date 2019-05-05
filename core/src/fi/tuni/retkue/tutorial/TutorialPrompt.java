@@ -10,7 +10,6 @@ import fi.tuni.retkue.RetkueLabel;
 
 
 public class TutorialPrompt extends RetkueDialog {
-    private static String windowStyle = "dialog";
     private static String title = "";
 
     public TutorialPrompt(TutorialController tutorialController) {
