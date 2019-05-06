@@ -151,7 +151,6 @@ public class Party {
 
     /**
      * Convert steps to gold. If the conversion is not possible, then return false.
-     * @return boolean wether the conversion was possible.
      */
     public void convert() {
         setSteps(getSteps() - getConvCost());
