@@ -325,9 +325,10 @@ public class ForestScene extends Scene{
     private void encounter() {
         encounterTime = System.currentTimeMillis();
         enemy = party.getQuest().getEnemyName();
-        enemyLife = 100;
-        enemyDefence = 5;
-        enemyAttack = 10;
+        float diff = party.getQuest().getDifficulty();
+        enemyLife = (int) (100 / diff);
+        enemyDefence = (int) (5 / diff);
+        enemyAttack = (int) (10 / diff);
         party.setQuestEncounter(true);
         paused = true;
         EncounterPopUp encounterPopUp = new EncounterPopUp(enemy, this);
