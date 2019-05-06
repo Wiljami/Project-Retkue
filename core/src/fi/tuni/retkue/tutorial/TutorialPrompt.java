@@ -8,15 +8,29 @@ import fi.tuni.retkue.Main;
 import fi.tuni.retkue.RetkueDialog;
 import fi.tuni.retkue.RetkueLabel;
 
+/**
+ * TutorialPrompt class contains functionality and UI elements of the popUp asking player
+ * wether they wish the enter the tutorial or not.
+ * @author Viljami Pietarila
+ * @version 2019.0505
+ */
 
 public class TutorialPrompt extends RetkueDialog {
     private static String title = "";
 
+    /**
+     * Constructor for TutorialPrompt
+     * @param tutorialController reference to the tutorialController
+     */
     public TutorialPrompt(TutorialController tutorialController) {
         super(title);
         createMenu(tutorialController);
     }
 
+    /**
+     * method createMenu creates the UI elements
+     * @param tutorialController reference to the tutorialController
+     */
     private void createMenu(final TutorialController tutorialController) {
         float popUpWidth = Main.WORLDPIXELWIDTH*3f/4f;
 
